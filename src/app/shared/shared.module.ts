@@ -25,7 +25,7 @@ const materialModules = [
     StorageService
   ],
   exports: [
-    materialModules
+    materialModules, NavbarComponent
   ]  
 })
 export class SharedModule { }
