@@ -7,8 +7,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 
+
 const materialModules = [
-  MatToolbarModule
+  MatToolbarModule,
+  
 ]
 
 
