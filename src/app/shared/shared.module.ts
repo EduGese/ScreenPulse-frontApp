@@ -5,19 +5,23 @@ import { StorageService } from './services/storage/storage.service';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
 
+const materialModules = [
+  MatToolbarModule
+]
+
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    MatToolbarModule
+    materialModules
   ],
   providers: [
     OmdbService,
     StorageService
   ],
   exports: [
-    MatToolbarModule
+    materialModules
   ]  
 })
 export class SharedModule { }
