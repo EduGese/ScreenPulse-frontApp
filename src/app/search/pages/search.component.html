@@ -1,3 +1,28 @@
 <app-navbar></app-navbar>
-<p>search works!</p>
+<h1>Search your Movie or Serie</h1>
+
+<form>
+
+    <label>
+      Título:
+      <input type="text" name="title" [(ngModel)]="title">
+    </label>
+  
+    <label>
+      Tipo:
+      <select name="type" [(ngModel)]="type">
+        <option value="movie">Movie</option>
+        <option value="series">Serie</option>  
+        <option value="episode">Episode</option>    
+      </select>
+    </label>
+  
+    <label>
+      Año: 
+      <input type="text" name="year" [(ngModel)]="year">
+    </label>
+
+    <button type="submit" (click)="onSubmit()">Submit</button>
+  
+  </form>
 
