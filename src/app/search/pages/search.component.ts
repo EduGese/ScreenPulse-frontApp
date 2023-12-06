@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { OmdbService } from './../../shared/services/omdb/omdb.service';
 import { Component } from '@angular/core';
 
@@ -13,7 +14,7 @@ export class SearchComponent {
   year: number = 1990;
   results: any = '';
 
-  constructor(private OmdbService: OmdbService){}
+  constructor(private OmdbService: OmdbService, private toastrService: ToastrService){}
   
 
 
@@ -23,12 +24,13 @@ export class SearchComponent {
     this.OmdbService.getMovies(this.title, this.type, this.year).subscribe(
       (response)=>{
         //Handdle responses with no movies
-        response.Error ? console.log(response.Error) : this.results = response.Search;
+        response.Error ? this.toastrService.error(response.Error, 'Search error') : this.results = response.Search;
         this.type = this.type == '' ? 'all' : this.type;
       },
       (error)=>{
-        if(error)
-        console.log(error.message);
+        //Handdle bad responses
+        this.toastrService.error(error.message, 'Major error');
+
       }
     )
     
