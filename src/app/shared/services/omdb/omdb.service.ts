@@ -18,7 +18,7 @@ export class OmdbService {
         apikey: environment.apiKeyOmdb,
         s: title,
         type: type,
-        year: year
+        y: year
       }
     })
   }
