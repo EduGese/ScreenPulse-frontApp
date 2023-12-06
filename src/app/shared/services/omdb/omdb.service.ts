@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -21,5 +21,22 @@ export class OmdbService {
         y: year
       }
     })
+    .pipe(
+
+      catchError(error => {
+  
+        if (error.status === 404) {
+          return throwError(() => new Error('EndpointNotFound')); 
+        }
+  
+        if (error.status === 401) {
+          return throwError(() => new Error('InvalidApiKey'));
+        }
+  
+        return throwError(() => new Error('UnknownError'));
+  
+      })
+  
+    );
   }
 }

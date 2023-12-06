@@ -21,12 +21,14 @@ export class SearchComponent {
     this.type = this.type === 'all' ? '' : this.type;
 
     this.OmdbService.getMovies(this.title, this.type, this.year).subscribe(
-      (response)=>{//Handdle responses with no movies
+      (response)=>{
+        //Handdle responses with no movies
         response.Error ? console.log(response.Error) : this.results = response.Search;
-        if(this.type == ''){
-          this.type = 'all';
-        }
         this.type = this.type == '' ? 'all' : this.type;
+      },
+      (error)=>{
+        if(error)
+        console.log(error.message);
       }
     )
     
