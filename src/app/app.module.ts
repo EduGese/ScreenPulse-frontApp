@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AppComponent } from './app.component';
     CoreModule,
     SharedModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
