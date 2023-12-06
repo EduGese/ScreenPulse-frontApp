@@ -11,7 +11,7 @@ export class SearchComponent {
   title: string ='';
   type: string = '';
   year: string = '';
-  result: any = '';
+  results: any = '';
 
   constructor(private OmdbService: OmdbService){}
   
@@ -21,6 +21,7 @@ export class SearchComponent {
     this.OmdbService.getMovies(this.title, this.type, this.year).subscribe(
       (response)=>{
         console.log(response);
+        this.results = response.Search;
       }
     )
   }

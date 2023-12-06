@@ -4,12 +4,12 @@
 <form>
 
     <label>
-      Título:
+      Title:
       <input type="text" name="title" [(ngModel)]="title">
     </label>
   
     <label>
-      Tipo:
+      Type:
       <select name="type" [(ngModel)]="type">
         <option value="movie">Movie</option>
         <option value="series">Serie</option>  
@@ -18,7 +18,7 @@
     </label>
   
     <label>
-      Año: 
+      Year: 
       <input type="text" name="year" [(ngModel)]="year">
     </label>
 
@@ -26,3 +26,4 @@
   
   </form>
 
+<app-movie-results-table [results] = "results"></app-movie-results-table>
