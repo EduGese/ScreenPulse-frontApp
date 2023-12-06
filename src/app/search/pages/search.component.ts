@@ -1,3 +1,4 @@
+import { OmdbService } from './../../shared/services/omdb/omdb.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
+
+  title: string ='';
+  type: string = '';
+  year: string = '';
+  result: any = '';
+
+  constructor(private OmdbService: OmdbService){}
+  
+
+
+  onSubmit(){
+    this.OmdbService.getMovies(this.title, this.type, this.year).subscribe(
+      (response)=>{
+        console.log(response);
+      }
+    )
+  }
+
+  
 
 }
