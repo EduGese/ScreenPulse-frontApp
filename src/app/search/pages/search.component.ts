@@ -10,7 +10,7 @@ export class SearchComponent {
 
   title: string ='';
   type: string = '';
-  year: string = '';
+  year: number = 1990;
   results: any = '';
 
   constructor(private OmdbService: OmdbService){}
