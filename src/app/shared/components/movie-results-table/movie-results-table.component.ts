@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class MovieResultsTableComponent {
 @Input () results:any;
-displayedColumns: string[] = ['Title', 'Year', 'Type'];
+displayedColumns: string[] = ['Title', 'Year', 'Type', 'IMDbId', 'Poster'];
 
 }
