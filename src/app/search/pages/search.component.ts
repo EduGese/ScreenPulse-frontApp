@@ -23,9 +23,8 @@ export class SearchComponent {
     }
     console.log(this.type);
     this.OmdbService.getMovies(this.title, this.type, this.year).subscribe(
-      (response)=>{
-        console.log(response);
-        this.results = response.Search;
+      (response)=>{//Handdle responses with no movies
+        response.Error ? console.log(response.Error) : this.results = response.Search;
         if(this.type == ''){
           this.type = 'all';
         }
