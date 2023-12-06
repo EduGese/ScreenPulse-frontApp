@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class SearchComponent {
 
   title: string ='';
-  type: string = '';
+  type: string = 'all';
   year: number = 1990;
   results: any = '';
 
@@ -18,12 +18,20 @@ export class SearchComponent {
 
 
   onSubmit(){
+    if(this.type === 'all') {
+      this.type = '';
+    }
+    console.log(this.type);
     this.OmdbService.getMovies(this.title, this.type, this.year).subscribe(
       (response)=>{
         console.log(response);
         this.results = response.Search;
+        if(this.type == ''){
+          this.type = 'all';
+        }
       }
     )
+    
   }
 
   
