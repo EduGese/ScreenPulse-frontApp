@@ -13,7 +13,6 @@ export class FavoritesComponent implements OnInit{
   constructor(private storageService: StorageService){}
   ngOnInit(): void {
     this.favorites = this.storageService.getFavorites();
-    console.log(this.favorites);
   }
 
 }

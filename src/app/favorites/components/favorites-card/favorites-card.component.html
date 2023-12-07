@@ -1,0 +1,11 @@
+<mat-card *ngFor="let favorite of favorites">
+    <mat-card-content>
+      <img [src]="favorite.Poster" alt="poster">
+    </mat-card-content>
+    <mat-card-content>
+      <mat-card-title>{{ favorite.Title }}</mat-card-title>
+      <mat-card-subtitle>{{ favorite.Type }}</mat-card-subtitle>
+      <mat-card-title>{{ favorite.Year }}</mat-card-title>
+      <mat-card-subtitle>imdbID: {{ favorite.imdbID }}</mat-card-subtitle>
+    </mat-card-content>
+  </mat-card>
