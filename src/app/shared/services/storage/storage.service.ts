@@ -16,11 +16,6 @@ export class StorageService {
   }
   getFavorites() {
     const favoritesString = localStorage.getItem('favorites');
-    if(favoritesString != null){
-      const favorites = JSON.parse(favoritesString);
-      return favorites;
-    }else{
-      return null;
-    }
+    return favoritesString ? JSON.parse(favoritesString) : [];
   }
 }
