@@ -12,18 +12,13 @@ export class MovieResultsTableComponent {
 @Input () results!:Movie[];
 displayedColumns: string[] = ['Title', 'Year', 'Type', 'IMDbId', 'Poster', 'Add'];
 
-// favorites: Movie[] = [];
+
 
 constructor(private storageService: StorageService){}
 
 
 addToFavories(movie:Movie){
 this.storageService.addToFavories(movie);
-// console.log(movie);
-// this.favorites.push(movie);
-// const favoritesString = JSON.stringify(this.favorites);
-
-// localStorage.setItem('favorites', favoritesString)
 
 }
 

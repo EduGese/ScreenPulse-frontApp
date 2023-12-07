@@ -23,5 +23,4 @@ export class StorageService {
       return null;
     }
   }
-
 }
