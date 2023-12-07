@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Movie } from 'src/app/shared/models/movie.model';
+import { StorageService } from 'src/app/shared/services/storage/storage.service';
 
 
 @Component({
@@ -11,18 +12,21 @@ export class MovieResultsTableComponent {
 @Input () results!:Movie[];
 displayedColumns: string[] = ['Title', 'Year', 'Type', 'IMDbId', 'Poster', 'Add'];
 
-favorites: Movie[] = [];
+// favorites: Movie[] = [];
 
-constructor(){}
+constructor(private storageService: StorageService){}
+
 
 addToFavories(movie:Movie){
-console.log(movie);
-this.favorites.push(movie);
-const favoritesString = JSON.stringify(this.favorites);
+this.storageService.addToFavories(movie);
+// console.log(movie);
+// this.favorites.push(movie);
+// const favoritesString = JSON.stringify(this.favorites);
 
-localStorage.setItem('favorites', favoritesString)
+// localStorage.setItem('favorites', favoritesString)
 
 }
+
 
 }
 
