@@ -4,6 +4,7 @@ import { Observable, catchError, map, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment.development';
+import { OmdbResponse } from '../../models/omdbResponse.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class OmdbService {
 
   constructor(private http: HttpClient) { }
 
-  getMovies(title:string, type:string, year:number):Observable<any>{
-    return this.http.get<any>(environment.baseUrlOmdb, {
+  getMovies(title:string, type:string, year:number):Observable<OmdbResponse>{
+    return this.http.get<OmdbResponse>(environment.baseUrlOmdb, {
       params:{
         apikey: environment.apiKeyOmdb,
         s: title,
