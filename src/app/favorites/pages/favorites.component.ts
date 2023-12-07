@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Movie } from 'src/app/shared/models/movie.model';
 import { StorageService } from 'src/app/shared/services/storage/storage.service';
 
 @Component({
@@ -7,10 +8,12 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
   styleUrls: ['./favorites.component.css']
 })
 export class FavoritesComponent implements OnInit{
+  favorites: Movie[] | [] = [];
 
   constructor(private storageService: StorageService){}
   ngOnInit(): void {
-    console.log(this.storageService.getFavorites());
+    this.favorites = this.storageService.getFavorites();
+    console.log(this.favorites);
   }
 
 }

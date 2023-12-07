@@ -12,6 +12,7 @@ import { StorageService } from './services/storage/storage.service';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -20,7 +21,8 @@ const materialModules = [
   MatToolbarModule,
   MatTableModule,
   MatIconModule,
-  MatButtonModule
+  MatButtonModule,
+  MatCardModule
 
 
   

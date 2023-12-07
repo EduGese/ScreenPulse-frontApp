@@ -14,7 +14,7 @@ export class StorageService {
     const favoritesString = JSON.stringify(this.favorites);
     localStorage.setItem('favorites', favoritesString);
   }
-  getFavorites() {
+  getFavorites():Movie[] | [] {
     const favoritesString = localStorage.getItem('favorites');
     return favoritesString ? JSON.parse(favoritesString) : [];
   }
