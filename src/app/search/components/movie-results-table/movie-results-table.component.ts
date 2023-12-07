@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Movie } from '../../models/movie.model';
+import { Movie } from 'src/app/shared/models/movie.model';
+
 
 @Component({
   selector: 'app-movie-results-table',

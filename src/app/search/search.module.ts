@@ -7,11 +7,15 @@ import { SharedModule } from '../shared/shared.module';
 import { SearchRoutingModule } from './search-routing.module';
 
 import { SearchComponent } from './pages/search.component';
+import { MovieResultsTableComponent } from './components/movie-results-table/movie-results-table.component';
+
 
 
 @NgModule({
   declarations: [
-    SearchComponent
+    SearchComponent,
+    MovieResultsTableComponent
+   
   ],
   imports: [
     CommonModule,

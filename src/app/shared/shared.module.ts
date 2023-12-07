@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { MovieResultsTableComponent } from './components/movie-results-table/movie-results-table.component';
+
 
 
 import { OmdbService } from './services/omdb/omdb.service';
@@ -30,7 +30,7 @@ const materialModules = [
 @NgModule({
   declarations: [
     NavbarComponent,
-    MovieResultsTableComponent
+  
   ],
   imports: [
     CommonModule,
@@ -41,7 +41,8 @@ const materialModules = [
     StorageService
   ],
   exports: [
-    materialModules, NavbarComponent , MovieResultsTableComponent
+    materialModules, NavbarComponent 
+    
   ]  
 })
 export class SharedModule { }
