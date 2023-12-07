@@ -10,13 +10,19 @@ import { MovieResultsTableComponent } from './components/movie-results-table/mov
 import { OmdbService } from './services/omdb/omdb.service';
 import { StorageService } from './services/storage/storage.service';
 import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
 
 const materialModules = [
   MatToolbarModule,
-  MatTableModule
+  MatTableModule,
+  MatIconModule,
+  MatButtonModule
+
+
   
 ]
 

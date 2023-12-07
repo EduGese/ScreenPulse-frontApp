@@ -8,6 +8,6 @@ import { Movie } from '../../models/movie.model';
 })
 export class MovieResultsTableComponent {
 @Input () results!:Movie[];
-displayedColumns: string[] = ['Title', 'Year', 'Type', 'IMDbId', 'Poster'];
+displayedColumns: string[] = ['Title', 'Year', 'Type', 'IMDbId', 'Poster', 'Add'];
 
 }
