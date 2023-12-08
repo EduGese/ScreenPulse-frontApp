@@ -7,6 +7,7 @@ import { FavoritesRoutingModule } from './favorites-routing.module';
 
 import { FavoritesComponent } from './pages/favorites.component';
 import { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FavoritesCardComponent } from './components/favorites-card/favorites-ca
   imports: [
     CommonModule,
     FavoritesRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class FavoritesModule { }
