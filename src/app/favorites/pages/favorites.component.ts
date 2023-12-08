@@ -11,21 +11,22 @@ export class FavoritesComponent implements OnInit{
   favorites: Movie[] | [] = [];
   title: string ='';
   type: string = 'all';
-  year: string = '';//This field should be number in the form (create pipe to transform it?)
+  year: string = '';
 
   constructor(private storageService: StorageService){}
   ngOnInit(): void {
     this.favorites = this.storageService.getFavorites();
+    console.log(this.favorites)
   }
 
   onSubmit(){
-    this.favorites = this.storageService.getFavorites();//Always recover all favorites before search
+    this.favorites = this.storageService.getFavorites();
     if(!this.favorites || this.favorites.length === 0) {
-      console.log('No favorites saved!'); //Add toast? add directive in view to render message to user?
+      console.log('No favorites saved!'); 
     } else {
       let filteredFavorites = this.storageService.getFavorites();
 
-      //filtr by year
+    
      if (this.year) {
         filteredFavorites = filteredFavorites.filter(
           (movie) => movie.Year === this.year
@@ -34,7 +35,7 @@ export class FavoritesComponent implements OnInit{
           this.storageService.addToFilterdFavories(filteredFavorites);
         }
       }
-      //filter by type
+   
       if (this.type !== 'all') {
         filteredFavorites = filteredFavorites.filter(
           (movie) => movie.Type === this.type
@@ -42,16 +43,29 @@ export class FavoritesComponent implements OnInit{
         this.storageService.addToFilterdFavories(filteredFavorites);
       }
 
-      //filter by title
-      if(this.title){
-        filteredFavorites =filteredFavorites.filter(
-          (movie) =>movie.Title.startsWith(this.title)
-        );
+    
+      if (this.title) {
+        filteredFavorites = filteredFavorites
+          .filter((movie) =>
+            movie.Title.toLowerCase().startsWith(this.title.toLowerCase())
+          )
+          .map((movie) => {
+          
+            const words = movie.Title.split(' ');
+
+            const capitalizedWords = words.map((word) => {
+              return word[0].toUpperCase() + word.substring(1).toLowerCase();
+            });
+
+            movie.Title = capitalizedWords.join(' ');
+            return movie;
+          });
+
         this.storageService.addToFilterdFavories(filteredFavorites);
       }
 
-      if(filteredFavorites.length === 0){//when donest find anything
-        this.favorites = [];//Clear favorites, recover again (line 22)
+      if(filteredFavorites.length === 0){
+        this.favorites = [];
       }else{
         this.favorites = filteredFavorites;
       }

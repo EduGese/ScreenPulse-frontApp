@@ -19,9 +19,8 @@ export class StorageService {
     const favoritesString = localStorage.getItem('favorites');
     return favoritesString ? JSON.parse(favoritesString) : [];
   }
-//Save temporal filtered favorites
   addToFilterdFavories(movies: Movie[]) {
-    this.filterdFavorites = [];//Empty array to overwrite array
+    this.filterdFavorites = [];
     this.filterdFavorites.push(...movies);
     const filteredFavoritesString = JSON.stringify(this.filterdFavorites);
     localStorage.setItem('filteredFavorites', filteredFavoritesString);
