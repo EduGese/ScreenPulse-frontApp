@@ -11,7 +11,7 @@ export class FavoritesComponent implements OnInit{
   favorites: Movie[] | [] = [];
   title: string ='';
   type: string = 'all';
-  year: string = '';//Este campo en el formulario deberia ser number y luego crear  pipe para transformarlo a string
+  year: string = '';//This field should be number in the form (create pipe to transform it?)
 
   constructor(private storageService: StorageService){}
   ngOnInit(): void {
@@ -19,19 +19,35 @@ export class FavoritesComponent implements OnInit{
   }
 
   onSubmit(){
+    this.favorites = this.storageService.getFavorites();//Always recover all favorites before search
     if(!this.favorites || this.favorites.length === 0) {
-      console.log('No favorites saved!'); 
+      console.log('No favorites saved!'); //Add toast? add directive in view to render message to user?
     } else {
       let filteredFavorites = this.storageService.getFavorites();
 
-      //filtrado por year
+      //filtr by year
      if (this.year) {
         filteredFavorites = filteredFavorites.filter(
           (movie) => movie.Year === this.year
         );
+        if(filteredFavorites.length>0){
+          this.storageService.addToFilterdFavories(filteredFavorites);
+        }
+      }
+      //filter by type
+      if (this.type !== 'all') {
+        filteredFavorites = filteredFavorites.filter(
+          (movie) => movie.Type === this.type
+        );
+        this.storageService.addToFilterdFavories(filteredFavorites);
       }
 
-      this.favorites = filteredFavorites;
+      if(filteredFavorites.length === 0){//when donest find anything
+        this.favorites = [];//Clear favorites, recover again (line 22)
+      }else{
+        this.favorites = filteredFavorites;
+      }
+      
 
     }
   }
