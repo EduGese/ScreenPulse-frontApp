@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { StorageService } from 'src/app/shared/services/storage/storage.service';
 
@@ -13,7 +14,14 @@ export class FavoritesComponent implements OnInit{
   type: string = '';
   year: string = '';
 
-  constructor(private storageService: StorageService){}
+  favoritesSubscription: Subscription;
+
+  constructor(private storageService: StorageService){
+    this.favoritesSubscription = this.storageService.favoritesAfterDeleteMovie
+      .subscribe(favorites => {
+        this.favorites = favorites;   
+     });
+  }
   ngOnInit(): void {
     this.favorites = this.storageService.getFavorites();
     console.log(this.favorites)
