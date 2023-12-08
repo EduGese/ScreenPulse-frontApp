@@ -1,3 +1,28 @@
 <app-navbar></app-navbar>
 <h1>Favorites</h1>
+<form>
+    <label>
+      Title:
+      <input type="text" name="title" [(ngModel)]="title">
+    </label>
+  
+    <label>
+      Type:
+      <select name="type" [(ngModel)]="type">
+        <option value="movie" selected>Movie</option>
+        <option value="series">Serie</option>  
+        <option value="episode">Episode</option>  
+        <option value="all">All</option>   
+      </select>
+    </label>
+  
+    <label>
+      Year: 
+      <input type="string" name="year" [(ngModel)]="year">
+    </label>
+
+    <button type="submit" (click)="onSubmit()">Submit</button>
+    <button type="reset">Reset</button>
+  
+  </form>
 <app-favorites-card [favorites]="favorites"></app-favorites-card>
