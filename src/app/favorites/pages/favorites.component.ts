@@ -42,6 +42,14 @@ export class FavoritesComponent implements OnInit{
         this.storageService.addToFilterdFavories(filteredFavorites);
       }
 
+      //filter by title
+      if(this.title){
+        filteredFavorites =filteredFavorites.filter(
+          (movie) =>movie.Title.startsWith(this.title)
+        );
+        this.storageService.addToFilterdFavories(filteredFavorites);
+      }
+
       if(filteredFavorites.length === 0){//when donest find anything
         this.favorites = [];//Clear favorites, recover again (line 22)
       }else{
