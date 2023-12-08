@@ -10,7 +10,7 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
 export class FavoritesComponent implements OnInit{
   favorites: Movie[] | [] = [];
   title: string ='';
-  type: string = 'all';
+  type: string = '';
   year: string = '';
 
   constructor(private storageService: StorageService){}
@@ -69,9 +69,6 @@ export class FavoritesComponent implements OnInit{
       }else{
         this.favorites = filteredFavorites;
       }
-      
-
     }
   }
-
 }
