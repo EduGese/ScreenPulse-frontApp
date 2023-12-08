@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Movie } from '../../models/movie.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +8,8 @@ import { Movie } from '../../models/movie.model';
 export class StorageService {
   favorites: Movie[] = [];
   filterdFavorites: Movie[] = [];
+
+  favoritesAfterDeleteMovie = new Subject<Movie[]>();
 
   constructor() {}
 
@@ -30,8 +33,9 @@ export class StorageService {
     const filteredFavoritesString = localStorage.getItem('filteredFavorites');
     return filteredFavoritesString ? JSON.parse(filteredFavoritesString) : [];
   }
-
-
-
-
+  deleteMovie(moviesUpdated: Movie[]){
+    const moviesAfterDelete= moviesUpdated;
+    localStorage.setItem('favorites', JSON.stringify(moviesAfterDelete));
+    this.favoritesAfterDeleteMovie.next(this.getFavorites());
+  }
 }
