@@ -11,6 +11,7 @@ export class StorageService {
   constructor() {}
 
   addToFavories(movie: Movie) {
+    this.favorites = this.getFavorites();
     this.favorites.push(movie);
     const favoritesString = JSON.stringify(this.favorites);
     localStorage.setItem('favorites', favoritesString);
