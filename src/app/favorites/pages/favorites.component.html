@@ -25,4 +25,15 @@
     <button type="reset">Reset</button>
   
   </form>
-<app-favorites-card [favorites]="favorites"></app-favorites-card>
+  <div *ngIf="favorites.length == 0">
+    <div>
+      <p>No favorites yet. Please add some.</p>
+   </div>
+  </div>
+
+  <app-favorites-card [favorites]="favorites"></app-favorites-card>
+
+  
+ 
+  
+ 
