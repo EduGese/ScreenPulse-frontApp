@@ -22,7 +22,7 @@
     </label>
 
     <button type="submit" (click)="onSubmit()">Submit</button>
-    <button type="reset">Reset</button>
+    <button (click)="onClear()">Clear</button>
   
   </form>
   <div *ngIf="favorites.length == 0">

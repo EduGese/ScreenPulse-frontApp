@@ -12,7 +12,7 @@ import { FavoritesFilterService } from '../services/favoritesFilterService/favor
 export class FavoritesComponent implements OnInit, OnDestroy {
   favorites: Movie[] | [] = [];
   title: string = '';
-  type: string = '';
+  type: string = 'movie';
   year: string = '';
 
   subscriptions: Subscription[] = [];
@@ -37,7 +37,6 @@ export class FavoritesComponent implements OnInit, OnDestroy {
       });
 
     this.favorites = this.storageService.getFavorites();
-    console.log(this.favorites);
   }
 
   ngOnDestroy() {
@@ -78,6 +77,12 @@ export class FavoritesComponent implements OnInit, OnDestroy {
       } else {
         this.favorites = filteredFavorites;
       }
+      console.log('Favoritos despues de filtro',this.favorites)
     }
+  }
+  onClear(){
+    this.title = '';
+    this.type = 'movie';
+    this.year = '';
   }
 }
