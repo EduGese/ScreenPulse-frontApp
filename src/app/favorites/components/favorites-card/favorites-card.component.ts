@@ -9,7 +9,8 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
 })
 export class FavoritesCardComponent {
   @Input () favorites!:Movie[];
-
+  toggleMode = 'view';
+  
   constructor(private storageService: StorageService){}
 
 
