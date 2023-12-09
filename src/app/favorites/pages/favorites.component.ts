@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { StorageService } from 'src/app/shared/services/storage/storage.service';
@@ -8,27 +8,37 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css'],
 })
-export class FavoritesComponent implements OnInit {
+export class FavoritesComponent implements OnInit, OnDestroy{
   favorites: Movie[] | [] = [];
   title: string = '';
   type: string = '';
   year: string = '';
 
+  subscriptions: Subscription[] = [];
+
   constructor(private storageService: StorageService) {
 
-    this.storageService.favoritesAfterDeleteMovie.subscribe((favorites) => {
+  }
+
+  ngOnInit(): void {
+
+    const favoritesAfterDeleteMovie =this.storageService.favoritesAfterDeleteMovie.subscribe((favorites) => {
       this.favorites = favorites;
+      this.subscriptions.push(favoritesAfterDeleteMovie);
     });
 
-    this.storageService.favoritesAfterUpdateMovie.subscribe((movie) => {
+    const favoritesAfterUpdateMovie = this.storageService.favoritesAfterUpdateMovie.subscribe((movie) => {
       const index = this.favorites.findIndex((m) => m.imdbID == movie.imdbID);
       this.favorites[index] = movie;
+      this.subscriptions.push(favoritesAfterUpdateMovie);
     });
-  }
-  
-  ngOnInit(): void {
+
     this.favorites = this.storageService.getFavorites();
     console.log(this.favorites);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   onSubmit() {
