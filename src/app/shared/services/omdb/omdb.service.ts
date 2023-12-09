@@ -13,7 +13,7 @@ export class OmdbService {
 
   constructor(private http: HttpClient) { }
 
-  getMovies(title:string, type:string, year:number):Observable<OmdbResponse>{
+  getMovies(title:string, type:string, year:string):Observable<OmdbResponse>{
     return this.http.get<OmdbResponse>(environment.baseUrlOmdb, {
       params:{
         apikey: environment.apiKeyOmdb,

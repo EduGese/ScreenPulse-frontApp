@@ -5,6 +5,7 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
 import { FavoritesFilterService } from '../services/favoritesFilterService/favorites-filter.service';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
@@ -15,6 +16,7 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   title: string = '';
   type: string = 'movie';
   year: string = '';
+  yearInvalid = false;
 
   subscriptions: Subscription[] = [];
 
@@ -46,6 +48,10 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    if(this.year && !/^[0-9]{4}$/.test(this.year)) {
+      this.toastrService.error('Year must be a 4 digit number');
+      return; 
+    }
     this.favorites = this.storageService.getFavorites();
     if (!this.favorites || this.favorites.length === 0) {
       console.log('No favorites saved!');
@@ -76,19 +82,20 @@ export class FavoritesComponent implements OnInit, OnDestroy {
 
       if (filteredFavorites.length === 0) {
         this.favorites = [];
-        this.toastrService.error('Nothing found with that filter criteria')
+        this.toastrService.error('Nothing found with that filter criteria');
       } else {
         this.favorites = filteredFavorites;
       }
-      console.log('Favoritos despues de filtro',this.favorites)
+      console.log('Favoritos despues de filtro', this.favorites);
     }
   }
-  onClear(){
+  onClear() {
     this.title = '';
     this.type = 'movie';
     this.year = '';
   }
-  getAllfavorites(){
+  getAllfavorites() {
     return this.storageService.getFavorites().length;
   }
+
 }

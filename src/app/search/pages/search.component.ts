@@ -12,7 +12,7 @@ export class SearchComponent {
 
   title: string ='';
   type: string = 'all';
-  year: number = 1990;
+  year: string = '2023';
   results: Movie[] = [];
 
   constructor(private OmdbService: OmdbService, private toastrService: ToastrService){}
@@ -21,6 +21,10 @@ export class SearchComponent {
 
   onSubmit(){
     this.type = this.type === 'all' ? '' : this.type;
+    if(this.year && !/^[0-9]{4}$/.test(this.year)) {
+      this.toastrService.error('Year must be a 4 digit number');
+      return; 
+    }
 
     this.OmdbService.getMovies(this.title, this.type, this.year).subscribe(
       (response)=>{

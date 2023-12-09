@@ -18,7 +18,7 @@
   
     <label>
       Year: 
-      <input type="string" name="year" [(ngModel)]="year">
+      <input type="string" name="year"  maxlength="4" [(ngModel)]="year" pattern="[0-9]{4}">
     </label>
 
     <button type="submit" (click)="onSubmit()">Submit</button>
@@ -30,7 +30,6 @@
       <p>No favorites yet. Please add some.</p>
    </div>
   </div>
- 
 
   <app-favorites-card [favorites]="favorites"></app-favorites-card>
 

@@ -20,7 +20,7 @@
   
     <label>
       Year: 
-      <input type="number" name="year" [(ngModel)]="year">
+      <input type="string" name="year" maxlength="4" [(ngModel)]="year" pattern="[0-9]{4}">
     </label>
 
     <button type="submit" (click)="onSubmit()">Submit</button>
