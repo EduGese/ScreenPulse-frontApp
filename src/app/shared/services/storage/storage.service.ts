@@ -10,6 +10,7 @@ export class StorageService {
   filterdFavorites: Movie[] = [];
 
   favoritesAfterDeleteMovie = new Subject<Movie[]>();
+  favoritesAfterUpdateMovie = new Subject<Movie>();
 
   constructor() {}
 
@@ -37,5 +38,18 @@ export class StorageService {
     const moviesAfterDelete= moviesUpdated;
     localStorage.setItem('favorites', JSON.stringify(moviesAfterDelete));
     this.favoritesAfterDeleteMovie.next(this.getFavorites());
+  }
+  addReview(description: string, imdbID: string){
+    const favorites = this.getFavorites();
+    const movieToUpdate = favorites.find(movie => movie.imdbID === imdbID);
+    if(!movieToUpdate) {
+      throw new Error('Could not find movie to update'); 
+    }else{
+      movieToUpdate.description = description;
+      const updatedMovie = {...movieToUpdate, description}; 
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      this.favoritesAfterUpdateMovie.next(updatedMovie);
+    }
+
   }
 }
