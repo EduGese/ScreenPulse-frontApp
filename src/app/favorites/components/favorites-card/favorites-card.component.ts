@@ -10,12 +10,15 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
 export class FavoritesCardComponent {
   @Input () favorites!:Movie[];
   toggleMode = 'view';
-  
+
   constructor(private storageService: StorageService){}
 
 
   deleteFavorite(imdbID: string){
     const favorites = this.storageService.getFavorites();
     this.storageService.deleteMovie(favorites.filter(movie => movie.imdbID !== imdbID))
+  }
+  addDescription(description: string, imdbID: string){
+    
   }
 }
