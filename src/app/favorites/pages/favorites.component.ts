@@ -21,6 +21,15 @@ export class FavoritesComponent implements OnInit{
       .subscribe(favorites => {
         this.favorites = favorites;   
      });
+    
+    this.storageService.favoritesAfterUpdateMovie.subscribe(movie => {
+
+      const index = this.favorites.findIndex(m => m.imdbID == movie.imdbID);
+    
+      this.favorites[index] = movie;
+    
+    })
+
   }
   ngOnInit(): void {
     this.favorites = this.storageService.getFavorites();
