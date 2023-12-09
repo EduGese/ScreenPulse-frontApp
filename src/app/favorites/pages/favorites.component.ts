@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { StorageService } from 'src/app/shared/services/storage/storage.service';
 import { FavoritesFilterService } from '../services/favoritesFilterService/favorites-filter.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-favorites',
@@ -19,7 +20,8 @@ export class FavoritesComponent implements OnInit, OnDestroy {
 
   constructor(
     private storageService: StorageService,
-    private favoritesFilter: FavoritesFilterService
+    private favoritesFilter: FavoritesFilterService,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -74,6 +76,7 @@ export class FavoritesComponent implements OnInit, OnDestroy {
 
       if (filteredFavorites.length === 0) {
         this.favorites = [];
+        this.toastrService.error('Nothing found with that filter criteria')
       } else {
         this.favorites = filteredFavorites;
       }
@@ -84,5 +87,8 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     this.title = '';
     this.type = 'movie';
     this.year = '';
+  }
+  getAllfavorites(){
+    return this.storageService.getFavorites().length;
   }
 }

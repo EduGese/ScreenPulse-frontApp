@@ -25,11 +25,12 @@
     <button (click)="onClear()">Clear</button>
   
   </form>
-  <div *ngIf="favorites.length == 0">
+  <div *ngIf="getAllfavorites() == 0">
     <div>
       <p>No favorites yet. Please add some.</p>
    </div>
   </div>
+ 
 
   <app-favorites-card [favorites]="favorites"></app-favorites-card>
 
