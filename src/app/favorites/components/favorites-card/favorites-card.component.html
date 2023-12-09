@@ -7,9 +7,16 @@
       <mat-card-subtitle>{{ favorite.Type }}</mat-card-subtitle>
       <mat-card-title>{{ favorite.Year }}</mat-card-title>
       <mat-card-subtitle>imdbID: {{ favorite.imdbID }}</mat-card-subtitle>
+    </mat-card-content>
 
+    <mat-card-content>
       <button mat-icon-button color="warn" (click)="deleteFavorite(favorite.imdbID)">
         <mat-icon>delete</mat-icon>
       </button>
+      <mat-button-toggle-group name="mode" name="changeMode" aria-label="changeMode">
+        <mat-button-toggle value="view" checked>View</mat-button-toggle>
+        <mat-button-toggle value="edition">Edition</mat-button-toggle>
+      </mat-button-toggle-group>
     </mat-card-content>
+
   </mat-card>
