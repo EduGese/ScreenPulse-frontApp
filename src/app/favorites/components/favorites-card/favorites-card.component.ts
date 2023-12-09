@@ -19,6 +19,7 @@ export class FavoritesCardComponent {
     this.storageService.deleteMovie(favorites.filter(movie => movie.imdbID !== imdbID))
   }
   addDescription(description: string, imdbID: string){
-    
+    this.storageService.addReview(description, imdbID);
+    this.toggleMode = 'view'
   }
 }
