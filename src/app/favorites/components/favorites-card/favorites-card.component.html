@@ -1,4 +1,4 @@
-<mat-card *ngFor="let favorite of favorites" >
+<mat-card *ngFor="let favorite of favorites">
 
   <mat-card-content>
     <img [src]="favorite.Poster" alt="poster">
@@ -10,24 +10,30 @@
     <mat-card-title>{{ favorite.Year }}</mat-card-title>
     <mat-card-subtitle>imdbID: {{ favorite.imdbID }}</mat-card-subtitle>
 
-    <p *ngIf="toggleMode === 'view'">
-     Description/review
-    </p>
-    
-    <mat-form-field *ngIf="toggleMode === 'edition'">
-      <textarea matInput placeholder="Add your review/description"></textarea>  
-    </mat-form-field>
+    <mat-card-content *ngIf="toggleMode === 'view'">
+      <p>Description/review</p>
+    </mat-card-content>
+
+    <mat-card-content *ngIf="toggleMode === 'edition'">
+      <mat-form-field>
+        <textarea matInput placeholder="Add your review/description"></textarea>
+      </mat-form-field>
+      <button mat-icon-button color="primary" aria-label="Add review/description">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-card-content>
+
+
   </mat-card-content>
 
   <mat-card-content>
     <button mat-icon-button color="warn" (click)="deleteFavorite(favorite.imdbID)">
       <mat-icon>delete</mat-icon>
     </button>
-    <mat-button-toggle-group  [(ngModel)]="toggleMode" name="mode" name="changeMode" aria-label="changeMode">
+    <mat-button-toggle-group [(ngModel)]="toggleMode" name="mode" name="changeMode" aria-label="changeMode">
       <mat-button-toggle value="view" checked>View</mat-button-toggle>
       <mat-button-toggle value="edition">Edition</mat-button-toggle>
     </mat-button-toggle-group>
   </mat-card-content>
-  
-</mat-card>
 
+</mat-card>
