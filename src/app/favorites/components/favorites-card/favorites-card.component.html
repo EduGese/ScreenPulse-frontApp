@@ -11,7 +11,7 @@
     <mat-card-subtitle>imdbID: {{ favorite.imdbID }}</mat-card-subtitle>
 
     <mat-card-content *ngIf="toggleMode === 'view'">
-      <p>Description/review</p>
+      <p>{{favorite.description}}</p>
     </mat-card-content>
 
     <mat-card-content *ngIf="toggleMode === 'edition'">
