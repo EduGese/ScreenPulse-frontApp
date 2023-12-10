@@ -9,3 +9,8 @@
     margin-bottom: 20px; 
     text-align: center;
   }
+  mat-card-actions{
+    display: flex;
+    justify-content: center;
+  }
+  
