@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import { OmdbService } from './omdb.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('OmdbService', () => {
   let service: OmdbService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule]
+    });
     service = TestBed.inject(OmdbService);
   });
 
