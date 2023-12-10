@@ -17,6 +17,8 @@ import { MatCardModule } from '@angular/material/card';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { RouterModule } from '@angular/router';
+
 
 
 
@@ -46,7 +48,8 @@ const materialModules = [
   ],
   imports: [
     CommonModule,
-    materialModules
+    materialModules,
+    RouterModule
   ],
   providers: [
     OmdbService,

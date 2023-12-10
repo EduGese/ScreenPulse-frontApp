@@ -42,6 +42,6 @@
 </form>
 
 </div>
-<div class="table">
+<div class="table" *ngIf="results.length>0">
   <app-movie-results-table [results]="results" ></app-movie-results-table>
 </div>
