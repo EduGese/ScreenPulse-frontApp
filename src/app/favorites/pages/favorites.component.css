@@ -21,6 +21,15 @@ mat-form-field{
 button{
     margin: 10px;
 }
+.title{
+    color: #3F51B5;
+    font-weight: 300;
+}
+.center-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
  
   
