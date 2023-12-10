@@ -32,7 +32,7 @@
     Find
   </button>
 
-  <button mat-raised-button class="big-button" color="accent" type="reset">
+  <button mat-raised-button class="big-button" color="accent" (click)="onClear()">
     <mat-icon>clear</mat-icon>
     Clear
   </button>
@@ -41,4 +41,4 @@
 
 </div>
 
-<app-movie-results-table [results]="results"></app-movie-results-table>
+<app-movie-results-table [results]="results" class="table"></app-movie-results-table>

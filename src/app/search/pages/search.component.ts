@@ -52,4 +52,9 @@ export class SearchComponent {
       }
     )
   }
+  onClear() {
+    this.title = '';
+    this.type = 'all';
+    this.year = '';
+  }
 }
