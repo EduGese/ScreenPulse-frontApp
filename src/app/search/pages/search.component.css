@@ -3,6 +3,7 @@ mat-hint{
 }
 h1{
     text-align: center;
+    padding: 20px;
 }
 mat-form-field{
     margin: 2px;
@@ -13,4 +14,8 @@ mat-form-field{
     font-size: 18px;
     padding: 12px;  
     margin: 2px;
+  }
+  .table{
+    padding: 30px;
+    width: 90%;
   }

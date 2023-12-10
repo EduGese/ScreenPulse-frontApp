@@ -1,8 +1,8 @@
-  <table mat-table [dataSource]="results">
+  <table mat-table [dataSource]="results" layout="flexLayout" class="mat-elevation-z8 demo-table">
 
     <ng-container matColumnDef="Title">
       <th mat-header-cell *matHeaderCellDef> Title </th>
-      <td mat-cell *matCellDef="let result"> {{result.Title}} </td>
+      <td mat-cell *matCellDef="let result" class="bold-title-cell"> {{result.Title}} </td>
     </ng-container>
   
     <ng-container matColumnDef="Year">
@@ -22,7 +22,7 @@
 
     <ng-container matColumnDef="Poster">
       <th mat-header-cell *matHeaderCellDef> Poster </th>
-      <td mat-cell *matCellDef="let result"> <img src={{result.Poster}} alt="Poster" width="150" height="223"></td>
+      <td mat-cell *matCellDef="let result"> <img src={{result.Poster}} alt="Poster" width="130" height="203"></td>
     </ng-container>
 
     <ng-container matColumnDef="Add">
