@@ -1,34 +1,44 @@
 <app-navbar></app-navbar>
 <h1>Search your Movie or Serie</h1>
-
-<form>
-
+<div style="display: flex; justify-content: center;">
  
-    <mat-form-field appearance="fill">
-      <mat-label>Title</mat-label>
-      <input matInput type="text" name="title"  [(ngModel)]="title" required
-      #titleInput="ngModel">
-      
-    </mat-form-field>
- 
-    <mat-form-field>
-      <mat-label>Type</mat-label>
-      <mat-select [(ngModel)]="type" [ngModelOptions]="{standalone: true}">
-        <mat-option *ngFor="let type of types" [value]="type.value">
-          {{type.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Year (optional)</mat-label>
-      <input matInput placeholder="Blank for all years" type="text" name="year"  [(ngModel)]="year" pattern="[0-9]{4}">
-      <mat-hint >*4 digit number</mat-hint>
-    </mat-form-field>
+<form style="margin: 0 auto; width: 90%;">
 
-    <button type="submit" (click)="onSubmit()">Submit</button>
-    <button type="reset">Reset</button>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Title</mat-label>
+    <input matInput type="text" name="title" [(ngModel)]="title" required #titleInput="ngModel">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Type</mat-label>
+    <mat-select [(ngModel)]="type" [ngModelOptions]="{standalone: true}">
+      <mat-option *ngFor="let type of types" [value]="type.value">
+        {{type.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Year (optional)</mat-label>
+    <input matInput placeholder="Blank for all years" type="text" name="year" [(ngModel)]="year" pattern="[0-9]{4}">
+    <mat-hint>*4 digit number</mat-hint>
+  </mat-form-field>
+
   
-  </form>
+  <button mat-raised-button class="big-button" color="primary" type="submit" (click)="onSubmit()">
+    <mat-icon>send</mat-icon>
+    Find
+  </button>
 
-<app-movie-results-table [results] = "results"></app-movie-results-table>
+  <button mat-raised-button class="big-button" color="accent" type="reset">
+    <mat-icon>clear</mat-icon>
+    Clear
+  </button>
+
+</form>
+
+</div>
+
+<app-movie-results-table [results]="results"></app-movie-results-table>

@@ -1,3 +1,16 @@
 mat-hint{
     color: gray;
 }
+h1{
+    text-align: center;
+}
+mat-form-field{
+    margin: 2px;
+}
+.big-button {
+    width: 150px;
+    height: auto;
+    font-size: 18px;
+    padding: 12px;  
+    margin: 2px;
+  }
