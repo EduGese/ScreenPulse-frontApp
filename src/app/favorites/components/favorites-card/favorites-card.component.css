@@ -1,0 +1,11 @@
+.favorites-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:flex-start; 
+    gap: 20px; 
+  }
+  .favorite-card {
+    flex-basis: calc(33.33% - 20px); 
+    margin-bottom: 20px; 
+    
+  }

@@ -1,4 +1,5 @@
-<mat-card *ngFor="let favorite of favorites">
+<div class="favorites-container">
+  <mat-card *ngFor="let favorite of favorites" class="favorite-card">
 
   <mat-card-content>
     <img [src]="favorite.Poster" alt="poster">
@@ -36,3 +37,4 @@
   </mat-card-content>
 
 </mat-card>
+</div>
