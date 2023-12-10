@@ -19,6 +19,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
 
 
@@ -34,6 +36,7 @@ const materialModules = [
   MatButtonToggleModule,
   MatInputModule,
   MatSelectModule,
+  MatGridListModule
   
 
 

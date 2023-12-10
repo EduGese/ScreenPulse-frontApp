@@ -21,3 +21,11 @@ mat-form-field {
 button {
   margin: 10px;
 }
+.home-cover{
+text-align: center;
+}
+h2{
+  color: #3F51B5;
+  font-weight: 300;
+}
+

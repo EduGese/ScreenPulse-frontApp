@@ -45,3 +45,41 @@
 <div class="table" *ngIf="results.length>0">
   <app-movie-results-table [results]="results" ></app-movie-results-table>
 </div>
+
+<div class="table" *ngIf="results.length == 0">
+  <div class="home-cover">
+    
+    <h2>
+      Find information about your favorite movies and TV shows. Use the search bar to find by title, type, and year.
+    </h2>
+    <mat-grid-list cols="3" rowHeight="100px">
+
+      <mat-grid-tile>
+        
+        <mat-icon>movie</mat-icon>
+        <span>Movies</span>  
+      </mat-grid-tile>
+  
+      <mat-grid-tile>
+        <mat-icon>theaters </mat-icon>
+        <span>Series</span> 
+      </mat-grid-tile>
+  
+      <mat-grid-tile>
+         <mat-icon >videogame_asset</mat-icon>
+         <span>Videogames</span>
+      </mat-grid-tile>
+  
+    </mat-grid-list>
+    
+
+    <img src="../../../assets/images/homeCover.jpg" width="264" height="264">
+
+  
+
+    
+  </div>
+  
+  
+  
+</div>
