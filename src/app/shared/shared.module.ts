@@ -31,7 +31,7 @@ const materialModules = [
   MatButtonToggleModule,
   MatInputModule,
   MatSelectModule,
-  FormsModule
+  
 
 
 
@@ -50,7 +50,8 @@ const materialModules = [
   ],
   providers: [
     OmdbService,
-    StorageService
+    StorageService,
+    FormsModule
   ],
   exports: [
     materialModules, NavbarComponent 
