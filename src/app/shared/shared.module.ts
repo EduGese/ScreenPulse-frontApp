@@ -18,6 +18,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -44,6 +45,7 @@ const materialModules = [
 @NgModule({
   declarations: [
     NavbarComponent,
+    FooterComponent,
   
   ],
   imports: [
@@ -57,7 +59,10 @@ const materialModules = [
     FormsModule
   ],
   exports: [
-    materialModules, NavbarComponent 
+    materialModules, 
+    NavbarComponent,
+    FooterComponent
+
     
   ]  
 })
