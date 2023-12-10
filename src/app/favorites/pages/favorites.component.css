@@ -2,3 +2,26 @@
     margin: 20px auto 20px auto;
     width: 90%;
 }
+form{
+    margin: 0 auto;
+    width: 90%;
+    text-align: center; 
+    padding: 20px;
+}
+mat-hint{
+    color: gray;
+}
+h1{
+    text-align: center;
+    padding: 20px;
+}
+mat-form-field{
+    margin: 2px;
+}
+button{
+    margin: 10px;
+}
+
+ 
+  
+  

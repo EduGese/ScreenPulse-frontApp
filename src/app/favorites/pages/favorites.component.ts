@@ -18,6 +18,13 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   year: string = '';
   yearInvalid = false;
 
+  types:any[] = [
+    {value: 'movie', viewValue: 'Movie'},
+    {value: 'series', viewValue: 'Serie'},
+    {value: 'game', viewValue: 'Game'},
+    {value: 'all', viewValue: 'All'}
+  ];
+
   subscriptions: Subscription[] = [];
 
   constructor(

@@ -12,7 +12,7 @@ import { Movie } from 'src/app/shared/models/movie.model';
 export class SearchComponent {
 
   title: string ='';
-  type: string = '';
+  type: string = 'movie';
   year: string = '';
   results: Movie[] = [];
 

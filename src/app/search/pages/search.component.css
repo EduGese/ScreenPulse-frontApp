@@ -1,6 +1,8 @@
 form{
     margin: 0 auto;
     width: 90%;
+    text-align: center; 
+    padding: 20px;
 }
 mat-hint{
     color: gray;
@@ -12,13 +14,10 @@ h1{
 mat-form-field{
     margin: 2px;
 }
-.big-button {
-    width: 150px;
-    height: auto;
-    font-size: 18px;
-    padding: 12px;  
-    margin: 2px;
-  }
+button{
+    margin: 10px;
+}
+
   .table{
     padding: 30px;
     width: 90%;

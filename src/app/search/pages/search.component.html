@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <h1>Search your Movie or Serie</h1>
-<div style="display: flex; justify-content: center;">
+<div class="filter-container">
  
 
 <form>
@@ -27,7 +27,8 @@
   </mat-form-field>
 
   
-  <button mat-raised-button class="big-button" color="primary" type="submit" (click)="onSubmit()">
+  <div class="buttons-container">
+    <button mat-raised-button class="big-button" color="primary" type="submit" (click)="onSubmit()">
     <mat-icon>send</mat-icon>
     Find
   </button>
@@ -36,6 +37,7 @@
     <mat-icon>clear</mat-icon>
     Clear
   </button>
+  </div>
 
 </form>
 

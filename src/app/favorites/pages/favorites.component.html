@@ -1,30 +1,45 @@
 <app-navbar></app-navbar>
 <h1>Favorites</h1>
-<form>
-    <label>
-      Title:
-      <input type="text" name="title" [(ngModel)]="title">
-    </label>
-  
-    <label>
-      Type:
-      <select name="type" [(ngModel)]="type">
-        <option value="movie" selected>Movie</option>
-        <option value="series">Serie</option>  
-        <option value="game">Game</option>  
-        <option value="all">All</option>   
-      </select>
-    </label>
-  
-    <label>
-      Year: 
-      <input type="string" name="year"  maxlength="4" [(ngModel)]="year" pattern="[0-9]{4}">
-    </label>
+<div class="filter-container">
+  <form>
 
-    <button type="submit" (click)="onSubmit()">Submit</button>
-    <button (click)="onClear()">Clear</button>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput type="text" name="title" [(ngModel)]="title"  #titleInput="ngModel">
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Type</mat-label>
+      <mat-select [(ngModel)]="type" [ngModelOptions]="{standalone: true}">
+        <mat-option *ngFor="let type of types" [value]="type.value">
+          {{type.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Year (optional)</mat-label>
+      <input matInput placeholder="Blank for all years" type="text" name="year" [(ngModel)]="year" pattern="[0-9]{4}">
+      <mat-hint>*4 digit number</mat-hint>
+    </mat-form-field>
+  
+    <div class="buttons-container">
+      <button mat-raised-button class="big-button" color="primary" type="submit" (click)="onSubmit()">
+      <mat-icon>send</mat-icon>
+      Find
+    </button>
+  
+    <button mat-raised-button class="big-button" color="accent" (click)="onClear()">
+      <mat-icon>clear</mat-icon>
+      Clear
+    </button>
+    </div>
+    
   
   </form>
+</div>
+ 
   <div *ngIf="getAllfavorites() == 0">
     <div>
       <p>No favorites yet. Please add some.</p>
