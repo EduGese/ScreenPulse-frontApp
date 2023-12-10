@@ -31,7 +31,7 @@ export class SearchComponent {
     this.type = this.type=== 'all' ? '' : this.type;
 
     if(this.title == '') {
-      this.toastrService.error('Field title required');
+      this.toastrService.error('Field Title required');
       return; 
     }
 
