@@ -29,6 +29,12 @@ export class SearchComponent {
 
   onSubmit(){
     this.type = this.type=== 'all' ? '' : this.type;
+
+    if(this.title == '') {
+      this.toastrService.error('Field title required');
+      return; 
+    }
+
     if(this.year && !/^[0-9]{4}$/.test(this.year)) {
       this.toastrService.error('Year must be a 4 digit number');
       return; 

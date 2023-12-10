@@ -6,8 +6,9 @@
  
     <mat-form-field appearance="fill">
       <mat-label>Title</mat-label>
-      <input matInput type="text" name="title"  [(ngModel)]="title">
-      <mat-hint >*Required</mat-hint>
+      <input matInput type="text" name="title"  [(ngModel)]="title" required
+      #titleInput="ngModel">
+      
     </mat-form-field>
  
     <mat-form-field>
