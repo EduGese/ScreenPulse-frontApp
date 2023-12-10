@@ -3,6 +3,7 @@ import { OmdbService } from './../../shared/services/omdb/omdb.service';
 import { Component } from '@angular/core';
 import { Movie } from 'src/app/shared/models/movie.model';
 
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -11,16 +12,23 @@ import { Movie } from 'src/app/shared/models/movie.model';
 export class SearchComponent {
 
   title: string ='';
-  type: string = 'all';
-  year: string = '2023';
+  type: string = '';
+  year: string = '';
   results: Movie[] = [];
+
+  types:any[] = [
+    {value: 'movie', viewValue: 'Movie'},
+    {value: 'series', viewValue: 'Serie'},
+    {value: 'game', viewValue: 'Game'},
+    {value: 'all', viewValue: 'All'}
+  ];
 
   constructor(private OmdbService: OmdbService, private toastrService: ToastrService){}
   
 
 
   onSubmit(){
-    this.type = this.type === 'all' ? '' : this.type;
+    this.type = this.type=== 'all' ? '' : this.type;
     if(this.year && !/^[0-9]{4}$/.test(this.year)) {
       this.toastrService.error('Year must be a 4 digit number');
       return; 
