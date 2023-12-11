@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MovieResultsTableComponent } from './movie-results-table.component';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { MatTableModule } from '@angular/material/table';
 
 describe('MovieResultsTableComponent', () => {
   let component: MovieResultsTableComponent;
@@ -8,7 +10,13 @@ describe('MovieResultsTableComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MovieResultsTableComponent]
+      declarations: [MovieResultsTableComponent],
+      providers: [
+        ToastrService 
+      ],
+      imports: [ToastrModule.forRoot({
+      }),
+      MatTableModule ]
     });
     fixture = TestBed.createComponent(MovieResultsTableComponent);
     component = fixture.componentInstance;
