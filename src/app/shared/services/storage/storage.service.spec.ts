@@ -1,12 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 
 import { StorageService } from './storage.service';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 describe('StorageService', () => {
   let service: StorageService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [ToastrModule.forRoot()], 
+      providers: [
+        ToastrService, 
+        StorageService 
+      ]
+    });
     service = TestBed.inject(StorageService);
   });
 
