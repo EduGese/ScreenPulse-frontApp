@@ -17,7 +17,8 @@
 
       <mat-card-content *ngIf="toggleMode === 'edition'">
         <mat-form-field>
-          <textarea matInput #description placeholder="Add your review/description"></textarea>
+          <textarea matInput #description maxlength="200" placeholder="Add your review/description"></textarea>
+          <mat-hint>200 max length</mat-hint>
         </mat-form-field>
         <button mat-icon-button color="primary" aria-label="Add review/description"
           (click)="addDescription(description.value, favorite.imdbID)">
