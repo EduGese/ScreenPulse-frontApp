@@ -15,7 +15,9 @@ export class FavoritesCardComponent {
 
 
   deleteFavorite(imdbID: string){
-    const favorites = this.storageService.getFavorites();
+    let favorites: Movie[] = [];
+    this.storageService.getFavorites().subscribe(
+       (movies) => (favorites = movies));
     this.storageService.deleteMovie(favorites.filter(movie => movie.imdbID !== imdbID))
   }
   addDescription(description: string, imdbID: string){

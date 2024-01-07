@@ -47,7 +47,14 @@ export class FavoritesComponent implements OnInit, OnDestroy {
         this.subscriptions.push(favoritesAfterUpdateMovie);
       });
 
-    this.favorites = this.storageService.getFavorites();
+      this.storageService.getFavorites().subscribe(
+        (movies) => {
+          this.favorites = movies;
+          console.log('Favoritos',this.favorites);
+        },
+        (error)=>{
+          console.error('Error obteniendo favoritos:', error);
+        });
   }
 
   ngOnDestroy() {
@@ -59,42 +66,54 @@ export class FavoritesComponent implements OnInit, OnDestroy {
       this.toastrService.error('Year must be a 4 digit number');
       return; 
     }
-    this.favorites = this.storageService.getFavorites();
-    if (!this.favorites || this.favorites.length === 0) {
-      console.log('No favorites saved!');
-    } else {
-      let filteredFavorites = this.storageService.getFavorites();
-
-      if (this.year) {
-        filteredFavorites = this.favoritesFilter.filterByYear(
-          filteredFavorites,
-          this.year
-        );
-      }
-
-      if (this.type !== 'all') {
-        filteredFavorites = this.favoritesFilter.filterByType(
-          filteredFavorites,
-          this.type
-        );
-        this.storageService.addToFilterdFavories(filteredFavorites);
-      }
-      if (this.title) {
-        filteredFavorites = this.favoritesFilter.filterByTitle(
-          filteredFavorites,
-          this.title
-        );
-        this.storageService.addToFilterdFavories(filteredFavorites);
-      }
-
-      if (filteredFavorites.length === 0) {
-        this.favorites = [];
-        this.toastrService.error('Nothing found with that filter criteria');
-      } else {
-        this.favorites = filteredFavorites;
-      }
-      console.log('Favoritos despues de filtro', this.favorites);
-    }
+    //this.favorites = this.storageService.getFavorites();
+    this.storageService.getFavorites().subscribe(
+      (movies) => {
+        this.favorites = movies;
+        console.log('Favoritos despues de find',this.favorites);
+        if (!this.favorites || this.favorites.length === 0) {
+          console.log('No favorites saved!');
+        } else {
+          let filteredFavorites = this.favorites;
+    
+          if (this.year) {
+            filteredFavorites = this.favoritesFilter.filterByYear(
+              filteredFavorites,
+              this.year
+            );
+            console.log('Favoritos despues de filtro de year', filteredFavorites);
+          }
+    
+          if (this.type !== 'all') {
+            filteredFavorites = this.favoritesFilter.filterByType(
+              filteredFavorites,
+              this.type
+            );
+            console.log('Favoritos despues de filtro de type', filteredFavorites);
+            this.storageService.addToFilterdFavories(filteredFavorites);
+          }
+          // if (this.title) {
+          //   filteredFavorites = this.favoritesFilter.filterByTitle(
+          //     filteredFavorites,
+          //     this.title
+          //   );
+          //   this.storageService.addToFilterdFavories(filteredFavorites);
+          // }
+    
+          if (filteredFavorites.length === 0) {
+            this.favorites = [];
+            this.toastrService.error('Nothing found with that filter criteria');
+          } else {
+            this.favorites = filteredFavorites;
+          }
+          console.log('Favoritos despues de filtro', this.favorites);
+        }
+        
+      },
+      (error)=>{
+        console.error('Error obteniendo favoritos:', error);
+      });
+    
   }
   onClear() {
     this.title = '';
@@ -102,7 +121,10 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     this.year = '';
   }
   getAllfavorites() {
-    return this.storageService.getFavorites().length;
+    // let favorites: Movie[] = [];
+    //  this.storageService.getFavorites().subscribe(
+    //     (movies) => (favorites = movies));
+    return this.favorites.length;
   }
 
 }

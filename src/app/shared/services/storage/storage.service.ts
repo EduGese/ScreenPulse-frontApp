@@ -1,7 +1,9 @@
 import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
 import { Movie } from '../../models/movie.model';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -13,24 +15,29 @@ export class StorageService {
   favoritesAfterDeleteMovie = new Subject<Movie[]>();
   favoritesAfterUpdateMovie = new Subject<Movie>();
 
-  constructor(private toastrService: ToastrService) {}
+  constructor(private toastrService: ToastrService, private http: HttpClient) {}
 
   addToFavories(movie: Movie) {
-    const favorites = this.getFavorites();
+    let favorites: Movie[] = [];
+     this.getFavorites().subscribe(
+        (movies) => (favorites = movies));
     const favoriteDuplicate = favorites.find((m) => m.imdbID === movie.imdbID);
     if (favoriteDuplicate) {
       this.toastrService.error(movie.Title, 'It was already in your list')
     } else {
-      this.favorites = this.getFavorites();
+       this.getFavorites().subscribe(
+        (movies) => (this.favorites = movies));
       this.favorites.push(movie);
       const favoritesString = JSON.stringify(this.favorites);
       localStorage.setItem('favorites', favoritesString);
       this.toastrService.success(movie.Title, 'Added to favorites')
     }
   }
-  getFavorites(): Movie[] | [] {
-    const favoritesString = localStorage.getItem('favorites');
-    return favoritesString ? JSON.parse(favoritesString) : [];
+  getFavorites(): Observable <any> {
+    // const favoritesString = localStorage.getItem('favorites');
+    // return favoritesString ? JSON.parse(favoritesString) : [];
+    const favorites = this.http.get<Movie[]>(environment.serverURL);
+    return favorites;
   }
   addToFilterdFavories(movies: Movie[]) {
     this.filterdFavorites = [];
@@ -43,12 +50,17 @@ export class StorageService {
     return filteredFavoritesString ? JSON.parse(filteredFavoritesString) : [];
   }
   deleteMovie(moviesUpdated: Movie[]) {
+    let favorites: Movie[] = [];
+    this.getFavorites().subscribe(
+      (movies) => (favorites = movies));
     const moviesAfterDelete = moviesUpdated;
     localStorage.setItem('favorites', JSON.stringify(moviesAfterDelete));
-    this.favoritesAfterDeleteMovie.next(this.getFavorites());
+    this.favoritesAfterDeleteMovie.next(favorites);
   }
   addReview(description: string, imdbID: string) {
-    const favorites = this.getFavorites();
+    let favorites: Movie[] = [];
+    this.getFavorites().subscribe(
+      (movies) => (favorites = movies));
     const movieToUpdate = favorites.find((movie) => movie.imdbID === imdbID);
     if (!movieToUpdate) {
       throw new Error('Could not find movie to update');
