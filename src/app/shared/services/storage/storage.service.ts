@@ -2,8 +2,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
 import { Movie } from '../../models/movie.model';
 import { Observable, Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
+import { FavoritesService } from '../favorites/favorites.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,29 +16,23 @@ export class StorageService {
   favoritesAfterDeleteMovie = new Subject<Movie[]>();
   favoritesAfterUpdateMovie = new Subject<Movie>();
 
-  constructor(private toastrService: ToastrService, private http: HttpClient) {}
+  constructor(private toastrService: ToastrService, private http: HttpClient, private favoritesService: FavoritesService) {}
 
-  addToFavories(movie: Movie) {
-    let favorites: Movie[] = [];
-     this.getFavorites().subscribe(
-        (movies) => (favorites = movies));
-    const favoriteDuplicate = favorites.find((m) => m.imdbID === movie.imdbID);
-    if (favoriteDuplicate) {
-      this.toastrService.error(movie.Title, 'It was already in your list')
-    } else {
-       this.getFavorites().subscribe(
-        (movies) => (this.favorites = movies));
-      this.favorites.push(movie);
-      const favoritesString = JSON.stringify(this.favorites);
-      localStorage.setItem('favorites', favoritesString);
-      this.toastrService.success(movie.Title, 'Added to favorites')
-    }
+  addToFavorites(movie: Movie){
+    this.favoritesService.addToFavorites(movie).subscribe(
+          () => {
+            this.toastrService.success(movie.Title, 'Added to favorites');
+          },
+          (error) => {
+            console.error('Error:', error);
+            if (error.message === 'Element duplicated') {
+              this.toastrService.error(movie.Title, 'It is already in your list');
+            } 
+          }
+        );
   }
   getFavorites(): Observable <any> {
-    // const favoritesString = localStorage.getItem('favorites');
-    // return favoritesString ? JSON.parse(favoritesString) : [];
-    const favorites = this.http.get<Movie[]>(environment.serverURL);
-    return favorites;
+    return this.favoritesService.getFavorites();
   }
   addToFilterdFavories(movies: Movie[]) {
     this.filterdFavorites = [];

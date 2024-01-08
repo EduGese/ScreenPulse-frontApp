@@ -18,7 +18,7 @@ constructor(private storageService: StorageService){}
 
 
 addToFavories(movie:Movie){
-this.storageService.addToFavories(movie);
+this.storageService.addToFavorites(movie);
 
 }
 
