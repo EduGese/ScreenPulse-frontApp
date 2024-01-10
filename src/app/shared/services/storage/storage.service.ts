@@ -34,24 +34,32 @@ export class StorageService {
   getFavorites(): Observable <any> {
     return this.favoritesService.getFavorites();
   }
-  addToFilterdFavories(movies: Movie[]) {
-    this.filterdFavorites = [];
-    this.filterdFavorites.push(...movies);
-    const filteredFavoritesString = JSON.stringify(this.filterdFavorites);
-    localStorage.setItem('filteredFavorites', filteredFavoritesString);
-  }
-  getFilteredFavorites(): Movie[] | [] {
-    const filteredFavoritesString = localStorage.getItem('filteredFavorites');
-    return filteredFavoritesString ? JSON.parse(filteredFavoritesString) : [];
-  }
-  deleteMovie(moviesUpdated: Movie[]) {
-    let favorites: Movie[] = [];
-    this.getFavorites().subscribe(
-      (movies) => (favorites = movies));
-    const moviesAfterDelete = moviesUpdated;
-    localStorage.setItem('favorites', JSON.stringify(moviesAfterDelete));
-    this.favoritesAfterDeleteMovie.next(favorites);
-  }
+
+
+  // addToFilterdFavories(movies: Movie[]) {
+  //   this.filterdFavorites = [];
+  //   this.filterdFavorites.push(...movies);
+  //   const filteredFavoritesString = JSON.stringify(this.filterdFavorites);
+  //   localStorage.setItem('filteredFavorites', filteredFavoritesString);
+  // }
+
+
+  // getFilteredFavorites(): Movie[] | [] {
+  //   const filteredFavoritesString = localStorage.getItem('filteredFavorites');
+  //   return filteredFavoritesString ? JSON.parse(filteredFavoritesString) : [];
+  // }
+
+
+  // deleteMovie(moviesUpdated: Movie[]) {
+  //   let favorites: Movie[] = [];
+  //   this.getFavorites().subscribe(
+  //     (movies) => (favorites = movies));
+  //   const moviesAfterDelete = moviesUpdated;
+  //   localStorage.setItem('favorites', JSON.stringify(moviesAfterDelete));
+  //   this.favoritesAfterDeleteMovie.next(favorites);
+  // }
+
+
   addReview(description: string, imdbID: string) {
     let favorites: Movie[] = [];
     this.getFavorites().subscribe(

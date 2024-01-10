@@ -1,3 +1,4 @@
+import { FavoritesService } from './../../shared/services/favorites/favorites.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/shared/models/movie.model';
@@ -30,32 +31,21 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   constructor(
     private storageService: StorageService,
     private favoritesFilter: FavoritesFilterService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private favoritesService: FavoritesService
   ) {}
 
   ngOnInit(): void {
-    const favoritesAfterDeleteMovie =
-      this.storageService.favoritesAfterDeleteMovie.subscribe((favorites) => {
-        this.favorites = favorites;
-        this.subscriptions.push(favoritesAfterDeleteMovie);
-      });
+    // const favoritesAfterUpdateMovie =
+    //   this.storageService.favoritesAfterUpdateMovie.subscribe((movie) => {
+    //     const index = this.favorites.findIndex((m) => m.imdbID == movie.imdbID);
+    //     this.favorites[index] = movie;
+    //     this.subscriptions.push(favoritesAfterUpdateMovie);
+    //   });
 
-    const favoritesAfterUpdateMovie =
-      this.storageService.favoritesAfterUpdateMovie.subscribe((movie) => {
-        const index = this.favorites.findIndex((m) => m.imdbID == movie.imdbID);
-        this.favorites[index] = movie;
-        this.subscriptions.push(favoritesAfterUpdateMovie);
-      });
-
-    this.storageService.getFavorites().subscribe(
-      (movies) => {
-        this.favorites = movies;
-        console.log('Favoritos', this.favorites);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    this.loadFavorites();
+    this.subscribeToDeletedEvent();
+    
   }
 
   ngOnDestroy() {
@@ -114,10 +104,27 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     this.type = 'movie';
     this.year = '';
   }
+  loadFavorites(): void{
+    this.storageService.getFavorites().subscribe(
+      (movies) => {
+        this.favorites = movies;
+        console.log('Favoritos', this.favorites);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  subscribeToDeletedEvent(): void {
+    const favoriteDeleted = this.favoritesService.favoriteDeleted.subscribe((id: string)=>{
+      this.removeFavoriteFromList(id);
+    })
+    this.subscriptions.push(favoriteDeleted);
+  }
+  removeFavoriteFromList(id: string): void {
+    this.favorites = this.favorites.filter((movie)=> movie._id != id);
+  }
   getAllfavorites() {
-    // let favorites: Movie[] = [];
-    //  this.storageService.getFavorites().subscribe(
-    //     (movies) => (favorites = movies));
     return this.favorites.length;
   }
 }

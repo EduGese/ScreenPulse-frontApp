@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Movie } from '../../models/movie.model';
 import { environment } from 'src/environments/environment.development';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FavoritesService {
+  favoriteDeleted = new EventEmitter<string>();
   constructor(private http: HttpClient) {}
 
   addToFavorites(movie: Movie): Observable<any> {
@@ -42,9 +43,24 @@ export class FavoritesService {
       })
     );
   }
-  // deleteMovie(moviesUpdated: Movie[]):Observable<any>{
-
-  // }
+  deleteMovie(MovieId: string):Observable<any>{
+    return this.http.delete<any>(`${environment.serverURL}/${MovieId}`)
+    .pipe(
+      tap({
+        next: () => {
+          this.favoriteDeleted.emit(MovieId);
+        },
+        error: (error) => {
+          if (error.status === 404) {
+            throw new Error('EndpointNotFound');
+          } else {
+            throw new Error('UnknownError');
+          }
+        }
+      })
+    );
+  }
+  
 
 
 }
