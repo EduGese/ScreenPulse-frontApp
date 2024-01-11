@@ -9,19 +9,22 @@ import { FavoritesComponent } from '../../pages/favorites.component';
 @Component({
   selector: 'app-favorites-card',
   templateUrl: './favorites-card.component.html',
-  styleUrls: ['./favorites-card.component.css']
+  styleUrls: ['./favorites-card.component.css'],
 })
 export class FavoritesCardComponent {
-  @Input () favorites!:Movie[];
+  @Input() favorites!: Movie[];
   favoritesAfterDeleteMovie = new Subject<Movie[]>();
   toggleMode = 'view';
 
-  constructor(private storageService: StorageService, private favoritesService: FavoritesService, private router: Router ){}
+  constructor(
+    private storageService: StorageService,
+    private favoritesService: FavoritesService,
+    private router: Router
+  ) {}
 
-
-  deleteFavorite(_id: string){
+  deleteFavorite(_id: string) {
     this.favoritesService.deleteMovie(_id).subscribe(
-       () => {
+      () => {
         console.log('Movie deleted successfully');
       },
       (error) => {
@@ -29,8 +32,25 @@ export class FavoritesCardComponent {
       }
     );
   }
-  addDescription(description: string, imdbID: string){
-    this.storageService.addReview(description, imdbID);
+  addDescription(movie: Movie, description: any, _id: string) {
+    const movieUpdated = {
+      _id: _id,
+      Title: movie.Title,
+      Year: movie.Year,
+      imdbID: movie.imdbID,
+      Type: movie.Type,
+      Poster: movie.Poster,
+      description: description,
+    };
+    
+    this.favoritesService.updateFavorite(movieUpdated).subscribe(
+      () => {
+        console.log('Movie updated successfully');
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
     this.toggleMode = 'view';
   }
 }

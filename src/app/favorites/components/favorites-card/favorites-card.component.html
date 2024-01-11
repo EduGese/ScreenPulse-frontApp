@@ -21,7 +21,7 @@
           <mat-hint>200 max length</mat-hint>
         </mat-form-field>
         <button mat-icon-button color="primary" aria-label="Add review/description"
-          (click)="addDescription(description.value, favorite.imdbID)">
+          (click)="addDescription(favorite,description.value, favorite._id)">
           <mat-icon>add</mat-icon>
         </button>
       </mat-card-content>

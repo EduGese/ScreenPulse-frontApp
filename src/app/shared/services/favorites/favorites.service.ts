@@ -8,6 +8,7 @@ import { Observable, catchError, tap, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class FavoritesService {
+  private baseUrl = environment.serverURL;
   favoriteDeleted = new EventEmitter<string>();
   constructor(private http: HttpClient) {}
 
@@ -57,6 +58,27 @@ export class FavoritesService {
             throw new Error('UnknownError');
           }
         }
+      })
+    );
+  }
+
+  updateFavorite(movie: Movie): Observable<any> {
+    const body = JSON.stringify(movie);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http.put<any>(`${environment.serverURL}/${movie._id}`, body, httpOptions)
+    .pipe(
+      catchError((error) => {
+        if (error.status === 404) {
+          return throwError(() => new Error('EndpointNotFound'));
+        }
+        if (error.status === 400) {
+          return throwError(() => new Error('Bad request'));
+        }
+        return throwError(() => new Error('UnknownError'));
       })
     );
   }
