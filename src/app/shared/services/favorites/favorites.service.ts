@@ -10,6 +10,7 @@ import { Observable, catchError, tap, throwError } from 'rxjs';
 export class FavoritesService {
   private baseUrl = environment.serverURL;
   favoriteDeleted = new EventEmitter<string>();
+  favoriteUpdated = new EventEmitter<Movie>();
   constructor(private http: HttpClient) {}
 
   addToFavorites(movie: Movie): Observable<any> {
@@ -71,14 +72,19 @@ export class FavoritesService {
     };
     return this.http.put<any>(`${environment.serverURL}/${movie._id}`, body, httpOptions)
     .pipe(
-      catchError((error) => {
-        if (error.status === 404) {
-          return throwError(() => new Error('EndpointNotFound'));
+      tap({
+        next: () => {
+          this.favoriteUpdated.emit(movie);
+        },
+        error: (error) => {
+          if (error.status === 404) {
+            return throwError(() => new Error('EndpointNotFound'));
+          }
+          if (error.status === 400) {
+            return throwError(() => new Error('Bad request'));
+          }
+          return throwError(() => new Error('UnknownError'));
         }
-        if (error.status === 400) {
-          return throwError(() => new Error('Bad request'));
-        }
-        return throwError(() => new Error('UnknownError'));
       })
     );
   }

@@ -45,7 +45,7 @@ export class FavoritesComponent implements OnInit, OnDestroy {
 
     this.loadFavorites();
     this.subscribeToDeletedEvent();
-    
+    this.subscribeToUpdateEvent();
   }
 
   ngOnDestroy() {
@@ -104,7 +104,7 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     this.type = 'movie';
     this.year = '';
   }
-  loadFavorites(): void{
+  loadFavorites(): void {
     this.storageService.getFavorites().subscribe(
       (movies) => {
         this.favorites = movies;
@@ -116,13 +116,26 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     );
   }
   subscribeToDeletedEvent(): void {
-    const favoriteDeleted = this.favoritesService.favoriteDeleted.subscribe((id: string)=>{
-      this.removeFavoriteFromList(id);
-    })
+    const favoriteDeleted = this.favoritesService.favoriteDeleted.subscribe(
+      (id: string) => {
+        this.removeFavoriteFromList(id);
+      }
+    );
     this.subscriptions.push(favoriteDeleted);
   }
+  subscribeToUpdateEvent(): void {
+    const favoriteUpdated = this.favoritesService.favoriteUpdated.subscribe(
+      async (movie: Movie) => {
+        const movieIndex = this.favorites.findIndex(
+          (fav) => fav._id === movie._id
+        );
+        this.favorites[movieIndex].description = movie.description;
+      }
+    );
+    this.subscriptions.push(favoriteUpdated);
+  }
   removeFavoriteFromList(id: string): void {
-    this.favorites = this.favorites.filter((movie)=> movie._id != id);
+    this.favorites = this.favorites.filter((movie) => movie._id != id);
   }
   getAllfavorites() {
     return this.favorites.length;
