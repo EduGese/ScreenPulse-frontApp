@@ -57,7 +57,7 @@ export class FavoritesComponent implements OnInit, OnDestroy {
       this.toastrService.error('Year must be a 4 digit number');
       return;
     }
-    this.storageService.getFavorites().subscribe(
+    this.favoritesService.getFavorites().subscribe(
       (movies) => {
         this.favorites = movies;
         console.log('Favoritos despues de find', this.favorites);
@@ -105,7 +105,7 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     this.year = '';
   }
   loadFavorites(): void {
-    this.storageService.getFavorites().subscribe(
+    this.favoritesService.getFavorites().subscribe(
       (movies) => {
         this.favorites = movies;
         console.log('Favoritos', this.favorites);

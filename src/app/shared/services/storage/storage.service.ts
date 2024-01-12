@@ -31,9 +31,9 @@ export class StorageService {
   //         }
   //       );
   // }
-  getFavorites(): Observable <any> {
-    return this.favoritesService.getFavorites();
-  }
+  // getFavorites(): Observable <any> {
+  //   return this.favoritesService.getFavorites();
+  // }
 
 
   // addToFilterdFavories(movies: Movie[]) {
@@ -60,18 +60,18 @@ export class StorageService {
   // }
 
 
-  addReview(description: string, imdbID: string) {
-    let favorites: Movie[] = [];
-    this.getFavorites().subscribe(
-      (movies) => (favorites = movies));
-    const movieToUpdate = favorites.find((movie) => movie.imdbID === imdbID);
-    if (!movieToUpdate) {
-      throw new Error('Could not find movie to update');
-    } else {
-      movieToUpdate.description = description;
-      const updatedMovie = { ...movieToUpdate, description };
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-      this.favoritesAfterUpdateMovie.next(updatedMovie);
-    }
-  }
+  // addReview(description: string, imdbID: string) {
+  //   let favorites: Movie[] = [];
+  //   this.getFavorites().subscribe(
+  //     (movies) => (favorites = movies));
+  //   const movieToUpdate = favorites.find((movie) => movie.imdbID === imdbID);
+  //   if (!movieToUpdate) {
+  //     throw new Error('Could not find movie to update');
+  //   } else {
+  //     movieToUpdate.description = description;
+  //     const updatedMovie = { ...movieToUpdate, description };
+  //     localStorage.setItem('favorites', JSON.stringify(favorites));
+  //     this.favoritesAfterUpdateMovie.next(updatedMovie);
+  //   }
+  // }
 }
