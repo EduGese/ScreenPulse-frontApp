@@ -2,7 +2,6 @@ import { FavoritesService } from './../../shared/services/favorites/favorites.se
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Movie } from 'src/app/shared/models/movie.model';
-import { StorageService } from 'src/app/shared/services/storage/storage.service';
 import { FavoritesFilterService } from '../services/favoritesFilterService/favorites-filter.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -29,20 +28,12 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
 
   constructor(
-    private storageService: StorageService,
     private favoritesFilter: FavoritesFilterService,
     private toastrService: ToastrService,
     private favoritesService: FavoritesService
   ) {}
 
   ngOnInit(): void {
-    // const favoritesAfterUpdateMovie =
-    //   this.storageService.favoritesAfterUpdateMovie.subscribe((movie) => {
-    //     const index = this.favorites.findIndex((m) => m.imdbID == movie.imdbID);
-    //     this.favorites[index] = movie;
-    //     this.subscriptions.push(favoritesAfterUpdateMovie);
-    //   });
-
     this.loadFavorites();
     this.subscribeToDeletedEvent();
     this.subscribeToUpdateEvent();

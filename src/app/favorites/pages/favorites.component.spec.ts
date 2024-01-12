@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FavoritesComponent } from './favorites.component';
 import { FormsModule } from '@angular/forms';
-import { StorageService } from 'src/app/shared/services/storage/storage.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { FavoritesFilterService } from '../services/favoritesFilterService/favorites-filter.service';
 import { NavbarComponent } from 'src/app/shared/components/navbar/navbar.component';
@@ -37,7 +36,7 @@ describe('FavoritesComponent', () => {
         MatButtonModule,
         BrowserAnimationsModule,
       ],
-      providers: [StorageService, ToastrService, FavoritesFilterService],
+      providers: [ToastrService, FavoritesFilterService],
     });
     fixture = TestBed.createComponent(FavoritesComponent);
     component = fixture.componentInstance;

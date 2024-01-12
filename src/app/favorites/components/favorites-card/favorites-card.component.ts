@@ -3,7 +3,6 @@ import { FavoritesService } from './../../../shared/services/favorites/favorites
 import { Component, Input, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Movie } from 'src/app/shared/models/movie.model';
-import { StorageService } from 'src/app/shared/services/storage/storage.service';
 import { FavoritesComponent } from '../../pages/favorites.component';
 
 @Component({
@@ -17,7 +16,6 @@ export class FavoritesCardComponent {
   toggleMode = 'view';
 
   constructor(
-    private storageService: StorageService,
     private favoritesService: FavoritesService,
     private router: Router
   ) {}
