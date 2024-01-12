@@ -18,19 +18,19 @@ export class StorageService {
 
   constructor(private toastrService: ToastrService, private http: HttpClient, private favoritesService: FavoritesService) {}
 
-  addToFavorites(movie: Movie){
-    this.favoritesService.addToFavorites(movie).subscribe(
-          () => {
-            this.toastrService.success(movie.Title, 'Added to favorites');
-          },
-          (error) => {
-            console.error('Error:', error);
-            if (error.message === 'Element duplicated') {
-              this.toastrService.error(movie.Title, 'It is already in your list');
-            } 
-          }
-        );
-  }
+  // addToFavorites(movie: Movie){
+  //   this.favoritesService.addToFavorites(movie).subscribe(
+  //         () => {
+  //           this.toastrService.success(movie.Title, 'Added to favorites');
+  //         },
+  //         (error) => {
+  //           console.error('Error:', error);
+  //           if (error.message === 'Element duplicated') {
+  //             this.toastrService.error(movie.Title, 'It is already in your list');
+  //           } 
+  //         }
+  //       );
+  // }
   getFavorites(): Observable <any> {
     return this.favoritesService.getFavorites();
   }
