@@ -8,7 +8,7 @@ import { Observable, catchError, tap, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class FavoritesService {
-  private baseUrl = environment.serverURL;
+  private baseUrl = environment.serverFavoritesURL;
   favoriteDeleted = new EventEmitter<string>();
   favoriteUpdated = new EventEmitter<Movie>();
   constructor(private http: HttpClient) {}
@@ -20,7 +20,7 @@ export class FavoritesService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.http.post<any>(environment.serverURL, body, httpOptions)
+    return this.http.post<any>(this.baseUrl, body, httpOptions)
     .pipe(
       catchError((error) => {
         if (error.status === 404) {
@@ -35,7 +35,7 @@ export class FavoritesService {
   }
 
   getFavorites(): Observable<any> {
-    return this.http.get<Movie[]>(environment.serverURL)
+    return this.http.get<Movie[]>(this.baseUrl)
     .pipe(
       catchError((error) => {
         if (error.status === 404) {
@@ -46,7 +46,7 @@ export class FavoritesService {
     );
   }
   deleteMovie(MovieId: string):Observable<any>{
-    return this.http.delete<any>(`${environment.serverURL}/${MovieId}`)
+    return this.http.delete<any>(`${this.baseUrl}/${MovieId}`)
     .pipe(
       tap({
         next: () => {
@@ -70,7 +70,7 @@ export class FavoritesService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.http.put<any>(`${environment.serverURL}/${movie._id}`, body, httpOptions)
+    return this.http.put<any>(`${this.baseUrl}/${movie._id}`, body, httpOptions)
     .pipe(
       tap({
         next: () => {

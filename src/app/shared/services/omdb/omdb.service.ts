@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment.development';
 import { OmdbResponse } from '../../models/omdbResponse.model';
+import { Movie } from '../../models/movie.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,17 @@ export class OmdbService {
   constructor(private http: HttpClient) { }
 
   getMovies(title:string, type:string, year:string):Observable<OmdbResponse>{
-    return this.http.get<OmdbResponse>(environment.baseUrlOmdb, {
-      params:{
-        apikey: environment.apiKeyOmdb,
-        s: title,
-        type: type,
-        y: year
-      }
-    })
+    const body = {
+      s: title,
+      type: type,
+      y: year,
+    };
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http.post<any>(environment.serverSearchURL, body, httpOptions)
     .pipe(
 
       catchError(error => {
@@ -29,11 +33,6 @@ export class OmdbService {
         if (error.status === 404) {
           return throwError(() => new Error('EndpointNotFound')); 
         }
-  
-        if (error.status === 401) {
-          return throwError(() => new Error('InvalidApiKey'));
-        }
-  
         return throwError(() => new Error('UnknownError'));
   
       })
