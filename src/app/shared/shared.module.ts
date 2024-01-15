@@ -19,6 +19,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { SearchCoverComponent } from './components/search-cover/search-cover/search-cover.component';
 
 
 
@@ -48,6 +49,7 @@ const materialModules = [
   declarations: [
     NavbarComponent,
     FooterComponent,
+    SearchCoverComponent,
   
   ],
   imports: [
