@@ -9,6 +9,7 @@ import { SearchRoutingModule } from './search-routing.module';
 
 import { SearchComponent } from './pages/search.component';
 import { MovieResultsTableComponent } from './components/movie-results-table/movie-results-table.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -22,7 +23,8 @@ import { MovieResultsTableComponent } from './components/movie-results-table/mov
     CommonModule,
     SearchRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    MatTableModule
   ]
 })
 export class SearchModule { }

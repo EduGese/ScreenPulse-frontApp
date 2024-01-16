@@ -2,6 +2,7 @@ import { ToastrService } from 'ngx-toastr';
 import { OmdbService } from './../../shared/services/omdb/omdb.service';
 import { Component } from '@angular/core';
 import { Movie } from 'src/app/shared/models/movie.model';
+import { TableColumn } from 'src/app/shared/models/tableColumn.model';
 
 
 @Component({
@@ -22,6 +23,14 @@ export class SearchComponent {
     {value: 'game', viewValue: 'Game'},
     {value: 'all', viewValue: 'All'}
   ];
+
+  columns: TableColumn[] = [
+    { property: 'Title', header: 'Title' },
+    { property: 'Year', header: 'Year'},
+    { property: 'Type', header: 'Type'},
+    { property: 'imdbID', header: 'imdbID'},
+    { property: 'Poster', header: 'Poster'}
+ ];
 
   constructor(private OmdbService: OmdbService, private toastrService: ToastrService){}
   
