@@ -33,7 +33,11 @@ export class SearchComponent {
     { property: 'Add', header: 'Add'}
  ];
 
-  constructor(private OmdbService: OmdbService, private toastrService: ToastrService, private favoritesService: FavoritesService){}
+  constructor(
+    private OmdbService: OmdbService, 
+    private toastrService: ToastrService, 
+    private favoritesService: FavoritesService
+    ){}
   
 
 

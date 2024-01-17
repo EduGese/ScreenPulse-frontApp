@@ -1,8 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { Movie } from 'src/app/shared/models/movie.model';
 import { TableColumn } from 'src/app/shared/models/tableColumn.model';
-import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
 
 @Component({
   selector: 'app-movie-results-table',
@@ -16,7 +13,6 @@ export class MovieResultsTableComponent implements OnInit {
 
   displayedColumns: string[] = [];
   
-
   constructor() {}
 
   ngOnInit(): void {

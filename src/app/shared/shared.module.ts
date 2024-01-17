@@ -20,6 +20,7 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { SearchCoverComponent } from './components/search-cover/search-cover.component';
+import { MovieResultsTableComponent } from './components/movie-results-table/movie-results-table.component';
 
 
 
@@ -51,12 +52,14 @@ const materialModules = [
     NavbarComponent,
     FooterComponent,
     SearchCoverComponent,
+    MovieResultsTableComponent
   
   ],
   imports: [
     CommonModule,
     materialModules,
-    RouterModule
+    RouterModule,
+    MatTableModule
   ],
   providers: [
     OmdbService,
@@ -66,7 +69,8 @@ const materialModules = [
     materialModules, 
     NavbarComponent,
     FooterComponent,
-    SearchCoverComponent
+    SearchCoverComponent,
+    MovieResultsTableComponent
 
     
   ]  
