@@ -3,6 +3,7 @@ import { OmdbService } from './../../shared/services/omdb/omdb.service';
 import { Component } from '@angular/core';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { TableColumn } from 'src/app/shared/models/tableColumn.model';
+import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
 
 
 @Component({
@@ -28,11 +29,11 @@ export class SearchComponent {
     { property: 'Title', header: 'Title' },
     { property: 'Year', header: 'Year'},
     { property: 'Type', header: 'Type'},
-    { property: 'imdbID', header: 'imdbID'},
-    { property: 'Poster', header: 'Poster'}
+    { property: 'Poster', header: 'Poster'},
+    { property: 'Add', header: 'Add'}
  ];
 
-  constructor(private OmdbService: OmdbService, private toastrService: ToastrService){}
+  constructor(private OmdbService: OmdbService, private toastrService: ToastrService, private favoritesService: FavoritesService){}
   
 
 
@@ -65,5 +66,19 @@ export class SearchComponent {
     this.title = '';
     this.type = 'all';
     this.year = '';
+  }
+
+  addToFavories(item: any) {
+    this.favoritesService.addToFavorites(item).subscribe(
+      () => {
+        this.toastrService.success(item.Title, 'Added to favorites');
+      },
+      (error) => {
+        console.error('Error:', error);
+        if (error.message === 'Element duplicated') {
+          this.toastrService.error(item.Title, 'It is already in your list');
+        }
+      }
+    );
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { TableColumn } from 'src/app/shared/models/tableColumn.model';
@@ -10,14 +10,15 @@ import { FavoritesService } from 'src/app/shared/services/favorites/favorites.se
   styleUrls: ['./movie-results-table.component.css'],
 })
 export class MovieResultsTableComponent implements OnInit {
-  @Input() results!: Movie[];
+  @Input() results!: any[];
   @Input() columns: TableColumn[] = [];
-  displayedColumns: string[] = [];
+  @Output() addItem = new EventEmitter<any>();
 
-  constructor(
-    private toastrService: ToastrService,
-    private favoritesService: FavoritesService
-  ) {}
+  displayedColumns: string[] = [];
+  
+
+  constructor() {}
+
   ngOnInit(): void {
     this.columns.forEach((element) => {
       this.displayedColumns.push(element.header);
@@ -27,20 +28,12 @@ export class MovieResultsTableComponent implements OnInit {
   isAnImage(property: string): boolean {
     if (property.endsWith('.jpg') || property === 'N/A') {
       return true;
-    } else console.log(property);
+    } else 
     return false;
   }
-  addToFavories(movie: Movie) {
-    this.favoritesService.addToFavorites(movie).subscribe(
-      () => {
-        this.toastrService.success(movie.Title, 'Added to favorites');
-      },
-      (error) => {
-        console.error('Error:', error);
-        if (error.message === 'Element duplicated') {
-          this.toastrService.error(movie.Title, 'It is already in your list');
-        }
-      }
-    );
+  addNewItem(item: any) {
+    
+    this.addItem.emit(item);
   }
+
 }

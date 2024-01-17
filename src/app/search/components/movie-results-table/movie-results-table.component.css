@@ -6,4 +6,7 @@ th, td{
 th{
     font-size: large;
 }
+mat-icon{
+    color: #ff4081;
+}
 
