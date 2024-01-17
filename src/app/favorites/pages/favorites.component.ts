@@ -131,4 +131,15 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   getAllfavorites() {
     return this.favorites.length;
   }
+  deleteFavorite(_id: string) {
+    console.log('Id llega a padre', _id);
+    this.favoritesService.deleteMovie(_id).subscribe(
+      () => {
+        console.log('Movie deleted successfully');
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 }

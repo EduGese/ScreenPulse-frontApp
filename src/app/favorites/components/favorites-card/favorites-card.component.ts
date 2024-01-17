@@ -1,9 +1,10 @@
-import { Router } from '@angular/router';
+
 import { FavoritesService } from './../../../shared/services/favorites/favorites.service';
-import { Component, Input, Output } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
 import { Movie } from 'src/app/shared/models/movie.model';
-import { FavoritesComponent } from '../../pages/favorites.component';
+
+
 
 @Component({
   selector: 'app-favorites-card',
@@ -11,25 +12,14 @@ import { FavoritesComponent } from '../../pages/favorites.component';
   styleUrls: ['./favorites-card.component.css'],
 })
 export class FavoritesCardComponent {
-  @Input() favorites!: Movie[];
-  favoritesAfterDeleteMovie = new Subject<Movie[]>();
+  @Input() items!: any[];
+  @Output() itemIdEvent = new EventEmitter<string>();
+
   toggleMode = 'view';
 
   constructor(
-    private favoritesService: FavoritesService,
-    private router: Router
-  ) {}
+    private favoritesService: FavoritesService) {}
 
-  deleteFavorite(_id: string) {
-    this.favoritesService.deleteMovie(_id).subscribe(
-      () => {
-        console.log('Movie deleted successfully');
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
   addDescription(movie: Movie, description: any, _id: string) {
     const movieUpdated = {
       _id: _id,
@@ -50,5 +40,8 @@ export class FavoritesCardComponent {
       }
     );
     this.toggleMode = 'view';
+  }
+  sendItemId(id: string) {//Sends Item id to parent component in order to be deleted from parent component
+    this.itemIdEvent.emit(id);
   }
 }

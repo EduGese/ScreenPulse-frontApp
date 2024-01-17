@@ -54,7 +54,7 @@
    </div>
   </div>
   <div class="card-container">
-     <app-favorites-card [favorites]="favorites"></app-favorites-card>
+     <app-favorites-card [items]="favorites" (itemIdEvent)="deleteFavorite($event)"></app-favorites-card>
   </div>
  
   
