@@ -1,6 +1,5 @@
 <div class="favorites-container">
   <mat-card *ngFor="let item of items; let i = index" class="favorite-card">
-
     <mat-card-content>
       <mat-card-title mat-margin-bottom-lg>{{ item.Title }}</mat-card-title><!--Title-->
       <img [src]="item.Poster" alt="poster" width="230" height="303"><!--Poster-->
@@ -9,19 +8,19 @@
     <mat-card-content>
       <mat-card-subtitle>{{ item.Type }}</mat-card-subtitle><!--Type-->
       <mat-card-title>{{ item.Year }}</mat-card-title><!--Year-->
-      <!-- <mat-card-subtitle>imdbID: {{ favorite.imdbID }}</mat-card-subtitle> -->
 
-      <mat-card-content *ngIf="toggleMode === 'view'">
-        <p>{{item.description}}</p><!--Title-->
+
+      <mat-card-content *ngIf="toggleModes[i] === 'view' ">
+        <p>{{item.description}}</p><!--Description-->
       </mat-card-content>
 
-      <mat-card-content *ngIf="toggleMode === 'edition'">
+      <mat-card-content *ngIf="toggleModes[i] === 'edition'">
         <mat-form-field>
           <textarea matInput #description maxlength="200" placeholder="Add your review/description"></textarea>
           <mat-hint>200 max length</mat-hint>
         </mat-form-field>
         <button mat-icon-button color="primary" aria-label="Add review/description"
-          (click)="addDescription(item,description.value, item._id)">
+          (click)="addDescription(item,description.value, item._id, i)">
           <mat-icon>add</mat-icon>
         </button>
       </mat-card-content>
@@ -29,9 +28,9 @@
     </mat-card-content>
 
     <mat-card-actions class="buttons">
-      <mat-button-toggle-group [(ngModel)]="toggleMode" name="mode" name="changeMode" aria-label="changeMode">
+      <mat-button-toggle-group [(ngModel)]="toggleModes[i]" name="mode" name="changeMode" aria-label="changeMode">
         <mat-button-toggle value="view" checked>View</mat-button-toggle>
-        <mat-button-toggle value="edition">Edition</mat-button-toggle>
+        <mat-button-toggle value="edition" (click)="getId(i)">Edition</mat-button-toggle>
       </mat-button-toggle-group>
       <button mat-icon-button color="warn" (click)="sendItemId(item._id)">
         <mat-icon>delete</mat-icon>
