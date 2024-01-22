@@ -25,7 +25,7 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     { value: 'all', viewValue: 'All' },
   ];
 
-  subscriptions: Subscription[] = [];
+  subscriptions: Subscription[] = []; //Eliminar, ya no hay subscripciones
 
   constructor(
     private favoritesFilter: FavoritesFilterService,
@@ -35,11 +35,10 @@ export class FavoritesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadFavorites();
-    this.subscribeToDeletedEvent();
-    this.subscribeToUpdateEvent();
   }
 
   ngOnDestroy() {
+    //Eliminar, ya no hay subscripciones
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
@@ -51,7 +50,6 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     this.favoritesService.getFavorites().subscribe(
       (movies) => {
         this.favorites = movies;
-        console.log('Favoritos despues de find', this.favorites);
         if (!this.favorites || this.favorites.length === 0) {
           return;
         } else {
@@ -106,28 +104,28 @@ export class FavoritesComponent implements OnInit, OnDestroy {
       }
     );
   }
-  subscribeToDeletedEvent(): void {
-    const favoriteDeleted = this.favoritesService.favoriteDeleted.subscribe(
-      (id: string) => {
-        this.removeFavoriteFromList(id);
-      }
-    );
-    this.subscriptions.push(favoriteDeleted);
-  }
-  subscribeToUpdateEvent(): void {
-    const favoriteUpdated = this.favoritesService.favoriteUpdated.subscribe(
-      async (movie: Movie) => {
-        const movieIndex = this.favorites.findIndex(
-          (fav) => fav._id === movie._id
-        );
-        this.favorites[movieIndex].description = movie.description;
-      }
-    );
-    this.subscriptions.push(favoriteUpdated);
-  }
-  removeFavoriteFromList(id: string): void {
-    this.favorites = this.favorites.filter((movie) => movie._id != id);
-  }
+  // subscribeToDeletedEvent(): void {
+  //   const favoriteDeleted = this.favoritesService.favoriteDeleted.subscribe(
+  //     (id: string) => {
+  //       this.removeFavoriteFromList(id);
+  //     }
+  //   );
+  //   this.subscriptions.push(favoriteDeleted);
+  // }
+  // subscribeToUpdateEvent(): void {
+  //   const favoriteUpdated = this.favoritesService.favoriteUpdated.subscribe(
+  //     async (movie: Movie) => {
+  //       const movieIndex = this.favorites.findIndex(
+  //         (fav) => fav._id === movie._id
+  //       );
+  //       this.favorites[movieIndex].description = movie.description;
+  //     }
+  //   );
+  //   this.subscriptions.push(favoriteUpdated);
+  // }
+  // removeFavoriteFromList(id: string): void {
+  //   this.favorites = this.favorites.filter((movie) => movie._id != id);
+  // }
   getAllfavorites() {
     return this.favorites.length;
   }
@@ -135,6 +133,21 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     this.favoritesService.deleteMovie(_id).subscribe(
       () => {
         console.log('Movie deleted successfully');
+        this.favorites = this.favorites.filter((movie) => movie._id != _id);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  updateFavorite(info: any) {
+    const { item, description } = info;
+    const updatedMovie ={...item, description: description};
+    this.favoritesService.updateFavorite(item).subscribe(
+      () => {
+        item.description = description;
+        console.log('Movie updated successfully', updatedMovie);
+        this.toastrService.success('succesfully updated', item.Title);
       },
       (error) => {
         console.error(error);
