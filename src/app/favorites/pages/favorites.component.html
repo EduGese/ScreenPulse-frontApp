@@ -48,14 +48,15 @@
   
   </form>
 </div>
-  <div *ngIf="getAllfavorites() == 0">
+
+  <ng-component *ngIf="getAllfavorites() == 0; else Arefavorites">
     <div>
       <p>No favorites yet. Please add some.</p>
    </div>
-  </div>
-  <div class="card-container">
+  </ng-component>
+  <ng-template #Arefavorites class="card-container">
      <app-favorites-card [items]="favorites" (itemIdEvent)="deleteFavorite($event)"  (itemUpdatedEvent)="updateFavorite($event)"></app-favorites-card>
-  </div>
+  </ng-template>
  
   
  
