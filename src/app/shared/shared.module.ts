@@ -21,6 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { SearchCoverComponent } from './components/search-cover/search-cover.component';
 import { MovieResultsTableComponent } from './components/movie-results-table/movie-results-table.component';
+import { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';
 
 
 
@@ -52,14 +53,16 @@ const materialModules = [
     NavbarComponent,
     FooterComponent,
     SearchCoverComponent,
-    MovieResultsTableComponent
+    MovieResultsTableComponent,
+    FavoritesCardComponent
   
   ],
   imports: [
     CommonModule,
     materialModules,
     RouterModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule
   ],
   providers: [
     OmdbService,
@@ -70,7 +73,8 @@ const materialModules = [
     NavbarComponent,
     FooterComponent,
     SearchCoverComponent,
-    MovieResultsTableComponent
+    MovieResultsTableComponent,
+    FavoritesCardComponent
 
     
   ]  
