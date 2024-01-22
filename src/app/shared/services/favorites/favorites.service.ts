@@ -48,17 +48,11 @@ export class FavoritesService {
   deleteMovie(MovieId: string):Observable<any>{
     return this.http.delete<any>(`${this.baseUrl}/${MovieId}`)
     .pipe(
-      tap({
-        next: () => {
-          this.favoriteDeleted.emit(MovieId);
-        },
-        error: (error) => {
-          if (error.status === 404) {
-            throw new Error('EndpointNotFound');
-          } else {
-            throw new Error('UnknownError');
-          }
+      catchError((error) => {
+        if (error.status === 404) {
+          return throwError(() => new Error('EndpointNotFound'));
         }
+        return throwError(() => new Error('UnknownError'));
       })
     );
   }
@@ -72,19 +66,14 @@ export class FavoritesService {
     };
     return this.http.put<any>(`${this.baseUrl}/${movie._id}`, body, httpOptions)
     .pipe(
-      tap({
-        next: () => {
-          this.favoriteUpdated.emit(movie);
-        },
-        error: (error) => {
-          if (error.status === 404) {
-            return throwError(() => new Error('EndpointNotFound'));
-          }
-          if (error.status === 400) {
-            return throwError(() => new Error('Bad request'));
-          }
-          return throwError(() => new Error('UnknownError'));
+      catchError((error) => {
+        if (error.status === 404) {
+          return throwError(() => new Error('EndpointNotFound'));
         }
+        if (error.status === 400) {
+                return throwError(() => new Error('Bad request'));
+              }
+        return throwError(() => new Error('UnknownError'));
       })
     );
   }

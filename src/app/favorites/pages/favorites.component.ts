@@ -1,6 +1,5 @@
 import { FavoritesService } from './../../shared/services/favorites/favorites.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component,  OnInit } from '@angular/core';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { FavoritesFilterService } from '../services/favoritesFilterService/favorites-filter.service';
 import { ToastrService } from 'ngx-toastr';
@@ -11,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css'],
 })
-export class FavoritesComponent implements OnInit, OnDestroy {
+export class FavoritesComponent implements OnInit{
   favorites: Movie[] | [] = [];
   title: string = '';
   type: string = 'movie';
@@ -25,7 +24,6 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     { value: 'all', viewValue: 'All' },
   ];
 
-  subscriptions: Subscription[] = []; //Eliminar, ya no hay subscripciones
 
   constructor(
     private favoritesFilter: FavoritesFilterService,
@@ -35,11 +33,6 @@ export class FavoritesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadFavorites();
-  }
-
-  ngOnDestroy() {
-    //Eliminar, ya no hay subscripciones
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   onSubmit() {
@@ -104,28 +97,6 @@ export class FavoritesComponent implements OnInit, OnDestroy {
       }
     );
   }
-  // subscribeToDeletedEvent(): void {
-  //   const favoriteDeleted = this.favoritesService.favoriteDeleted.subscribe(
-  //     (id: string) => {
-  //       this.removeFavoriteFromList(id);
-  //     }
-  //   );
-  //   this.subscriptions.push(favoriteDeleted);
-  // }
-  // subscribeToUpdateEvent(): void {
-  //   const favoriteUpdated = this.favoritesService.favoriteUpdated.subscribe(
-  //     async (movie: Movie) => {
-  //       const movieIndex = this.favorites.findIndex(
-  //         (fav) => fav._id === movie._id
-  //       );
-  //       this.favorites[movieIndex].description = movie.description;
-  //     }
-  //   );
-  //   this.subscriptions.push(favoriteUpdated);
-  // }
-  // removeFavoriteFromList(id: string): void {
-  //   this.favorites = this.favorites.filter((movie) => movie._id != id);
-  // }
   getAllfavorites() {
     return this.favorites.length;
   }
