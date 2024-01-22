@@ -7,7 +7,6 @@ import { FavoritesFilterService } from '../services/favoritesFilterService/favor
 import { NavbarComponent } from 'src/app/shared/components/navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FavoritesCardComponent } from '../components/favorites-card/favorites-card.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -22,8 +21,7 @@ describe('FavoritesComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         FavoritesComponent,
-        NavbarComponent,
-        FavoritesCardComponent,
+        NavbarComponent
       ],
       imports: [
         FormsModule,
