@@ -78,6 +78,7 @@ export class FavoritesComponent implements OnInit{
       },
       (error) => {
         console.error(error);
+        this.toastrService.error("Cannot filter", error);
       }
     );
   }
@@ -90,10 +91,10 @@ export class FavoritesComponent implements OnInit{
     this.favoritesService.getFavorites().subscribe(
       (movies) => {
         this.favorites = movies;
-        console.log('Favoritos', this.favorites);
       },
       (error) => {
         console.error(error);
+        this.toastrService.error("Cannot load favorites", error);
       }
     );
   }
@@ -103,10 +104,11 @@ export class FavoritesComponent implements OnInit{
   deleteFavorite(_id: string) {
     this.favoritesService.deleteMovie(_id).subscribe(
       () => {
-        console.log('Movie deleted successfully');
+        this.toastrService.success("Movie deleted");
         this.favorites = this.favorites.filter((movie) => movie._id != _id);
       },
       (error) => {
+        this.toastrService.error("Cannot delete movie", error);
         console.error(error);
       }
     );
@@ -122,6 +124,7 @@ export class FavoritesComponent implements OnInit{
       },
       (error) => {
         console.error(error);
+        this.toastrService.error('Cannot update movie', error);
       }
     );
   }
