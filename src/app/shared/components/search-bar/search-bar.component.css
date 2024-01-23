@@ -1,0 +1,13 @@
+mat-hint {
+    color: gray;
+  }
+  h1 {
+    text-align: center;
+    padding: 20px;
+  }
+  mat-form-field {
+    margin: 2px;
+  }
+  button {
+    margin: 10px;
+  }

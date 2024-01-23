@@ -41,24 +41,25 @@ export class SearchComponent {
   
 
 
-  onSubmit(){
-    this.type = this.type=== 'all' ? '' : this.type;
+  onSubmit(info: any){
+    let {title, type, year} = info;
+    type = type=== 'all' ? '' : type;
 
-    if(this.title == '') {
+    if(title == '') {
       this.toastrService.error('Field Title required');
       return; 
     }
 
-    if(this.year && !/^[0-9]{4}$/.test(this.year)) {
+    if(year && !/^[0-9]{4}$/.test(year)) {
       this.toastrService.error('Year must be a 4 digit number');
       return; 
     }
 
-    this.OmdbService.getMovies(this.title, this.type, this.year).subscribe(
+    this.OmdbService.getMovies(title, type, year).subscribe(
       (response)=>{
         //Handdle responses with no movies
         response.Error ? this.toastrService.error(response.Error, 'Search error') : this.results = response.Search || [];// asign [] in case response is undefined
-        this.type = this.type == '' ? 'all' : this.type;
+        type = type == '' ? 'all' : type;
       },
       (error)=>{
         //Handdle bad responses
@@ -66,11 +67,7 @@ export class SearchComponent {
       }
     )
   }
-  onClear() {
-    this.title = '';
-    this.type = 'all';
-    this.year = '';
-  }
+ 
 
   addToFavories(item: any) {
     this.favoritesService.addToFavorites(item).subscribe(

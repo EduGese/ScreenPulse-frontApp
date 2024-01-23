@@ -22,6 +22,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { SearchCoverComponent } from './components/search-cover/search-cover.component';
 import { MovieResultsTableComponent } from './components/movie-results-table/movie-results-table.component';
 import { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 
 
@@ -54,7 +55,8 @@ const materialModules = [
     FooterComponent,
     SearchCoverComponent,
     MovieResultsTableComponent,
-    FavoritesCardComponent
+    FavoritesCardComponent,
+    SearchBarComponent
   
   ],
   imports: [
@@ -74,7 +76,8 @@ const materialModules = [
     FooterComponent,
     SearchCoverComponent,
     MovieResultsTableComponent,
-    FavoritesCardComponent
+    FavoritesCardComponent,
+    SearchBarComponent
 
     
   ]  

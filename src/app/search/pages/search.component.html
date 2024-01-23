@@ -9,44 +9,7 @@
 </div>
 <div class="filter-container">
  
-
-<form>
-
-
-  <mat-form-field appearance="outline">
-    <mat-label>Title</mat-label>
-    <input matInput type="text" name="title" [(ngModel)]="title" required #titleInput="ngModel">
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Type</mat-label>
-    <mat-select [(ngModel)]="type" [ngModelOptions]="{standalone: true}">
-      <mat-option *ngFor="let type of types" [value]="type.value">
-        {{type.viewValue}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Year (optional)</mat-label>
-    <input matInput placeholder="Blank for all years" type="text" name="year" [(ngModel)]="year" pattern="[0-9]{4}">
-    <mat-hint>*4 digit number</mat-hint>
-  </mat-form-field>
-
-  
-  <div class="buttons-container">
-    <button mat-raised-button class="big-button" color="primary" type="submit" (click)="onSubmit()">
-    <mat-icon>send</mat-icon>
-    Find
-  </button>
-
-  <button mat-raised-button class="big-button" color="accent" (click)="onClear()">
-    <mat-icon>clear</mat-icon>
-    Clear
-  </button>
-  </div>
-
-</form>
+<app-search-bar [types] = "types"(onSubmitEvent) = "onSubmit($event)"></app-search-bar>
 
 </div>
 <div class="table" *ngIf="results.length>0">

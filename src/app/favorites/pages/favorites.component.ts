@@ -35,8 +35,9 @@ export class FavoritesComponent implements OnInit{
     this.loadFavorites();
   }
 
-  onSubmit() {
-    if (this.year && !/^[0-9]{4}$/.test(this.year)) {
+  onSubmit(info:any) {
+    let {title, type, year} = info;
+    if (year && !/^[0-9]{4}$/.test(year)) {
       this.toastrService.error('Year must be a 4 digit number');
       return;
     }
@@ -48,23 +49,23 @@ export class FavoritesComponent implements OnInit{
         } else {
           let filteredFavorites = this.favorites;
 
-          if (this.year) {
+          if (year) {
             filteredFavorites = this.favoritesFilter.filterByYear(
               filteredFavorites,
-              this.year
+              year
             );
           }
 
-          if (this.type !== 'all') {
+          if (type !== 'all') {
             filteredFavorites = this.favoritesFilter.filterByType(
               filteredFavorites,
-              this.type
+              type
             );
           }
-          if (this.title) {
+          if (title) {
             filteredFavorites = this.favoritesFilter.filterByTitle(
               filteredFavorites,
-              this.title
+              title
             );
           }
 
@@ -82,11 +83,11 @@ export class FavoritesComponent implements OnInit{
       }
     );
   }
-  onClear() {
-    this.title = '';
-    this.type = 'movie';
-    this.year = '';
-  }
+  // onClear() {
+  //   this.title = '';
+  //   this.type = 'movie';
+  //   this.year = '';
+  // }
   loadFavorites(): void {
     this.favoritesService.getFavorites().subscribe(
       (movies) => {
