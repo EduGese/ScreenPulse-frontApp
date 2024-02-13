@@ -1,8 +1,8 @@
 <div class="favorites-container">
-  <mat-card *ngFor="let item of items; let i = index" class="favorite-card">
-    <mat-card-content>
+  <mat-card *ngFor="let item of items; let i = index" class="favorite-card" >
+    <mat-card-content class="img-container">
       <mat-card-title mat-margin-bottom-lg>{{ item.Title }}</mat-card-title><!--Title-->
-      <img [src]="item.Poster" alt="poster" width="230" height="303"><!--Poster-->
+      <img [src]="item.Poster" alt="poster" width="230" height="303">
     </mat-card-content>
 
     <mat-card-content>
@@ -25,17 +25,20 @@
         </button>
       </mat-card-content>
 
+      <mat-card-actions class="buttons">
+        <mat-button-toggle-group [(ngModel)]="toggleModes[i]" name="mode" name="changeMode" aria-label="changeMode">
+          <mat-button-toggle value="view" checked>View</mat-button-toggle>
+          <mat-button-toggle value="edition" (click)="getId(i)">Edition</mat-button-toggle>
+        </mat-button-toggle-group>
+        <button mat-icon-button color="warn" (click)="sendItemId(item._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+
     </mat-card-content>
 
-    <mat-card-actions class="buttons">
-      <mat-button-toggle-group [(ngModel)]="toggleModes[i]" name="mode" name="changeMode" aria-label="changeMode">
-        <mat-button-toggle value="view" checked>View</mat-button-toggle>
-        <mat-button-toggle value="edition" (click)="getId(i)">Edition</mat-button-toggle>
-      </mat-button-toggle-group>
-      <button mat-icon-button color="warn" (click)="sendItemId(item._id)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </mat-card-actions>
+    
+
 
   </mat-card>
 </div>

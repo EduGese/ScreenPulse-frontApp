@@ -1,16 +1,18 @@
 .favorites-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content:flex-start; 
-    gap: 20px; 
-  }
-  .favorite-card {
-    flex-basis: calc(33.33% - 20px); 
-    margin-bottom: 20px; 
-    text-align: center;
-  }
-  mat-card-actions{
-    display: flex;
-    justify-content: center;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+}
+.favorite-card {
+  flex-basis: calc(33.33% - 20px);
+  margin-bottom: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+}
