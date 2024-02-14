@@ -1,4 +1,4 @@
-<form>
+<form (submit)="onSubmit()">
 
     <mat-form-field appearance="outline">
       <mat-label>Title</mat-label>
@@ -22,7 +22,7 @@
   
     
     <div class="buttons-container">
-      <button mat-raised-button class="big-button" color="primary" type="submit" (click)="onSubmit(title, type, year)">
+      <button mat-raised-button class="big-button" color="primary" type="submit" >
       <mat-icon>send</mat-icon>
       Find
     </button>

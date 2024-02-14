@@ -15,11 +15,11 @@ export class SearchBarComponent {
   @Output() onSubmitEvent = new EventEmitter<any>();
 
 
-  onSubmit(title: string, type: string, year: string){
+  onSubmit(){
     this.onSubmitEvent.emit({
-      title: title,
-      type: type,
-      year: year
+      title: this.title,
+      type: this.type,
+      year: this.year
     })
   }
 
