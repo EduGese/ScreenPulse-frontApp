@@ -6,7 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', loadChildren: () => import('./pages/search/search.module').then(m => m.SearchModule) }, 
   { path: 'favorites', loadChildren: () => import('./pages/favorites/favorites.module').then(m => m.FavoritesModule) },
-  { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) }
+  { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
+  { path: 'register', loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule) },
 ];
 
 @NgModule({

@@ -24,6 +24,7 @@ import { MovieResultsTableComponent } from './components/movie-results-table/mov
 import { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 
 
 
@@ -58,7 +59,8 @@ const materialModules = [
     MovieResultsTableComponent,
     FavoritesCardComponent,
     SearchBarComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    RegisterFormComponent
 
   
   ],
@@ -81,7 +83,8 @@ const materialModules = [
     MovieResultsTableComponent,
     FavoritesCardComponent,
     SearchBarComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    RegisterFormComponent
 
     
   ]  
