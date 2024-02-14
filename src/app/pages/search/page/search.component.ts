@@ -1,9 +1,10 @@
 import { ToastrService } from 'ngx-toastr';
-import { OmdbService } from './../../shared/services/omdb/omdb.service';
+import { OmdbService } from 'src/app/shared/services/omdb/omdb.service';
 import { Component } from '@angular/core';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { TableColumn } from 'src/app/shared/models/tableColumn.model';
 import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
+
 
 
 @Component({

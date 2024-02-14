@@ -1,8 +1,8 @@
-import { FavoritesService } from './../../shared/services/favorites/favorites.service';
 import { Component,  OnInit } from '@angular/core';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { FavoritesFilterService } from '../services/favoritesFilterService/favorites-filter.service';
 import { ToastrService } from 'ngx-toastr';
+import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
 
 
 @Component({
