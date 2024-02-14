@@ -23,6 +23,7 @@ import { SearchCoverComponent } from './components/search-cover/search-cover.com
 import { MovieResultsTableComponent } from './components/movie-results-table/movie-results-table.component';
 import { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 
 
@@ -56,7 +57,9 @@ const materialModules = [
     SearchCoverComponent,
     MovieResultsTableComponent,
     FavoritesCardComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    LoginFormComponent
+
   
   ],
   imports: [
@@ -77,7 +80,8 @@ const materialModules = [
     SearchCoverComponent,
     MovieResultsTableComponent,
     FavoritesCardComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    LoginFormComponent
 
     
   ]  
