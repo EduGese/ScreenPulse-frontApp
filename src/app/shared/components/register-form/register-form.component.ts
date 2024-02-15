@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register-form',
@@ -6,5 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent {
+
+form: FormGroup;
+@Output() formDataEvent = new EventEmitter<any>();
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      userName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
+  onSubmit() {
+    if (this.form.valid) {
+      const formData = this.form.value;
+      this.formDataEvent.emit(formData);
+    }
+  }
 
 }

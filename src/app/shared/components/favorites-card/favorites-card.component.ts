@@ -44,7 +44,6 @@ export class FavoritesCardComponent implements OnChanges {
     this.toggleModes[i] = 'view';
   }
   sendItemId(id: string) {
-    //Sends Item id to parent component in order to be deleted from parent component
     this.itemIdEvent.emit(id);
   }
 }
