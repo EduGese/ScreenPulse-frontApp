@@ -2,12 +2,22 @@
     <span>ScreenPulse</span>
     <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="movie"></mat-icon>
     <span class="spacer"></span>
-    <a routerLink="/register" mat-icon-button>
-      <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="login"></mat-icon>
-    </a>
-    <a routerLink="/login" mat-icon-button>
-      <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="account_circle"></mat-icon>
-    </a>
+    
+    <ng-container *ngIf="!isLoggedIn(); else elseBlock">
+      <a routerLink="/register" mat-icon-button>
+        <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="login"></mat-icon>
+      </a>
+      <a routerLink="/login" mat-icon-button>
+        <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="account_circle"></mat-icon>
+      </a>
+    </ng-container>
+    <ng-template #elseBlock>
+      <span>You are logged in as {{userMail}}</span>
+      <a routerLink="/" mat-icon-button (click)="logOut()">
+        <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="logout" ></mat-icon>
+      </a>
+    </ng-template>
+   
     <a mat-raised-button routerLink="">Search</a>
     <a mat-raised-button routerLink="/favorites">Favorites</a>
   </mat-toolbar>
