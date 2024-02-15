@@ -13,15 +13,15 @@ export class AuthService {
   private userMailSubject = new BehaviorSubject<string | null>(null);
 
   constructor() { 
-    this.userMailSubject.next(localStorage.getItem(this.userMailKey));
+    this.userMailSubject.next(sessionStorage.getItem(this.userMailKey));
   }
 
   setAuthToken(token: string) {
-    localStorage.setItem(this.authTokenKey, token);
+    sessionStorage.setItem(this.authTokenKey, token);
   }
 
   getAuthToken(): string | null {
-    return localStorage.getItem(this.authTokenKey);
+    return sessionStorage.getItem(this.authTokenKey);
   }
 
 
@@ -30,28 +30,28 @@ export class AuthService {
   }
 
   setUserMail(userMail: string){
-    localStorage.setItem(this.userMailKey, userMail);
+    sessionStorage.setItem(this.userMailKey, userMail);
     this.userMailSubject.next(userMail);
   }
 
   getUserMail(): string | null {
-    return localStorage.getItem(this.userMailKey);
+    return sessionStorage.getItem(this.userMailKey);
   }
 
   getUserMailObservable() {
     return this.userMailSubject.asObservable();
   }
   setUserName(userName: string){
-    localStorage.setItem(this.userNameKey, userName);
+    sessionStorage.setItem(this.userNameKey, userName);
   }
   getUserName(): string | null {
-    return localStorage.getItem(this.userNameKey);
+    return sessionStorage.getItem(this.userNameKey);
   }
 
   logOut(){
-    localStorage.removeItem(this.authTokenKey);
-    localStorage.removeItem(this.userMailKey);
-    localStorage.removeItem(this.userNameKey);
+    sessionStorage.removeItem(this.authTokenKey);
+    sessionStorage.removeItem(this.userMailKey);
+    sessionStorage.removeItem(this.userNameKey);
     this.userMailSubject.next(null); 
   }
  
