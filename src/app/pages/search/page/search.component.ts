@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { TableColumn } from 'src/app/shared/models/tableColumn.model';
 import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
 
 
 
@@ -37,7 +39,9 @@ export class SearchComponent {
   constructor(
     private OmdbService: OmdbService, 
     private toastrService: ToastrService, 
-    private favoritesService: FavoritesService
+    private favoritesService: FavoritesService,
+    private authService: AuthService,
+    private router: Router
     ){}
   
 
@@ -71,6 +75,11 @@ export class SearchComponent {
  
 
   addToFavories(item: any) {
+    if(!this.authService.isLoggedIn()){
+      this.toastrService.error('You must be logged in to add movies to your list', 'Error');
+      this.router.navigate(['/login']);
+      return;
+    }
     this.favoritesService.addToFavorites(item).subscribe(
       () => {
         this.toastrService.success(item.Title, 'Added to favorites');
