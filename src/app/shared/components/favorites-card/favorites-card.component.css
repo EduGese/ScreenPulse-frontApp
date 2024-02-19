@@ -4,15 +4,79 @@
   justify-content: flex-start;
   gap: 20px;
 }
+
 .favorite-card {
   flex-basis: calc(33.33% - 20px);
   margin-bottom: 20px;
   text-align: center;
   border-radius: 10px;
+  position: relative;
 }
-
+img{
+  border-radius: 10px;
+}
 
 mat-card-actions {
   display: flex;
   justify-content: center;
+}
+.edition {
+  position: absolute; /* Coloca el contenedor de edición de forma absoluta dentro del contenedor de la tarjeta */
+  bottom: 0px; /*Hace que el contenedor de edición se expanda hacia arriba */
+  width: 65%; /* Asegura que el contenedor de edición ocupe todo el ancho de la tarjeta */
+  z-index: 1;
+  background-color: rgba(240, 248, 255, 0);
+  height: 82%;
+  /* padding: 0; */
+  backdrop-filter: blur(2px) grayscale(100%) ;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation-name: edition;
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+  margin-left: 43px;
+ 
+ 
+
+}
+@keyframes edition{
+0% {
+  bottom: 0%;
+  height: 0;
+  visibility: hidden;
+}
+30%{
+  visibility: hidden;
+}
+50%{
+  visibility: visible;
+}
+100%{
+  bottom: 28%;
+  height: 63%;
+  
+}
+}
+ mat-form-field textarea{
+  width: 100%;
+  /* border: 1px solid #FF4786; */
+  border-radius: 10px;
+  color: white;
+  background-color:rgba(0, 0, 0, 0.39);
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+mat-form-field textarea::placeholder{
+  color: white;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+.mat-mdc-form-field-textarea-control {
+  color: red; /* Cambiar el color del texto */
+  /* background-color: blue; */
 }
