@@ -19,6 +19,7 @@ export class LoginComponent {
         this.authService.setAuthToken(data.token);
         this.authService.setUserMail(data.user.email);
         this.authService.setUserName(data.user.userName);
+        this.authService.setUserId(data.user._id);
         this.router.navigate(['']);
       },
       error: (error) => {
