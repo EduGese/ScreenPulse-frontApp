@@ -9,6 +9,7 @@ export class AuthService {
   private authTokenKey: string  = 'authToken';
   private userMailKey: string = 'userMail';
   private userNameKey: string = 'userName';
+  private userIdKey: string = 'userId';
 
   private userMailSubject = new BehaviorSubject<string | null>(null);
 
@@ -47,11 +48,18 @@ export class AuthService {
   getUserName(): string | null {
     return sessionStorage.getItem(this.userNameKey);
   }
+  setUserId(userId: string){
+    sessionStorage.setItem(this.userIdKey, userId);
+  }
+  getUserId(): string | null {
+    return sessionStorage.getItem(this.userIdKey);
+  }
 
   logOut(){
     sessionStorage.removeItem(this.authTokenKey);
     sessionStorage.removeItem(this.userMailKey);
     sessionStorage.removeItem(this.userNameKey);
+    sessionStorage.removeItem(this.userIdKey);
     this.userMailSubject.next(null); 
   }
  

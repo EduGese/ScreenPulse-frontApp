@@ -6,4 +6,5 @@ export interface Movie{
   Type: string; 
   Poster: string;
   description? : string
+  user?: string
 }
