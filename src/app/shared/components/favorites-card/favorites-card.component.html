@@ -17,7 +17,7 @@
       <mat-card-content *ngIf="toggleModes[i] === 'edition'" class="edition" >
         <mat-form-field>
           <!-- <textarea matInput #description maxlength="200" placeholder="Add your review/description"></textarea> -->
-          <textarea  #description maxlength="200" placeholder="Add your review"></textarea>
+          <textarea matInput #description maxlength="200" placeholder="Add your review"></textarea><!---Eliminar matInput y buscar alternativa al error que da si lo quito-->
           <mat-hint>200 max length</mat-hint>
         </mat-form-field>
         <button mat-icon-button color="primary" aria-label="Add review"

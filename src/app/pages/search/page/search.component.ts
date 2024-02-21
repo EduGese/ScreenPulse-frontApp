@@ -80,16 +80,14 @@ export class SearchComponent {
       this.router.navigate(['/login']);
       return;
     }
-    this.favoritesService.addToFavorites(item).subscribe(
-      () => {
+    this.favoritesService.addToFavorites(item).subscribe({
+      next:() => {
         this.toastrService.success(item.Title, 'Added to favorites');
       },
-      (error) => {
-        console.error('Error:', error);
-        if (error.message === 'Element duplicated') {
-          this.toastrService.error(item.Title, 'It is already in your list');
-        }
+      error:(error) => {
+        console.log(error);
+        this.toastrService.error(error.error.message);
       }
-    );
+     });
   }
 }

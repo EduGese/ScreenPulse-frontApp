@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
 import { RegisterFormData } from 'src/app/shared/models/registerFormData.model';
 
@@ -9,7 +10,10 @@ import { RegisterFormData } from 'src/app/shared/models/registerFormData.model';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService, 
+    private router: Router, 
+    private toastrService: ToastrService) {}
 
   getRegister(formData: RegisterFormData) {
 
@@ -19,8 +23,7 @@ export class RegisterComponent {
         this.router.navigate(['login']);
       },
       error: (error) => {
-        console.log(error.error.error);
-        alert(error.error.message);
+        this.toastrService.error(error.error.message);
       },
     });
   }

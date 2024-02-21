@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { LoginFormData } from 'src/app/shared/models/loginFormData.mode';
@@ -11,7 +12,12 @@ import { LoginFormData } from 'src/app/shared/models/loginFormData.mode';
 })
 export class LoginComponent {
   
-  constructor(private userService: UserService, private authService: AuthService, private router: Router) {}
+  constructor(
+    private userService: UserService, 
+    private authService: AuthService, 
+    private router: Router,
+    private toastrService: ToastrService
+    ) {}
 
   login(formData: LoginFormData) {
     this.userService.login(formData).subscribe({
@@ -23,8 +29,12 @@ export class LoginComponent {
         this.router.navigate(['']);
       },
       error: (error) => {
-        console.log(error);
-        alert(error.error.error);
+        if(error.status===0){
+          this.toastrService.error("There was a problem connecting to the server. Please check your internet connection or try again later.")
+        }else{
+          this.toastrService.error(error.error.message);
+        }
+       
       }
     });
   }

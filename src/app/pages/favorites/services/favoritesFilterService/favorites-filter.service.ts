@@ -19,7 +19,7 @@ export class FavoritesFilterService {
   filterByTitle(favorites: Movie[], title: string) {
     return favorites  
       .filter(movie => 
-        movie.Title.toLowerCase().startsWith(title.toLowerCase())
+        movie.Title.toLowerCase().includes(title.toLowerCase())
       )
       .map(movie => {
         const words = movie.Title.split(' ');
