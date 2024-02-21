@@ -1,6 +1,41 @@
+mat-toolbar{
+    height: 80px;
+}
 .spacer{
     flex: 1 1 auto;
 }
 a{
     margin: 10px;
 }
+.logged{
+    font-size: 10px;
+}
+.user-mail{
+    color: #FF4786;
+    font-size: 14px;
+}
+mat-hint{
+    font-size: 10px;
+}
+.login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content:stretch;
+    align-items:center;
+
+}
+.join{
+    padding-top: -10px;
+    font-size: 12px;
+}
+.register-container:hover{
+    color: #FF4786;
+}
+.login-container:hover{
+    color: #FF4786;
+}
+.logout-container:hover{
+    color: #FF4786;
+}
+
+

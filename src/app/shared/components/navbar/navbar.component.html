@@ -2,22 +2,29 @@
     <span>ScreenPulse</span>
     <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="movie"></mat-icon>
     <span class="spacer"></span>
+
+   
     
     <ng-container *ngIf="!isLoggedIn(); else elseBlock">
-      <a routerLink="/register" mat-icon-button>
-        <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="login"></mat-icon>
+      <a routerLink="/register" mat-icon-button class="register-container">
+        <div class="login-container">
+           <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="person_add_alt"></mat-icon>
+        <span class="join">Join us!</span>
+        </div>
+       
       </a>
-      <a routerLink="/login" mat-icon-button>
-        <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="account_circle"></mat-icon>
+      <a routerLink="/login" mat-icon-button class="login-container">
+        <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="login"></mat-icon>
+        <!-- <mat-hint>Login</mat-hint> -->
       </a>
     </ng-container>
     <ng-template #elseBlock>
-      <span>You are logged in as {{userMail}}</span>
-      <a routerLink="/" mat-icon-button (click)="logOut()">
-        <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="logout" ></mat-icon>
+      <span class="logged">Welcome <span class="user-mail">{{userMail}}</span></span>
+      <a routerLink="/" mat-icon-button (click)="logOut()" class="logout-container">
+        <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="logout" class="logOut"></mat-icon>
       </a>
     </ng-template>
-   
     <a mat-raised-button routerLink="">Search</a>
     <a mat-raised-button routerLink="/favorites">Favorites</a>
+ 
   </mat-toolbar>
