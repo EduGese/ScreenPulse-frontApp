@@ -1,5 +1,8 @@
 mat-toolbar{
     height: 80px;
+    display: flex;
+    flex-direction: column;
+   
 }
 .spacer{
     flex: 1 1 auto;
@@ -37,5 +40,70 @@ mat-hint{
 .logout-container:hover{
     color: #FF4786;
 }
+.expanded-menu{
+width: 100%;
+
+}
+.navbar-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+.expanded-menu-container{
+   background-color: #3f51b5; 
+    width: 110%;
+    text-align: end;
+}
+.expanded-menu-container ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    width: 100%;
+    padding: 0;
+}
+.expanded-menu-container a{
+     text-decoration: none; 
+     color: white;
+
+}
+
+.loggedin-expanded-menu-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 
+
+
+@media only screen and (max-width: 600px) {
+    .button-links-container{
+        display: none;
+    }
+    .loggedin-navbar-container{
+        display: none;
+    }
+    .register-container{
+        display: none;
+    }
+    .login-container{
+        display: none;
+    }
+    ul{
+        margin: 0;
+        
+    }
+}
+@media only screen and (min-width: 601px){
+    .toogle-menu-button{
+        display: none;
+    }
+    .expanded-menu-container{
+        display: none;
+    }
+}
