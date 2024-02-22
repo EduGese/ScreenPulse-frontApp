@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   userMail: string | null = '';
   private userMailSubscription!: Subscription;
+  expanded: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -32,5 +33,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   logOut() {
     this.authService.logOut();
     this.router.navigate(['']);
+  }
+  toogleMenu() {
+    if(!this.expanded){
+    this.expanded = true;
+  }else{
+    this.expanded = false;
+  }
   }
 }
