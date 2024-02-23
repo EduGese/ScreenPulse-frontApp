@@ -31,6 +31,8 @@ h1{
     }
 }
 
+  
+
 @media only screen and (min-width: 601px){
     form{
         width: 600px;
@@ -42,3 +44,8 @@ h1{
         margin: 10px;
     }
 }
+@media screen and (max-width: 950px) and (orientation: landscape) {
+    form{
+       height: 65vh; 
+    }
+  }
