@@ -52,22 +52,37 @@
 
       </ng-container>
 
-      <ul>
-        <li><a routerLink="" routerLinkActive="active">Search</a></li>
-        <li><a routerLink="/favorites" routerLinkActive="active">Favorites</a></li>
+      <mat-list>
+        <mat-list-item (click)="toogleMenu()"><a routerLink="" routerLinkActive="active">Search</a></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item (click)="toogleMenu()"><a routerLink="/favorites" routerLinkActive="active">Favorites</a></mat-list-item>
+        <mat-divider></mat-divider>
+        <!-- <li><a routerLink="" routerLinkActive="active">Search</a></li>
+        <li><a routerLink="/favorites" routerLinkActive="active">Favorites</a></li> -->
         <ng-template #blockLogout>
           <div class="loggedout-expanded-menu-container">
-            <ul>
+            <!-- <ul>
               <li><a routerLink="/register" routerLinkActive="active"><mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="person_add_alt"></mat-icon></a></li>
               <li><a routerLink="/login" routerLinkActive="active"><mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="login"></mat-icon></a></li>
-            </ul>
+            </ul> -->
+            <mat-list>
+              <mat-list-item (click)="toogleMenu()">
+                <a routerLink="/register" routerLinkActive="active">
+                  <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="person_add_alt"></mat-icon>
+                </a></mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item (click)="toogleMenu()">
+                <a routerLink="/login" routerLinkActive="active"><mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="login" ></mat-icon></a>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+             
+            </mat-list>
           </div>
           
         </ng-template>
-      </ul>
+      </mat-list>
     </ng-container>
   </div>
-
 
 
 </mat-toolbar>
