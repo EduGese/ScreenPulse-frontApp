@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent {
-
+  hide = true;
   form: FormGroup;
 @Output() formDataEvent = new EventEmitter<any>();
 
