@@ -1,6 +1,7 @@
 .site-content {
     min-height: 100vh;
     z-index: 1;
+    padding-top: 80px;
 }
 app-navbar{
     width: 100%;
