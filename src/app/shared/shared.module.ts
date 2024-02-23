@@ -25,6 +25,9 @@ import { FavoritesCardComponent } from './components/favorites-card/favorites-ca
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 
 
@@ -42,7 +45,9 @@ const materialModules = [
   MatButtonToggleModule,
   MatInputModule,
   MatSelectModule,
-  MatGridListModule
+  MatGridListModule,
+  MatListModule,
+  MatDividerModule
   
 
 
