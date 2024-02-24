@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="results" layout="flexLayout" class="mat-elevation-z8 demo-table">
+<table mat-table [dataSource]="results" layout="flexLayout" class="mat-elevation-z8">
 
   <ng-container *ngFor="let column of columns" [matColumnDef]="column.property">
     <th mat-header-cell *matHeaderCellDef> 
@@ -15,11 +15,11 @@
               alt="Poster" width="130" height="203">
           </ng-container>
           <ng-template #withUrl><!--Else si hay url de imagen-->
-            <img [src]="result[column.property]" alt="Poster" width="130" height="203">
+            <img [src]="result[column.property]" alt="Poster">
           </ng-template>
         </ng-template>
       </ng-container>
-      <ng-template #add><!--Else si la propiedad result[column.property] es undefined por lo tanto no es un valor del objeto, y sera la columna correspondiente al boton-->
+      <ng-template class="favorite-button-container" #add><!--Else si la propiedad result[column.property] es undefined por lo tanto no es un valor del objeto, y sera la columna correspondiente al boton-->
           <button mat-icon-button (click)="addNewItem(result)">
             <mat-icon>favorite</mat-icon>
           </button>
