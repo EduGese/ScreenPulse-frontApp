@@ -1,34 +1,125 @@
 .favorites-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 20px;
+  color: white;
+  padding-top: 20px;
+  
 }
 
 .favorite-card {
-  flex-basis: calc(33.33% - 20px);
+  max-width: 230px;
   margin-bottom: 20px;
   text-align: center;
   border-radius: 10px;
   position: relative;
-}
-img{
-  border-radius: 10px;
+  background: #ffffff;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 5px 5px 15px 5px #000000;
 }
 
+.img-container{
+  padding: 0 !important;
+}
+.img-container2{
+  width: 230px;
+  height: 330px;
+  background-color: #0a0505;
+  border-radius: 10px 10px 0 0;
+  background-size: 100%;
+  background-position: center;
+  transition: background-size 1s ease, background-position 1s ease;
+  display: flex;
+  justify-content:space-between;
+}
+.img-container2:hover{
+  background-size: 120%;
+  background-position: center;
+}
+.img-container2 button{
+  margin: 10px 10px 0 10px;
+  
+}
+
+.chip {
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 30px;
+  font-style: italic;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  text-shadow:
+    1px 1px 0.5px #000,
+    -1px 1px 0.5px #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  -webkit-box-shadow: inset 16px 15px 27px -6px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 16px 15px 27px -6px rgba(0, 0, 0, 0.4);
+}
+
+.movie .chip{
+  background-color: rgba(255, 0, 0, 0.5);
+}
+.series .chip{
+  background-color: rgba(255, 255, 0, 0.5);
+}
+.game .chip{
+  background-color: rgba(0, 128, 0, 0.5);
+}
+mat-card-title{
+  font-family: 'Glegoo';
+  font-size: 14px;
+  color: black;
+}
+.description-container{
+  border-radius: 30px;
+  background-color: white;
+  padding: 2px !important;
+  height: 45px;
+  margin-top: -25px;
+  z-index: 2;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid rgba(0, 0, 0, 0.356);
+
+}
+.description-container p{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: help;
+  margin-top: 10px;
+  padding: 3px;
+}
+.description-text{
+  font-style: italic;
+  color: black;
+  padding: 1px;
+}
+.noDescription-text{
+  color: rgba(0, 0, 0, 0.432);
+  font-style: normal;
+ 
+}
 mat-card-actions {
   display: flex;
   justify-content: center;
 }
 .edition {
-  position: absolute; /* Coloca el contenedor de edición de forma absoluta dentro del contenedor de la tarjeta */
-  bottom: 0px; /*Hace que el contenedor de edición se expanda hacia arriba */
-  width: 65%; /* Asegura que el contenedor de edición ocupe todo el ancho de la tarjeta */
+  position: absolute;
+  bottom: 34px;
+  width: 101%; 
   z-index: 1;
   background-color: rgba(240, 248, 255, 0);
-  height: 82%;
-  /* padding: 0; */
-  backdrop-filter: blur(2px) grayscale(100%) ;
+  height: 100%;
+  padding: 0;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,47 +127,47 @@ mat-card-actions {
   animation-name: edition;
   animation-duration: 1.2s;
   animation-fill-mode: forwards;
-  margin-left: 43px;
- 
- 
-
-}
-@keyframes edition{
-0% {
-  bottom: 0%;
-  height: 0;
-  visibility: hidden;
-}
-30%{
-  visibility: hidden;
-}
-50%{
-  visibility: visible;
-}
-100%{
-  bottom: 28%;
-  height: 63%;
-  
-}
-}
- mat-form-field textarea{
-  width: 100%;
-  /* border: 1px solid #FF4786; */
+  margin-left: -36px;
   border-radius: 10px;
+}
+
+@keyframes edition {
+  0% {
+    bottom: 20%;
+    height: 100px;
+  }
+  100% {
+    bottom: 20%;
+    height: 280px;
+    visibility: visible;
+  }
+}
+.edition button{
   color: white;
-  background-color:rgba(0, 0, 0, 0.39);
-  height: 200px;
+  background-color: rgba(0, 0, 0, 0.637);
+}
+ textarea{
+  width: 230px;
+  border: 1px solid #ff478700;
+  border-radius: 10px 10px 0 0;
+  color: white;
+  background-color:rgba(0, 0, 0, 0.267);
+  height: 330px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0;
+  backdrop-filter: blur(2px) grayscale(100%) ;
+  text-align:center;
 }
-mat-form-field textarea::placeholder{
-  color: white;
+
+ textarea::placeholder{
+  color: rgb(255, 255, 255);
   font-weight: 600;
-  text-align: center;
+  
+}
+.info{
+  margin: 20px;
+  background-color: transparent;
+  height:20px;
 }
 
-
-.mat-mdc-form-field-textarea-control {
-  color: red; /* Cambiar el color del texto */
-  /* background-color: blue; */
-}

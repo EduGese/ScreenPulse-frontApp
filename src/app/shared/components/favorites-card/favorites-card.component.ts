@@ -9,6 +9,7 @@ import {
 
 
 
+
 @Component({
   selector: 'app-favorites-card',
   templateUrl: './favorites-card.component.html',
@@ -20,14 +21,17 @@ export class FavoritesCardComponent implements OnChanges {
   @Output() itemUpdatedEvent = new EventEmitter<any>();
 
   toggleModes: string[] = [];
-
   index: number = 0;
+  descriptions: string[] = [];
+
+
 
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['items'] && changes['items'].currentValue) {
       this.toggleModes = this.items.map(() => 'view');
+      this.descriptions = this.items.map(() => '');
     }
   }
 
@@ -35,10 +39,10 @@ export class FavoritesCardComponent implements OnChanges {
     this.index = i;
   }
 
-  addDescription(item: any, description: any, i: number) {
+  addDescription(item: any, i: number) {
     const itemInfo = {
       item: item,
-      description: description,
+      description: this.descriptions[i],
     };
     this.itemUpdatedEvent.emit(itemInfo);
     this.toggleModes[i] = 'view';
@@ -46,4 +50,12 @@ export class FavoritesCardComponent implements OnChanges {
   sendItemId(id: string) {
     this.itemIdEvent.emit(id);
   }
+  onValueChange(event: Event, index: number): void {
+    const value = (event.target as HTMLTextAreaElement).value;
+    this.descriptions[index] = value;
+  }
+  toggleMode(index: number): void {
+    this.toggleModes[index] = this.toggleModes[index] === 'view' ? 'edition' : 'view';
+  }
+
 }

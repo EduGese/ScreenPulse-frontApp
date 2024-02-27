@@ -1,44 +1,57 @@
 <div class="favorites-container">
   <mat-card *ngFor="let item of items; let i = index" class="favorite-card" >
-    <mat-card-content class="img-container">
-      <mat-card-title mat-margin-bottom-lg>{{ item.Title }}</mat-card-title><!--Title-->
-      <img [src]="item.Poster" alt="poster" width="230" height="303">
+<!--Poster Container-->
+    <mat-card-content class="img-container"  matTooltip="{{item.Title}}" matTooltipPosition="above">
+      <div class="img-container2" [style.background-image]="'url(' + item.Poster + ')'">
+        <!--Delete button-->
+        <button mat-mini-fab color="warn" aria-label="delete item"  (click)="sendItemId(item._id)">
+          <mat-icon matTooltip="Delete" matTooltipPosition="below">delete</mat-icon>
+        </button>
+        <!--Description button-->
+        <button mat-mini-fab color="primary" (click)="toggleMode(i)" [value]="toggleModes[i] === 'view' ? 'edition' : 'view'">
+          <mat-icon> {{ toggleModes[i] === 'view' ? 'rate_review' : 'close' }}</mat-icon>
+        </button>
+      </div>
     </mat-card-content>
 
-    <mat-card-content>
-      <mat-card-subtitle>{{ item.Type }}</mat-card-subtitle><!--Type-->
-      <mat-card-title>{{ item.Year }}</mat-card-title><!--Year-->
+<!--Info & buttons Container-->
+    <!--Description container-->
+    <mat-card-content class="description-container"  matTooltip="{{item.description}}">
+      <ng-container *ngIf="item.description; else noDescription">
+        <p class="description-text">"{{item.description}}"</p>
+      </ng-container>
+      <ng-template #noDescription>
+        <p class="noDescription-text">No description yet</p>
+      </ng-template>
+    </mat-card-content>
 
+    <mat-card-content class="info">
+      <mat-card-subtitle [ngClass]="item.Type">
+        <div class="chip">
+          {{ item.Type | uppercase}}
+        </div>
+      </mat-card-subtitle>
+      <mat-card-title>{{ item.Year }}</mat-card-title>
 
-      <mat-card-content *ngIf="toggleModes[i] === 'view' ">
-        <p>{{item.description}}</p><!--Description-->
-      </mat-card-content>
-
+      <!--Edition Container-->
       <mat-card-content *ngIf="toggleModes[i] === 'edition'" class="edition" >
-        <mat-form-field>
-          <!-- <textarea matInput #description maxlength="200" placeholder="Add your review/description"></textarea> -->
-          <textarea matInput #description maxlength="200" placeholder="Add your review"></textarea><!---Eliminar matInput y buscar alternativa al error que da si lo quito-->
-          <mat-hint>200 max length</mat-hint>
-        </mat-form-field>
-        <button mat-icon-button color="primary" aria-label="Add review"
-          (click)="addDescription(item,description.value, i)">
+           <button mat-icon-button  aria-label="Add review"
+          (click)="addDescription(item, i)">
           <mat-icon>add</mat-icon>
         </button>
+          <textarea [value]="descriptions[i]" (input)="onValueChange($event, i)"  maxlength="200" placeholder="Add your review" id="textTarea"></textarea>
       </mat-card-content>
 
-      <mat-card-actions class="buttons">
-        <mat-button-toggle-group [(ngModel)]="toggleModes[i]" name="mode" name="changeMode" aria-label="changeMode">
-          <mat-button-toggle value="view" checked>View</mat-button-toggle>
-          <mat-button-toggle value="edition" (click)="getId(i)">Edition</mat-button-toggle>
-        </mat-button-toggle-group>
-        <button mat-icon-button color="warn" (click)="sendItemId(item._id)">
-          <mat-icon>delete</mat-icon>
+      <!--Description button-->
+      <!-- <mat-card-actions class="buttons">
+        <button mat-mini-fab color="primary" (click)="toggleMode(i)" [value]="toggleModes[i] === 'view' ? 'edition' : 'view'">
+          <mat-icon> {{ toggleModes[i] === 'view' ? 'rate_review' : 'close' }}</mat-icon>
         </button>
-      </mat-card-actions>
+      </mat-card-actions> -->
 
+      
     </mat-card-content>
-
-    
+  
 
 
   </mat-card>
