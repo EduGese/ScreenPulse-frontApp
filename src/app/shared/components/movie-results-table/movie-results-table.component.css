@@ -1,8 +1,62 @@
-table{
-
-    border: 1px solid #3f51b55b; 
+ table{
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border-radius: 10px;
+    max-width: 100%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    /* border-collapse: collapse;
+   background-color:  #3F51B5;  */
+   
 }
-th, td{
+
+/*Thead*/
+/* thead{
+    
+    color: white;
+    margin: 0;
+    height: 40px;
+   font-size: 20px;
+
+}
+.title-header{
+    border-radius: 10px 0 0 0 ;
+    
+}
+.add-header{
+    border-radius: 0 10px 0 0 ;
+
+} */
+/*Tbody*/
+/* tbody{
+    margin-top: -10px; 
+   border-collapse: separate;
+
+}
+.title-container{
+    font-weight: bold;
+}
+.row-tbody{
+ border-bottom: 1px solid rgba(0, 0, 0, 0.096);
+ margin-bottom: 10px;
+ background-color: aliceblue;
+
+ 
+}
+.row-tbody td {
+    padding: 10px; 
+} */
+/* 
+img{
+    width: 150px;
+    height: 203px;
+    border-radius: 10px;
+} 
+mat-icon{
+    color: #ff4081;
+} */
+ th, td{
     text-align: center;
     
 }
@@ -10,16 +64,12 @@ td{
     font-size: 20px;
     color:#3F51B5;
     border-bottom: 1px solid  #3f51b55b;
-    
 }
 th{
     font-size:25px;
-    background-color:  #3F51B5 !important;
-    color: white;
-    font-style: italic;
-    border-bottom: 1px solid  #3f51b55b;
-    margin-bottom: 10px !important;
     
+    color: white;
+    font-style: italic;  
 }
 
 mat-icon{
@@ -28,7 +78,13 @@ mat-icon{
 img{
     width: 150px;
     height: 203px;
+} 
+
+.head{
+    background-color:  #3F51B5 !important;
+   
 }
+ 
 
 
 
