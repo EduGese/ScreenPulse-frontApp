@@ -1,20 +1,42 @@
-<div class="title">
-  <h1>
-    <span class="center-content">
-      Favorites
-      <mat-icon>favorites</mat-icon>
-    </span>
-  </h1>
-</div>
+<ng-container *ngIf="favoritesLoaded; else noFavoritesLoaded">
 
-<app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar>
 
-<ng-component *ngIf="getAllfavorites() == 0; else Arefavorites">
+  <ng-container *ngIf="favorites.length > 0; else Arefavorites">
+    <div class="title">
+      <h1>
+        <span class="center-content">
+          Favorites
+          <mat-icon>favorites</mat-icon>
+        </span>
+      </h1>
+    </div>
+    <app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar>
+    <app-favorites-card [items]="favorites" (itemIdEvent)="deleteFavorite($event)"
+      (itemUpdatedEvent)="updateFavorite($event)"></app-favorites-card>
+  </ng-container>
+  
+  
+  <ng-template #Arefavorites class="card-container">
+     <h1>Upps..you don't have any favorite yet...</h1>
+    <div class="img-container">
+      <img src="../../../../assets/images/monkey2.jpg" alt="monkey">
+    </div>
+  </ng-template>
+
+
+</ng-container>
+
+
+
+<ng-template #noFavoritesLoaded>
   <div>
-    <p>No favorites yet. Please add some.</p>
+    <h1>Loading, please wait</h1>
+    <mat-progress-bar mode="indeterminate">Loading</mat-progress-bar>
   </div>
-</ng-component>
-<ng-template #Arefavorites class="card-container">
-  <app-favorites-card [items]="favorites" (itemIdEvent)="deleteFavorite($event)"
-    (itemUpdatedEvent)="updateFavorite($event)"></app-favorites-card>
+  
 </ng-template>
+
+
+
+
+

@@ -1,13 +1,37 @@
+form {
+  background-color: rgb(255, 255, 255);
+  width: 50%;
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  border-radius: 10px;
+  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, inset 5px 5px 8px 12px rgba(0, 0, 0, 0);
+  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, inset 5px 5px 8px 12px rgba(0, 0, 0, 0);
+}
+
 mat-hint {
-    color: gray;
-  }
-  h1 {
-    text-align: center;
-    padding: 20px;
-  }
-  mat-form-field {
-    margin: 2px;
-  }
-  button {
-    margin: 10px;
-  }
+  color: gray;
+}
+
+mat-form-field {
+  margin: 2px;
+}
+
+button {
+  margin: 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+@media only screen and (max-width: 601px){
+ form{
+  width: 60%;
+ }
+}
+
+@media only screen and (min-width: 601px){
+
+}
+
+@media screen and (max-width: 950px) and (orientation: landscape) {
+
+}

@@ -16,6 +16,7 @@ export class FavoritesComponent implements OnInit{
   type: string = 'movie';
   year: string = '';
   yearInvalid = false;
+  favoritesLoaded: boolean = false;
 
   types: any[] = [
     { value: 'movie', viewValue: 'Movie' },
@@ -87,11 +88,13 @@ export class FavoritesComponent implements OnInit{
     this.favoritesService.getFavorites().subscribe({
       next: (movies) => {
         this.favorites = movies;
-        console.log('movies favoritas del usuario', movies);
+        this.favoritesLoaded = true;
+        
       },
      error: (error) => {
         console.error(error);
-        this.toastrService.error( error.error.message);
+        //this.toastrService.error( error.error.message);
+        this.favoritesLoaded = true;
       }
   });
   }

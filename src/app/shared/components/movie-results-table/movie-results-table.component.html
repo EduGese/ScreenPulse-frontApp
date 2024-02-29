@@ -12,7 +12,7 @@
         <ng-template #imgColumn><!--Else si hay imagen-->
           <ng-container *ngIf="result[column.property] === 'N/A'; else withUrl"><!--bloque comprobacion si la propiedad imagen no tiene url-->
             <img src='https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg'
-              alt="Poster" width="130" height="203">
+              alt="Poster">
           </ng-container>
           <ng-template #withUrl><!--Else si hay url de imagen-->
             <img [src]="result[column.property]" alt="Poster">
@@ -28,7 +28,7 @@
     
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   
 

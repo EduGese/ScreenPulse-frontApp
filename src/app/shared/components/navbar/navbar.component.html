@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <div class="navbar-container">
-    <span>ScreenPulse</span>
-    <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="movie"></mat-icon>
+    <span><span class="screen">Screen</span><span class="pulse">Pulse</span></span>
+    <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="movie" class="movieIcon"></mat-icon>
     <span class="spacer"></span>
 
 
@@ -29,8 +29,8 @@
     </ng-template>
 
     <div class="button-links-container">
-      <a mat-raised-button routerLink="">Search</a>
-      <a mat-raised-button routerLink="/favorites">Favorites</a>
+      <a  routerLink="">Search</a>
+      <a  routerLink="/favorites">Favorites</a>
     </div>
 
     <button mat-icon-button class="toogle-menu-button" (click)="toogleMenu()">

@@ -28,8 +28,10 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
-
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 
@@ -49,12 +51,11 @@ const materialModules = [
   MatGridListModule,
   MatListModule,
   MatDividerModule,
-  MatFormFieldModule
-  
-
-
-
-  
+  MatFormFieldModule,
+  MatExpansionModule,
+  MatChipsModule,
+  MatTooltipModule,
+  MatProgressBarModule
 ]
 
 

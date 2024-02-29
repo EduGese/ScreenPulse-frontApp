@@ -5,4 +5,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url("src\assets\1154.png");
+    background-size: contain;
+    
 }
+
