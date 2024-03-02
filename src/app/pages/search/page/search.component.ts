@@ -5,6 +5,8 @@ import { Movie } from 'src/app/shared/models/movie.model';
 import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { MovieDialogComponent } from 'src/app/shared/components/movie-dialog/movie-dialog.component';
 
 
 
@@ -36,7 +38,8 @@ export class SearchComponent {
     private toastrService: ToastrService, 
     private favoritesService: FavoritesService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
     ){}
   
 
@@ -85,5 +88,36 @@ export class SearchComponent {
         this.toastrService.error(error.error.message);
       }
      });
+  }
+
+  openMovie(movie:any){
+    console.log('Abrir item',movie.imdbID);
+    this.OmdbService.getMovieInfo(movie.imdbID).subscribe({
+      next:(response) => {
+        const movieAndResponse = {
+          movie: movie,
+          response: response
+        };
+        console.log('Movie and response', movieAndResponse);
+        const dialogRef = this.dialog.open(MovieDialogComponent, {
+          data: movieAndResponse,
+          height: '90%',
+          width: '80%',
+          enterAnimationDuration: '500ms',
+          exitAnimationDuration: '500ms',
+          autoFocus: false ,
+        });
+        dialogRef.afterOpened().subscribe(() => {
+          const imgElement = document.querySelector('.poster img') as HTMLElement;
+          if (imgElement) {
+            imgElement.focus();
+          }
+        });
+      },
+      error:(error) => {
+        this.toastrService.error(error.error.message);
+      }
+    });
+   
   }
 }

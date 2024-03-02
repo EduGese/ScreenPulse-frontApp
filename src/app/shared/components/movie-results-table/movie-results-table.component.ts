@@ -8,7 +8,8 @@ import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angu
 })
 export class MovieResultsTableComponent  {
   @Input() results!: any[];
-  @Output() addItem = new EventEmitter<any>();
+  @Output() sendItem = new EventEmitter<any>();
+  @Output() sendItem2 = new EventEmitter<any>();
 
   displayedColumns: string[] =  ['Title', 'Year', 'Type', 'Poster', 'Add' ];
   
@@ -17,7 +18,11 @@ export class MovieResultsTableComponent  {
 
   addNewItem(item: any) {
     
-    this.addItem.emit(item);
+    this.sendItem.emit(item);
+  }
+  openItem(item: any) {
+
+    this.sendItem2.emit(item);
   }
 
 }

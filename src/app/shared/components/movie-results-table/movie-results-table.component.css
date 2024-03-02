@@ -78,6 +78,7 @@ mat-icon{
 img{
     width: 150px;
     height: 203px;
+    cursor: pointer;
 } 
 
 .head{

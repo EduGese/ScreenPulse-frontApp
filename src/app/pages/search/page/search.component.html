@@ -12,7 +12,7 @@
 
 </div>
 <div class="table" *ngIf="results.length>0">
-  <app-movie-results-table  [results]="results"  (addItem)="addToFavories($event)"></app-movie-results-table>
+  <app-movie-results-table  [results]="results" (sendItem2)="openMovie($event)"  (sendItem)="addToFavories($event)"></app-movie-results-table>
 </div>
 
 <div class="table" *ngIf="results.length == 0">

@@ -1,0 +1,130 @@
+
+  h1{
+    text-align: center;
+    background-color: #3F51B5;
+    color: rgb(248, 248, 248) !important;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+  }
+  .card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 90%;
+  }
+  .card-button{
+    height: 10%;
+  }
+  
+  .poster-container {
+    width: 50%;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  
+  .poster-container img {
+    width: 53%;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+  }
+  
+  .details-container {
+    width: 35%;
+    margin:auto;
+    padding: 0 10px 0 10px;
+
+  }
+  
+  .details-container h5 {
+    margin-top: 0;
+  }
+  
+  .details-container p {
+    margin-bottom: 10px;
+  }
+  
+  .details-container p:last-child {
+    margin-bottom: 0;
+  }
+  .rating-container{
+    width: 15%;
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    height: 40%;
+    margin: auto;
+    border-radius: 10px;
+    padding: 0 10px 10px 10px ;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+  }
+  .rating{
+    font-size: 50px;
+    font-weight: bold;
+    
+  }
+  .star{
+    color: #E6B91E;
+  }
+  mat-dialog-actions{
+    background-color: #3F51B5;
+  }
+  button{
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  }  
+
+    @media only screen and (max-width: 1024px) {
+  
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center ;
+        justify-content: center;
+        height: auto;
+        
+      }
+      .mat-mdc-dialog-content {
+        max-height: 140vh;
+    }
+      .poster-container{
+        width: 100%;
+        height: 100%;
+      }
+      .poster-container img {
+        width: 100%;
+       
+      }
+      .details{
+        width: 100%;
+      }
+      .rating-container {
+        width: 50%;
+        height: 60%;
+      }
+      .rating{
+        font-size: 40px;  
+      }
+      .details-container{
+        width: 100%;
+        padding: 0;
+      }
+
+    }
+  
+  
+  
+    @media only screen and (min-width: 601px) {}
+  
+    @media screen and (max-width: 950px) and (orientation: landscape) {
+      .rating-container {
+        justify-content: center;
+      }
+      .rating{
+        font-size: 40px;  
+      }
+    }

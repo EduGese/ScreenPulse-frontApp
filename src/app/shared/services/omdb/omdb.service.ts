@@ -39,4 +39,9 @@ export class OmdbService {
   
     );
   }
+  getMovieInfo(imdbId:string){
+    
+    return this.http.get<any>(`${environment.serverSearchURL}/${imdbId}`, {
+    });
+  }
 }
