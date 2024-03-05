@@ -2,12 +2,7 @@
     min-height: 100vh;
     z-index: 1;
     padding-top: 80px;
-    /* background-color: black;
-    color: white; */
-    /* background-image: url("https://vip-go.shutterstock.com/blog/wp-content/uploads/sites/5/2020/05/shutterstock_407554567.jpg?w=750");
-    backdrop-filter: blur(12px); */
-    /* backdrop-filter: blur(1px); */
-   
+    background-color: rgb(0, 0, 0);
 }
 app-navbar{
     width: 100%;
