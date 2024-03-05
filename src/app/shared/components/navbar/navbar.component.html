@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <div class="navbar-container">
-    <span><span class="screen">Screen</span><span class="pulse">Pulse</span></span>
+    <span class="screen">ScreenPulse</span>
     <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="movie" class="movieIcon"></mat-icon>
     <span class="spacer"></span>
 
@@ -29,8 +29,8 @@
     </ng-template>
 
     <div class="button-links-container">
-      <a  routerLink="">Search</a>
-      <a  routerLink="/favorites">Favorites</a>
+      <a routerLink="">Search</a>
+      <a routerLink="/favorites">Favorites</a>
     </div>
 
     <button mat-icon-button class="toogle-menu-button" (click)="toogleMenu()">
@@ -38,7 +38,7 @@
     </button>
   </div>
 
-              <!-------------- EXPANDED NENU ------------------->
+  <!-------------- EXPANDED NENU ------------------->
 
   <div class="expanded-menu-container">
     <ng-container class="expanded-menu" *ngIf="expanded === true">
@@ -55,16 +55,12 @@
       <mat-list>
         <mat-list-item (click)="toogleMenu()"><a routerLink="" routerLinkActive="active">Search</a></mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item (click)="toogleMenu()"><a routerLink="/favorites" routerLinkActive="active">Favorites</a></mat-list-item>
+        <mat-list-item (click)="toogleMenu()"><a routerLink="/favorites"
+            routerLinkActive="active">Favorites</a></mat-list-item>
         <mat-divider></mat-divider>
-        <!-- <li><a routerLink="" routerLinkActive="active">Search</a></li>
-        <li><a routerLink="/favorites" routerLinkActive="active">Favorites</a></li> -->
         <ng-template #blockLogout>
           <div class="loggedout-expanded-menu-container">
-            <!-- <ul>
-              <li><a routerLink="/register" routerLinkActive="active"><mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="person_add_alt"></mat-icon></a></li>
-              <li><a routerLink="/login" routerLinkActive="active"><mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="login"></mat-icon></a></li>
-            </ul> -->
+
             <mat-list>
               <mat-list-item (click)="toogleMenu()">
                 <a routerLink="/register" routerLinkActive="active">
@@ -72,13 +68,14 @@
                 </a></mat-list-item>
               <mat-divider></mat-divider>
               <mat-list-item (click)="toogleMenu()">
-                <a routerLink="/login" routerLinkActive="active"><mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="login" ></mat-icon></a>
+                <a routerLink="/login" routerLinkActive="active"><mat-icon aria-hidden="false" aria-label="movi icon"
+                    fontIcon="login"></mat-icon></a>
               </mat-list-item>
               <mat-divider></mat-divider>
-             
+
             </mat-list>
           </div>
-          
+
         </ng-template>
       </mat-list>
     </ng-container>
