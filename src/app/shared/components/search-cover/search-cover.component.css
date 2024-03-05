@@ -2,6 +2,19 @@
   text-align: center;
 }
 h2 {
-  color: #3f51b5;
+  color: #ffffff;
   font-weight: 300;
+  font-family: 'Glegoo';
+}
+mat-grid-tile{
+  color: white;
+}
+.cover{
+  background-image: url("https://i.pinimg.com/originals/d7/81/70/d781702860c7a3ef484c99bc8f55d726.jpg");
+  width: 60%;
+  height: 250px;
+  background-size: cover;
+  margin-left:auto;
+  margin-right: auto;
+  
 }
