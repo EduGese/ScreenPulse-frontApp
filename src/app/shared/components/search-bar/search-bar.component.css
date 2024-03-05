@@ -1,17 +1,17 @@
 form {
-  background-color: rgb(255, 255, 255);
-  width: 50%;
+  background-color: #ffffff;
+  width: 100%;
   padding-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  color: white;
+  /* color: white; */
   border-radius: 10px;
   -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, inset 5px 5px 8px 12px rgba(0, 0, 0, 0);
   box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, inset 5px 5px 8px 12px rgba(0, 0, 0, 0);
 }
 
 mat-hint {
-  color: gray;
+  color: rgb(0, 0, 0);
 }
 
 mat-form-field {
