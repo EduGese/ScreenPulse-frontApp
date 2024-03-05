@@ -13,6 +13,7 @@ export class MovieResultsTableComponent  {
 
   displayedColumns: string[] =  ['Title', 'Year', 'Type', 'Poster', 'Add' ];
   
+  
   constructor() {}
 
 

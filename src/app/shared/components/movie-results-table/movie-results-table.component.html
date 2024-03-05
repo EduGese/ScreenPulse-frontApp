@@ -2,7 +2,7 @@
 
   <ng-container matColumnDef="Title">
     <th class="head" mat-header-cell *matHeaderCellDef> Title </th>
-    <td mat-cell *matCellDef="let result"><span> {{result.Title}}</span> </td>
+    <td mat-cell *matCellDef="let result" class=""><span> {{result.Title}}</span> </td>
   </ng-container>
 
   <ng-container matColumnDef="Year">
@@ -16,7 +16,7 @@
   </ng-container>
 
   <ng-container matColumnDef="Poster">
-    <th class="head" mat-header-cell *matHeaderCellDef> Poster </th>
+    <th class="poster-head" mat-header-cell *matHeaderCellDef> Poster </th>
     <td mat-cell *matCellDef="let result"> <img [src]="result.Poster" alt="Poster" (click)="openItem(result)"></td>
   </ng-container>
 
@@ -33,29 +33,5 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
 </table>
-<!-- <table>
-  <thead>
-    <tr>
-      <th class="title-header">Title</th>
-      <th>Year</th>
-      <th>Type</th>
-      <th>Poster</th>
-      <th class="add-header"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="row-tbody" *ngFor="let result of results">
-      <td class="title-container">{{ result.Title }}</td>
-      <td>{{ result.Year }}</td>
-      <td>{{ result.Type }}</td>
-      <td><img [src]="result.Poster" alt="Poster"></td>
-      <td class="icon">
-        <button mat-icon-button (click)="addNewItem(result)">
-          <mat-icon>favorite</mat-icon>
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
- -->
+
 
