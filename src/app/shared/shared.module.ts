@@ -34,6 +34,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MovieDialogComponent } from './components/movie-dialog/movie-dialog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 
 
@@ -68,7 +70,8 @@ const materialModules = [
     SearchBarComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    MovieDialogComponent
+    MovieDialogComponent,
+    CarouselComponent
 
   
   ],
@@ -78,7 +81,8 @@ const materialModules = [
     RouterModule,
     MatTableModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     OmdbService,
@@ -94,7 +98,9 @@ const materialModules = [
     SearchBarComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    MovieDialogComponent
+    MovieDialogComponent,
+    CarouselComponent,
+    NgbModule
 
     
   ]  
