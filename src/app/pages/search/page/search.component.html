@@ -1,18 +1,31 @@
-<div class="title">
-  <h1>
-    <!-- <span class="center-content"> -->
-      Find movies, series or videogames 
-      <mat-icon>search</mat-icon>
-    <!-- </span> -->
-  </h1> 
-</div>
-<div class="filter-container">
- 
-<app-search-bar [types] = "types"(onSubmitEvent) = "onSubmit($event)"></app-search-bar>
+<div class="header">
+  <div class="title">
+    <h1>
+      Find movies, series or videogames in our huge data base
+      <!-- <mat-icon>search</mat-icon> -->
+    </h1>
+
+  </div>
+
+  <div class="search-container">
+    <!-- <div> -->
+    <app-carousel (sendItemCarousel)="openMovie($event)"></app-carousel>
+    <!-- </div> -->
+    <div class="filter-container">
+      <!-- <h3> Use this search bar to find by title, type, and year.
+      </h3> -->
+      <app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar>
+    </div>
+  </div>
 
 </div>
+
+
+
+
 <div class="table" *ngIf="results.length>0">
-  <app-movie-results-table  [results]="results" (sendItem2)="openMovie($event)"  (sendItem)="addToFavories($event)"></app-movie-results-table>
+  <app-movie-results-table [results]="results" (sendItem2)="openMovie($event)"
+    (sendItem)="addToFavories($event)"></app-movie-results-table>
 </div>
 
 <div class="table" *ngIf="results.length == 0">
