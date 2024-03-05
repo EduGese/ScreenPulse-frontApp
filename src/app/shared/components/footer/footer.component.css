@@ -1,11 +1,11 @@
 .footer{
     height: 40px;
-    background-color:#3F51B5 ;
+    background-color:#000000 ;
     width: 100%;
     text-align: center;
-    color: #FFFFFF;
+    color: #F1F300;
     display: flex;
-  justify-content: center;
+    justify-content: center;
 }
 .footer div {
     display: flex; 
