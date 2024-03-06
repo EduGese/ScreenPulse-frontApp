@@ -9,7 +9,7 @@ mat-toolbar {
 }
 
 .screen{
-    color: #FDFF00;
+    color: #F5CF3D;
 }
 .movieIcon{
     color: #ffffff;
@@ -24,7 +24,7 @@ a{
     font-size: 10px;
 }
 .user-mail{
-    color: #FDFF00;
+    color: #F5CF3D;
     font-size: 14px;
 }
 mat-hint{
@@ -42,13 +42,13 @@ mat-hint{
     font-size: 12px;
 }
 .register-container:hover{
-    color: #FDFF00;
+    color: #F5CF3D;
 }
 .login-container:hover{
-    color: #FDFF00;
+    color: #F5CF3D;
 }
 .logout-container:hover{
-    color: #FDFF00;
+    color: #F5CF3D;
 }
 .expanded-menu{
 width: 100%;
