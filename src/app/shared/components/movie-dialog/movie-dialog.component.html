@@ -1,32 +1,35 @@
-<h1 mat-dialog-title>{{data.response.Title}} ({{data.response.Year}})</h1>
+<div class="movie-dialog">
+  <h1 mat-dialog-title>{{data.response.Title}} ({{data.response.Year}})</h1>
 
-<mat-dialog-content class="card-content mat-typography">
-  <div class="poster-container">
-    <img [src]="data.response.Poster" alt="Movie Poster">
-  </div>
-  <div class="details-container">
-    <p><strong>Director:</strong> {{data.response.Director}}</p>
-    <p><strong>Actors:</strong> {{data.response.Actors}}</p>
-    <p><strong>Plot:</strong> {{data.response.Plot}}</p>
-    <p><strong>Genre:</strong> {{data.response.Genre}}</p>
-    <p><strong>Language:</strong> {{data.response.Language}}</p>
-    <p><strong>Country:</strong> {{data.response.Country}}</p>
-    <p><strong>Runtime:</strong> {{data.response.Runtime}}</p>
-  </div>
-  <div class="rating-container">
-    <img src="../../../../assets/images/imdb.png" alt="imdb logo">
-    <span class="rating"><mat-icon class="star">star</mat-icon>{{data.response.imdbRating}}</span>
-    <span>({{data.response.imdbVotes}})</span>
-  </div>
-</mat-dialog-content>
+  <mat-dialog-content class="card-content mat-typography">
+    <div class="poster-container">
+      <img [src]="data.response.Poster" alt="Movie Poster">
+    </div>
+    <div class="details-container">
+      <p><strong>Director:</strong> {{data.response.Director}}</p>
+      <p><strong>Actors:</strong> {{data.response.Actors}}</p>
+      <p><strong>Plot:</strong> {{data.response.Plot}}</p>
+      <p><strong>Genre:</strong> {{data.response.Genre}}</p>
+      <p><strong>Language:</strong> {{data.response.Language}}</p>
+      <p><strong>Country:</strong> {{data.response.Country}}</p>
+      <p><strong>Runtime:</strong> {{data.response.Runtime}}</p>
+    </div>
+    <div class="rating-container">
+      <img src="../../../../assets/images/imdb.png" alt="imdb logo">
+      <span class="rating"><mat-icon class="star">star</mat-icon>{{data.response.imdbRating}}</span>
+      <span>({{data.response.imdbVotes}})</span>
+    </div>
+  </mat-dialog-content>
 
-<mat-dialog-actions class="card-button" align="center">
-  <button mat-raised-button mat-dialog-close color="primary">
-    <mat-icon>close</mat-icon>
-    Close
-  </button>
-  <button mat-raised-button color="accent" (click)="addToFavorites(data.movie)">
-    <mat-icon>favorite</mat-icon>
-    Add
-  </button>
-</mat-dialog-actions>
+
+  <div class="card-button">
+    <button mat-raised-button mat-dialog-close color="primary">
+      <mat-icon>close</mat-icon>
+      Close
+    </button>
+    <button mat-raised-button color="accent" (click)="addToFavorites(data.movie)">
+      <mat-icon>favorite</mat-icon>
+      Add
+    </button>
+  </div>
+</div>
