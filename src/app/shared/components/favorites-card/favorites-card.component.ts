@@ -23,6 +23,8 @@ export class FavoritesCardComponent implements OnChanges {
   toggleModes: string[] = [];
   index: number = 0;
   descriptions: string[] = [];
+  // showButtons: boolean = false;
+  hoverStates: boolean[] = []; 
 
 
 
@@ -32,6 +34,7 @@ export class FavoritesCardComponent implements OnChanges {
     if (changes['items'] && changes['items'].currentValue) {
       this.toggleModes = this.items.map(() => 'view');
       this.descriptions = this.items.map(() => '');
+      this.hoverStates = this.items.map(() => false);
     }
   }
 
@@ -57,5 +60,15 @@ export class FavoritesCardComponent implements OnChanges {
   toggleMode(index: number): void {
     this.toggleModes[index] = this.toggleModes[index] === 'view' ? 'edition' : 'view';
   }
+  onMouseEnter(index: number){
+    this.hoverStates[index] = true;
+  }
+  onMouseLeave(index: number){
+    this.hoverStates[index] = false;
+  }
+  areButtonsVisible(index: number): boolean {
+    return this.hoverStates[index];
+  }
+  
 
 }

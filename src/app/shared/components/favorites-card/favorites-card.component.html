@@ -2,8 +2,9 @@
   <mat-card *ngFor="let item of items; let i = index" class="favorite-card" >
 <!--Poster Container-->
     <mat-card-content class="img-container"  matTooltip="{{item.Title}}" matTooltipPosition="above">
-      <div class="img-container2" [style.background-image]="'url(' + item.Poster + ')'">
-        <!--Delete button-->
+      <div class="img-container2" [style.background-image]="'url(' + item.Poster + ')'" (mouseenter)="onMouseEnter(i)" (mouseleave)="onMouseLeave(i)">
+        <ng-container *ngIf="areButtonsVisible(i)">
+           <!--Delete button-->
         <button mat-mini-fab color="warn" aria-label="delete item"  (click)="sendItemId(item._id)">
           <mat-icon matTooltip="Delete" matTooltipPosition="below">delete</mat-icon>
         </button>
@@ -11,6 +12,8 @@
         <button mat-mini-fab color="primary" (click)="toggleMode(i)" [value]="toggleModes[i] === 'view' ? 'edition' : 'view'">
           <mat-icon> {{ toggleModes[i] === 'view' ? 'rate_review' : 'close' }}</mat-icon>
         </button>
+        </ng-container>
+       
       </div>
     </mat-card-content>
 
