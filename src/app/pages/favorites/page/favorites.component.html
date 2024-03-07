@@ -15,7 +15,7 @@
  
     <div class="favorites-card">
       <app-favorites-card [items]="favorites" (itemIdEvent)="deleteFavorite($event)"
-      (itemUpdatedEvent)="updateFavorite($event)" ></app-favorites-card>
+      (itemUpdatedEvent)="updateFavorite($event)" (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
     </div>
     
   </ng-container>

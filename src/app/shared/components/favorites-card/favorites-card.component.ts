@@ -16,6 +16,7 @@ export class FavoritesCardComponent implements OnChanges {
   @Input() items!: any[];
   @Output() itemIdEvent = new EventEmitter<string>();
   @Output() itemUpdatedEvent = new EventEmitter<any>();
+  @Output() sendItemFavoriteEvent = new EventEmitter<any>();
 
   toggleModes: string[] = [];
   index: number = 0;
@@ -46,14 +47,16 @@ export class FavoritesCardComponent implements OnChanges {
     this.itemUpdatedEvent.emit(itemInfo);
     this.toggleModes[i] = 'view';
   }
-  sendItemId(id: string) {
+  sendItemId(id: string, event: MouseEvent) {
+    event.stopPropagation();
     this.itemIdEvent.emit(id);
   }
   onValueChange(event: Event, index: number): void {
     const value = (event.target as HTMLTextAreaElement).value;
     this.descriptions[index] = value;
   }
-  toggleMode(index: number): void {
+  toggleMode(index: number, event: MouseEvent): void {
+    event.stopPropagation();
     this.toggleModes[index] = this.toggleModes[index] === 'view' ? 'edition' : 'view';
   }
   onMouseEnter(index: number){
@@ -64,6 +67,9 @@ export class FavoritesCardComponent implements OnChanges {
   }
   areButtonsVisible(index: number): boolean {
     return this.hoverStates[index];
+  }
+  openItem(item: any) {
+    this.sendItemFavoriteEvent.emit(item);
   }
   
 

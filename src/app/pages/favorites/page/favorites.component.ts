@@ -3,6 +3,9 @@ import { Movie } from 'src/app/shared/models/movie.model';
 import { FavoritesFilterService } from '../services/favoritesFilterService/favorites-filter.service';
 import { ToastrService } from 'ngx-toastr';
 import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
+import { OmdbService } from 'src/app/shared/services/omdb/omdb.service';
+import { MovieDialogComponent } from 'src/app/shared/components/movie-dialog/movie-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -29,7 +32,9 @@ export class FavoritesComponent implements OnInit{
   constructor(
     private favoritesFilter: FavoritesFilterService,
     private toastrService: ToastrService,
-    private favoritesService: FavoritesService
+    private favoritesService: FavoritesService,
+    private OmdbService: OmdbService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -127,5 +132,34 @@ export class FavoritesComponent implements OnInit{
         this.toastrService.error(error.error.message);
       }
     );
+  }
+  openFavorite(favoriteMovieToOpen: any){
+    console.log('favoriteMovieToOpen',favoriteMovieToOpen);
+    this.OmdbService.getMovieInfo(favoriteMovieToOpen.imdbID).subscribe({
+      next:(response) => {
+        const movieAndResponse = {
+          movie: favoriteMovieToOpen,
+          response: response
+        };
+        console.log('Movie and response', movieAndResponse);
+        const dialogRef = this.dialog.open(MovieDialogComponent, {
+          data: movieAndResponse,
+          height: '90%',
+          width: '80%',
+          enterAnimationDuration: '500ms',
+          exitAnimationDuration: '500ms',
+          autoFocus: false ,
+        });
+        dialogRef.afterOpened().subscribe(() => {
+          const imgElement = document.querySelector('.poster img') as HTMLElement;
+          if (imgElement) {
+            imgElement.focus();
+          }
+        });
+      },
+      error:(error) => {
+        this.toastrService.error(error.error.message);
+      }
+    });
   }
 }

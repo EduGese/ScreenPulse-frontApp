@@ -2,14 +2,15 @@
   <mat-card *ngFor="let item of items; let i = index" class="favorite-card" >
 <!--Poster Container-->
     <mat-card-content class="img-container"  matTooltip="{{item.Title}}" matTooltipPosition="above">
-      <div class="img-container2" [style.background-image]="'url(' + item.Poster + ')'" (mouseenter)="onMouseEnter(i)" (mouseleave)="onMouseLeave(i)">
+      <div class="img-container2" [style.background-image]="'url(' + item.Poster + ')'" 
+      (mouseenter)="onMouseEnter(i)" (mouseleave)="onMouseLeave(i)" (click)="openItem(item)">
         <ng-container *ngIf="areButtonsVisible(i)">
            <!--Delete button-->
-        <button mat-mini-fab color="warn" aria-label="delete item"  (click)="sendItemId(item._id)">
+        <button mat-mini-fab color="warn" aria-label="delete item"  (click)="sendItemId(item._id, $event)">
           <mat-icon matTooltip="Delete" matTooltipPosition="below">delete</mat-icon>
         </button>
         <!--Description button-->
-        <button mat-mini-fab color="primary" (click)="toggleMode(i)" [value]="toggleModes[i] === 'view' ? 'edition' : 'view'">
+        <button mat-mini-fab color="primary" (click)="toggleMode(i, $event)" [value]="toggleModes[i] === 'view' ? 'edition' : 'view'">
           <mat-icon> {{ toggleModes[i] === 'view' ? 'rate_review' : 'close' }}</mat-icon>
         </button>
         </ng-container>
@@ -29,7 +30,7 @@
       
     </mat-card-content>
 
-    <mat-card-content class="info">
+    <mat-card-content class="info" >
       <mat-card-title>{{ item.Year }}</mat-card-title>
       <ng-container *ngIf="item.description; else noDescription">
       <button type="button" class="btn btn-warning btn-sm " ngbPopover="{{item.description}}"
