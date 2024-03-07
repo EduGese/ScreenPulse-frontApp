@@ -1,17 +1,17 @@
 <ng-container *ngIf="favoritesLoaded; else noFavoritesLoaded" class="favorites-loaded">
 
-
+  <div class="title">
+    <h1>
+      <span class="center-content">
+        Your favorites
+      </span>
+    </h1>
+  </div>
+  <div class="search-bar-container">
+    <app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar>
+  </div>
   <ng-container *ngIf="favorites.length > 0; else Arefavorites">
-    <div class="title">
-      <h1>
-        <span class="center-content">
-          Favorites
-        </span>
-      </h1>
-    </div>
-    <div class="search-bar-container">
-      <app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar>
-    </div>
+    
  
     <div class="favorites-card">
       <app-favorites-card [items]="favorites" (itemIdEvent)="deleteFavorite($event)"

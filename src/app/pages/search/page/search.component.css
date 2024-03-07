@@ -56,5 +56,11 @@ app-search-bar {
   app-search-bar{
     width: 100%;
   }
+  .search-container{
+    display: flex;
+    
+  }
+  
+  
 }
 

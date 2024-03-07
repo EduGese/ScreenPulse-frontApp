@@ -24,7 +24,7 @@ button {
 }
 @media only screen and (max-width: 601px){
  form{
-  width: 60%;
+  width: 100%;
  }
 }
 
