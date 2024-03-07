@@ -7,9 +7,6 @@ import {
   OnChanges,
 } from '@angular/core';
 
-
-
-
 @Component({
   selector: 'app-favorites-card',
   templateUrl: './favorites-card.component.html',
@@ -23,7 +20,6 @@ export class FavoritesCardComponent implements OnChanges {
   toggleModes: string[] = [];
   index: number = 0;
   descriptions: string[] = [];
-  // showButtons: boolean = false;
   hoverStates: boolean[] = []; 
 
 

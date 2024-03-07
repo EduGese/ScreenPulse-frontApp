@@ -19,43 +19,60 @@
 
 <!--Info & buttons Container-->
     <!--Description container-->
-    <mat-card-content class="description-container"  matTooltip="{{item.description}}">
-      <ng-container *ngIf="item.description; else noDescription">
-        <p class="description-text">"{{item.description}}"</p>
-      </ng-container>
-      <ng-template #noDescription>
-        <p class="noDescription-text">No description yet</p>
-      </ng-template>
-    </mat-card-content>
-
-    <mat-card-content class="info">
+    <mat-card-content class="chip-container"  >
+      
       <mat-card-subtitle [ngClass]="item.Type">
         <div class="chip">
           {{ item.Type | uppercase}}
         </div>
       </mat-card-subtitle>
-      <mat-card-title>{{ item.Year }}</mat-card-title>
-
-      <!--Edition Container-->
-      <mat-card-content *ngIf="toggleModes[i] === 'edition'" class="edition" >
-           <button mat-icon-button  aria-label="Add review"
-          (click)="addDescription(item, i)">
-          <mat-icon>add</mat-icon>
-        </button>
-          <textarea [value]="descriptions[i]" (input)="onValueChange($event, i)"  maxlength="200" placeholder="Add your review" id="textTarea"></textarea>
-      </mat-card-content>
-
-      <!--Description button-->
-      <!-- <mat-card-actions class="buttons">
-        <button mat-mini-fab color="primary" (click)="toggleMode(i)" [value]="toggleModes[i] === 'view' ? 'edition' : 'view'">
-          <mat-icon> {{ toggleModes[i] === 'view' ? 'rate_review' : 'close' }}</mat-icon>
-        </button>
-      </mat-card-actions> -->
-
       
     </mat-card-content>
+
+    <mat-card-content class="info">
+      <mat-card-title>{{ item.Year }}</mat-card-title>
+      <ng-container *ngIf="item.description; else noDescription">
+      <button type="button" class="btn btn-warning btn-sm " ngbPopover="{{item.description}}"
+        triggers="mouseenter:mouseleave" >
+        Notes
+      </button>
+      </ng-container>
+      <ng-template #noDescription>
+        <!-- <button type="button" class="btn btn-outline-secondary" ngbPopover="No notes"
+        triggers="mouseenter:mouseleave">
+        empty
+      </button> -->
+      </ng-template>
+     
+      <!-- <mat-card-title>{{ item.Year }}</mat-card-title>
+      <div matTooltip="{{item.description}}">
+        <ng-container *ngIf="item.description; else noDescription">
+          <p class="description-text">"{{item.description}}"</p>
+        </ng-container>
+        <ng-template #noDescription>
+          <p class="noDescription-text">No description yet</p>
+        </ng-template>
+      </div> -->
+      
+    
+      <!--Edition Container-->
+      <mat-card-content *ngIf="toggleModes[i] === 'edition'" class="edition">
+        <button mat-mini-fab  aria-label="Add review" (click)="addDescription(item, i)">
+          <mat-icon>add</mat-icon>
+        </button>
+        <textarea [value]="descriptions[i]" (input)="onValueChange($event, i)" maxlength="200" placeholder="Add your own review"
+          id="textTarea"></textarea>
+      </mat-card-content>
+    
+      <!--Description button-->
+      <!-- <mat-card-actions class="buttons">
+            <button mat-mini-fab color="primary" (click)="toggleMode(i)" [value]="toggleModes[i] === 'view' ? 'edition' : 'view'">
+              <mat-icon> {{ toggleModes[i] === 'view' ? 'rate_review' : 'close' }}</mat-icon>
+            </button>
+          </mat-card-actions> -->
+    
+    
+    </mat-card-content>
   
-
-
   </mat-card>
 </div>
