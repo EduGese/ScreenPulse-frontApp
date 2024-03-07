@@ -1,4 +1,4 @@
-<ng-container *ngIf="favoritesLoaded; else noFavoritesLoaded">
+<ng-container *ngIf="favoritesLoaded; else noFavoritesLoaded" class="favorites-loaded">
 
 
   <ng-container *ngIf="favorites.length > 0; else Arefavorites">
@@ -6,13 +6,18 @@
       <h1>
         <span class="center-content">
           Favorites
-          <mat-icon>favorites</mat-icon>
         </span>
       </h1>
     </div>
-    <app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar>
-    <app-favorites-card [items]="favorites" (itemIdEvent)="deleteFavorite($event)"
-      (itemUpdatedEvent)="updateFavorite($event)"></app-favorites-card>
+    <div class="search-bar-container">
+      <app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar>
+    </div>
+ 
+    <div class="favorites-card">
+      <app-favorites-card [items]="favorites" (itemIdEvent)="deleteFavorite($event)"
+      (itemUpdatedEvent)="updateFavorite($event)" ></app-favorites-card>
+    </div>
+    
   </ng-container>
   
   
