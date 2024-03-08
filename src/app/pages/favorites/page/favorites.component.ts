@@ -20,6 +20,8 @@ export class FavoritesComponent implements OnInit{
   year: string = '';
   yearInvalid = false;
   favoritesLoaded: boolean = false;
+  page: number = 1;
+  pageSize: number = 10;
 
   types: any[] = [
     { value: 'movie', viewValue: 'Movie' },

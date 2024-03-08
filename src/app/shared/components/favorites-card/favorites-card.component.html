@@ -1,17 +1,17 @@
-<div class="favorites-container">
-  <mat-card *ngFor="let item of items; let i = index" class="favorite-card" >
+<!-- <div class="favorites-container"> -->
+  <mat-card  class="favorite-card" >
 <!--Poster Container-->
     <mat-card-content class="img-container"  matTooltip="{{item.Title}}" matTooltipPosition="above">
       <div class="img-container2" [style.background-image]="'url(' + item.Poster + ')'" 
-      (mouseenter)="onMouseEnter(i)" (mouseleave)="onMouseLeave(i)" (click)="openItem(item)">
-        <ng-container *ngIf="areButtonsVisible(i)">
+      (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" (click)="openItem(item)">
+        <ng-container *ngIf="areButtonsVisible()">
            <!--Delete button-->
         <button mat-mini-fab color="warn" aria-label="delete item"  (click)="sendItemId(item._id, $event)">
           <mat-icon matTooltip="Delete" matTooltipPosition="below">delete</mat-icon>
         </button>
         <!--Description button-->
-        <button mat-mini-fab color="primary" (click)="toggleMode(i, $event)" [value]="toggleModes[i] === 'view' ? 'edition' : 'view'">
-          <mat-icon> {{ toggleModes[i] === 'view' ? 'rate_review' : 'close' }}</mat-icon>
+        <button mat-mini-fab color="primary" (click)="toggleMode( $event)" [value]="mode === 'view' ? 'edition' : 'view'">
+          <mat-icon> {{ mode === 'view' ? 'rate_review' : 'close' }}</mat-icon>
         </button>
         </ng-container>
        
@@ -39,41 +39,25 @@
       </button>
       </ng-container>
       <ng-template #noDescription>
-        <!-- <button type="button" class="btn btn-outline-secondary" ngbPopover="No notes"
-        triggers="mouseenter:mouseleave">
-        empty
-      </button> -->
+       
       </ng-template>
      
-      <!-- <mat-card-title>{{ item.Year }}</mat-card-title>
-      <div matTooltip="{{item.description}}">
-        <ng-container *ngIf="item.description; else noDescription">
-          <p class="description-text">"{{item.description}}"</p>
-        </ng-container>
-        <ng-template #noDescription>
-          <p class="noDescription-text">No description yet</p>
-        </ng-template>
-      </div> -->
       
     
       <!--Edition Container-->
-      <mat-card-content *ngIf="toggleModes[i] === 'edition'" class="edition">
-        <button mat-mini-fab  aria-label="Add review" (click)="addDescription(item, i)">
+      <mat-card-content *ngIf="mode === 'edition'" class="edition">
+        <button mat-mini-fab  aria-label="Add review" (click)="addDescription(item)">
           <mat-icon>add</mat-icon>
         </button>
-        <textarea [value]="descriptions[i]" (input)="onValueChange($event, i)" maxlength="200" placeholder="Add your own review"
+        <textarea [value]="description" (input)="onValueChange($event)" maxlength="200" placeholder="Add your own review"
           id="textTarea"></textarea>
       </mat-card-content>
     
       <!--Description button-->
-      <!-- <mat-card-actions class="buttons">
-            <button mat-mini-fab color="primary" (click)="toggleMode(i)" [value]="toggleModes[i] === 'view' ? 'edition' : 'view'">
-              <mat-icon> {{ toggleModes[i] === 'view' ? 'rate_review' : 'close' }}</mat-icon>
-            </button>
-          </mat-card-actions> -->
+    
     
     
     </mat-card-content>
   
   </mat-card>
-</div>
+<!-- </div> -->

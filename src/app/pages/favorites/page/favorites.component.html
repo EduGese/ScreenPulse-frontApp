@@ -10,19 +10,20 @@
   <div class="search-bar-container">
     <app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar>
   </div>
+
   <ng-container *ngIf="favorites.length > 0; else Arefavorites">
-    
- 
-    <div class="favorites-card">
-      <app-favorites-card [items]="favorites" (itemIdEvent)="deleteFavorite($event)"
-      (itemUpdatedEvent)="updateFavorite($event)" (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
+    <h2>All favorites</h2>
+    <div class="favorites-card-container">
+      <ng-container *ngFor="let item of favorites">
+        <app-favorites-card [item]="item" (itemIdEvent)="deleteFavorite($event)"
+          (itemUpdatedEvent)="updateFavorite($event)" (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
+      </ng-container>
     </div>
-    
   </ng-container>
-  
-  
+
+
   <ng-template #Arefavorites class="card-container">
-     <h1>Upps..you don't have any favorite yet...</h1>
+    <h1>Upps..you don't have any favorite yet...</h1>
     <div class="img-container">
       <img src="../../../../assets/images/monkey3.jpg" alt="monkey">
     </div>
@@ -38,10 +39,5 @@
     <h1>Loading, please wait</h1>
     <mat-progress-bar mode="indeterminate">Loading</mat-progress-bar>
   </div>
-  
+
 </ng-template>
-
-
-
-
-

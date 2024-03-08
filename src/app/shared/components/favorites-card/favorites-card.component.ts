@@ -1,76 +1,52 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  SimpleChanges,
-  OnChanges,
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-favorites-card',
   templateUrl: './favorites-card.component.html',
   styleUrls: ['./favorites-card.component.css'],
 })
-export class FavoritesCardComponent implements OnChanges {
-  @Input() items!: any[];
+export class FavoritesCardComponent {
+  @Input() item!: any;
   @Output() itemIdEvent = new EventEmitter<string>();
   @Output() itemUpdatedEvent = new EventEmitter<any>();
   @Output() sendItemFavoriteEvent = new EventEmitter<any>();
 
-  toggleModes: string[] = [];
-  index: number = 0;
-  descriptions: string[] = [];
-  hoverStates: boolean[] = []; 
-
-
+  mode: string = 'view';
+  description: string = '';
+  hoverState: boolean = false;
 
   constructor() {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['items'] && changes['items'].currentValue) {
-      this.toggleModes = this.items.map(() => 'view');
-      this.descriptions = this.items.map(() => '');
-      this.hoverStates = this.items.map(() => false);
-    }
-  }
-
-  getId(i: number) {
-    this.index = i;
-  }
-
-  addDescription(item: any, i: number) {
+  addDescription(item: any) {
     const itemInfo = {
       item: item,
-      description: this.descriptions[i],
+      description: this.description,
     };
     this.itemUpdatedEvent.emit(itemInfo);
-    this.toggleModes[i] = 'view';
+    this.mode = 'view';
   }
   sendItemId(id: string, event: MouseEvent) {
     event.stopPropagation();
     this.itemIdEvent.emit(id);
   }
-  onValueChange(event: Event, index: number): void {
+  onValueChange(event: Event): void {
     const value = (event.target as HTMLTextAreaElement).value;
-    this.descriptions[index] = value;
+    this.description = value;
   }
-  toggleMode(index: number, event: MouseEvent): void {
+  toggleMode(event: MouseEvent): void {
     event.stopPropagation();
-    this.toggleModes[index] = this.toggleModes[index] === 'view' ? 'edition' : 'view';
+    this.mode = this.mode === 'view' ? 'edition' : 'view';
   }
-  onMouseEnter(index: number){
-    this.hoverStates[index] = true;
+  onMouseEnter() {
+    this.hoverState = true;
   }
-  onMouseLeave(index: number){
-    this.hoverStates[index] = false;
+  onMouseLeave() {
+    this.hoverState = false;
   }
-  areButtonsVisible(index: number): boolean {
-    return this.hoverStates[index];
+  areButtonsVisible(): boolean {
+    return this.hoverState;
   }
   openItem(item: any) {
     this.sendItemFavoriteEvent.emit(item);
   }
-  
-
 }

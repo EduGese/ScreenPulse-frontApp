@@ -13,17 +13,16 @@
   text-align: center;
   border-radius: 10px;
   position: relative;
-  /* box-shadow: rgba(255, 255, 255, 0.4) 0px 2px 4px, rgba(255, 255, 255, 0.3) 0px 7px 13px -3px, rgba(255, 255, 255, 0.2) 0px -3px 0px inset; */
-  /* -webkit-box-shadow: 6px 6px 0px -4px #FFFFFFFF; 
-box-shadow: 6px 6px 0px -4px #FFFFFFFF; */
   border: 1px solid rgba(255, 255, 255, 0.247);
-  background-color:#000000;
+  background-color: #000000;
+  margin: 20px;
 }
 
-.img-container{
+.img-container {
   padding: 0 !important;
 }
-.img-container2{
+
+.img-container2 {
   width: 115px;
   height: 165px;
   background-color: #0a0505;
@@ -32,14 +31,16 @@ box-shadow: 6px 6px 0px -4px #FFFFFFFF; */
   background-position: center;
   transition: background-size 1s ease, background-position 1s ease;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
 }
-.img-container2:hover{
+
+.img-container2:hover {
   background-size: 120%;
   background-position: center;
   cursor: pointer;
 }
-.img-container2 button{
+
+.img-container2 button {
   margin: 10px 10px 0 10px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   z-index: 3;
@@ -62,35 +63,35 @@ box-shadow: 6px 6px 0px -4px #FFFFFFFF; */
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
-.movie .chip{
+.movie .chip {
   background-color: rgb(255, 0, 0);
 }
-.series .chip{
+
+.series .chip {
   background-color: rgb(255, 255, 0);
 }
-.game .chip{
+
+.game .chip {
   background-color: rgb(0, 128, 0);
 }
-mat-card-title{
+
+mat-card-title {
   font-family: 'Glegoo';
   font-size: 14px;
   color: #ffffff;
 }
-.chip-container{
+
+.chip-container {
   border-radius: 30px;
-  /* background-color: white; */
   padding: 2px !important;
-  /* height: 45px; */
   margin-top: -15px;
-  /* z-index: 2; */
   width: 70%;
   margin-left: auto;
   margin-right: auto;
-  /* border: 1px solid rgba(0, 0, 0, 0.356); */
-  /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
 
 }
-.info p{
+
+.info p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -98,39 +99,44 @@ mat-card-title{
   margin-top: 10px;
   padding: 3px;
 }
-.description-text{
+
+.description-text {
   font-style: italic;
   color: black;
   padding: 1px;
 }
-.noDescription-text{
+
+.noDescription-text {
   color: rgba(0, 0, 0, 0.432);
   font-style: normal;
- 
+
 }
+
 mat-card-actions {
   display: flex;
   justify-content: center;
 }
+
 .edition {
   position: absolute;
   bottom: 34px;
-  width: 100%; 
+  width: 100%;
   z-index: 1;
   background-color: rgba(240, 248, 255, 0);
   height: 100%;
   padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   animation-name: edition;
   animation-duration: 1.2s;
   animation-fill-mode: forwards;
-   margin-left: -16px; 
+  margin-left: -16px;
   border-radius: 10px;
 }
-.edition button{
+
+.edition button {
   margin-left: auto;
   margin-right: auto;
 }
@@ -140,44 +146,46 @@ mat-card-actions {
     bottom: 0%;
     height: 100px;
   }
+
   100% {
     bottom: 0%;
     height: 160px;
     visibility: visible;
   }
 }
-.edition button{
+
+.edition button {
   color: white;
   background-color: rgba(0, 0, 0, 0.637);
 }
- textarea{
+
+textarea {
   width: 115px;
   border: 1px solid #ff478700;
   border-radius: 10px 10px 0 0;
   color: white;
-  background-color:rgba(0, 0, 0, 0.267);
+  background-color: rgba(0, 0, 0, 0.267);
   height: 330px;
   margin-left: auto;
   margin-right: auto;
   padding: 0;
-  backdrop-filter: blur(2px) grayscale(100%) ;
-  text-align:center;
+  backdrop-filter: blur(2px) grayscale(100%);
+  text-align: center;
 }
 
- textarea::placeholder{
+textarea::placeholder {
   color: rgb(255, 255, 255);
   font-weight: 600;
-  
+
 }
-.info{
-  /* margin: 20px; */
+
+.info {
   background-color: #000000;
-  height:40px;
+  height: 40px;
   border-radius: 10px;
 }
 
-.btn{
+.btn {
   background-color: #000000;
   color: #f5cf3d;
 }
-
