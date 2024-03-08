@@ -21,7 +21,7 @@ export class FavoritesComponent implements OnInit{
   yearInvalid = false;
   favoritesLoaded: boolean = false;
   page: number = 1;
-  pageSize: number = 10;
+  pageSize: number = 12;
 
   types: any[] = [
     { value: 'movie', viewValue: 'Movie' },

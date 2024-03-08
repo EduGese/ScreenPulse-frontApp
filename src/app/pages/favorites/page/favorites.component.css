@@ -5,7 +5,9 @@
 
 h1 {
     font-family: 'Glegoo';
-    color: white;
+    color: #f5cf3d; 
+    text-align: center;
+    padding: 20px;
 }
 
 .search-bar-container {
@@ -31,10 +33,7 @@ mat-hint {
     color: gray;
 }
 
-h1 {
-    text-align: center;
-    padding: 20px;
-}
+
 
 .title {
     color: #3F51B5;
@@ -46,9 +45,18 @@ h1 {
     align-items: center;
     justify-content: center;
 }
+.all-favorites-container{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.all-favorites-container h2 {
+    font-family: 'Glegoo';
+    color: #f5cf3d;
+}
 
-.favorites-card-container {
-    max-width: 70%;
+.favorites-card {
+    max-width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -56,7 +64,10 @@ h1 {
     justify-content: flex-start;
     margin-left: auto;
     margin-right: auto;
-
+    background-color: #3f51b500;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    /* border: 1px solid #f5cf3d; */
 }
 
 .img-container {
@@ -70,7 +81,38 @@ h1 {
     filter: brightness(0.9);
     border-radius: 50%;
 }
+/* Pagination */
+ngb-pagination ::ng-deep a {
+    color: #f5cf3d !important;
+    background-color: red;
+}
 
+ngb-pagination ::ng-deep .page-item.active .page-link {
+    border-color: #f5cf3d;
+    background-color: rgba(177, 24, 24, 0);
+    color: #f5cf3d !important;
+    z-index: 1 !important;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link:focus,
+.page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+    color: #f5cf3d !important;
+    z-index: 1;
+}
+
+ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+    color: #f5cf3d !important;
+    z-index: 1;
+}
+
+ngb-pagination ::ng-deep ul>li:not(.active)>a {
+    background-color: rgba(255, 0, 0, 0);
+    color: #f5cf3d !important;
+}
+
+/*Media queries*/
 @media only screen and (max-width: 601px) {
     .search-bar-container {
 
@@ -78,7 +120,7 @@ h1 {
         padding-right: 10%;
     }
 
-    .favorites-card-container {
+    .favorites-card {
         flex-wrap: nowrap;
         overflow-x: scroll;
 
