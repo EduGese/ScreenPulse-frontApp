@@ -9,6 +9,10 @@ h1 {
     text-align: center;
     padding: 20px;
 }
+h3{
+    color: #ffffffc2 ;
+    font-family: 'Glegoo';
+}
 
 .search-bar-container {
     width: 100%;
@@ -28,12 +32,9 @@ app-search-bar {
     text-align: center;
     padding: 20px;
 }
-
 mat-hint {
     color: gray;
 }
-
-
 
 .title {
     color: #3F51B5;
@@ -55,7 +56,7 @@ mat-hint {
     color: #f5cf3d;
 }
 
-.favorites-card {
+.all-favorites-card {
     max-width: 100%;
     display: flex;
     flex-direction: row;
@@ -112,6 +113,59 @@ ngb-pagination ::ng-deep ul>li:not(.active)>a {
     color: #f5cf3d !important;
 }
 
+/*Favorites movies*/
+.type-favorites-card{
+    display:flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-color: #f5cf3d black;
+    /* scrollbar-width: thin; */
+    padding-bottom: 20px;
+
+}
+.type-favorites-container{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+.type-favorites-container h2 {
+    font-family: 'Glegoo';
+    color: #f5cf3d;
+}
+/* Scroll bar */
+.type-favorites-card ::-webkit-scrollbar {
+    display: none;
+    width: 1px;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+   
+    border-radius: 10px;
+  }
+/* Sorting */
+.sorting-container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.sorting-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sorting-item mat-icon{
+    cursor: pointer;
+    color: #f5cf3d;
+}
+.sortByName{
+    cursor: pointer;
+    color: #ffffff;
+}
+
 /*Media queries*/
 @media only screen and (max-width: 601px) {
     .search-bar-container {
@@ -120,7 +174,7 @@ ngb-pagination ::ng-deep ul>li:not(.active)>a {
         padding-right: 10%;
     }
 
-    .favorites-card {
+    .all-favorites-card {
         flex-wrap: nowrap;
         overflow-x: scroll;
 

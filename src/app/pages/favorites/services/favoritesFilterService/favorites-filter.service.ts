@@ -30,5 +30,29 @@ export class FavoritesFilterService {
          return movie;
       });
   }
+  sortCollection(favorites: Movie[],item: string, sortDirection: string){
+    if (item == 'Year') {
+      if (sortDirection =='asc') {
+        return favorites.sort((a, b) =>
+          a.Year > b.Year ? 1 : b.Year > a.Year ? -1 : 0
+        );
+      } else {
+        return favorites.sort((a, b) =>
+          a.Year < b.Year ? 1 : b.Year < a.Year ? -1 : 0
+        );
+      }
+      
+    } else {
+      if (sortDirection =='asc') {
+        return favorites.sort((a, b) =>
+            a.Title > b.Title ? 1 : b.Title > a.Title ? -1 : 0
+          );
+      } else {
+        return favorites.sort((a, b) =>
+            a.Title < b.Title ? 1 : b.Title < a.Title ? -1 : 0
+          );
+      }
+    }
+  }
 
 }

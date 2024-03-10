@@ -13,15 +13,30 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css'],
 })
-export class FavoritesComponent implements OnInit{
+export class FavoritesComponent implements OnInit {
+  /*Favorties collection */
   favorites: Movie[] | [] = [];
+  favoritesMovies: Movie[] | [] = [];
+  favoritesSeries: Movie[] | [] = [];
+  favoritesGames: Movie[] | [] = [];
+
   title: string = '';
   type: string = 'movie';
   year: string = '';
-  yearInvalid = false;
+  yearInvalid = false;/*Eliminar??*/ 
   favoritesLoaded: boolean = false;
+
+  /*Pagination atributes */
   page: number = 1;
   pageSize: number = 12;
+
+  /*Sorting atributes*/ 
+  yearSort: string = 'Year';
+  typeSort: string = 'Type';
+  titleSort: string = 'Title';
+  favoritesType: string = '';
+  sortDirection:string = '';
+
 
   types: any[] = [
     { value: 'movie', viewValue: 'Movie' },
@@ -29,7 +44,6 @@ export class FavoritesComponent implements OnInit{
     { value: 'game', viewValue: 'Game' },
     { value: 'all', viewValue: 'All' },
   ];
-
 
   constructor(
     private favoritesFilter: FavoritesFilterService,
@@ -40,17 +54,17 @@ export class FavoritesComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.loadFavorites();
+    this.loadAllFavorites();
   }
 
-  onSubmit(info:any) {
-    let {title, type, year} = info;
+  onSubmit(info: any) {
+    let { title, type, year } = info;
     if (year && !/^[0-9]{4}$/.test(year)) {
       this.toastrService.error('Year must be a 4 digit number');
       return;
     }
     this.favoritesService.getFavorites().subscribe({
-      next:(movies) => {
+      next: (movies) => {
         this.favorites = movies;
         if (!this.favorites || this.favorites.length === 0) {
           return;
@@ -79,7 +93,9 @@ export class FavoritesComponent implements OnInit{
 
           if (filteredFavorites.length === 0) {
             this.favorites = [];
-            this.toastrService.warning('Nothing found with that filter criteria');
+            this.toastrService.warning(
+              'Nothing found with that filter criteria'
+            );
           } else {
             this.favorites = filteredFavorites;
           }
@@ -88,41 +104,50 @@ export class FavoritesComponent implements OnInit{
       error: (error) => {
         console.error(error);
         this.toastrService.error(error.error.message);
-      }
-  });
+      },
+    });
   }
-  loadFavorites(): void {
+  loadAllFavorites(): void {
     this.favoritesService.getFavorites().subscribe({
       next: (movies) => {
         this.favorites = movies;
         this.favoritesLoaded = true;
-        
+        this.filterMoviesType();
       },
-     error: (error) => {
+      error: (error) => {
         console.error(error);
         //this.toastrService.error( error.error.message);
         this.favoritesLoaded = true;
-      }
-  });
+      },
+    });
   }
-  getAllfavorites() {
-    return this.favorites.length;
+  getCollectionLength(collection: Movie[]) {
+    return collection.length;
   }
   deleteFavorite(_id: string) {
     this.favoritesService.deleteMovie(_id).subscribe({
       next: () => {
-        this.toastrService.success("Movie deleted");
+        this.toastrService.success('Movie deleted');
         this.favorites = this.favorites.filter((movie) => movie._id != _id);
+        this.favoritesMovies = this.favoritesMovies.filter(
+          (movie) => movie._id != _id
+        );
+        this.favoritesSeries = this.favoritesSeries.filter(
+          (movie) => movie._id != _id
+        );
+        this.favoritesGames = this.favoritesGames.filter(
+          (movie) => movie._id != _id
+        );
       },
       error: (error) => {
-        this.toastrService.error("Cannot delete movie", error);
+        this.toastrService.error('Cannot delete movie', error);
         console.error(error);
-      }
-  });
+      },
+    });
   }
   updateFavorite(info: any) {
     const { item, description } = info;
-    const updatedMovie ={...item, description: description};
+    const updatedMovie = { ...item, description: description };
     this.favoritesService.updateFavorite(updatedMovie).subscribe(
       () => {
         item.description = description;
@@ -135,13 +160,13 @@ export class FavoritesComponent implements OnInit{
       }
     );
   }
-  openFavorite(favoriteMovieToOpen: any){
-    console.log('favoriteMovieToOpen',favoriteMovieToOpen);
+  openFavorite(favoriteMovieToOpen: any) {
+    console.log('favoriteMovieToOpen', favoriteMovieToOpen);
     this.OmdbService.getMovieInfo(favoriteMovieToOpen.imdbID).subscribe({
-      next:(response) => {
+      next: (response) => {
         const movieAndResponse = {
           movie: favoriteMovieToOpen,
-          response: response
+          response: response,
         };
         console.log('Movie and response', movieAndResponse);
         const dialogRef = this.dialog.open(MovieDialogComponent, {
@@ -150,18 +175,49 @@ export class FavoritesComponent implements OnInit{
           width: '80%',
           enterAnimationDuration: '500ms',
           exitAnimationDuration: '500ms',
-          autoFocus: false ,
+          autoFocus: false,
         });
         dialogRef.afterOpened().subscribe(() => {
-          const imgElement = document.querySelector('.poster img') as HTMLElement;
+          const imgElement = document.querySelector(
+            '.poster img'
+          ) as HTMLElement;
           if (imgElement) {
             imgElement.focus();
           }
         });
       },
-      error:(error) => {
+      error: (error) => {
         this.toastrService.error(error.error.message);
-      }
+      },
     });
+  }
+  filterMoviesType() {
+    this.favoritesMovies = this.favorites.filter(
+      (movie) => movie.Type === 'movie'
+    );
+    this.favoritesSeries = this.favorites.filter(
+      (movie) => movie.Type === 'series'
+    );
+    this.favoritesGames = this.favorites.filter(
+      (movie) => movie.Type === 'game'
+    );
+  }
+  sortFavorites(favorites: Movie[], item: string, type:string, sortDirection: string) {
+    this.favoritesType = type;
+    this.sortDirection = sortDirection;
+    switch (this.favoritesType) {
+      case 'movie':
+      this.favoritesMovies = this.favoritesFilter.sortCollection(favorites, item, sortDirection);
+        break;
+      case 'serie':
+        this.favoritesSeries = this.favoritesFilter.sortCollection(favorites, item, sortDirection);
+        break;
+      case 'game':
+        this.favoritesGames = this.favoritesFilter.sortCollection(favorites, item, sortDirection);
+        break;
+      default:
+        this.favorites = this.favoritesFilter.sortCollection(favorites, item, sortDirection);
+        break;
+    }
   }
 }
