@@ -68,7 +68,6 @@ mat-hint {
     background-color: #3f51b500;
     padding-bottom: 5px;
     border-radius: 10px;
-    /* border: 1px solid #f5cf3d; */
 }
 
 .img-container {
@@ -145,6 +144,18 @@ ngb-pagination ::ng-deep ul>li:not(.active)>a {
   ::-webkit-scrollbar-thumb:hover {
     background: #f5cf3d; 
   }
+  /*searching*/
+  input{
+    background-color:transparent;
+    border-left: #000000;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Glegoo';
+  }
+  input[type=text]:focus {
+    border: 1px solid #f5cf3d;
+  }
 /* Sorting */
 .sorting-container{
     display: flex;
@@ -171,6 +182,9 @@ ngb-pagination ::ng-deep ul>li:not(.active)>a {
 
         padding-left: 10%;
         padding-right: 10%;
+    }
+    input{
+        width: 50%;
     }
 
     .all-favorites-card {
