@@ -8,40 +8,89 @@
     </h1>
   </div>
   <div class="search-bar-container">
-    <app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar>
+    <!-- <app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar> -->
   </div>
 <!-- All favorites collection -->
-  <ng-container *ngIf="favorites.length > 0; else Arefavorites">
+  <ng-container *ngIf="favorites.length > 0 ">
     <div class="all-favorites-container">
       <h2>All your collection</h2>
-      <ngb-pagination [(page)]="page" [collectionSize]="favorites.length" [pageSize]="pageSize" [rotate]="true" [ellipses]="true"
-        [boundaryLinks]="true" size="sm"></ngb-pagination>
+      <ngb-pagination [(page)]="page" [collectionSize]="favorites.length" [pageSize]="pageSize" [rotate]="true"
+        [ellipses]="true" [boundaryLinks]="true" size="sm"></ngb-pagination>
       <h3>Total: {{ getCollectionLength(favorites) }}</h3>
-       <!-- Sorting -->
+      <!-- Sorting -->
       <div class="sorting-container">
         <div class="sorting-item">
-            <mat-icon (click)="sortFavorites(favorites, yearSort, 'all', 'des')">
-              <span>expand_more</span>
-            </mat-icon>
+          <mat-icon (click)="sortFavorites(favorites, yearSort, 'all', 'des')">
+            <span>expand_more</span>
+          </mat-icon>
           <span class="sortByName">Year</span>
-            <mat-icon (click)="sortFavorites(favorites, yearSort, 'all', 'asc')">
-              <span>expand_less</span>
-            </mat-icon>
+          <mat-icon (click)="sortFavorites(favorites, yearSort, 'all', 'asc')">
+            <span>expand_less</span>
+          </mat-icon>
         </div>
         <div class="sorting-item">
           <mat-icon (click)="sortFavorites(favorites, titleSort, 'all', 'des')">
             <span>expand_more</span>
           </mat-icon>
-        <span class="sortByName">Title</span>
+          <span class="sortByName">Title</span>
           <mat-icon (click)="sortFavorites(favorites, titleSort, 'all', 'asc')">
             <span>expand_less</span>
           </mat-icon>
-      </div>
-       
+        </div>
+        <input type="text" placeholder="Find by title" (keyup)="filterByTitle($event)">
       </div>
       <!-- Sorting -->
       <div class="all-favorites-card">
-        <ng-container *ngFor="let item of favorites | slice:(page-1) * pageSize : page * pageSize">
+        <ng-container *ngFor="let item of favoritesAll | slice:(page-1) * pageSize : page * pageSize">
+          <app-favorites-card [item]="item" (itemIdEvent)="deleteFavorite($event)"
+            (itemUpdatedEvent)="updateFavorite($event)"
+            (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
+        </ng-container>
+      </div>
+      <ngb-pagination [(page)]="page" [collectionSize]="favorites.length" [pageSize]="pageSize" [rotate]="true"
+        [ellipses]="true" [boundaryLinks]="true" size="sm"></ngb-pagination>
+    </div>
+  </ng-container>
+      
+  <ng-container *ngIf="favorites.length === 0 " class="card-container">
+    <h1>Upps..you don't have any favorite yet...</h1>
+    <div class="img-container">
+      <img src="../../../../assets/images/monkey3.jpg" alt="monkey">
+    </div>
+  </ng-container>
+
+  <!-- All favorites collection -->
+
+  <!-- Movies favorites collection -->
+  <ng-container *ngIf="favorites.length > 0 ">
+    <div class="type-favorites-container">
+      <h2>Your movies</h2>
+      <h3>Total: {{ getCollectionLength(favoritesMovies) }}</h3>
+      <!-- Sorting -->
+      <div class="sorting-container">
+        <div class="sorting-item">
+          <mat-icon (click)="sortFavorites(favoritesMovies, yearSort, 'movie', 'des')">
+            <span>expand_more</span>
+          </mat-icon>
+          <span class="sortByName">Year</span>
+          <mat-icon (click)="sortFavorites(favoritesMovies, yearSort, 'movie', 'asc')">
+            <span>expand_less</span>
+          </mat-icon>
+        </div>
+        <div class="sorting-item">
+          <mat-icon (click)="sortFavorites(favoritesMovies, titleSort, 'movie', 'des')">
+            <span>expand_more</span>
+          </mat-icon>
+          <span class="sortByName">Title</span>
+          <mat-icon (click)="sortFavorites(favoritesMovies, titleSort, 'movie', 'asc')">
+            <span>expand_less</span>
+          </mat-icon>
+        </div>
+  
+      </div>
+      <!-- Sorting -->
+      <div *ngIf=" getCollectionLength(favoritesMovies)>0" class="type-favorites-card">
+        <ng-container *ngFor="let item of favoritesMovies">
           <app-favorites-card [item]="item" (itemIdEvent)="deleteFavorite($event)"
             (itemUpdatedEvent)="updateFavorite($event)"
             (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
@@ -49,116 +98,81 @@
       </div>
     </div>
   </ng-container>
-
-  <ng-template #Arefavorites class="card-container">
-    <h1>Upps..you don't have any favorite yet...</h1>
-    <div class="img-container">
-      <img src="../../../../assets/images/monkey3.jpg" alt="monkey">
-    </div>
-  </ng-template>
-
-  <!-- All favorites collection -->
-
-  <!-- Movies favorites collection -->
-  <div class="type-favorites-container">
-    <h2>Your movies</h2>
-    <h3>Total: {{  getCollectionLength(favoritesMovies) }}</h3>
-     <!-- Sorting -->
-     <div class="sorting-container">
-      <div class="sorting-item">
-          <mat-icon (click)="sortFavorites(favoritesMovies, yearSort, 'movie', 'des')">
-            <span>expand_more</span>
-          </mat-icon>
-        <span class="sortByName">Year</span>
-          <mat-icon (click)="sortFavorites(favoritesMovies, yearSort, 'movie', 'asc')">
-            <span>expand_less</span>
-          </mat-icon>
-      </div>
-      <div class="sorting-item">
-        <mat-icon (click)="sortFavorites(favoritesMovies, titleSort, 'movie', 'des')">
-          <span>expand_more</span>
-        </mat-icon>
-      <span class="sortByName">Title</span>
-        <mat-icon (click)="sortFavorites(favoritesMovies, titleSort, 'movie', 'asc')">
-          <span>expand_less</span>
-        </mat-icon>
-    </div>
-     
-    </div>
-    <!-- Sorting -->
-    <div *ngIf=" getCollectionLength(favoritesMovies)>0" class="type-favorites-card" >
-      <ng-container *ngFor="let item of favoritesMovies" >
-        <app-favorites-card [item]="item" (itemIdEvent)="deleteFavorite($event)"
-          (itemUpdatedEvent)="updateFavorite($event)" (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
-      </ng-container>
-    </div>
-  </div>
+  
 
    <!-- Series favorites collection -->
-   <div class="type-favorites-container">
-    <h2>Your Series</h2>
-    <h3>Total: {{  getCollectionLength(favoritesSeries) }}</h3>
-    <div class="sorting-container">
-      <div class="sorting-item">
+  <ng-container *ngIf="favorites.length > 0 ">
+    <div class="type-favorites-container">
+      <h2>Your Series</h2>
+      <h3>Total: {{ getCollectionLength(favoritesSeries) }}</h3>
+      <div class="sorting-container">
+        <div class="sorting-item">
           <mat-icon (click)="sortFavorites(favoritesSeries, yearSort, 'serie', 'des')">
             <span>expand_more</span>
           </mat-icon>
-        <span class="sortByName">Year</span>
+          <span class="sortByName">Year</span>
           <mat-icon (click)="sortFavorites(favoritesSeries, yearSort, 'serie', 'asc')">
             <span>expand_less</span>
           </mat-icon>
+        </div>
+        <div class="sorting-item">
+          <mat-icon (click)="sortFavorites(favoritesSeries, titleSort, 'serie', 'des')">
+            <span>expand_more</span>
+          </mat-icon>
+          <span class="sortByName">Title</span>
+          <mat-icon (click)="sortFavorites(favoritesSeries, titleSort, 'serie', 'asc')">
+            <span>expand_less</span>
+          </mat-icon>
+        </div>
+  
       </div>
-      <div class="sorting-item">
-        <mat-icon (click)="sortFavorites(favoritesSeries, titleSort, 'serie', 'des')">
-          <span>expand_more</span>
-        </mat-icon>
-      <span class="sortByName">Title</span>
-        <mat-icon (click)="sortFavorites(favoritesSeries, titleSort, 'serie', 'asc')">
-          <span>expand_less</span>
-        </mat-icon>
+      <div *ngIf="getCollectionLength(favoritesSeries)>0" class="type-favorites-card">
+        <ng-container *ngFor="let item of favoritesSeries">
+          <app-favorites-card [item]="item" (itemIdEvent)="deleteFavorite($event)"
+            (itemUpdatedEvent)="updateFavorite($event)"
+            (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
+        </ng-container>
+      </div>
     </div>
-     
-    </div>
-    <div *ngIf="getCollectionLength(favoritesSeries)>0" class="type-favorites-card">
-      <ng-container *ngFor="let item of favoritesSeries">
-        <app-favorites-card [item]="item" (itemIdEvent)="deleteFavorite($event)"
-          (itemUpdatedEvent)="updateFavorite($event)" (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
-      </ng-container>
-    </div>
-  </div>
+  </ng-container>
+   
   
    <!-- Games favorites collection -->
-   <div class="type-favorites-container">
-    <h2>Your Videogames</h2>
-    <h3>Total: {{ getCollectionLength(favoritesGames) }}</h3>
-    <div class="sorting-container">
-      <div class="sorting-item">
+  <ng-container *ngIf="favorites.length > 0 ">
+    <div class="type-favorites-container">
+      <h2>Your Videogames</h2>
+      <h3>Total: {{ getCollectionLength(favoritesGames) }}</h3>
+      <div class="sorting-container">
+        <div class="sorting-item">
           <mat-icon (click)="sortFavorites(favoritesGames, yearSort, 'game', 'des')">
             <span>expand_more</span>
           </mat-icon>
-        <span class="sortByName">Year</span>
+          <span class="sortByName">Year</span>
           <mat-icon (click)="sortFavorites(favoritesGames, yearSort, 'game', 'asc')">
             <span>expand_less</span>
           </mat-icon>
+        </div>
+        <div class="sorting-item">
+          <mat-icon (click)="sortFavorites(favoritesGames, titleSort, 'game', 'des')">
+            <span>expand_more</span>
+          </mat-icon>
+          <span class="sortByName">Title</span>
+          <mat-icon (click)="sortFavorites(favoritesGames, titleSort, 'game', 'asc')">
+            <span>expand_less</span>
+          </mat-icon>
+        </div>
+  
       </div>
-      <div class="sorting-item">
-        <mat-icon (click)="sortFavorites(favoritesGames, titleSort, 'game', 'des')">
-          <span>expand_more</span>
-        </mat-icon>
-      <span class="sortByName">Title</span>
-        <mat-icon (click)="sortFavorites(favoritesGames, titleSort, 'game', 'asc')">
-          <span>expand_less</span>
-        </mat-icon>
+      <div *ngIf="getCollectionLength(favoritesGames)>0" class="type-favorites-card">
+        <ng-container *ngFor="let item of favoritesGames">
+          <app-favorites-card [item]="item" (itemIdEvent)="deleteFavorite($event)"
+            (itemUpdatedEvent)="updateFavorite($event)"
+            (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
+        </ng-container>
+      </div>
     </div>
-     
-    </div>
-    <div *ngIf="getCollectionLength(favoritesGames)>0" class="type-favorites-card">
-      <ng-container *ngFor="let item of favoritesGames">
-        <app-favorites-card [item]="item" (itemIdEvent)="deleteFavorite($event)"
-          (itemUpdatedEvent)="updateFavorite($event)" (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
-      </ng-container>
-    </div>
-  </div>
+  </ng-container>
+   
 
 </ng-container>
 

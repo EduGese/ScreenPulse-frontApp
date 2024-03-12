@@ -6,6 +6,7 @@ import { FavoritesService } from 'src/app/shared/services/favorites/favorites.se
 import { OmdbService } from 'src/app/shared/services/omdb/omdb.service';
 import { MovieDialogComponent } from 'src/app/shared/components/movie-dialog/movie-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ViewportRuler } from '@angular/cdk/scrolling';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class FavoritesComponent implements OnInit {
   /*Favorties collection */
   favorites: Movie[] | [] = [];
+  favoritesAll: Movie[] | [] = [];
   favoritesMovies: Movie[] | [] = [];
   favoritesSeries: Movie[] | [] = [];
   favoritesGames: Movie[] | [] = [];
@@ -37,6 +39,8 @@ export class FavoritesComponent implements OnInit {
   favoritesType: string = '';
   sortDirection:string = '';
 
+  favoritesFiltered: boolean = false;
+
 
   types: any[] = [
     { value: 'movie', viewValue: 'Movie' },
@@ -51,73 +55,63 @@ export class FavoritesComponent implements OnInit {
     private toastrService: ToastrService,
     private favoritesService: FavoritesService,
     private OmdbService: OmdbService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private viewportRuler: ViewportRuler
   ) {}
 
   ngOnInit(): void {
     this.loadAllFavorites();
+    this.calculatePageSize();
+    this.viewportRuler.change().subscribe(() => {
+      this.calculatePageSize();
+    });
   }
-
-  onSubmit(info: any) {
-    let { title, type, year } = info;
-    if (year && !/^[0-9]{4}$/.test(year)) {
-      this.toastrService.error('Year must be a 4 digit number');
-      return;
+  calculatePageSize(): void {
+    const viewportSize = this.viewportRuler.getViewportSize();
+    if(viewportSize.width > 1400){
+      this.pageSize = 16;
     }
+    if(viewportSize.width < 800){
+      this.pageSize = 9;
+    }
+  }
+  filterByTitle(event:any){
     this.favoritesService.getFavorites().subscribe({
       next: (movies) => {
-        this.favorites = movies;
-        if (!this.favorites || this.favorites.length === 0) {
+        this.favoritesAll = movies;
+        if(!this.favoritesAll || this.favoritesAll.length === 0){
           return;
-        } else {
-          let filteredFavorites = this.favorites;
-
-          if (year) {
-            filteredFavorites = this.favoritesFilter.filterByYear(
-              filteredFavorites,
-              year
-            );
-          }
-
-          if (type !== 'all') {
-            filteredFavorites = this.favoritesFilter.filterByType(
-              filteredFavorites,
-              type
-            );
-          }
-          if (title) {
-            filteredFavorites = this.favoritesFilter.filterByTitle(
-              filteredFavorites,
-              title
-            );
-          }
-
+        }else{
+          let filteredFavorites = this.favoritesAll;
+          filteredFavorites = this.favoritesFilter.filterByTitle(
+            filteredFavorites,
+            event.target.value
+          );
           if (filteredFavorites.length === 0) {
-            this.favorites = [];
-            this.toastrService.warning(
-              'Nothing found with that filter criteria'
-            );
+             this.favoritesFiltered = true;
+            this.favoritesAll = [];
           } else {
-            this.favorites = filteredFavorites;
+            this.favoritesAll = filteredFavorites;
           }
         }
       },
-      error: (error) => {
+      error: (error)=>{
         console.error(error);
         this.toastrService.error(error.error.message);
-      },
-    });
+      }
+    })
   }
   loadAllFavorites(): void {
     this.favoritesService.getFavorites().subscribe({
       next: (movies) => {
         this.favorites = movies;
+        this.favoritesAll = movies;
         this.favoritesLoaded = true;
         this.filterMoviesType();
       },
       error: (error) => {
         console.error(error);
-        //this.toastrService.error( error.error.message);
+        this.toastrService.error( error.error.message);
         this.favoritesLoaded = true;
       },
     });
@@ -162,7 +156,6 @@ export class FavoritesComponent implements OnInit {
     );
   }
   openFavorite(favoriteMovieToOpen: any) {
-    console.log('favoriteMovieToOpen', favoriteMovieToOpen);
     this.OmdbService.getMovieInfo(favoriteMovieToOpen.imdbID).subscribe({
       next: (response) => {
         const movieAndResponse = {
