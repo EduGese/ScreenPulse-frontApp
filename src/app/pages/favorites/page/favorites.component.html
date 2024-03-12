@@ -3,12 +3,9 @@
   <div class="title">
     <h1>
       <span class="center-content">
-        Your favorites
+         {{userName}}'s  Collection
       </span>
     </h1>
-  </div>
-  <div class="search-bar-container">
-    <!-- <app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar> -->
   </div>
 <!-- All favorites collection -->
   <ng-container *ngIf="favorites.length > 0 ">
@@ -181,7 +178,7 @@
 <ng-template #noFavoritesLoaded>
   <div>
     <h1>Loading, please wait</h1>
-    <mat-progress-bar mode="indeterminate">Loading</mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" color="accent">Loading</mat-progress-bar>
   </div>
 
 </ng-template>

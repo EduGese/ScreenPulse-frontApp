@@ -17,7 +17,6 @@ export class FavoritesService {
   addToFavorites(movie: Movie): Observable<any> {
     const userId = this.authService.getUserId();
     const body = movie;
-    console.log('body',body)
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -28,7 +27,6 @@ export class FavoritesService {
 
   getFavorites(): Observable<any> {
     const userId = this.authService.getUserId();
-    console.log('userId',userId)
     return this.http.get<Movie[]>(`${this.baseUrl}/${userId}`)
   }
   deleteMovie(movieId: string):Observable<any>{
@@ -39,7 +37,6 @@ export class FavoritesService {
   updateFavorite(movie: Movie): Observable<any> {
     const userId = this.authService.getUserId();
     const body = movie;
-    console.log('body', body )
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

@@ -7,6 +7,7 @@ import { OmdbService } from 'src/app/shared/services/omdb/omdb.service';
 import { MovieDialogComponent } from 'src/app/shared/components/movie-dialog/movie-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewportRuler } from '@angular/cdk/scrolling';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class FavoritesComponent implements OnInit {
   year: string = '';
   yearInvalid = false;/*Eliminar??*/ 
   favoritesLoaded: boolean = false;
+  userName: string | null = '';
 
   /*Pagination atributes */
   page: number = 1;
@@ -39,7 +41,6 @@ export class FavoritesComponent implements OnInit {
   favoritesType: string = '';
   sortDirection:string = '';
 
-  favoritesFiltered: boolean = false;
 
 
   types: any[] = [
@@ -56,7 +57,8 @@ export class FavoritesComponent implements OnInit {
     private favoritesService: FavoritesService,
     private OmdbService: OmdbService,
     private dialog: MatDialog,
-    private viewportRuler: ViewportRuler
+    private viewportRuler: ViewportRuler,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -65,7 +67,11 @@ export class FavoritesComponent implements OnInit {
     this.viewportRuler.change().subscribe(() => {
       this.calculatePageSize();
     });
+    this.userName = this.authService.getUserName();
+    
   }
+
+  
   calculatePageSize(): void {
     const viewportSize = this.viewportRuler.getViewportSize();
     if(viewportSize.width > 1400){
@@ -88,7 +94,6 @@ export class FavoritesComponent implements OnInit {
             event.target.value
           );
           if (filteredFavorites.length === 0) {
-             this.favoritesFiltered = true;
             this.favoritesAll = [];
           } else {
             this.favoritesAll = filteredFavorites;
@@ -111,7 +116,7 @@ export class FavoritesComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.toastrService.error( error.error.message);
+        // this.toastrService.error( error.error.message);
         this.favoritesLoaded = true;
       },
     });
