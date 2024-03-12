@@ -44,6 +44,7 @@ export class FavoritesComponent implements OnInit {
     { value: 'game', viewValue: 'Game' },
     { value: 'all', viewValue: 'All' },
   ];
+  
 
   constructor(
     private favoritesFilter: FavoritesFilterService,

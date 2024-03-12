@@ -86,7 +86,7 @@
      
     </div>
     <!-- Sorting -->
-    <div *ngIf=" getCollectionLength(favoritesMovies)>0" class="type-favorites-card">
+    <div *ngIf=" getCollectionLength(favoritesMovies)>0" class="type-favorites-card" >
       <ng-container *ngFor="let item of favoritesMovies" >
         <app-favorites-card [item]="item" (itemIdEvent)="deleteFavorite($event)"
           (itemUpdatedEvent)="updateFavorite($event)" (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
