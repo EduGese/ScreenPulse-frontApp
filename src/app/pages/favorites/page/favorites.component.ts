@@ -210,7 +210,7 @@ export class FavoritesComponent implements OnInit {
         this.favoritesGames = this.favoritesFilter.sortCollection(favorites, item, sortDirection);
         break;
       default:
-        this.favorites = this.favoritesFilter.sortCollection(favorites, item, sortDirection);
+        this.favoritesAll = this.favoritesFilter.sortCollection(favorites, item, sortDirection);
         break;
     }
   }
