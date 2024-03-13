@@ -45,7 +45,14 @@
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   z-index: 2;
 }
-
+.delete-button:hover{
+  color:#F44A3E; 
+  background-color: white;
+}
+.review-button:hover{
+  color:#6D42BA; 
+  background-color: white;
+}
 .chip {
   width: 100%;
   border-radius: 30px;

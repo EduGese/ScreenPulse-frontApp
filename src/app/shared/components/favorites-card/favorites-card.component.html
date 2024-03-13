@@ -6,11 +6,11 @@
       (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" (click)="openItem(item)">
         <ng-container *ngIf="areButtonsVisible()">
            <!--Delete button-->
-        <button mat-mini-fab color="warn" aria-label="delete item"  (click)="sendItemId(item._id, $event)">
+        <button mat-mini-fab color="warn" aria-label="delete item" class='delete-button'  (click)="sendItemId(item._id, $event)">
           <mat-icon matTooltip="Delete" matTooltipPosition="below">delete</mat-icon>
         </button>
         <!--Description button-->
-        <button mat-mini-fab color="primary" (click)="toggleMode( $event)" [value]="mode === 'view' ? 'edition' : 'view'">
+        <button mat-mini-fab color="primary" class='review-button' (click)="toggleMode( $event)" [value]="mode === 'view' ? 'edition' : 'view'">
           <mat-icon> {{ mode === 'view' ? 'rate_review' : 'close' }}</mat-icon>
         </button>
         </ng-container>
