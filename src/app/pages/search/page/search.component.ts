@@ -91,32 +91,42 @@ export class SearchComponent {
   }
 
   openMovie(movie:any){
-    console.log('Abrir item',movie.imdbID);
+    let dialogHeight = '90%';
+    let dialogWidth = '80%';
+    if(window.innerWidth >600 && window.innerWidth <800){
+      dialogHeight = '85%';
+      dialogWidth = '70%';
+    }
+    if(window.innerWidth >800){
+      dialogHeight = '85%';
+      dialogWidth = '85%';
+    }
     this.OmdbService.getMovieInfo(movie.imdbID).subscribe({
-      next:(response) => {
+      next: (response) => {
         const movieAndResponse = {
           movie: movie,
-          response: response
+          response: response,
         };
-        console.log('Movie and response', movieAndResponse);
         const dialogRef = this.dialog.open(MovieDialogComponent, {
           data: movieAndResponse,
-          height: '90%',
-          width: '80%',
+          height: dialogHeight,
+          width: dialogWidth,
           enterAnimationDuration: '500ms',
           exitAnimationDuration: '500ms',
-          autoFocus: false ,
+          autoFocus: false,
         });
         dialogRef.afterOpened().subscribe(() => {
-          const imgElement = document.querySelector('.poster img') as HTMLElement;
+          const imgElement = document.querySelector(
+            '.poster img'
+          ) as HTMLElement;
           if (imgElement) {
             imgElement.focus();
           }
         });
       },
-      error:(error) => {
+      error: (error) => {
         this.toastrService.error(error.error.message);
-      }
+      },
     });
    
   }

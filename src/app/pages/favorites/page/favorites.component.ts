@@ -162,17 +162,26 @@ export class FavoritesComponent implements OnInit {
     );
   }
   openFavorite(favoriteMovieToOpen: any) {
+    let dialogHeight = '90%';
+    let dialogWidth = '80%';
+    if(window.innerWidth >600 && window.innerWidth <800){
+      dialogHeight = '85%';
+      dialogWidth = '70%';
+    }
+    if(window.innerWidth >800){
+      dialogHeight = '85%';
+      dialogWidth = '85%';
+    }
     this.OmdbService.getMovieInfo(favoriteMovieToOpen.imdbID).subscribe({
       next: (response) => {
         const movieAndResponse = {
           movie: favoriteMovieToOpen,
           response: response,
         };
-        console.log('Movie and response', movieAndResponse);
         const dialogRef = this.dialog.open(MovieDialogComponent, {
           data: movieAndResponse,
-          height: '90%',
-          width: '80%',
+          height: dialogHeight,
+          width: dialogWidth,
           enterAnimationDuration: '500ms',
           exitAnimationDuration: '500ms',
           autoFocus: false,
