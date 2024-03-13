@@ -3,11 +3,9 @@ import { Movie } from 'src/app/shared/models/movie.model';
 import { FavoritesFilterService } from '../services/favoritesFilterService/favorites-filter.service';
 import { ToastrService } from 'ngx-toastr';
 import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
-import { OmdbService } from 'src/app/shared/services/omdb/omdb.service';
-import { MovieDialogComponent } from 'src/app/shared/components/movie-dialog/movie-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
 
 
 @Component({
@@ -55,10 +53,9 @@ export class FavoritesComponent implements OnInit {
     private favoritesFilter: FavoritesFilterService,
     private toastrService: ToastrService,
     private favoritesService: FavoritesService,
-    private OmdbService: OmdbService,
-    private dialog: MatDialog,
     private viewportRuler: ViewportRuler,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -162,43 +159,44 @@ export class FavoritesComponent implements OnInit {
     );
   }
   openFavorite(favoriteMovieToOpen: any) {
-    let dialogHeight = '90%';
-    let dialogWidth = '80%';
-    if(window.innerWidth >600 && window.innerWidth <800){
-      dialogHeight = '85%';
-      dialogWidth = '70%';
-    }
-    if(window.innerWidth >800){
-      dialogHeight = '85%';
-      dialogWidth = '85%';
-    }
-    this.OmdbService.getMovieInfo(favoriteMovieToOpen.imdbID).subscribe({
-      next: (response) => {
-        const movieAndResponse = {
-          movie: favoriteMovieToOpen,
-          response: response,
-        };
-        const dialogRef = this.dialog.open(MovieDialogComponent, {
-          data: movieAndResponse,
-          height: dialogHeight,
-          width: dialogWidth,
-          enterAnimationDuration: '500ms',
-          exitAnimationDuration: '500ms',
-          autoFocus: false,
-        });
-        dialogRef.afterOpened().subscribe(() => {
-          const imgElement = document.querySelector(
-            '.poster img'
-          ) as HTMLElement;
-          if (imgElement) {
-            imgElement.focus();
-          }
-        });
-      },
-      error: (error) => {
-        this.toastrService.error(error.error.message);
-      },
-    });
+    this.dialogService.openMovie(window.innerWidth,favoriteMovieToOpen);
+    // let dialogHeight = '90%';
+    // let dialogWidth = '80%';
+    // if(window.innerWidth >600 && window.innerWidth <800){
+    //   dialogHeight = '85%';
+    //   dialogWidth = '70%';
+    // }
+    // if(window.innerWidth >800){
+    //   dialogHeight = '85%';
+    //   dialogWidth = '85%';
+    // }
+    // this.OmdbService.getMovieInfo(favoriteMovieToOpen.imdbID).subscribe({
+    //   next: (response) => {
+    //     const movieAndResponse = {
+    //       movie: favoriteMovieToOpen,
+    //       response: response,
+    //     };
+    //     const dialogRef = this.dialog.open(MovieDialogComponent, {
+    //       data: movieAndResponse,
+    //       height: dialogHeight,
+    //       width: dialogWidth,
+    //       enterAnimationDuration: '500ms',
+    //       exitAnimationDuration: '500ms',
+    //       autoFocus: false,
+    //     });
+    //     dialogRef.afterOpened().subscribe(() => {
+    //       const imgElement = document.querySelector(
+    //         '.poster img'
+    //       ) as HTMLElement;
+    //       if (imgElement) {
+    //         imgElement.focus();
+    //       }
+    //     });
+    //   },
+    //   error: (error) => {
+    //     this.toastrService.error(error.error.message);
+    //   },
+    // });
   }
   filterMoviesType() {
     this.favoritesMovies = this.favorites.filter(

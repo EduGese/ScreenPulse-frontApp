@@ -5,8 +5,7 @@ import { Movie } from 'src/app/shared/models/movie.model';
 import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { MovieDialogComponent } from 'src/app/shared/components/movie-dialog/movie-dialog.component';
+import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
 
 
 
@@ -39,7 +38,7 @@ export class SearchComponent {
     private favoritesService: FavoritesService,
     private authService: AuthService,
     private router: Router,
-    private dialog: MatDialog
+    private dialogService: DialogService,
     ){}
   
 
@@ -91,43 +90,44 @@ export class SearchComponent {
   }
 
   openMovie(movie:any){
-    let dialogHeight = '90%';
-    let dialogWidth = '80%';
-    if(window.innerWidth >600 && window.innerWidth <800){
-      dialogHeight = '85%';
-      dialogWidth = '70%';
-    }
-    if(window.innerWidth >800){
-      dialogHeight = '85%';
-      dialogWidth = '85%';
-    }
-    this.OmdbService.getMovieInfo(movie.imdbID).subscribe({
-      next: (response) => {
-        const movieAndResponse = {
-          movie: movie,
-          response: response,
-        };
-        const dialogRef = this.dialog.open(MovieDialogComponent, {
-          data: movieAndResponse,
-          height: dialogHeight,
-          width: dialogWidth,
-          enterAnimationDuration: '500ms',
-          exitAnimationDuration: '500ms',
-          autoFocus: false,
-        });
-        dialogRef.afterOpened().subscribe(() => {
-          const imgElement = document.querySelector(
-            '.poster img'
-          ) as HTMLElement;
-          if (imgElement) {
-            imgElement.focus();
-          }
-        });
-      },
-      error: (error) => {
-        this.toastrService.error(error.error.message);
-      },
-    });
+    this.dialogService.openMovie(window.innerWidth,movie);
+    // let dialogHeight = '90%';
+    // let dialogWidth = '80%';
+    // if(window.innerWidth >600 && window.innerWidth <800){
+    //   dialogHeight = '85%';
+    //   dialogWidth = '70%';
+    // }
+    // if(window.innerWidth >800){
+    //   dialogHeight = '85%';
+    //   dialogWidth = '85%';
+    // }
+    // this.OmdbService.getMovieInfo(movie.imdbID).subscribe({
+    //   next: (response) => {
+    //     const movieAndResponse = {
+    //       movie: movie,
+    //       response: response,
+    //     };
+    //     const dialogRef = this.dialog.open(MovieDialogComponent, {
+    //       data: movieAndResponse,
+    //       height: dialogHeight,
+    //       width: dialogWidth,
+    //       enterAnimationDuration: '500ms',
+    //       exitAnimationDuration: '500ms',
+    //       autoFocus: false,
+    //     });
+    //     dialogRef.afterOpened().subscribe(() => {
+    //       const imgElement = document.querySelector(
+    //         '.poster img'
+    //       ) as HTMLElement;
+    //       if (imgElement) {
+    //         imgElement.focus();
+    //       }
+    //     });
+    //   },
+    //   error: (error) => {
+    //     this.toastrService.error(error.error.message);
+    //   },
+    // });
    
   }
 }
