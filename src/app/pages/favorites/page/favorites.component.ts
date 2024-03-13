@@ -129,6 +129,7 @@ export class FavoritesComponent implements OnInit {
       next: () => {
         this.toastrService.success('Movie deleted');
         this.favorites = this.favorites.filter((movie) => movie._id != _id);
+        this.favoritesAll = this.favoritesAll.filter((movie) => movie._id != _id);
         this.favoritesMovies = this.favoritesMovies.filter(
           (movie) => movie._id != _id
         );
