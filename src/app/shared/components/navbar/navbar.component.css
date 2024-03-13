@@ -6,6 +6,7 @@ mat-toolbar {
     color: rgb(255, 255, 255);
     margin-left: auto;
     margin-right: auto;
+    font-family: 'Glegoo';
 }
 
 .screen{
@@ -69,9 +70,10 @@ width: 100%;
 }
 
 .expanded-menu-container{
-   background-color: #3f51b5; 
+   background-color: #000000; 
     width: 110%;
     text-align: end;
+    font-size: 'Glegoo';
 }
 .expanded-menu-container mat-list{
     list-style: none;
@@ -84,7 +86,7 @@ width: 100%;
 .expanded-menu-container a{
      text-decoration: none; 
      color: white;
-
+     font-family: 'Glegoo';
 }
 
 .loggedin-expanded-menu-container {
@@ -116,9 +118,11 @@ width: 100%;
 .button-links-container a:hover::before {
     transform-origin: left;
     transform: scaleX(1);
-  }
-  
+}
 
+mat-list {
+    text-align: center;
+}
 
 @media only screen and (max-width: 600px) {
     .button-links-container{
