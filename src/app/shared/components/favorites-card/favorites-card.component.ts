@@ -15,6 +15,9 @@ export class FavoritesCardComponent {
   description: string = '';
   hoverState: boolean = false;
 
+  viewportWidth: number = window.innerWidth;
+
+
   constructor() {}
 
   addDescription(item: any) {
@@ -44,9 +47,13 @@ export class FavoritesCardComponent {
     this.hoverState = false;
   }
   areButtonsVisible(): boolean {
+    if(this.viewportWidth<= 1024){
+      return true;
+    }
     return this.hoverState;
   }
   openItem(item: any) {
+    this.hoverState = false;
     this.sendItemFavoriteEvent.emit(item);
   }
 }
