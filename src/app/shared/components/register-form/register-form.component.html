@@ -1,30 +1,30 @@
 <div class="head-icon">
     <h1>Join us!</h1>
 </div>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form id="register-form" [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" color="accent">
         <mat-label>Username</mat-label>
         <input matInput type="text" formControlName="userName">
         <button mat-icon-button matSuffix >
             <mat-icon>person</mat-icon>
           </button>
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" color="accent">
         <mat-label>Email</mat-label>
         <input matInput type="email" formControlName="email">
         <button mat-icon-button matSuffix >
             <mat-icon>mail</mat-icon>
           </button>
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" color="accent">
         <mat-label>Password</mat-label>
         <input  matInput [type]="hide ? 'password' : 'text'" formControlName="password">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
     </mat-form-field>
-    <button mat-raised-button class="submit" color="primary" type="submit">
+    <button mat-raised-button class="submit" color="accent" type="submit">
         <mat-icon>person_add_alt</mat-icon>
         Register
     </button>

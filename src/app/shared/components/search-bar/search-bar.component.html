@@ -1,11 +1,11 @@
 <form id="search-form" (submit)="onSubmit()">
 
-    <mat-form-field appearance="outline" >
+    <mat-form-field appearance="outline" color="accent">
       <mat-label>Title</mat-label>
-      <input matInput type="text" name="title" color="red" [(ngModel)]="title"  #titleInput="ngModel">
+      <input matInput type="text" name="title"  [(ngModel)]="title"  #titleInput="ngModel">
     </mat-form-field>
   
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" color="accent">
       <mat-label>Type</mat-label>
       <mat-select [(ngModel)]="type" [ngModelOptions]="{standalone: true}">
         <mat-option *ngFor="let type of types" [value]="type.value">
@@ -14,7 +14,7 @@
       </mat-select>
     </mat-form-field>
   
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" color="accent">
       <mat-label>Year (optional)</mat-label>
       <input matInput placeholder="Blank for all years" type="text" name="year" [(ngModel)]="year" pattern="[0-9]{4}">
       <mat-hint>*4 digit number</mat-hint>

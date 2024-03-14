@@ -3,15 +3,15 @@
 
     <h1>Open the door</h1>
 </div>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline" >
+<form id="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" color="accent">
         <mat-label>Email</mat-label>
         <input matInput type="email" formControlName="email">
         <button mat-icon-button matSuffix >
             <mat-icon>mail</mat-icon>
           </button>
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" color="accent">
         <mat-label>Password</mat-label>
         <input  matInput [type]="hide ? 'password' : 'text'" formControlName="password">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -19,7 +19,7 @@
           </button>
     </mat-form-field>
     <span class="not-register-text">Not registered yet?</span><a routerLink="/register">Sign up here</a>
-    <button mat-raised-button class="submit" color="primary" type="submit">
+    <button mat-raised-button class="submit" color="accent" type="submit">
         <mat-icon>login</mat-icon>Login
     </button>
 </form>
