@@ -36,6 +36,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MovieDialogComponent } from './components/movie-dialog/movie-dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import {MatSortModule} from '@angular/material/sort';
 
 
 
@@ -56,7 +57,8 @@ const materialModules = [
   MatChipsModule,
   MatTooltipModule,
   MatProgressBarModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSortModule
 ]
 
 
