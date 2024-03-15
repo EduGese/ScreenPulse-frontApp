@@ -4,7 +4,6 @@ import { Observable, catchError, map, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment.development';
-import { OmdbResponse } from '../../models/omdbResponse.model';
 import { Movie } from '../../models/movie.model';
 
 @Injectable({

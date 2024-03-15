@@ -21,6 +21,9 @@ export class SearchComponent {
   year: string = '';
   results: Movie[] = [];
 
+   /*Pagination atributes */
+   page: number = 1;
+   pageSize: number = 10;
 
   types:any[] = [
     {value: 'movie', viewValue: 'Movie'},
@@ -61,6 +64,7 @@ export class SearchComponent {
       next:(response)=>{
         response && response.length>0 ? this.results = response || [] : this.toastrService.error('No results found', 'Search error')
         type = type == '' ? 'all' : type;
+        this.page = 1;
       },
       error:(error)=>{
         this.toastrService.error(error.message, 'Major error');

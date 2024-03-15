@@ -48,6 +48,39 @@ app-search-bar {
   width: 80%;
   padding-bottom: 30px;
 }
+/* Pagination */
+.pagination-container{
+width: 10px;
+}
+ngb-pagination ::ng-deep a {
+  color: #f5cf3d !important;
+  background-color: red;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link {
+  border-color: #f5cf3d;
+  background-color: rgba(177, 24, 24, 0);
+  color: #f5cf3d !important;
+  z-index: 1 !important;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link:focus,
+.page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem dimgrey;
+  color: #f5cf3d !important;
+  z-index: 1;
+}
+
+ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem dimgrey;
+  color: #f5cf3d !important;
+  z-index: 1;
+}
+
+ngb-pagination ::ng-deep ul>li:not(.active)>a {
+  background-color: rgba(255, 0, 0, 0);
+  color: #f5cf3d !important;
+}
 
 @media only screen and (max-width: 601px) {
   app-carousel {
