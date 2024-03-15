@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input,  OnInit,  Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input,  OnChanges,  OnInit,  Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -8,7 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './movie-results-table.component.html',
   styleUrls: ['./movie-results-table.component.css'],
 })
-export class MovieResultsTableComponent implements AfterViewInit, OnInit {
+export class MovieResultsTableComponent implements AfterViewInit, OnChanges {
   @Input() results!: any[];
   @Output() sendItem = new EventEmitter<any>();
   @Output() sendItem2 = new EventEmitter<any>();
@@ -18,10 +18,17 @@ export class MovieResultsTableComponent implements AfterViewInit, OnInit {
 
   
   constructor() {}
-
-  ngOnInit(): void {
-    this.dataSource.data = this.results || [];
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['results'] && changes['results'].currentValue) {
+      this.dataSource.data = changes['results'].currentValue || [];
+    }
   }
+
+
+  // ngOnInit(): void {
+  //   this.dataSource.data = this.results || [];
+  //   console.log('Resultados en la tabla-->',this.results);
+  // }
   @ViewChild(MatSort) sort!: MatSort;
   
   ngAfterViewInit() {

@@ -44,6 +44,7 @@ export class SearchComponent {
 
 
   onSubmit(info: any){
+    console.log('Querie de busqueda',info);
     let {title, type, year} = info;
     type = type=== 'all' ? '' : type;
 
@@ -57,18 +58,19 @@ export class SearchComponent {
       return; 
     }
 
-    this.OmdbService.getMovies(title, type, year).subscribe(
-      (response)=>{
+    this.OmdbService.getMovies(title, type, year).subscribe({
+      next:(response)=>{
         //Handdle responses with no movies
         console.log('Searched movies',response)
         response.Error ? this.toastrService.error(response.Error, 'Search error') : this.results = response.Search || [];// asign [] in case response is undefined
         type = type == '' ? 'all' : type;
+        console.log('this.results',this.results)
       },
-      (error)=>{
+      error:(error)=>{
         //Handdle bad responses
         this.toastrService.error(error.message, 'Major error');
       }
-    )
+  })
   }
  
 
