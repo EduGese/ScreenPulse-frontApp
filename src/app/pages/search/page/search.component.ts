@@ -20,6 +20,7 @@ export class SearchComponent {
   type: string = 'movie';
   year: string = '';
   results: Movie[] = [];
+  userSearch: boolean = false;
 
    /*Pagination atributes */
    page: number = 1;
@@ -47,6 +48,7 @@ export class SearchComponent {
 
 
   onSubmit(info: any){
+    this.userSearch = true;
     let {title, type, year} = info;
     type = type=== 'all' ? '' : type;
 
@@ -65,6 +67,7 @@ export class SearchComponent {
         response && response.length>0 ? this.results = response || [] : this.toastrService.error('No results found', 'Search error')
         type = type == '' ? 'all' : type;
         this.page = 1;
+        this.userSearch = false;
       },
       error:(error)=>{
         this.toastrService.error(error.message, 'Major error');

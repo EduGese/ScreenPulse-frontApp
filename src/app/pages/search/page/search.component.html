@@ -35,6 +35,12 @@
 </div>
 
 
+<ng-container *ngIf="results.length == 0 && userSearch">
+  <div>
+  <h1>Loading, please wait</h1>
+  <mat-progress-bar mode="indeterminate" color="accent">Loading</mat-progress-bar>
+</div>
+</ng-container>
 <div class="table" *ngIf="results.length == 0">
   <app-search-cover></app-search-cover>
 </div>
