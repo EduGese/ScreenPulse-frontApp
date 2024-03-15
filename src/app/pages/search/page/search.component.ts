@@ -44,7 +44,6 @@ export class SearchComponent {
 
 
   onSubmit(info: any){
-    console.log('Querie de busqueda',info);
     let {title, type, year} = info;
     type = type=== 'all' ? '' : type;
 
@@ -61,10 +60,8 @@ export class SearchComponent {
     this.OmdbService.getMovies(title, type, year).subscribe({
       next:(response)=>{
         //Handdle responses with no movies
-        console.log('Searched movies',response)
         response.Error ? this.toastrService.error(response.Error, 'Search error') : this.results = response.Search || [];// asign [] in case response is undefined
         type = type == '' ? 'all' : type;
-        console.log('this.results',this.results)
       },
       error:(error)=>{
         //Handdle bad responses
@@ -72,7 +69,6 @@ export class SearchComponent {
       }
   })
   }
- 
 
   addToFavories(item: any) {
     if(!this.authService.isLoggedIn()){
@@ -93,43 +89,5 @@ export class SearchComponent {
 
   openMovie(movie:any){
     this.dialogService.openMovie(window.innerWidth,movie);
-    // let dialogHeight = '90%';
-    // let dialogWidth = '80%';
-    // if(window.innerWidth >600 && window.innerWidth <800){
-    //   dialogHeight = '85%';
-    //   dialogWidth = '70%';
-    // }
-    // if(window.innerWidth >800){
-    //   dialogHeight = '85%';
-    //   dialogWidth = '85%';
-    // }
-    // this.OmdbService.getMovieInfo(movie.imdbID).subscribe({
-    //   next: (response) => {
-    //     const movieAndResponse = {
-    //       movie: movie,
-    //       response: response,
-    //     };
-    //     const dialogRef = this.dialog.open(MovieDialogComponent, {
-    //       data: movieAndResponse,
-    //       height: dialogHeight,
-    //       width: dialogWidth,
-    //       enterAnimationDuration: '500ms',
-    //       exitAnimationDuration: '500ms',
-    //       autoFocus: false,
-    //     });
-    //     dialogRef.afterOpened().subscribe(() => {
-    //       const imgElement = document.querySelector(
-    //         '.poster img'
-    //       ) as HTMLElement;
-    //       if (imgElement) {
-    //         imgElement.focus();
-    //       }
-    //     });
-    //   },
-    //   error: (error) => {
-    //     this.toastrService.error(error.error.message);
-    //   },
-    // });
-   
   }
 }

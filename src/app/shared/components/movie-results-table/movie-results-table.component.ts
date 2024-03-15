@@ -24,11 +24,6 @@ export class MovieResultsTableComponent implements AfterViewInit, OnChanges {
     }
   }
 
-
-  // ngOnInit(): void {
-  //   this.dataSource.data = this.results || [];
-  //   console.log('Resultados en la tabla-->',this.results);
-  // }
   @ViewChild(MatSort) sort!: MatSort;
   
   ngAfterViewInit() {
