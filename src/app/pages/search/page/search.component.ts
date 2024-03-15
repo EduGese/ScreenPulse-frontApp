@@ -59,12 +59,10 @@ export class SearchComponent {
 
     this.OmdbService.getMovies(title, type, year).subscribe({
       next:(response)=>{
-        //Handdle responses with no movies
-        response.Error ? this.toastrService.error(response.Error, 'Search error') : this.results = response.Search || [];// asign [] in case response is undefined
+        response && response.length>0 ? this.results = response || [] : this.toastrService.error('No results found', 'Search error')
         type = type == '' ? 'all' : type;
       },
       error:(error)=>{
-        //Handdle bad responses
         this.toastrService.error(error.message, 'Major error');
       }
   })

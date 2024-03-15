@@ -14,7 +14,7 @@ export class OmdbService {
 
   constructor(private http: HttpClient) { }
 
-  getMovies(title:string, type:string, year:string):Observable<OmdbResponse>{
+  getMovies(title:string, type:string, year:string):Observable<Movie[]>{
     const body = {
       s: title,
       type: type,
