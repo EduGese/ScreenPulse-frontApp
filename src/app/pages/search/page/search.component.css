@@ -7,8 +7,9 @@
 h1 {
   text-align: center;
   padding: 20px;
-  color: #fafafa;
+  color:#f5cf3d;
   font-family: 'Glegoo';
+  font-size: 30px;
 }
 
 .search-container {
