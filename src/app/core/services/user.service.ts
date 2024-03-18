@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, firstValueFrom } from 'rxjs';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/shared/models/user.model';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -12,7 +13,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-register(formData: any): Observable<any>{//Crear interface user
+register(formData: User): Observable<any>{
   const body = formData;
   const httpOptions = {
     headers: new HttpHeaders({
@@ -22,7 +23,7 @@ register(formData: any): Observable<any>{//Crear interface user
   return this.http.post<any>(`${this.baseUrl}/register`, body, httpOptions);
   
 }
-login(formData: any): Observable<any>{//Crear interface user
+login(formData: User): Observable<any>{
   const body = formData;
   const httpOptions = {
     headers: new HttpHeaders({

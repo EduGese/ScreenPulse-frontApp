@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
-import { RegisterFormData } from 'src/app/shared/models/registerFormData.model';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +15,7 @@ export class RegisterComponent {
     private router: Router, 
     private toastrService: ToastrService) {}
 
-  getRegister(formData: RegisterFormData) {
+  getRegister(formData: User) {
 
     this.userService.register(formData).subscribe({
       next: (data) => {

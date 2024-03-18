@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { LoginFormData } from 'src/app/shared/models/loginFormData.mode';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent {
     private toastrService: ToastrService
     ) {}
 
-  login(formData: LoginFormData) {
+  login(formData: User) {
     this.userService.login(formData).subscribe({
       next: (data) => {
         this.authService.setAuthToken(data.token);
