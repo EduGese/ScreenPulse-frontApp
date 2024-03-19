@@ -15,7 +15,7 @@ export class OmdbService {
 
   getMovies(title:string, type:string, year:string):Observable<Movie[]>{
     const body = {
-      s: title,
+      s: title.trim(),
       type: type,
       y: year,
     };
