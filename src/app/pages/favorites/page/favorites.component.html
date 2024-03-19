@@ -11,7 +11,7 @@
   <ng-container *ngIf="favorites.length > 0 ">
     <div class="all-favorites-container">
       <h2>All your collection</h2>
-      <ngb-pagination [(page)]="page" [collectionSize]="favorites.length" [pageSize]="pageSize" [rotate]="true"
+      <ngb-pagination [(page)]="page" [collectionSize]="favorites.length" [maxSize]="2" [pageSize]="pageSize" [rotate]="true"
         [ellipses]="true" [boundaryLinks]="true" size="sm"></ngb-pagination>
       <h3>Total: {{ getCollectionLength(favorites) }}</h3>
       <!-- Sorting -->
@@ -44,7 +44,7 @@
             (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
         </ng-container>
       </div>
-      <ngb-pagination [(page)]="page" [collectionSize]="favorites.length" [pageSize]="pageSize" [rotate]="true"
+      <ngb-pagination [(page)]="page" [collectionSize]="favorites.length" [maxSize]="2" [pageSize]="pageSize" [rotate]="true"
         [ellipses]="true" [boundaryLinks]="true" size="sm"></ngb-pagination>
     </div>
   </ng-container>

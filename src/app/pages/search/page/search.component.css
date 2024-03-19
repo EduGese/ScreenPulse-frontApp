@@ -44,11 +44,12 @@ app-search-bar {
   padding: 20px;
 }
 
-.table {
+.table, .search-cover-container {
   margin: 20px auto 20px auto;
   width: 80%;
   padding-bottom: 30px;
 }
+
 /* Pagination */
 .pagination-container{
 width: 10px;
@@ -95,6 +96,11 @@ ngb-pagination ::ng-deep ul>li:not(.active)>a {
   .search-container {
     display: flex;
 
+  }
+  .table {
+    margin: 20px 2px 20px 2px;
+    width: 80%;
+    padding-bottom: 30px;
   }
 
 
