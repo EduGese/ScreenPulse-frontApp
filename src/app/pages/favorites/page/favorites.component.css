@@ -55,7 +55,6 @@ mat-hint {
 }
 
 .all-favorites-card {
-    max-width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -110,7 +109,18 @@ ngb-pagination ::ng-deep ul>li:not(.active)>a {
     background-color: rgba(255, 0, 0, 0);
     color: #f5cf3d !important;
 }
-
+/*Scroll*/
+.left-arrow-left-all, .right-arrow-right-all{
+    display: none;
+}
+.all-favorites-card-and-arrows{
+    width: 100%;
+}
+.type-favorites-card-with-arrows{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 /*Favorites movies*/
 .type-favorites-card{
     display:flex;
@@ -194,6 +204,14 @@ ngb-pagination ::ng-deep ul>li:not(.active)>a {
     .all-favorites-card::-webkit-scrollbar, .type-favorites-card::-webkit-scrollbar {
         display: none;
       }
+      .left-arrow-left-all, .right-arrow-right-all{
+        display:inline-block;
+    }
+    .all-favorites-card-and-arrows{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
     
 }
 @media only screen and (max-width: 1024px) {
