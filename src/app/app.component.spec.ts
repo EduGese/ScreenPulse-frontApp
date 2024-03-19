@@ -22,9 +22,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'controlli-challenge'`, () => {
+  it(`should have as title 'ScreenPulse'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('controlli-challenge');
+    expect(app.title).toEqual('ScreenPulse');
   });
 });
