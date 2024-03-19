@@ -24,13 +24,13 @@
 
 
 <div class="table" *ngIf="results.length>0">
-  <ngb-pagination [(page)]="page" [collectionSize]="results.length" [maxSize]="8" [pageSize]="pageSize" [rotate]="true"
+  <ngb-pagination [(page)]="page" [collectionSize]="results.length" [maxSize]="2" [pageSize]="pageSize" [rotate]="true"
     [ellipses]="true" [boundaryLinks]="true" size="sm"></ngb-pagination>
 
   <app-movie-results-table [results]="results | slice:(page-1) * pageSize : page * pageSize"
     (sendItem2)="openMovie($event)" (sendItem)="addToFavories($event)"></app-movie-results-table>
 
-  <ngb-pagination [(page)]="page" [collectionSize]="results.length" [maxSize]="8" [pageSize]="pageSize" [rotate]="true"
+  <ngb-pagination [(page)]="page" [collectionSize]="results.length" [maxSize]="2" [pageSize]="pageSize" [rotate]="true"
     [ellipses]="true" [boundaryLinks]="true" size="sm"></ngb-pagination>
 </div>
 
@@ -41,6 +41,6 @@
   <mat-progress-bar mode="indeterminate" color="accent">Loading</mat-progress-bar>
 </div>
 </ng-container>
-<div class="table" *ngIf="results.length == 0">
+<div class="search-cover-container" *ngIf="results.length == 0">
   <app-search-cover></app-search-cover>
 </div>

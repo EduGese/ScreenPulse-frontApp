@@ -14,19 +14,6 @@ h3{
     color: #ffffffc2 ;
     font-family: 'Glegoo';
 }
-
-/* .search-bar-container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    background: #000000;
-    background: -moz-linear-gradient(top, #000000 0%, #f5d03d6e 50%, #000000 100%);
-    background: -webkit-linear-gradient(top, #000000 0%, #f5d03d6e 50%, #000000 100%);
-    background: linear-gradient(to bottom, #000000 0%, #f5d03d6e 50%, #000000 100%);
-    padding-left: 25%;
-    padding-right: 25%;
-} */
-
 app-search-bar {
     margin: 0 auto;
     width: 50%;
@@ -79,6 +66,7 @@ mat-hint {
     background-color: #3f51b500;
     padding-bottom: 5px;
     border-radius: 10px;
+    white-space: nowrap;
 }
 
 .img-container {
@@ -141,18 +129,18 @@ ngb-pagination ::ng-deep ul>li:not(.active)>a {
     color: #f5cf3d;
 }
 /* Scroll bar */
-  ::-webkit-scrollbar {
+  .all-favorites-card::-webkit-scrollbar, .type-favorites-card::-webkit-scrollbar {
     width: 5px;
   }
-  ::-webkit-scrollbar-track {
+  .all-favorites-card::-webkit-scrollbar-track, .type-favorites-card::-webkit-scrollbar-track {
     border-radius: 10px; 
   }
-  ::-webkit-scrollbar-thumb {
+  .all-favorites-card::-webkit-scrollbar-thumb, .type-favorites-card::-webkit-scrollbar-thumb {
     background: transparent; 
     border-radius: 10px;
     border: 1px solid #f5cf3d;
   }
-  ::-webkit-scrollbar-thumb:hover {
+  .all-favorites-card::-webkit-scrollbar-thumb:hover, .type-favorites-card::-webkit-scrollbar-thumb:hover {
     background: #f5cf3d; 
   }
   /*searching*/
@@ -203,6 +191,9 @@ ngb-pagination ::ng-deep ul>li:not(.active)>a {
         overflow-x: scroll;
 
     }
+    .all-favorites-card::-webkit-scrollbar, .type-favorites-card::-webkit-scrollbar {
+        display: none;
+      }
     
 }
 @media only screen and (max-width: 1024px) {
