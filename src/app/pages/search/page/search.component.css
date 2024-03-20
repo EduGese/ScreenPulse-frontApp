@@ -1,16 +1,31 @@
+
+/*-------search-container-section--------*/
+.search-container-section{
+  min-height: 100vh;
+}
 .title {
   color: #ffffff;
   font-weight: 300;
   background-color: rgba(0, 0, 0, 0);
 }
 
-h1 {
+.title h3 {
   text-align: center;
   padding: 20px;
   color:#f5cf3d;
   font-family: 'Glegoo';
-  font-size: 30px;
+  font-size: 20px;
 }
+.title h4{
+  text-align: center;
+  color: #e7e4d8d5;
+  font-family: 'Brush Script MT', cursive;
+  font-size: 20px;
+}
+.title img{
+  width: 100px;
+}
+
 
 .search-container {
   display: grid;
@@ -21,19 +36,9 @@ h1 {
   background: -webkit-linear-gradient(top, #000000 0%, #f5d03d6e 50%, #000000 100%);
   background: linear-gradient(to bottom, #000000 0%, #f5d03d6e 50%, #000000 100%);
 }
-
-app-carousel {
-  height: 90%;
-}
-
 .filter-container {
   background-color: #000000;
   text-align: center;
-}
-
-.filter-container h3 {
-  font-family: 'Glegoo';
-  padding: 5px 15px 0 15px;
 }
 
 app-search-bar {
@@ -43,9 +48,13 @@ app-search-bar {
   text-align: center;
   padding: 20px;
 }
-
-.table, .search-cover-container {
-  margin: 20px auto 20px auto;
+.loading-container{
+  text-align: center;
+  color: #f5cf3d;
+}
+/*---------table-section---------*/
+.table-section {
+  margin: 40px auto 20px auto;
   width: 80%;
   padding-bottom: 30px;
 }
@@ -97,7 +106,7 @@ ngb-pagination ::ng-deep ul>li:not(.active)>a {
     display: flex;
 
   }
-  .table {
+  .table-section {
     margin: 20px 2px 20px 2px;
     width: 80%;
     padding-bottom: 30px;
