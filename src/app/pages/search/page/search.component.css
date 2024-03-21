@@ -3,7 +3,10 @@
 .search-container-section{
   min-height: 100vh;
 }
-
+.search-container-section h3{
+  text-align: center;
+  margin-top: 5%;
+}
 .float-search-button{
   position:fixed;
   right: 10px;
@@ -30,6 +33,9 @@
   color: #e7e4d8d5;
   font-family: 'Brush Script MT', cursive;
   font-size: 20px;
+}
+.title h3{
+  font-family: 'Glegoo';
 }
 .title img{
   width: 100px;
@@ -72,11 +78,14 @@ app-search-bar {
   position: relative;
   top: 150px;
 }
-
-/* Pagination */
-.pagination-container{
-width: 10px;
+.table-section h1{
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Glegoo' ; 
+  /* border-bottom: 1px solid #f5cf3d ; */
 }
+/* Pagination */
+
 ngb-pagination ::ng-deep a {
   color: #f5cf3d !important;
   background-color: red;
@@ -121,7 +130,7 @@ ngb-pagination ::ng-deep ul>li:not(.active)>a {
 
   }
   .table-section {
-    margin: 20px 2px 20px 2px;
+    margin: 20px auto 20px auto;
     width: 80%;
     padding-bottom: 30px;
   }

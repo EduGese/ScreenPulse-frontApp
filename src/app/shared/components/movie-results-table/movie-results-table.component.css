@@ -5,13 +5,18 @@
     margin-right: auto;
     text-align: center;
     background-color: black;
+    border-bottom: 1px solid #f5d03d7a ;
+    margin-bottom: 10px;
+    
 }
+
 td{
     font-size: 20px;
     color:#ffffff;
     background-color: #000000;
     font-family: 'Glegoo';
     text-align: start;
+    border-bottom:1px solid #f5d03d7a  ;
 }
 td img{
     margin-top: 10px;
@@ -21,12 +26,18 @@ td img{
 th{
     font-size:25px;
     font-family: 'Glegoo';
-    color: #FDFF00;
+    color: #f5cf3d ;
     text-align: center;
     height: max-content;
+    border-bottom: 2px solid #f5d03d7a;
+    border-top: 2px solid #f5d03d7a;
+    background-color: #f5d03d7a;
+}
+.title-cell{
+    max-width: 20%;
 }
 mat-icon{
-    color: #FDFF00;
+    color: #f5cf3d ;
 }
 img{
     width: 150px;
