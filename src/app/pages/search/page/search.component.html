@@ -1,46 +1,47 @@
-<div class="header">
-  <div class="title">
-    <h1>
-      Find movies, series or videogames in our huge data base
-      <!-- <mat-icon>search</mat-icon> -->
-    </h1>
+<button mat-mini-fab color="accent" class="float-search-button" (click)="formSearchFocus()">
+  <mat-icon>search</mat-icon>
+</button>
+<section>
+  <app-search-cover></app-search-cover>
+</section>
 
+<section class="search-container-section">
+  <div class="title">
+    <h3>
+      Use the search bar to find by title, type, and year in our huge database.
+    </h3>
+    <h4 tabindex="0" >Powered by <img src="../../../../assets/images/omdb_api.png" alt="omdb_api logo"> <img
+        src="../../../../assets/images/imdb2.png" alt="imdb logo"></h4>
   </div>
 
   <div class="search-container">
-    <!-- <div> -->
     <app-carousel (sendItemCarousel)="openMovie($event)"></app-carousel>
-    <!-- </div> -->
-    <div class="filter-container">
-      <!-- <h3> Use this search bar to find by title, type, and year.
-      </h3> -->
+    <div class="filter-container" #myinput>
       <app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar>
     </div>
   </div>
+  <ng-container *ngIf=" userSearch">
+    <div class="loading-container">
+      <h1>Loading, please wait. First request may take up to 50 seconds</h1>
+      <mat-progress-bar mode="indeterminate" color="accent">Loading</mat-progress-bar>
+    </div>
+  </ng-container>
+</section>
 
-</div>
 
 
-
-
-<div class="table" *ngIf="results.length>0">
+<section class="table-section" *ngIf="results.length>0">
+  
   <ngb-pagination [(page)]="page" [collectionSize]="results.length" [maxSize]="2" [pageSize]="pageSize" [rotate]="true"
     [ellipses]="true" [boundaryLinks]="true" size="sm"></ngb-pagination>
-
+    <span tabindex="0" id="tableFocus">Foco</span>
   <app-movie-results-table [results]="results | slice:(page-1) * pageSize : page * pageSize"
     (sendItem2)="openMovie($event)" (sendItem)="addToFavories($event)"></app-movie-results-table>
 
   <ngb-pagination [(page)]="page" [collectionSize]="results.length" [maxSize]="2" [pageSize]="pageSize" [rotate]="true"
     [ellipses]="true" [boundaryLinks]="true" size="sm"></ngb-pagination>
-</div>
+</section>
 
 
-<ng-container *ngIf="results.length == 0 && userSearch">
-  <div>
-  <h1>Loading, please wait</h1>
-  <mat-progress-bar mode="indeterminate" color="accent">Loading</mat-progress-bar>
-</div>
-</ng-container>
-<div class="search-cover-container" *ngIf="results.length == 0">
-  <app-search-cover></app-search-cover>
-</div>
+
+
