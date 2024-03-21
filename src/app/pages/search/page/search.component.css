@@ -6,7 +6,7 @@
 .float-search-button{
   position:fixed;
   right: 10px;
-  top: 30%;
+  bottom: 10px;
   z-index: 2;
 
 
