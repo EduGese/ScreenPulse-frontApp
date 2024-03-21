@@ -3,6 +3,7 @@
 .search-container-section{
   min-height: 100vh;
 }
+
 .float-search-button{
   position:fixed;
   right: 10px;
@@ -17,12 +18,12 @@
   background-color: rgba(0, 0, 0, 0);
 }
 
-.title h3 {
+.title h1 {
   text-align: center;
   padding: 20px;
   color:#f5cf3d;
   font-family: 'Glegoo';
-  font-size: 20px;
+  font-size: 25px;
 }
 .title h4{
   text-align: center;

@@ -50,24 +50,23 @@ mat-grid-tile{
                 1px -1px 0 #000,
                 -1px -1px 0 #000;
 }
-.info-container-type p{
+.info-container-type p {
   display: inline-block;
   width: 70%;
   font-size: 2.2vh;
   line-height: 2;
   font-family: 'Glegoo';
-  /* background-color: rgba(0, 0, 0, 0.534); */
-  background: linear-gradient(to right, #a4a4a400 0%, #000000 40%, #000000 60%, #a4a4a400 100%);
+  background: -moz-radial-gradient(center, #000000 0%, #c5c5c500 100%);
+  background: -webkit-radial-gradient(center, #000000 0%, #c5c5c500 100%);
+  background: radial-gradient(ellipse at center, #000000 0%, #c5c5c500 100%);
+  /* background: linear-gradient(to right, #a4a4a400 0%, #000000 40%, #000000 60%, #a4a4a400 100%); */
   border-radius: 10px;
   padding: 10px;
   color: #e7e4d8d5;
   font-style: italic;
   font-weight: 100;
 }
-/* .info-container-type{
-  min-width: 33.33%;
- 
-} */
+
 mat-icon, p{
   color: white;
   text-shadow: -1px 1px 0 #000,
