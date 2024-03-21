@@ -1,11 +1,12 @@
 import { ToastrService } from 'ngx-toastr';
 import { OmdbService } from 'src/app/shared/services/omdb/omdb.service';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
+import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
 
 
 
@@ -15,26 +16,24 @@ import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-
   title: string ='';
   type: string = 'movie';
   year: string = '';
   results: Movie[] = [];
   userSearch: boolean = false;
-
-   /*Pagination atributes */
-   page: number = 1;
-   pageSize: number = 10;
-
   types:any[] = [
     {value: 'movie', viewValue: 'Movie'},
     {value: 'series', viewValue: 'Serie'},
     {value: 'game', viewValue: 'Game'},
     {value: 'all', viewValue: 'All'}
   ];
-
- 
-
+  
+ /*Pagination atributes */
+   page: number = 1;
+   pageSize: number = 10;
+ /*Focus*/ 
+   @ViewChild(SearchBarComponent)
+  SearchComponent!: SearchBarComponent | null;
 
   constructor(
     private OmdbService: OmdbService, 
@@ -42,10 +41,15 @@ export class SearchComponent {
     private favoritesService: FavoritesService,
     private authService: AuthService,
     private router: Router,
-    private dialogService: DialogService,
+    private dialogService: DialogService
     ){}
-  
 
+    
+  formSearchFocus() {
+    setTimeout(() => {
+        this.SearchComponent?.searchFormFocus?.nativeElement.focus();
+    });
+  }
 
   onSubmit(info: any){
     this.userSearch = true;
@@ -54,11 +58,13 @@ export class SearchComponent {
 
     if(title == '') {
       this.toastrService.error('Field Title required');
+      this.userSearch = false;
       return; 
     }
 
     if(year && !/^[0-9]{4}$/.test(year)) {
       this.toastrService.error('Year must be a 4 digit number');
+      this.userSearch = false;
       return; 
     }
 
@@ -68,6 +74,10 @@ export class SearchComponent {
         type = type == '' ? 'all' : type;
         this.page = 1;
         this.userSearch = false;
+        setTimeout(() => {
+          document.getElementById('tableFocus')?.focus();
+        });
+        
       },
       error:(error)=>{
         this.toastrService.error(error.message, 'Major error');

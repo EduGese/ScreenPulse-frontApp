@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-search-bar',
@@ -13,6 +13,7 @@ export class SearchBarComponent {
   @Input()types: any[] =[];
 
   @Output() onSubmitEvent = new EventEmitter<any>();
+  @ViewChild('searchFormFocus',) searchFormFocus!: ElementRef<HTMLInputElement>;
 
 
   onSubmit(){
