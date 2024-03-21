@@ -70,14 +70,17 @@ export class SearchComponent {
 
     this.OmdbService.getMovies(title, type, year).subscribe({
       next:(response)=>{
-        response && response.length>0 ? this.results = response || [] : this.toastrService.error('No results found', 'Search error')
+        if(response && response.length>0 ){
+          this.results = response || [];
+          setTimeout(() => {
+            document.getElementById('tableFocus')?.focus();
+          });
+        }else{
+          this.toastrService.error('No results found', 'Search error');
+        }
         type = type == '' ? 'all' : type;
         this.page = 1;
         this.userSearch = false;
-        setTimeout(() => {
-          document.getElementById('tableFocus')?.focus();
-        });
-        
       },
       error:(error)=>{
         this.toastrService.error(error.message, 'Major error');
