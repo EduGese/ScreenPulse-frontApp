@@ -23,6 +23,9 @@ export class SearchBarComponent {
   }
 
   onSubmit(){
+    if(this.searchForm.invalid){
+      return;
+    }
     this.onSubmitEvent.emit(this.searchForm.value);
   
   }
