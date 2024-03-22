@@ -8,11 +8,11 @@ mat-toolbar {
     margin-right: auto;
     font-family: 'Glegoo';
 }
-
 .screen{
     color: #F5CF3D;
+    font-weight: bold;
 }
-.movieIcon{
+.icon{
     color: #ffffff;
 }
 .spacer{
