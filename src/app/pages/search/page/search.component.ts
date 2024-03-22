@@ -31,6 +31,7 @@ export class SearchComponent {
  /*Pagination atributes */
    page: number = 1;
    pageSize: number = 10;
+
  /*Focus*/ 
    @ViewChild(SearchBarComponent)
   SearchComponent!: SearchBarComponent | null;
@@ -54,20 +55,7 @@ export class SearchComponent {
   onSubmit(info: any){
     this.userSearch = true;
     let {title, type, year} = info;
-    type = type=== 'all' ? '' : type;
-
-    if(title == '') {
-      this.toastrService.error('Field Title required');
-      this.userSearch = false;
-      return; 
-    }
-
-    if(year && !/^[0-9]{4}$/.test(year)) {
-      this.toastrService.error('Year must be a 4 digit number');
-      this.userSearch = false;
-      return; 
-    }
-
+    type = type === 'all' ? '' : type;
     this.OmdbService.getMovies(title, type, year).subscribe({
       next:(response)=>{
         if(response && response.length>0 ){
