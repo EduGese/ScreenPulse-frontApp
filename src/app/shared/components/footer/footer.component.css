@@ -4,15 +4,19 @@
     width: 100%;
     text-align: center;
     color: #F5CF3D;
-    display: flex;
-    justify-content: center;
 }
-.footer div {
+.text-container {
     display: flex; 
+    flex-direction: row;
     align-items: center;  
+    justify-content: center;
   }
-.copyright{
-    font-size: 20px;
+.text{
+    font-size: 16px;
     font-weight:500;
     margin-right: 8px;
+    font-family: 'Glegoo';
+}
+mat-icon{
+    font-size: 16px;
 }
