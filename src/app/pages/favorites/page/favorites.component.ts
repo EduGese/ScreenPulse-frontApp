@@ -45,6 +45,7 @@ export class FavoritesComponent implements OnInit {
   @ViewChild('scrlGames') scrlGames: ElementRef | undefined;
   scrollX: number = 0;
   scrollEnd: boolean = false;
+  windowScrolled = false;
 
   types: any[] = [
     { value: 'movie', viewValue: 'Movie' },
@@ -69,6 +70,12 @@ export class FavoritesComponent implements OnInit {
       this.calculatePageSize();
     });
     this.userName = this.authService.getUserName();
+    window.addEventListener('scroll', () => {
+      this.windowScrolled = window.scrollY !== 0;
+    });
+  }
+  scrollToTop() {
+    window.scrollTo(0, 0);
   }
   scrollable(collection:string): boolean{
     let element = this.scrlMovies;

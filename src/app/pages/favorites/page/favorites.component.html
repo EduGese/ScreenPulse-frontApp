@@ -1,10 +1,8 @@
 <ng-container *ngIf="favoritesLoaded; else noFavoritesLoaded" class="favorites-loaded">
 
-  <div class="title">
-    <h1>
-      <span class="center-content">
-         {{userName}}'s  Collection
-      </span>
+  <div class="title" id="titleAnchor">
+    <h1 >
+      <span class="user-name">{{ userName }}</span> 's favorites collection
     </h1>
   </div>
   
@@ -223,6 +221,11 @@
       </div>
   </ng-container>
    
+  <button mat-mini-fab color="accent" aria-label="Back to top button" class="back-top-button" (click)="scrollToTop()" [ngClass]="{ 'show-scrollTop': windowScrolled }">
+    <mat-icon>
+      arrow_upward
+    </mat-icon>
+  </button>
 
 </ng-container>
 
