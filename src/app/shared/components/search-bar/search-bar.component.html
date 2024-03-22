@@ -1,13 +1,16 @@
-<form id="search-form" (submit)="onSubmit()">
+<form id="search-form" [formGroup]="searchForm" (submit)="onSubmit()">
 
     <mat-form-field appearance="outline" color="accent">
       <mat-label>Title</mat-label>
-      <input matInput type="text" name="title"  [(ngModel)]="title"  #titleInput="ngModel" #searchFormFocus>
+      <input matInput formControlName="title" #searchFormFocus>
+      <mat-error *ngIf="searchForm.get('title')?.invalid && searchForm.get('title')?.touched">
+        Title is required
+      </mat-error>
     </mat-form-field>
   
     <mat-form-field appearance="outline" color="accent">
       <mat-label>Type</mat-label>
-      <mat-select [(ngModel)]="type" [ngModelOptions]="{standalone: true}">
+      <mat-select formControlName="type">
         <mat-option *ngFor="let type of types" [value]="type.value">
           {{type.viewValue}}
         </mat-option>
@@ -16,8 +19,11 @@
   
     <mat-form-field appearance="outline" color="accent">
       <mat-label>Year (optional)</mat-label>
-      <input matInput placeholder="Blank for all years" type="text" name="year" [(ngModel)]="year" pattern="[0-9]{4}">
+      <input matInput formControlName="year" placeholder="Blank for all years"  pattern="[0-9]{4}">
       <mat-hint>*4 digit number</mat-hint>
+      <mat-error *ngIf="searchForm.get('year')?.invalid && searchForm.get('year')?.touched">
+        Year must be a 4 digit number
+      </mat-error>
     </mat-form-field>
   
     
@@ -27,7 +33,7 @@
       Find
     </button>
   
-    <button mat-raised-button class="big-button" color="accent" (click)="onClear()">
+    <button mat-raised-button class="big-button" color="accent" type="button" (click)="onClear()">
       <mat-icon>clear</mat-icon>
       Clear
     </button>

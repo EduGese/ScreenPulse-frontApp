@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-search-bar',
@@ -7,27 +8,29 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@
 })
 export class SearchBarComponent {
 
-  title: string =''; 
-  type: string ='all'; 
-  year: string =''; 
+  searchForm!: FormGroup;
   @Input()types: any[] =[];
 
   @Output() onSubmitEvent = new EventEmitter<any>();
   @ViewChild('searchFormFocus',) searchFormFocus!: ElementRef<HTMLInputElement>;
 
+  constructor(private formBuilder: FormBuilder) {
+    this.searchForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      type: ['all'],
+      year: ['']
+    });
+  }
 
   onSubmit(){
-    this.onSubmitEvent.emit({
-      title: this.title,
-      type: this.type,
-      year: this.year
-    })
+    this.onSubmitEvent.emit(this.searchForm.value);
+  
   }
 
   onClear(){
-    this.title = '';
-    this.type = 'all';
-    this.year = '';
-  }
+    this.searchForm.reset({
+      type: 'all',
+    });
 
+  }
 }

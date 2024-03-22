@@ -88,7 +88,6 @@ app-search-bar {
 
 ngb-pagination ::ng-deep a {
   color: #f5cf3d !important;
-  background-color: red;
 }
 
 ngb-pagination ::ng-deep .page-item.active .page-link {
