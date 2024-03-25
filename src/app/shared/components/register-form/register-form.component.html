@@ -9,24 +9,35 @@
         <button mat-icon-button matSuffix type="button">
             <mat-icon>person</mat-icon>
           </button>
+          <mat-error>Mandatory field</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" color="accent">
         <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email">
+        <input matInput type="email" formControlName="email" >
         <button mat-icon-button matSuffix type="button">
             <mat-icon>mail</mat-icon>
           </button>
+          <mat-error>Incorrect email format</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" color="accent">
         <mat-label>Password</mat-label>
-        <input  matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+        <input  matInput [type]="hide ? 'password' : 'text'" formControlName="password" pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_\\]).{6,}$">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
+          <mat-hint>Min 6 char incl. letters, numbers and special characters (!$^&=..). </mat-hint>
+          <mat-error>Min 6 char incl. letters, numbers and special characters (!$^&=..).</mat-error>
     </mat-form-field>
-    <button mat-raised-button class="submit" color="accent" type="submit">
-        <mat-icon>person_add_alt</mat-icon>
-        Register
-    </button>
+    <div class="button-container">
+        <button mat-raised-button class="button" color="accent" type="submit">
+            <!-- <mat-icon>person_add_alt</mat-icon> -->
+            <span class="register-text">Register</span>
+        </button>
+        <button mat-raised-button class="button" color="accent" type="button" (click)="onClear()">
+            <mat-icon>clear</mat-icon>
+            Clear
+        </button>
+    </div>
+    
     
 </form>

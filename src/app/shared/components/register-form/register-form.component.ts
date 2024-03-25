@@ -24,5 +24,9 @@ form: FormGroup;
       this.formDataEvent.emit(formData);
     }
   }
+  onClear(){
+    this.form.reset();
+  }
+  
 
 }

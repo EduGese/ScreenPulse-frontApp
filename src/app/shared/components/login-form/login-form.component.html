@@ -10,16 +10,30 @@
         <button mat-icon-button matSuffix type="button">
             <mat-icon>mail</mat-icon>
           </button>
+          <mat-error>Incorrect email format</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" color="accent">
         <mat-label>Password</mat-label>
+        <!-- <input  matInput [type]="hide ? 'password' : 'text'" formControlName="password" pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_\\]).{6,}$"> Pattern desactivada , volver a activar-->
         <input  matInput [type]="hide ? 'password' : 'text'" formControlName="password">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
+          <mat-error>Min 6 char incl. letters, numbers and special characters (!$^&=..).</mat-error>
     </mat-form-field>
     <span class="not-register-text">Not registered yet?</span><a routerLink="/register">Sign up here</a>
-    <button mat-raised-button class="submit" color="accent" type="submit">
-        <mat-icon>login</mat-icon>Login
-    </button>
+    <div class="button-container">
+        <button mat-raised-button class="button" color="accent" type="submit">
+            <mat-icon>login</mat-icon>Login
+        </button>
+        <button mat-raised-button class="button" color="accent" type="button" (click)="onClear()">
+            <mat-icon>clear</mat-icon>
+            Clear
+        </button>
+        <button mat-raised-button class="button guest" color="primary" type="button" matTooltip="Get guest access" (click)="getAccessToGuess()">
+            <mat-icon>lock_open</mat-icon>
+            Guest
+        </button>
+    </div>
+    
 </form>

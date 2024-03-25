@@ -33,15 +33,28 @@ form {
 mat-icon{
     color: #f5cf3d;
 }
+mat-hint{
+    color: #f5d03d7a;
+    font-size: 10px;
+}
 
-.submit {
-    margin: 10px;
-
+.button {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 } 
-.submit mat-icon{
+.button mat-icon{
     color: rgb(0, 0, 0);
+    /* font-size: 12px; */
 }
+.button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5px;
+    
+}
+/* .register-text{
+    font-size: 12px;
+} */
 ::ng-deep #register-form .mdc-notched-outline > * {
     border-color: #f5cf3d !important;
   }
@@ -63,7 +76,13 @@ mat-icon{
 @media only screen and (max-width: 601px){
     form{
         width: 300px;
+        height: 60vh;
         padding-top: 30px;
+        justify-content: space-around;
+    }
+    .button-container{
+        justify-content: space-around;
+        width: 100%;
     }
 }
 
