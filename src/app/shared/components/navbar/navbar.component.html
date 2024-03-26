@@ -54,10 +54,8 @@
 
       <mat-list>
         <mat-list-item (click)="toogleMenu()"><a routerLink="" routerLinkActive="active">Search</a></mat-list-item>
-        <!-- <mat-divider></mat-divider> -->
         <mat-list-item (click)="toogleMenu()"><a routerLink="/favorites"
             routerLinkActive="active">Favorites</a></mat-list-item>
-        <!-- <mat-divider></mat-divider> -->
         <ng-template #blockLogout>
           <div class="loggedout-expanded-menu-container">
 
@@ -66,12 +64,10 @@
                 <a routerLink="/register" routerLinkActive="active">
                   <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="person_add_alt"></mat-icon>
                 </a></mat-list-item>
-              <!-- <mat-divider></mat-divider> -->
               <mat-list-item (click)="toogleMenu()">
                 <a routerLink="/login" routerLinkActive="active"><mat-icon aria-hidden="false" aria-label="movi icon"
                     fontIcon="login"></mat-icon></a>
               </mat-list-item>
-              <!-- <mat-divider></mat-divider> -->
 
             </mat-list>
           </div>

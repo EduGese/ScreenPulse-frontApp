@@ -1,24 +1,6 @@
 <div class="carousel-container">
 	<ngb-carousel #carousel *ngIf="collection" paused="false" [interval]="4000" [showNavigationIndicators]="true" [showNavigationArrows]="true">
 	  <ng-template ngbSlide *ngFor="let collectionIndex of getIndexes();">
-		<!-- <div>
-			<h3 *ngIf="collection[collectionIndex +1].Type == 'movie'">
-				Last movies
-				<mat-icon>movie</mat-icon>
-			</h3>
-			<h3 *ngIf="collection[collectionIndex +1].Type == 'series'">
-				Best Series
-				<mat-icon>
-				live_tv
-				</mat-icon>
-			</h3>
-			<h3 *ngIf="collection[collectionIndex +1].Type == 'game'">
-				Unforgettable Games
-				<mat-icon>
-				sports_esports
-				</mat-icon>
-			</h3>
-		</div> -->
 		<div class="slide-group">
 		  <div class="picsum-img-wrapper">
 			<img [src]="collection[collectionIndex ].Poster" alt="Random slide" (click)="openItem(collection[collectionIndex ])"/>
