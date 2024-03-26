@@ -10,23 +10,25 @@
     <h1>
       Use the search bar to find by title, type, and year in our huge database.
     </h1>
-    <h4 tabindex="0" >Powered by <img src="../../../../assets/images/omdb_api.png" alt="omdb_api logo"> <img
-        src="../../../../assets/images/imdb2.png" alt="imdb logo"></h4> 
-        <h3>* First request might take up to 50 seconds. Please be patient.</h3>
+    <h4 tabindex="0">Powered by <img src="../../../../assets/images/omdb_api.png" alt="omdb_api logo"> <img
+        src="../../../../assets/images/imdb2.png" alt="imdb logo"></h4>
+    <h3>* First request might take up to 50 seconds. Please be patient.</h3>
   </div>
-
+  
   <div class="search-container">
     <app-carousel (sendItemCarousel)="openMovie($event)"></app-carousel>
     <div class="filter-container" #myinput>
       <app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar>
+      <ng-container *ngIf=" userSearch">
+        <div class="loading-container">
+          <h3>Loading, please wait..</h3>
+          <mat-progress-bar mode="indeterminate" color="accent">Loading</mat-progress-bar>
+        </div>
+      </ng-container>
     </div>
+    
   </div>
-  <ng-container *ngIf=" userSearch">
-    <div class="loading-container">
-      <h3>Loading, please wait..</h3>
-      <mat-progress-bar mode="indeterminate" color="accent">Loading</mat-progress-bar>
-    </div>
-  </ng-container> 
+  
  
 </section>
 
