@@ -19,7 +19,7 @@ export class RegisterComponent {
 
     this.userService.register(formData).subscribe({
       next: (data) => {
-        console.log('Registro:', data);
+        this.toastrService.success(`Welcome to ScreenPulse ${data.userName}`,`Succesful registration`, )
         this.router.navigate(['login']);
       },
       error: (error) => {

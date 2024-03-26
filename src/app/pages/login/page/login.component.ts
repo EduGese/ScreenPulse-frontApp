@@ -26,6 +26,7 @@ export class LoginComponent {
         this.authService.setUserMail(data.user.email);
         this.authService.setUserName(data.user.userName);
         this.authService.setUserId(data.user._id);
+        this.toastrService.success(`Welcome, ${data.user.userName}`,`You are logged in`, )
         this.router.navigate(['']);
       },
       error: (error) => {

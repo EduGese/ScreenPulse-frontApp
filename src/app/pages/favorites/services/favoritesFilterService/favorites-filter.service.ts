@@ -8,14 +8,6 @@ export class FavoritesFilterService {
 
   constructor() { }
 
-  // filterByYear(favorites: Movie[], year: string) {
-  //   return favorites.filter(movie => movie.Year === year);
-  // }
-
-  // filterByType(favorites: Movie[], type: string) {
-  //   return favorites.filter(movie => movie.Type === type);
-  // }
-
   filterByTitle(favorites: Movie[], title: string) {
     return favorites  
       .filter(movie => 

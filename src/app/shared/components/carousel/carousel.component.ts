@@ -9,12 +9,6 @@ import { Movie } from '../../models/movie.model';
 })
 export class CarouselComponent {
   
-  // interval="1000";
-  // paused = false;
-	// unpauseOnArrow = false;
-	// pauseOnIndicator = false;
-	// pauseOnHover = true;
-	// pauseOnFocus = true;
   showNavigationArrows = false;
 	showNavigationIndicators = false;
 @Output() sendItemCarousel = new EventEmitter<any>();

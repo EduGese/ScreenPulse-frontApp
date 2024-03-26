@@ -31,7 +31,6 @@ mat-grid-tile{
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-top:10px; */
   margin-bottom: 2%;
 }
 .flex-container{
@@ -59,7 +58,6 @@ mat-grid-tile{
   background: -moz-radial-gradient(center, #000000 0%, #c5c5c500 100%);
   background: -webkit-radial-gradient(center, #000000 0%, #c5c5c500 100%);
   background: radial-gradient(ellipse at center, #000000 0%, #c5c5c500 100%);
-  /* background: linear-gradient(to right, #a4a4a400 0%, #000000 40%, #000000 60%, #a4a4a400 100%); */
   border-radius: 10px;
   padding: 10px;
   color: #e7e4d8d5;
@@ -76,7 +74,6 @@ mat-icon, p{
 }
 .cover{
   background-image: linear-gradient(to bottom, #000000 0%, #a4a4a400 50%, #000000 100%), url("https://i.pinimg.com/originals/d7/81/70/d781702860c7a3ef484c99bc8f55d726.jpg");
-  /* width: 100%; */
   background-attachment: fixed;
   height: 90vh;
   background-size: cover;
