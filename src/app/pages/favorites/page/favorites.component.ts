@@ -190,7 +190,7 @@ export class FavoritesComponent implements OnInit {
         }
       },
       error: (error) => {
-        console.error(error);
+        console.error('Error in FilterByTitle',error);
         this.toastrService.error(error.error.message);
       },
     });
@@ -239,17 +239,16 @@ export class FavoritesComponent implements OnInit {
   updateFavorite(info: any) {
     const { item, description } = info;
     const updatedMovie = { ...item, description: description };
-    this.favoritesService.updateFavorite(updatedMovie).subscribe(
-      () => {
+    this.favoritesService.updateFavorite(updatedMovie).subscribe({
+      next:() => {
         item.description = description;
-        console.log('Movie updated successfully', updatedMovie);
-        this.toastrService.success('succesfully updated', item.Title);
+        this.toastrService.success('Succesfully updated', item.Title);
       },
-      (error) => {
+      error:(error) => {
         console.error(error);
         this.toastrService.error(error.error.message);
       }
-    );
+     });
   }
   openFavorite(favoriteMovieToOpen: any) {
     this.dialogService.openMovie(window.innerWidth, favoriteMovieToOpen);

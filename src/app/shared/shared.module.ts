@@ -84,7 +84,7 @@ const materialModules = [
     MatTableModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [
     OmdbService,

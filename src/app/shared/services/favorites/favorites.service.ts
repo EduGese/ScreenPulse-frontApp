@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Movie } from '../../models/movie.model';
 import { environment } from 'src/environments/environment.development';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Injectable({
@@ -27,7 +27,12 @@ export class FavoritesService {
 
   getFavorites(): Observable<any> {
     const userId = this.authService.getUserId();
-    return this.http.get<Movie[]>(`${this.baseUrl}/${userId}`)
+    if (userId) {
+      return this.http.get<Movie[]>(`${this.baseUrl}/${userId}`);
+    } else {
+      console.log('User ID is null. Unable to fetch favorites.');
+      return of([]);
+    }
   }
   deleteMovie(movieId: string):Observable<any>{
     const userId = this.authService.getUserId();
@@ -36,6 +41,7 @@ export class FavoritesService {
 
   updateFavorite(movie: Movie): Observable<any> {
     const userId = this.authService.getUserId();
+    console.log('updateFavorite()-->favorites.service', userId);
     const body = movie;
     const httpOptions = {
       headers: new HttpHeaders({

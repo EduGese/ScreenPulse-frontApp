@@ -52,7 +52,8 @@ export class AuthService {
     sessionStorage.setItem(this.userIdKey, userId);
   }
   getUserId(): string | null {
-    return sessionStorage.getItem(this.userIdKey);
+    const userId = sessionStorage.getItem(this.userIdKey);
+    return userId;
   }
 
   logOut(){
