@@ -78,7 +78,7 @@ export class FavoritesComponent implements OnInit {
     window.scrollTo(0, 0);
   }
   scrollable(collection:string): boolean{
-    let element = this.scrlMovies;
+    let element : ElementRef | undefined;
     let scrollable = false;
     switch (collection) {
       case 'movies':

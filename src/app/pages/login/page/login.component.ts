@@ -11,6 +11,8 @@ import { User } from 'src/app/shared/models/user.model';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+  userSearch: boolean = false;
   
   constructor(
     private userService: UserService, 
@@ -20,6 +22,7 @@ export class LoginComponent {
     ) {}
 
   login(formData: User) {
+    this.userSearch = true;
     this.userService.login(formData).subscribe({
       next: (data) => {
         this.authService.setAuthToken(data.token);
@@ -27,10 +30,12 @@ export class LoginComponent {
         this.authService.setUserName(data.user.userName);
         this.authService.setUserId(data.user._id);
         this.toastrService.success(`Welcome, ${data.user.userName}`,`You are logged in`, )
+        this.userSearch = false;
         this.router.navigate(['']);
       },
       error: (error) => {
         if(error.status===0){
+          this.userSearch = false;
           this.toastrService.error("There was a problem connecting to the server. Please check your internet connection or try again later.")
         }else{
           this.toastrService.error(error.error.message);
