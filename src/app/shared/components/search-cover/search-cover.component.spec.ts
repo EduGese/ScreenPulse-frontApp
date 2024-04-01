@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchCoverComponent } from './search-cover.component';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('SearchCoverComponent', () => {
   let component: SearchCoverComponent;
@@ -8,6 +9,7 @@ describe('SearchCoverComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports:[MatIconModule],
       declarations: [SearchCoverComponent]
     });
     fixture = TestBed.createComponent(SearchCoverComponent);

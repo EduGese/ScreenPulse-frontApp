@@ -22,7 +22,8 @@ constructor(
   ){}
 
 addToFavorites(movie:Movie){
-  if(!this.authService.isLoggedIn()){
+  const userId = this.authService.getUserId();
+  if(!this.authService.isLoggedIn() && userId){
     this.toastrService.error('You must be logged in to add movies to your list', 'Error');
     this.router.navigate(['/login']);
     this.dialogRef.close();
@@ -33,7 +34,6 @@ addToFavorites(movie:Movie){
       this.toastrService.success(movie.Title, 'Added to favorites');
     },
     error:(error) => {
-      console.log(error);
       this.toastrService.error(error.error.message);
     }
    });

@@ -1,28 +1,28 @@
 
-  <h1 mat-dialog-title>{{data.response.Title}} ({{data.response.Year}})</h1>
+  <h1 mat-dialog-title>{{data?.response?.Title }} ({{data?.response?.Year}})</h1>
 
   <mat-dialog-content class="card-content mat-typography">
     <div class="poster-container">
-      <ng-container *ngIf="data.response.Poster === 'N/A'; else Poster">
+      <ng-container *ngIf="data?.response?.Poster === 'N/A'; else Poster">
         <img src="../../../../assets/images/no_poster.jpg" alt="No/Poster">
       </ng-container>
        <ng-template #Poster>
-        <img [src]="data.response.Poster" alt="Poster">
+        <img [src]="data.response?.Poster" alt="Poster">
        </ng-template>
     </div>
     <div class="details-container">
-      <p><span class="title">Director:</span> {{data.response.Director}}</p>
-      <p><span class="title">Actors:</span> {{data.response.Actors}}</p>
-      <p><span class="title">Plot:</span> {{data.response.Plot}}</p>
-      <p><span class="title">Genre:</span> {{data.response.Genre}}</p>
-      <p><span class="title">Language:</span> {{data.response.Language}}</p>
-      <p><span class="title">Country:</span> {{data.response.Country}}</p>
-      <p><span class="title">Runtime:</span> {{data.response.Runtime}}</p>
+      <p><span class="title">Director:</span> {{data.response?.Director}}</p>
+      <p><span class="title">Actors:</span> {{data.response?.Actors}}</p>
+      <p><span class="title">Plot:</span> {{data.response?.Plot}}</p>
+      <p><span class="title">Genre:</span> {{data.response?.Genre}}</p>
+      <p><span class="title">Language:</span> {{data.response?.Language}}</p>
+      <p><span class="title">Country:</span> {{data.response?.Country}}</p>
+      <p><span class="title">Runtime:</span> {{data.response?.Runtime}}</p>
     </div>
     <div class="rating-container">
       <img src="../../../../assets/images/imdb.png" alt="imdb logo">
-      <span class="rating"><mat-icon class="star">star</mat-icon>{{data.response.imdbRating}}</span>
-      <span>({{data.response.imdbVotes}})</span>
+      <span class="rating"><mat-icon class="star">star</mat-icon>{{data.response?.imdbRating}}</span>
+      <span>({{data.response?.imdbVotes}})</span>
     </div>
   </mat-dialog-content>
 

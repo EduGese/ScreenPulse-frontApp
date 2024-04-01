@@ -1,7 +1,7 @@
  <mat-card  class="favorite-card" >
 <!--Poster Container-->
-    <mat-card-content class="img-container"  matTooltip="{{item.Title}}" matTooltipPosition="above">
-      <div class="img-container2" [style.background-image]="'url(' + item.Poster + ')'" 
+    <mat-card-content class="img-container"  matTooltip="{{item?.Title}}" matTooltipPosition="above">
+      <div class="img-container2" [style.background-image]="'url(' + item?.Poster + ')'" 
       (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" (click)="openItem(item)">
         <ng-container *ngIf="areButtonsVisible()">
            <!--Delete button-->
@@ -21,18 +21,18 @@
     <!--Description container-->
     <mat-card-content class="chip-container"  >
       
-      <mat-card-subtitle [ngClass]="item.Type">
+      <mat-card-subtitle [ngClass]="item?.Type">
         <div class="chip">
-          {{ item.Type | uppercase}}
+          {{ item?.Type | uppercase}}
         </div>
       </mat-card-subtitle>
       
     </mat-card-content>
 
     <mat-card-content class="info" >
-      <mat-card-title>{{ item.Year }}</mat-card-title>
-      <ng-container *ngIf="item.description; else noDescription">
-      <button type="button" class="btn btn-warning btn-sm " ngbPopover="{{item.description}}"
+      <mat-card-title>{{ item?.Year }}</mat-card-title>
+      <ng-container *ngIf="item?.description; else noDescription">
+      <button type="button" class="btn btn-warning btn-sm " ngbPopover="{{item?.description}}"
         triggers="mouseenter:mouseleave" >
         Notes
       </button>

@@ -12,6 +12,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 describe('FavoritesComponent', () => {
   let component: FavoritesComponent;
@@ -33,6 +36,9 @@ describe('FavoritesComponent', () => {
         MatSelectModule,
         MatButtonModule,
         BrowserAnimationsModule,
+        HttpClientModule,
+        MatDialogModule,
+        MatProgressBarModule
       ],
       providers: [ToastrService, FavoritesFilterService],
     });

@@ -94,12 +94,12 @@
           <mat-icon (click)="sortFavorites(favoritesMovies, titleSort, 'movie', 'asc')">
             <span>expand_less</span>
           </mat-icon>
-        </div>
+        </div>movies
   
       </div>
       <!-- Sorting -->
       <div class="type-favorites-card-with-arrows">
-        <div (click)="slide(-100,'movies')" [ngClass]="{ 'is-disabled-hide': scrollX < 1 }" class="left-arrow-left-type">
+        <div (click)="slide(-100,'movies')" [ngClass]="{ 'is-disabled-hide': scrollX < 1 }" [ngStyle]="{ 'display': scrollable('movies') ? 'block' : 'none' }"  class="left-arrow-left-type">
           <button mat-mini-fab color="accent">
             <mat-icon>keyboard_arrow_left</mat-icon>
           </button>
@@ -111,7 +111,7 @@
               (itemUpdatedEvent)="updateFavorite($event)" (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
           </ng-container>
         </div>
-        <div (click)="slide(100,'movies')" [ngClass]="{ 'is-disabled-hide': scrollEnd }" class="right-arrow-right-type">
+        <div (click)="slide(100,'movies')" [ngClass]="{ 'is-disabled-hide': scrollEnd }" [ngStyle]="{ 'display': scrollable('movies') ? 'block' : 'none' }"  class="right-arrow-right-type">
           <button mat-mini-fab color="accent">
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
