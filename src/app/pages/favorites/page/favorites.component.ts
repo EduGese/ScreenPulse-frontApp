@@ -1,4 +1,4 @@
-import { Component,  ElementRef,  OnInit, ViewChild } from '@angular/core';
+import { Component,  ElementRef,  OnChanges,  OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { FavoritesFilterService } from '../services/favoritesFilterService/favorites-filter.service';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +13,7 @@ import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css'],
 })
-export class FavoritesComponent implements OnInit {
+export class FavoritesComponent implements OnInit, OnChanges {
   /*Favorties collection */
   favorites: Movie[] | [] = [];
   favoritesAll: Movie[] | [] = [];
@@ -62,6 +62,9 @@ export class FavoritesComponent implements OnInit {
     private authService: AuthService,
     private dialogService: DialogService
   ) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    throw new Error('Method not implemented.');
+  }
 
   ngOnInit(): void {
     this.loadAllFavorites();
@@ -242,6 +245,30 @@ export class FavoritesComponent implements OnInit {
     this.favoritesService.updateFavorite(updatedMovie).subscribe({
       next:() => {
         item.description = description;
+        this.favoritesMovies = this.favoritesMovies.map((movie) =>{
+          if(movie._id === item._id){
+            movie.description = description;
+          }
+          return movie;
+        })
+        this.favoritesAll = this.favoritesAll.map((movie) =>{
+          if(movie._id === item._id){
+            movie.description = description;
+          }
+          return movie;
+        })
+        this.favoritesSeries = this.favoritesSeries.map((movie) =>{
+          if(movie._id === item._id){
+            movie.description = description;
+          }
+          return movie;
+        })
+        this.favoritesGames = this.favoritesGames.map((movie) =>{
+          if(movie._id === item._id){
+            movie.description = description;
+          }
+          return movie;
+        })
         this.toastrService.success('Succesfully updated', item.Title);
       },
       error:(error) => {
