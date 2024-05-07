@@ -4,22 +4,6 @@ This project was generated with Angular CLI version 16.2.9.
 
 ScreenPulse is the frontend part of a full stack application built with Angular, integrating with a custom backend API built with Node.js and Express, and MongoDB Atlas for database storage. The frontend allows users to search for movies, series, or video games in the OMDB API, view detailed information, and save favorites to collections after registering and logging in.
 
-## Table of Contents
-- [Features](#features)
-- [Technologies & Libraries](#technologies--libraries)
-- [API Integration](#api-integration)
-- [Angular Architecture](#angular-architecture)
-- [UX/UI Design](#uxui-design)
-- [UX/UI Design](#demo)
-- [Development Server](#development-server)
-- [Code Scaffolding](#code-scaffolding)
-- [Build](#build)
-- [Running Unit Tests](#running-unit-tests)
-- [Running End-to-End Tests](#running-end-to-end-tests)
-- [Further Help](#further-help)
-
-
-
 ## Features ✨
 - **Search:** Search for movies, series, or video games
 - **Sort:** Sort results by title, year, or type
@@ -38,7 +22,7 @@ ScreenPulse is the frontend part of a full stack application built with Angular,
 - **Firebase:** Hosting service
 
 ## API Integration 🌐
-- **ScreenPulse Backend API (Separate Repository):** This API server manages user authentication, connections to the MongoDB database, and requests to external APIs such as the OMDB API. It provides endpoints for user registration, login, saving favorites, and retrieving data from the database.
+- **[ScreenPulse Backend API](https://github.com/EduGese/ScreenPulse-frontApp):** This API server manages user authentication, connections to the MongoDB database, and requests to external APIs such as the OMDB API. It provides endpoints for user registration, login, saving favorites, and retrieving data from the database.
 - **[OMDB API](https://www.omdbapi.com/):** Provides the data source for movie, series, and video game information.
 
 ## Angular Architecture 🏗️
