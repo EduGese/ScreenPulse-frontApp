@@ -16,10 +16,11 @@ ScreenPulse is the frontend part of a full stack application built with Angular,
   - Add your own reviews/notes
 
 ## Technologies & Libraries 🛠️
-- **Angular:** Frontend framework
-- **Angular Material:** UI component library
-- **ng-bootstrap:** UI component library
-- **Firebase:** Hosting service
+- **[Angular](https://angular.io/) 16.2.12:** Frontend framework
+- **[Angular Material](https://material.angular.io/) 16.2.12:** UI component library
+- **[ng-bootstrap](https://ng-bootstrap.github.io/#/home) 15.1.2:** UI component library
+- **[Firebase](https://firebase.google.com/):** Hosting service
+- **[NPM](https://www.npmjs.com/) 9.8.0:** Packege manager
 
 ## API Integration 🌐
 - **[ScreenPulse Backend API](https://github.com/EduGese/ScreenPulse-frontApp):** This API server manages user authentication, connections to the MongoDB database, and requests to external APIs such as the OMDB API. It provides endpoints for user registration, login, saving favorites, and retrieving data from the database.
