@@ -23,7 +23,7 @@ ScreenPulse is the frontend part of a full stack application built with Angular,
 - **[NPM](https://www.npmjs.com/) 9.8.0:** Packege manager
 
 ## API Integration 🌐
-- **[ScreenPulse Backend API](https://github.com/EduGese/ScreenPulse-frontApp):** This API server manages user authentication, connections to the MongoDB database, and requests to external APIs such as the OMDB API. It provides endpoints for user registration, login, saving favorites, and retrieving data from the database.
+- **[ScreenPulse Backend API](https://github.com/EduGese/ScreenPulse-backend-Api):** This API server manages user authentication, connections to the MongoDB database, and requests to external APIs such as the OMDB API. It provides endpoints for user registration, login, saving favorites, and retrieving data from the database.
 - **[OMDB API](https://www.omdbapi.com/):** Provides the data source for movie, series, and video game information.
 
 ## Angular Architecture 🏗️
