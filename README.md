@@ -2,7 +2,7 @@
 
 This project was generated with Angular CLI version 16.2.9.
 
-ScreenPulse is the frontend part of a full stack application built with Angular, integrating with a custom backend API built with Node.js and Express, and MongoDB Atlas for database storage. The frontend allows users to search for movies, series, or video games in the OMDB API, view detailed information, and save favorites to collections after registering and logging in.
+ScreenPulse is the frontend part of a full stack application built with Angular, integrating with a custom [backend API](https://github.com/EduGese/ScreenPulse-backend-Api) built with Node.js and Express, and MongoDB Atlas for database storage. The frontend allows users to search for movies, series, or video games in the OMDB API, view detailed information, and save favorites to collections after registering and logging in.
 
 ## Features ✨
 - **Search:** Search for movies, series, or video games
