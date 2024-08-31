@@ -67,6 +67,8 @@ ScreenPulse offers a rich and immersive experience on desktop devices, with a sp
 
 https://sreenpulse.web.app/
 
+
+https://youtu.be/e1ZbcnbUI2E
 ## Development Server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
