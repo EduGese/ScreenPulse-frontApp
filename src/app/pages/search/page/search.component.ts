@@ -78,8 +78,8 @@ export class SearchComponent {
 
   addToFavories(item: any) {
     const userId = this.authService.getUserId();
-    if(!this.authService.isLoggedIn() && userId){
-      this.toastrService.error('You must be logged in to add movies to your list', 'Error');
+    if(!this.authService.isLoggedIn() && !userId){
+      this.toastrService.error('You must be logged in to add movies to your list');
       this.router.navigate(['/login']);
       return;
     }
@@ -89,7 +89,7 @@ export class SearchComponent {
         this.toastrService.success(item.Title, 'Added to favorites');
       },
       error:(error) => {
-        this.toastrService.error(error.error.message);
+        this.toastrService.error('You must be logged in to add movies to your list, error');
       }
      });
   }
