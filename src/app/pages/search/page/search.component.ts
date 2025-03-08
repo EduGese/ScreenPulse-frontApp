@@ -64,7 +64,7 @@ export class SearchComponent {
             document.getElementById('tableFocus')?.focus();
           });
         }else{
-          this.toastrService.error('No results found', 'Search error');
+          this.toastrService.warning('Try another search', 'No results found');
         }
         type = type == '' ? 'all' : type;
         this.page = 1;
@@ -89,7 +89,9 @@ export class SearchComponent {
         this.toastrService.success(item.Title, 'Added to favorites');
       },
       error:(error) => {
-        this.toastrService.error('You must be logged in to add movies to your list, error');
+        if(error.status === 409){
+          this.toastrService.info(`"${item.Title}" is already in favorites`);
+        }
       }
      });
   }
