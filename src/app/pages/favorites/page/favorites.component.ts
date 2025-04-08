@@ -1,4 +1,4 @@
-import { Component,  ElementRef,  OnChanges,  OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component,  ElementRef, OnInit,  ViewChild } from '@angular/core';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { FavoritesFilterService } from '../services/favoritesFilterService/favorites-filter.service';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +13,7 @@ import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css'],
 })
-export class FavoritesComponent implements OnInit, OnChanges {
+export class FavoritesComponent implements OnInit {
   /*Favorties collection */
   favorites: Movie[] | [] = [];
   favoritesAll: Movie[] | [] = [];
@@ -62,9 +62,7 @@ export class FavoritesComponent implements OnInit, OnChanges {
     private authService: AuthService,
     private dialogService: DialogService
   ) {}
-  ngOnChanges(changes: SimpleChanges): void {
-    throw new Error('Method not implemented.');
-  }
+
 
   ngOnInit(): void {
     this.loadAllFavorites();
@@ -278,7 +276,7 @@ export class FavoritesComponent implements OnInit, OnChanges {
      });
   }
   openFavorite(favoriteMovieToOpen: any) {
-    this.dialogService.openMovie(window.innerWidth, favoriteMovieToOpen);
+    this.dialogService.openMovie(window.innerWidth, favoriteMovieToOpen, true);
   }
   filterMoviesType() {
     this.favoritesMovies = this.favorites.filter(

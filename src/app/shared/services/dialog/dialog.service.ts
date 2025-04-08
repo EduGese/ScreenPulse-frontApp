@@ -11,7 +11,7 @@ export class DialogService {
 
   constructor(private OmdbService: OmdbService, private dialog: MatDialog, private toastrService: ToastrService) { }
 
-  openMovie(windowWidth: number, movie: any){
+  openMovie(windowWidth: number, movie: any, isFavorite: boolean) {
     let dialogHeight = '90%';
     let dialogWidth = '80%';
     if(windowWidth >600 && windowWidth <800){
@@ -27,6 +27,7 @@ export class DialogService {
         const movieAndResponse = {
           movie: movie,
           response: response,
+          isFavorite
         };
         const dialogRef = this.dialog.open(MovieDialogComponent, {
           data: movieAndResponse,

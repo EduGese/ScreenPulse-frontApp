@@ -65,6 +65,7 @@ export class SearchComponent {
           });
         }else{
           this.toastrService.warning('Try another search', 'No results found');
+          this.results = [];
         }
         type = type == '' ? 'all' : type;
         this.page = 1;
@@ -97,6 +98,6 @@ export class SearchComponent {
   }
 
   openMovie(movie:any){
-    this.dialogService.openMovie(window.innerWidth,movie);
+    this.dialogService.openMovie(window.innerWidth,movie, false);
   }
 }

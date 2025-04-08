@@ -32,10 +32,12 @@
       <mat-icon>close</mat-icon>
       Close
     </button>
+    <ng-container *ngIf="!data?.isFavorite">
     <button mat-raised-button color="accent" (click)="addToFavorites(data.movie)">
       <mat-icon>favorite</mat-icon>
       Add
-    </button>
+    </button></ng-container>
+    
 
   </mat-dialog-actions>
   
