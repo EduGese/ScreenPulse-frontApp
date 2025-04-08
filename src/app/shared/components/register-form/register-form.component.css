@@ -14,7 +14,6 @@ form {
 .head-icon{
     position:relative;
     background-color: #f5cf3d;
-    /* top:-5%; */
     bottom: -15px;
     width: 60%;
     text-align: center;
@@ -43,7 +42,6 @@ mat-hint{
 } 
 .button mat-icon{
     color: rgb(0, 0, 0);
-    /* font-size: 12px; */
 }
 .button-container{
     display: flex;
@@ -52,25 +50,28 @@ mat-hint{
     margin-top: 5px;
     
 }
-/* .register-text{
-    font-size: 12px;
-} */
-::ng-deep #register-form .mdc-notched-outline > * {
-    border-color: #f5cf3d !important;
-  }
-  ::ng-deep #register-form .mdc-text-field--focused .mdc-notched-outline > * {
-    border-color: #f5cf3d !important;
-  }
-  ::ng-deep #register-form .mdc-text-field--invalid .mdc-notched-outline > * {
-    border-color: red !important;
-  }
-  ::ng-deep #register-form .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-text-field__input {
-    color: white !important;
-  }
-  ::ng-deep #register-form .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
-    color: #f5cf3d !important;
-  }
 
+.mat-mdc-form-field.mat-accent {
+    --mdc-outlined-text-field-outline-color: var(--custom-amber);
+    --mdc-outlined-text-field-focus-outline-color: var(--custom-amber);
+    --mdc-outlined-text-field-hover-outline-color: var(--custom-amber);
+  }
+  
+  .mat-mdc-form-field.mat-accent.mat-form-field-invalid {
+    --mdc-outlined-text-field-outline-color: var(--custom-error);
+  }
+  .mat-mdc-form-field{
+    color: var(--custom-amber);
+  }
+  .mdc-text-field {
+    color: var(--custom-amber) !important;
+  }
+  mat-label {
+    color: var(--custom-amber) !important;
+  }
+  .mdc-text-field__input {
+    color: var(--custom-amber) !important;
+}
 
 
 @media only screen and (max-width: 601px){

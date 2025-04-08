@@ -23,6 +23,7 @@ export class SearchBarComponent {
   }
 
   onSubmit(){
+    this.searchForm.markAllAsTouched(); 
     if(this.searchForm.invalid){
       return;
     }

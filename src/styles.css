@@ -12,4 +12,7 @@ body {
     font-family: Glegoo;
     src: url(./assets/fonts/Glegoo-Regular.ttf) format('truetype');
 }
-
+:root {
+    --custom-amber: #f5cf3d;
+    --custom-error: red;
+  }

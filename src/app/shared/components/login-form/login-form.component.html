@@ -22,14 +22,14 @@
     </mat-form-field>
     <span class="not-register-text">Not registered yet?</span><a routerLink="/register">Sign up here</a>
     <div class="button-container">
-        <button mat-raised-button class="button" color="accent" type="submit">
-            <mat-icon>login</mat-icon>Login
+        <button mat-raised-button class="button-login" color="primary" type="submit">
+            <mat-icon color="">login</mat-icon>Login
         </button>
-        <button mat-raised-button class="button" color="accent" type="button" (click)="onClear()">
+        <button mat-raised-button class="button-clear" color="accent" type="button" (click)="onClear()">
             <mat-icon>clear</mat-icon>
             Clear
         </button>
-        <button mat-raised-button class="button guest" color="primary" type="button" matTooltip="Get guest access" (click)="getAccessToGuess()">
+        <button mat-raised-button class="button-guest" color="" type="button" matTooltip="Get guest access" (click)="getAccessToGuess()">
             <mat-icon>lock_open</mat-icon>
             Guest
         </button>
