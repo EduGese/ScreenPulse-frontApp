@@ -39,6 +39,7 @@ export class LoginComponent {
           this.toastrService.error("There was a problem connecting to the server. Please check your internet connection or try again later.")
         }else{
           this.toastrService.error(error.error.message);
+          this.userSearch = false;
         }
        
       }
