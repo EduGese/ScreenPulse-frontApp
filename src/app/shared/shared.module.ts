@@ -37,6 +37,7 @@ import { MovieDialogComponent } from './components/movie-dialog/movie-dialog.com
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import {MatSortModule} from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -82,6 +83,7 @@ const materialModules = [
     materialModules,
     RouterModule,
     MatTableModule,
+    MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule,

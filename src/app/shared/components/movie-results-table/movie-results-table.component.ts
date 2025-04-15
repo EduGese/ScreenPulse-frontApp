@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, EventEmitter, Input,  OnChanges,  OnInit,  Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Movie } from 'src/app/shared/models/movie.model';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -9,34 +11,48 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./movie-results-table.component.css'],
 })
 export class MovieResultsTableComponent implements AfterViewInit, OnChanges {
-  @Input() results!: any[];
-  @Output() sendItem = new EventEmitter<any>();
-  @Output() sendItem2 = new EventEmitter<any>();
+  @Input() collection!: Movie[];
+  @Input() collectionSize!: number;
+  @Input() currentPage!: number;
+  @Input() pageSize!: number;
+  @Input() displayedColumns!: string[];
 
-  displayedColumns: string[] =  ['Title', 'Year', 'Type', 'Poster', 'Add' ];
-  dataSource = new MatTableDataSource<any>();
+  @Output() favoriteAdded  = new EventEmitter<Movie>();
+  @Output() detailsOpened  = new EventEmitter<Movie>();
+  @Output() pageChanged = new EventEmitter<number>();
 
-  
-  constructor() {}
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['results'] && changes['results'].currentValue) {
-      this.dataSource.data = changes['results'].currentValue || [];
+
+  dataSource = new MatTableDataSource<Movie>();
+
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor() { }
+
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes?.['collection']?.currentValue) {
+      this.dataSource.data = changes['collection'].currentValue || [];
+    }
+    if (changes['currentPage']?.currentValue === 1 && this.paginator) {
+      this.paginator.firstPage();
     }
   }
 
-  @ViewChild(MatSort) sort!: MatSort;
-  
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
 
-  addNewItem(item: any) {
-    
-    this.sendItem.emit(item);
-  }
-  openItem(item: any) {
-
-    this.sendItem2.emit(item);
+  onFavoriteAdded(item: Movie) {
+    this.favoriteAdded .emit(item);
   }
 
+  onDetailsOpened(item: Movie) {
+    this.detailsOpened .emit(item);
+  }
+
+  onPageChanged(event: PageEvent) {
+    const pageNumber = event.pageIndex + 1;
+    this.pageChanged.emit(pageNumber);
+  }
 }

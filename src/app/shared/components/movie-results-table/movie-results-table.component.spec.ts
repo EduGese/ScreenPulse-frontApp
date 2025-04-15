@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MovieResultsTableComponent } from './movie-results-table.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 describe('MovieResultsTableComponent', () => {
   let component: MovieResultsTableComponent;
@@ -16,7 +17,8 @@ describe('MovieResultsTableComponent', () => {
       ],
       imports: [ToastrModule.forRoot({
       }),
-      MatTableModule ]
+      MatTableModule,
+      MatPaginatorModule ]
     });
     fixture = TestBed.createComponent(MovieResultsTableComponent);
     component = fixture.componentInstance;

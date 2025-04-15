@@ -1,48 +1,55 @@
-<table mat-table [dataSource]="dataSource" matSort  layout="flexLayout" class="mat-elevation-z8">
+<div class="table-container">
 
-  <ng-container matColumnDef="Title">
-    <th class="head" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Title"> Title </th>
-    <td mat-cell *matCellDef="let result" class="title-cell"><span class="title-text"> {{result.Title}}</span> </td>
-  </ng-container>
+  <table mat-table [dataSource]="dataSource" matSort layout="flexLayout" class="mat-elevation-z8">
 
-  <ng-container matColumnDef="Year">
-    <th class="head" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Year"> Year </th>
-    <td mat-cell *matCellDef="let result"><span> {{result.Year}}</span> </td>
-  </ng-container>
+    <ng-container matColumnDef="Title">
+      <th class="head" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Title"> Title
+      </th>
+      <td mat-cell *matCellDef="let item" class="title-cell"><span class="title-text"> {{item.Title}}</span> </td>
+    </ng-container>
 
-  <ng-container matColumnDef="Type">
-    <th class="head" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Type"> Type </th>
-    <td mat-cell *matCellDef="let result"><span> {{result.Type}}</span> </td>
-  </ng-container>
+    <ng-container matColumnDef="Year">
+      <th class="head" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Year"> Year
+      </th>
+      <td mat-cell *matCellDef="let item"><span> {{item.Year}}</span> </td>
+    </ng-container>
 
-  <ng-container matColumnDef="Poster">
-    <th class="poster-head" mat-header-cell *matHeaderCellDef> Poster </th>
-    <td mat-cell *matCellDef="let result"> 
-    
-      <ng-container *ngIf="result.Poster === 'N/A'; else Poster">
-        <img src="../../../../assets/images/no_poster.jpg" alt="No/Poster"  matTooltip="+ info" matTooltipPosition="left" (click)="openItem(result)">
-      </ng-container>
-       <ng-template #Poster>
-        <img [src]="result.Poster" alt="Poster"  matTooltip="+ info" matTooltipPosition="left" (click)="openItem(result)">
-       </ng-template>
-      
-    </td>
+    <ng-container matColumnDef="Type">
+      <th class="head" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Type"> Type
+      </th>
+      <td mat-cell *matCellDef="let item"><span> {{item.Type}}</span> </td>
+    </ng-container>
 
-    
-  </ng-container>
+    <ng-container matColumnDef="Poster">
+      <th class="poster-head" mat-header-cell *matHeaderCellDef> Poster </th>
+      <td mat-cell *matCellDef="let item">
 
-  <ng-container matColumnDef="Add">
-    <th class="head" mat-header-cell *matHeaderCellDef>  </th>
-    <td mat-cell *matCellDef="let result">
-      <button mat-icon-button (click)="addNewItem(result)" matTooltip="Add to favorites" class="add-button">
-        <mat-icon>favorite</mat-icon>
-      </button>  
-    </td>
-  </ng-container>
+        <ng-container *ngIf="item.Poster === 'N/A'; else Poster">
+          <img src="../../../../assets/images/no_poster.jpg" alt="No/Poster" matTooltip="+ info"
+            matTooltipPosition="left" (click)="onDetailsOpened(item)">
+        </ng-container>
+        <ng-template #Poster>
+          <img [src]="item.Poster" alt="Poster" matTooltip="+ info" matTooltipPosition="left" (click)="onDetailsOpened(item)">
+        </ng-template>
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <ng-container matColumnDef="Add">
+      <th class="head" mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let item">
+        <button mat-icon-button (click)="onFavoriteAdded(item)" matTooltip="Add to favorites" class="add-button">
+          <mat-icon>favorite</mat-icon>
+        </button>
+      </td>
+    </ng-container>
 
-</table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
+  </table>
 
+  <mat-paginator [pageSize]="pageSize" [length]="collectionSize" (page)="onPageChanged($event)" showFirstLastButtons
+    aria-label="Select page of results">
+  </mat-paginator>
+
+</div>
