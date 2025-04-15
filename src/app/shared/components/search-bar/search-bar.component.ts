@@ -1,40 +1,46 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MediaType, SearchFilters } from 'src/app/shared/models/search.model';
+
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.css']
+  styleUrls: ['./search-bar.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchBarComponent {
 
-  searchForm!: FormGroup;
-  @Input()types: any[] =[];
+  searchForm: FormGroup;
+  types: MediaType[] = ['movie', 'series', 'game', 'all'];
+  currentYear: number = new Date().getFullYear();
 
-  @Output() onSubmitEvent = new EventEmitter<any>();
-  @ViewChild('searchFormFocus',) searchFormFocus!: ElementRef<HTMLInputElement>;
+  @Output() onSubmitEvent = new EventEmitter<SearchFilters>();
+  @ViewChild('searchFormFocus') searchFormFocus!: ElementRef<HTMLInputElement>;
 
   constructor(private formBuilder: FormBuilder) {
     this.searchForm = this.formBuilder.group({
       title: ['', Validators.required],
       type: ['all'],
-      year: ['']
+      year: [null as number | null, [Validators.min(1900), Validators.max(this.currentYear)]]
     });
   }
-
   onSubmit(){
-    this.searchForm.markAllAsTouched(); 
-    if(this.searchForm.invalid){
-      return;
-    }
-    this.onSubmitEvent.emit(this.searchForm.value);
+    if (this.searchForm.invalid) return;
+    
+    const formValue = this.searchForm.value;
+    const payload: SearchFilters = {
+      ...formValue,
+      year: formValue.year?.toString() || ''
+    };
+    this.onSubmitEvent.emit(payload);
   
   }
-
   onClear(){
     this.searchForm.reset({
       type: 'all',
     });
-
+    this.searchFormFocus.nativeElement.focus();
   }
+
 }

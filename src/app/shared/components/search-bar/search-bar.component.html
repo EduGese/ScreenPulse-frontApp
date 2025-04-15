@@ -3,26 +3,27 @@
     <mat-form-field appearance="outline" color="accent">
       <mat-label>Title</mat-label>
       <input matInput formControlName="title" #searchFormFocus>
-      <mat-error *ngIf="searchForm.get('title')?.invalid && searchForm.get('title')?.touched">
-        Title is required
+      <mat-hint>Mandatory</mat-hint>
+      <mat-error *ngIf="searchForm.get('title')?.invalid">
+        Required field
       </mat-error>
     </mat-form-field>
   
     <mat-form-field appearance="outline" color="accent">
       <mat-label>Type</mat-label>
       <mat-select formControlName="type">
-        <mat-option *ngFor="let type of types" [value]="type.value">
-          {{type.viewValue}}
+        <mat-option *ngFor="let type of types" [value]="type">
+          {{type | titlecase}} 
         </mat-option>
       </mat-select>
     </mat-form-field>
   
     <mat-form-field appearance="outline" color="accent">
       <mat-label>Year (optional)</mat-label>
-      <input matInput formControlName="year" maxlength="4"  placeholder="Blank for all years"  pattern="[0-9]{4}">
-      <mat-hint>*4 digit number</mat-hint>
-      <mat-error *ngIf="searchForm.get('year')?.invalid && searchForm.get('year')?.touched">
-        Year must be a 4 digit number
+      <input matInput formControlName="year" type="number" placeholder="1900-{{currentYear}}" >
+      <mat-hint>Empty to search all years</mat-hint>
+      <mat-error *ngIf="searchForm.get('year')?.invalid">
+        Must be between 1900- {{currentYear}}
       </mat-error>
     </mat-form-field>
   
