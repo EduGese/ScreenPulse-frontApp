@@ -8,7 +8,7 @@ export interface SearchState {
   year: string;
   currentPage: number;
   pageSize: number;
-  results: Movie[];
+  collection: Movie[];
   collectionSize: number;
   searchOnProcess: boolean;
 }

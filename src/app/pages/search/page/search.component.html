@@ -14,22 +14,19 @@
         src="../../../../assets/images/imdb2.png" alt="imdb logo"></h4>
     <h3>* First request might take up to 50 seconds. Please be patient.</h3>
   </div>
-  
+
   <div class="search-container">
     <app-carousel (sendItemCarousel)="openMovie($event)"></app-carousel>
     <div class="filter-container" #myinput>
-      <app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar>
-      <ng-container *ngIf=" userSearch">
+      <app-search-bar (onSubmitEvent)="onSubmit($event)"></app-search-bar>
+      <ng-container *ngIf=" searchState.searchOnProcess">
         <div class="loading-container">
           <h3>Loading, please wait..</h3>
           <mat-progress-bar mode="indeterminate" color="accent">Loading</mat-progress-bar>
         </div>
       </ng-container>
     </div>
-    
   </div>
-  
- 
 </section>
 
 <section class="table-section" *ngIf="searchState.collection.length>0">
@@ -39,7 +36,3 @@
     [currentPage]="searchState.currentPage" [pageSize]="searchState.pageSize" (pageChanged)="loadPage($event)"
     (detailsOpened)="openMovie($event)" (favoriteAdded)="addToFavories($event)"></app-movie-results-table>
 </section>
-
-
-
-
