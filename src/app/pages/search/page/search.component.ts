@@ -108,7 +108,7 @@ displayedColumns: string[] = ['Title', 'Year', 'Type', 'Poster', 'Add'];
   }
   
 
-  openMovie(movie: Movie) {
-    this.dialogService.openMovie(window.innerWidth,movie, false);
-  }
+  openMovie(mediaItem: Movie) {
+    this.dialogService.openMovie(window.innerWidth, mediaItem, false);
+  } 
 }

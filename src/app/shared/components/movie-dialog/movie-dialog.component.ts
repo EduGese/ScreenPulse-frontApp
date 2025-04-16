@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FavoritesService } from '../../services/favorites/favorites.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
+import { MovieDialogData } from '../../models/movieDialogData.model';
 
 @Component({
   selector: 'app-movie-dialog',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class MovieDialogComponent {
 constructor(
-  @Inject(MAT_DIALOG_DATA) public data:any,
+  @Inject(MAT_DIALOG_DATA) public data:MovieDialogData,
   private toastrService: ToastrService, 
   private favoritesService: FavoritesService,
   private authService: AuthService,
@@ -22,11 +23,10 @@ constructor(
   ){}
 
 addToFavorites(movie:Movie){
-  const userId = this.authService.getUserId();
-  if(!this.authService.isLoggedIn() && userId){
+  if(!this.authService.isLoggedIn()){
     this.toastrService.error('You must be logged in to add movies to your list', 'Error');
-    this.router.navigate(['/login']);
     this.dialogRef.close();
+    this.router.navigate(['/login']);
     return;
   }
   this.favoritesService.addToFavorites(movie).subscribe({
@@ -34,7 +34,7 @@ addToFavorites(movie:Movie){
       this.toastrService.success(movie.Title, 'Added to favorites');
     },
     error:(error) => {
-      this.toastrService.error(error.error.message);
+      this.toastrService.error(error.message, 'Error adding to favorites');
     }
    });
 }
