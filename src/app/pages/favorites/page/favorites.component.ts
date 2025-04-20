@@ -1,4 +1,4 @@
-import { Component,  ElementRef, OnInit,  ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Movie } from 'src/app/shared/models/movie.model';
 import { FavoritesFilterService } from '../services/favoritesFilterService/favorites-filter.service';
 import { ToastrService } from 'ngx-toastr';
@@ -6,7 +6,8 @@ import { FavoritesService } from 'src/app/shared/services/favorites/favorites.se
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
-
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { FavoritesSearchParams } from 'src/app/shared/models/favoritesSearchParams.model';
 
 @Component({
   selector: 'app-favorites',
@@ -16,316 +17,120 @@ import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
 export class FavoritesComponent implements OnInit {
   /*Favorties collection */
   favorites: Movie[] | [] = [];
-  favoritesAll: Movie[] | [] = [];
-  favoritesMovies: Movie[] | [] = [];
-  favoritesSeries: Movie[] | [] = [];
-  favoritesGames: Movie[] | [] = [];
-
-  title: string = '';
-  type: string = 'movie';
-  year: string = '';
-  favoritesLoaded: boolean = false;
+  favoritesSize: number = 0;
+  isLoadingFavorites: boolean = false;
   userName: string | null = '';
 
-  /*Pagination atributes */
-  page: number = 1;
-  pageSize: number = 12;
+  searchParams: FavoritesSearchParams = {
+    currentPage: 1,
+    pageSize: 10,
+    sortField: undefined,
+    mediaType: undefined,
+    sortOrder: undefined,
+    searchTerm: undefined,
+  };
+  isRevalidatingAfterDelete: boolean = false;
 
-  /*Sorting atributes*/
-  yearSort: string = 'Year';
-  typeSort: string = 'Type';
-  titleSort: string = 'Title';
-  favoritesType: string = '';
-  sortDirection: string = '';
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  /*scroll*/
-  @ViewChild('scrl') scrl!: ElementRef | undefined;
-  @ViewChild('scrlMovies') scrlMovies: ElementRef | undefined;
-  @ViewChild('scrlSeries') scrlSeries: ElementRef | undefined;
-  @ViewChild('scrlGames') scrlGames: ElementRef | undefined;
-  scrollX: number = 0;
-  scrollEnd: boolean = false;
-  windowScrolled = false;
-
-  types: any[] = [
-    { value: 'movie', viewValue: 'Movie' },
-    { value: 'series', viewValue: 'Serie' },
-    { value: 'game', viewValue: 'Game' },
-    { value: 'all', viewValue: 'All' },
-  ];
 
   constructor(
-    private favoritesFilter: FavoritesFilterService,
     private toastrService: ToastrService,
     private favoritesService: FavoritesService,
-    private viewportRuler: ViewportRuler,
     private authService: AuthService,
     private dialogService: DialogService
-  ) {}
-
+  ) { }
 
   ngOnInit(): void {
     this.loadAllFavorites();
-    this.calculatePageSize();
-    this.viewportRuler.change().subscribe(() => {
-      this.calculatePageSize();
-    });
     this.userName = this.authService.getUserName();
-    window.addEventListener('scroll', () => {
-      this.windowScrolled = window.scrollY !== 0;
-    });
-  }
-  scrollToTop() {
-    window.scrollTo(0, 0);
-  }
-  scrollable(collection:string): boolean{
-    let element : ElementRef | undefined;
-    let scrollable = false;
-    switch (collection) {
-      case 'movies':
-        element = this.scrlMovies;
-        scrollable = element?.nativeElement.scrollWidth > element?.nativeElement.clientWidth;
-        break;
-      case 'series':
-        element = this.scrlSeries;
-        scrollable = element?.nativeElement.scrollWidth > element?.nativeElement.clientWidth;
-        break;
-      case 'games':
-        element = this.scrlGames;
-        scrollable = element?.nativeElement.scrollWidth > element?.nativeElement.clientWidth;
-        break;
-      default:
-        break;
-    }
-    return scrollable;
   }
 
-  slide(shift: number, collection: string) {
-    let element = this.scrl;
-    switch (collection) {
-      case 'all':
-        element = this.scrl;
-        break;
-      case 'movies':
-        element = this.scrlMovies;
-        break;
-      case 'series':
-        element = this.scrlSeries;
 
-        break;
-      case 'games':
-        element = this.scrlGames;
-        break;
-      default:
-        break;
-    }
-
-    if (element) {
-      element.nativeElement.scrollBy({
-        left: shift,
-        behavior: 'smooth',
-      });
-
-      element.nativeElement.scrollLeft += shift;
-      this.scrollX += shift;
-
-      this.scrollCheck(collection);
-    }
+  onPageChanged(event: PageEvent): void {
+    this.searchParams.currentPage = event.pageIndex + 1;
+    this.loadAllFavorites();
   }
 
-  scrollCheck(collection: string) {
-
-    let element = this.scrl;
-    switch (collection) {
-      case 'all':
-        element = this.scrl;
-        break;
-      case 'movies':
-        element = this.scrlMovies;
-        break;
-      case 'series':
-        element = this.scrlSeries;
-        break;
-      case 'games':
-        element = this.scrlGames;
-        break;
-      default:
-        break;
-    }
-
-    if (element) {
-      this.scrollX = element.nativeElement.scrollLeft;
-      this.scrollEnd =
-        Math.floor(
-          element.nativeElement.scrollWidth - element.nativeElement.scrollLeft
-        ) <= element.nativeElement.offsetWidth;
-    }
-  }
-
-  calculatePageSize(): void {
-    const viewportSize = this.viewportRuler.getViewportSize();
-    if (viewportSize.width > 1400) {
-      this.pageSize = 16;
-    }
-    if (viewportSize.width < 800) {
-      this.pageSize = 9;
-    }
-  }
-  filterByTitle(event: any) {
-    this.favoritesService.getFavorites().subscribe({
-      next: (movies) => {
-        this.favoritesAll = movies;
-        if (!this.favoritesAll || this.favoritesAll.length === 0) {
-          return;
-        } else {
-          let filteredFavorites = this.favoritesAll;
-          filteredFavorites = this.favoritesFilter.filterByTitle(
-            filteredFavorites,
-            event.target.value
-          );
-          if (filteredFavorites.length === 0) {
-            this.favoritesAll = [];
-          } else {
-            this.favoritesAll = filteredFavorites;
-          }
-        }
-      },
-      error: (error) => {
-        console.error('Error in FilterByTitle',error);
-        this.toastrService.error(error.error.message);
-      },
-    });
-  }
   loadAllFavorites(): void {
-    this.favoritesService.getFavorites().subscribe({
-      next: (movies) => {
-        this.favorites = movies;
-        this.favoritesAll = movies;
-        this.favoritesLoaded = true;
-        this.filterMoviesType();
+    this.favoritesService.getFavorites(
+      this.searchParams.currentPage,
+      this.searchParams.pageSize,
+      this.searchParams.sortField,
+      this.searchParams.sortOrder,
+      this.searchParams.searchTerm,
+      this.searchParams.mediaType
+    ).subscribe({
+      next: (response) => {
+        this.favorites = response.favorites;
+        this.favoritesSize = response.totalFavorites;
+        this.isLoadingFavorites = false;
+        this.isRevalidatingAfterDelete = false;
       },
       error: (error) => {
         console.error(error);
-        this.favoritesLoaded = true;
+        this.toastrService.error('Cannot load favorites, try again later');
+        this.isLoadingFavorites = false;
       },
     });
   }
-  getCollectionLength(collection: Movie[]) {
-    return collection.length;
+  onMediaTypeChange(mediaType:string): void {
+    this.searchParams.mediaType = mediaType;
+    this.searchParams.currentPage = 1;
+    this.loadAllFavorites();
   }
-  deleteFavorite(_id: string) {
-    this.favoritesService.deleteMovie(_id).subscribe({
-      next: () => {
-        this.toastrService.success('Movie deleted');
-        this.favorites = this.favorites.filter((movie) => movie._id != _id);
-        this.favoritesAll = this.favoritesAll.filter(
-          (movie) => movie._id != _id
-        );
-        this.favoritesMovies = this.favoritesMovies.filter(
-          (movie) => movie._id != _id
-        );
-        this.favoritesSeries = this.favoritesSeries.filter(
-          (movie) => movie._id != _id
-        );
-        this.favoritesGames = this.favoritesGames.filter(
-          (movie) => movie._id != _id
-        );
-      },
-      error: (error) => {
-        this.toastrService.error('Cannot delete movie', error);
-        console.error(error);
-      },
-    });
+
+  onSort(event: { field: string, order: number }): void {
+    this.searchParams.sortField = event.field;
+    this.searchParams.sortOrder = event.order;
+    this.searchParams.currentPage = 1;
+    this.loadAllFavorites();
   }
-  updateFavorite(info: any) {
-    const { item, description } = info;
-    const updatedMovie = { ...item, description: description };
-    this.favoritesService.updateFavorite(updatedMovie).subscribe({
-      next:() => {
-        item.description = description;
-        this.favoritesMovies = this.favoritesMovies.map((movie) =>{
-          if(movie._id === item._id){
-            movie.description = description;
-          }
-          return movie;
-        })
-        this.favoritesAll = this.favoritesAll.map((movie) =>{
-          if(movie._id === item._id){
-            movie.description = description;
-          }
-          return movie;
-        })
-        this.favoritesSeries = this.favoritesSeries.map((movie) =>{
-          if(movie._id === item._id){
-            movie.description = description;
-          }
-          return movie;
-        })
-        this.favoritesGames = this.favoritesGames.map((movie) =>{
-          if(movie._id === item._id){
-            movie.description = description;
-          }
-          return movie;
-        })
-        this.toastrService.success('Succesfully updated', item.Title);
-      },
-      error:(error) => {
-        console.error(error);
-        this.toastrService.error(error.error.message);
-      }
-     });
+
+  onFilter(searchTerm: string): void {
+    this.searchParams.searchTerm = searchTerm;
+    this.searchParams.currentPage = 1;
+    this.loadAllFavorites();
   }
-  openFavorite(favoriteMovieToOpen: any) {
+
+  openFavorite(favoriteMovieToOpen: Movie): void {
     this.dialogService.openMovie(window.innerWidth, favoriteMovieToOpen, true);
   }
-  filterMoviesType() {
-    this.favoritesMovies = this.favorites.filter(
-      (movie) => movie.Type === 'movie'
-    );
-    this.favoritesSeries = this.favorites.filter(
-      (movie) => movie.Type === 'series'
-    );
-    this.favoritesGames = this.favorites.filter(
-      (movie) => movie.Type === 'game'
-    );
+
+  deleteFavorite(_id: string): void {
+    this.favoritesService.deleteMovie(_id).subscribe({
+      next: () => {
+        this.favorites = this.favorites.filter((movie) => movie._id != _id);
+         if (this.favorites.length === 0) {
+          this.isRevalidatingAfterDelete = true;
+          this.searchParams.currentPage = 1;
+          this.loadAllFavorites();
+        }
+        this.toastrService.success('Item deleted');
+      },
+      error: () => {
+        this.toastrService.error('Cannot delete item, try again later');
+      },
+    });
   }
-  sortFavorites(
-    favorites: Movie[],
-    item: string,
-    type: string,
-    sortDirection: string
-  ) {
-    this.favoritesType = type;
-    this.sortDirection = sortDirection;
-    switch (this.favoritesType) {
-      case 'movie':
-        this.favoritesMovies = this.favoritesFilter.sortCollection(
-          favorites,
-          item,
-          sortDirection
-        );
-        break;
-      case 'serie':
-        this.favoritesSeries = this.favoritesFilter.sortCollection(
-          favorites,
-          item,
-          sortDirection
-        );
-        break;
-      case 'game':
-        this.favoritesGames = this.favoritesFilter.sortCollection(
-          favorites,
-          item,
-          sortDirection
-        );
-        break;
-      default:
-        this.favoritesAll = this.favoritesFilter.sortCollection(
-          favorites,
-          item,
-          sortDirection
-        );
-        break;
-    }
+
+  updateFavorite(mediaItem: Movie): void {
+    this.favoritesService.updateFavorite(mediaItem)
+      .subscribe({
+        next: (updatedMovie) => {
+          this.favorites = this.favorites.map(movie =>
+            movie._id === updatedMovie._id ? { ...movie, description: updatedMovie.description } : movie
+          );
+          this.toastrService.success('Item updated');
+        },
+        error: () => {
+          this.toastrService.error('Cannot update item, try again later');
+        },
+      });
+  }
+
+  trackByFn(index: number, item: Movie): string {
+    return item.imdbID;
   }
 }
+

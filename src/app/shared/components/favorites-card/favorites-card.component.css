@@ -1,13 +1,21 @@
 
 .favorite-card {
-  max-width: 117px;
+  /* max-width: 117px;
   margin-bottom: 20px;
   text-align: center;
   border-radius: 10px;
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.247);
   background-color: #000000;
-  margin: 20px;
+  margin: 50px; */
+  flex: 1 1 160px; /* Ocupa espacio flexible, mínimo 160px */
+  max-width: 200px;
+  margin: 0; /* El gap lo maneja el padre */
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.247);
+  background-color: #000000;
 }
 
 .img-container {

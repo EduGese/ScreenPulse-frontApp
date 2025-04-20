@@ -1,240 +1,32 @@
-<ng-container *ngIf="favoritesLoaded; else noFavoritesLoaded" class="favorites-loaded">
-
-  <div class="title" id="titleAnchor">
-    <h1 >
-      <span class="user-name">{{ userName }}</span> 's favorites collection
-    </h1>
+<div class="title" id="titleAnchor">
+  <h1>
+    <span class="user-name">{{ userName | uppercase }}</span> 's favorites collection
+  </h1>
+</div>
+<ng-container *ngIf="!isLoadingFavorites; else noFavoritesLoaded" class="favorites-loaded">
+  <div class="all-favorites-container">
+    <app-sorting-controls [currentSort]="searchParams" (sortChange)="onSort($event)" (filterChange)="onFilter($event)"
+      (mediaTypeChange)="onMediaTypeChange($event)">
+    </app-sorting-controls>
+    <div class="all-favorites-card">
+      <ng-container *ngFor="let item of favorites; trackBy : trackByFn">
+        <app-favorites-card [item]="item" (itemToDelete)="deleteFavorite($event)"
+          (descriptionToDelete)="updateFavorite($event)" (descriptionToAdd)="updateFavorite($event)"
+          (itemToOpen)="openFavorite($event)"></app-favorites-card>
+      </ng-container>
+      <ng-container *ngIf="favorites.length === 0 && !isRevalidatingAfterDelete">
+        <app-empty-state></app-empty-state>
+      </ng-container>
+    </div>
+    <div class="paginator-container">
+      <mat-paginator [pageSize]="searchParams.pageSize" [pageIndex]="searchParams.currentPage - 1" [hidePageSize]="true"
+        [length]="favoritesSize" (page)="onPageChanged($event)" showFirstLastButtons
+        aria-label="Select page of results">
+      </mat-paginator>
+    </div>
   </div>
-  
-<!-- All favorites collection -->
-  <ng-container *ngIf="favorites.length > 0 ">
-    <div class="all-favorites-container">
-      <h2>All your collection</h2>
-      <ngb-pagination [(page)]="page" [collectionSize]="favorites.length" [pageSize]="pageSize" [rotate]="true"
-        [ellipses]="true" [boundaryLinks]="true" size="sm"></ngb-pagination>
-      <h3>Total: {{ getCollectionLength(favorites) }}</h3>
-      <!-- Sorting -->
-      <div class="sorting-container">
-        <div class="sorting-item">
-          <mat-icon (click)="sortFavorites(favoritesAll, yearSort, 'all', 'des')">
-            <span>expand_more</span>
-          </mat-icon>
-          <span class="sortByName">Year</span>
-          <mat-icon (click)="sortFavorites(favoritesAll, yearSort, 'all', 'asc')">
-            <span>expand_less</span>
-          </mat-icon>
-        </div>
-        <div class="sorting-item">
-          <mat-icon (click)="sortFavorites(favoritesAll, titleSort, 'all', 'des')">
-            <span>expand_more</span>
-          </mat-icon>
-          <span class="sortByName">Title</span>
-          <mat-icon (click)="sortFavorites(favoritesAll, titleSort, 'all', 'asc')">
-            <span>expand_less</span>
-          </mat-icon>
-        </div>
-        <input type="text" placeholder="Filter by title" (keyup)="filterByTitle($event)">
-      </div>
-      <!-- Sorting -->
-      <div class="all-favorites-card-and-arrows">
-        <div (click)="slide(-100,'all')" [ngClass]="{ 'is-disabled-hide': scrollX < 1 }" class="left-arrow-left-all">
-          <button mat-mini-fab color="accent">
-            <mat-icon>keyboard_arrow_left</mat-icon>
-          </button>
-        </div>
-        <div class="all-favorites-card" #scrl (scroll)="scrollCheck('all')">
-          <ng-container *ngFor="let item of favoritesAll | slice:(page-1) * pageSize : page * pageSize">
-            <app-favorites-card [item]="item" (itemIdEvent)="deleteFavorite($event)"
-              (itemUpdatedEvent)="updateFavorite($event)" (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
-          </ng-container>
-      
-        </div>
-        <div (click)="slide(100,'all')" [ngClass]="{ 'is-disabled-hide': scrollEnd }" class="right-arrow-right-all">
-          <button mat-mini-fab color="accent">
-            <mat-icon>keyboard_arrow_right</mat-icon>
-          </button>
-        </div>
-      </div>
-      
-      <ngb-pagination [(page)]="page" [collectionSize]="favorites.length" [pageSize]="pageSize" [rotate]="true"
-        [ellipses]="true" [boundaryLinks]="true" size="sm"></ngb-pagination>
-    </div>
-  </ng-container>
-      
-  <ng-container *ngIf="favorites.length === 0 " class="card-container">
-    <h1>Upps..you don't have any favorite yet...</h1>
-    <div class="img-container">
-      <img src="../../../../assets/images/monkey3.jpg" alt="monkey">
-    </div>
-  </ng-container>
-
-  <!-- All favorites collection -->
-
-  <!-- Movies favorites collection -->
-  <ng-container *ngIf="favorites.length > 0 ">
-    <div class="type-favorites-container">
-      <h2>Your movies</h2>
-      <h3>Total: {{ getCollectionLength(favoritesMovies) }}</h3>
-      <!-- Sorting -->
-      <div class="sorting-container">
-        <div class="sorting-item">
-          <mat-icon (click)="sortFavorites(favoritesMovies, yearSort, 'movie', 'des')">
-            <span>expand_more</span>
-          </mat-icon>
-          <span class="sortByName">Year</span>
-          <mat-icon (click)="sortFavorites(favoritesMovies, yearSort, 'movie', 'asc')">
-            <span>expand_less</span>
-          </mat-icon>
-        </div>
-        <div class="sorting-item">
-          <mat-icon (click)="sortFavorites(favoritesMovies, titleSort, 'movie', 'des')">
-            <span>expand_more</span>
-          </mat-icon>
-          <span class="sortByName">Title</span>
-          <mat-icon (click)="sortFavorites(favoritesMovies, titleSort, 'movie', 'asc')">
-            <span>expand_less</span>
-          </mat-icon>
-        </div>
-  
-      </div>
-      <!-- Sorting -->
-      <div class="type-favorites-card-with-arrows">
-        <div (click)="slide(-100,'movies')" [ngClass]="{ 'is-disabled-hide': scrollX < 1 }" [ngStyle]="{ 'display': scrollable('movies') ? 'block' : 'none' }"  class="left-arrow-left-type">
-          <button mat-mini-fab color="accent">
-            <mat-icon>keyboard_arrow_left</mat-icon>
-          </button>
-        </div>
-        <div *ngIf=" getCollectionLength(favoritesMovies)>0" class="type-favorites-card" #scrlMovies
-          (scroll)="scrollCheck('movies')">
-          <ng-container *ngFor="let item of favoritesMovies">
-            <app-favorites-card [item]="item" (itemIdEvent)="deleteFavorite($event)"
-              (itemUpdatedEvent)="updateFavorite($event)" (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
-          </ng-container>
-        </div>
-        <div (click)="slide(100,'movies')" [ngClass]="{ 'is-disabled-hide': scrollEnd }" [ngStyle]="{ 'display': scrollable('movies') ? 'block' : 'none' }"  class="right-arrow-right-type">
-          <button mat-mini-fab color="accent">
-            <mat-icon>keyboard_arrow_right</mat-icon>
-          </button>
-        </div>
-      </div>
-      
-    </div>
-  </ng-container>
-  
-
-   <!-- Series favorites collection -->
-  <ng-container *ngIf="favorites.length > 0 ">
-    <div class="type-favorites-container">
-      <h2>Your Series</h2>
-      <h3>Total: {{ getCollectionLength(favoritesSeries) }}</h3>
-      <div class="sorting-container">
-        <div class="sorting-item">
-          <mat-icon (click)="sortFavorites(favoritesSeries, yearSort, 'serie', 'des')">
-            <span>expand_more</span>
-          </mat-icon>
-          <span class="sortByName">Year</span>
-          <mat-icon (click)="sortFavorites(favoritesSeries, yearSort, 'serie', 'asc')">
-            <span>expand_less</span>
-          </mat-icon>
-        </div>
-        <div class="sorting-item">
-          <mat-icon (click)="sortFavorites(favoritesSeries, titleSort, 'serie', 'des')">
-            <span>expand_more</span>
-          </mat-icon>
-          <span class="sortByName">Title</span>
-          <mat-icon (click)="sortFavorites(favoritesSeries, titleSort, 'serie', 'asc')">
-            <span>expand_less</span>
-          </mat-icon>
-        </div>
-  
-      </div>
-      <div class="type-favorites-card-with-arrows">
-        <div (click)="slide(-100,'series')" [ngClass]="{ 'is-disabled-hide': scrollX < 1 }" [ngStyle]="{ 'display': scrollable('series') ? 'block' : 'none' }" class="left-arrow-left-type">
-          <button mat-mini-fab color="accent">
-            <mat-icon>keyboard_arrow_left</mat-icon>
-          </button>
-        </div>
-        <div *ngIf="getCollectionLength(favoritesSeries)>0" class="type-favorites-card" #scrlSeries
-          (scroll)="scrollCheck('series')">
-          <ng-container *ngFor="let item of favoritesSeries">
-            <app-favorites-card [item]="item" (itemIdEvent)="deleteFavorite($event)"
-              (itemUpdatedEvent)="updateFavorite($event)" (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
-          </ng-container>
-        </div>
-        <div (click)="slide(100,'series')" [ngClass]="{ 'is-disabled-hide': scrollEnd }" [ngStyle]="{ 'display': scrollable('series') ? 'block' : 'none' }" class="right-arrow-right-type">
-          <button mat-mini-fab color="accent">
-            <mat-icon>keyboard_arrow_right</mat-icon>
-          </button>
-        </div>
-      </div>
-      
-    </div>
-  </ng-container>
-   
-  
-   <!-- Games favorites collection -->
-  <ng-container *ngIf="favorites.length > 0 ">
-    <div class="type-favorites-container">
-      <h2>Your Videogames</h2>
-      <h3>Total: {{ getCollectionLength(favoritesGames) }}</h3>
-      <div class="sorting-container">
-        <div class="sorting-item">
-          <mat-icon (click)="sortFavorites(favoritesGames, yearSort, 'game', 'des')">
-            <span>expand_more</span>
-          </mat-icon>
-          <span class="sortByName">Year</span>
-          <mat-icon (click)="sortFavorites(favoritesGames, yearSort, 'game', 'asc')">
-            <span>expand_less</span>
-          </mat-icon>
-        </div>
-        <div class="sorting-item">
-          <mat-icon (click)="sortFavorites(favoritesGames, titleSort, 'game', 'des')">
-            <span>expand_more</span>
-          </mat-icon>
-          <span class="sortByName">Title</span>
-          <mat-icon (click)="sortFavorites(favoritesGames, titleSort, 'game', 'asc')">
-            <span>expand_less</span>
-          </mat-icon>
-        </div>
-  
-      </div>
-      <div class="type-favorites-card-with-arrows">
-        <div (click)="slide(-100,'games')" [ngClass]="{ 'is-disabled-hide': scrollX < 1 }" [ngStyle]="{ 'display': scrollable('games') ? 'block' : 'none' }" class="left-arrow-left-type">
-          <button mat-mini-fab color="accent">
-            <mat-icon>keyboard_arrow_left</mat-icon>
-          </button>
-        </div>
-        <div *ngIf="getCollectionLength(favoritesGames)>0" class="type-favorites-card" #scrlGames
-          (scroll)="scrollCheck('gamess')">
-          <ng-container *ngFor="let item of favoritesGames">
-            <app-favorites-card [item]="item" (itemIdEvent)="deleteFavorite($event)"
-              (itemUpdatedEvent)="updateFavorite($event)" (sendItemFavoriteEvent)="openFavorite($event)"></app-favorites-card>
-          </ng-container>
-        </div>
-        <div (click)="slide(100,'games')" [ngClass]="{ 'is-disabled-hide': scrollEnd }" [ngStyle]="{ 'display': scrollable('games') ? 'block' : 'none' }" class="right-arrow-right-type">
-          <button mat-mini-fab color="accent">
-            <mat-icon>keyboard_arrow_right</mat-icon>
-          </button>
-        </div>
-      </div>
-      
-      </div>
-  </ng-container>
-   
-  <button mat-mini-fab color="accent" aria-label="Back to top button" class="back-top-button" (click)="scrollToTop()" [ngClass]="{ 'show-scrollTop': windowScrolled }">
-    <mat-icon>
-      arrow_upward
-    </mat-icon>
-  </button>
-
 </ng-container>
 
-
-
 <ng-template #noFavoritesLoaded>
-  <div>
-    <h1>Loading, please wait</h1>
-    <mat-progress-bar mode="indeterminate" color="accent">Loading</mat-progress-bar>
-  </div>
-
+  <app-loading-spinner></app-loading-spinner>
 </ng-template>

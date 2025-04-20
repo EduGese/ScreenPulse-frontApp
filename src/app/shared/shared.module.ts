@@ -38,6 +38,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import {MatSortModule} from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { SortingControlsComponent } from './components/sorting-controls/sorting-controls.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 
 
 
@@ -74,7 +77,10 @@ const materialModules = [
     LoginFormComponent,
     RegisterFormComponent,
     MovieDialogComponent,
-    CarouselComponent
+    CarouselComponent,
+    SortingControlsComponent,
+    LoadingSpinnerComponent,
+    EmptyStateComponent
 
   
   ],
@@ -104,7 +110,10 @@ const materialModules = [
     RegisterFormComponent,
     MovieDialogComponent,
     CarouselComponent,
-    NgbModule
+    NgbModule,
+    SortingControlsComponent,
+    LoadingSpinnerComponent,
+    EmptyStateComponent
 
     
   ]  

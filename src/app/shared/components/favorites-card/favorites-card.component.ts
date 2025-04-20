@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Movie } from '../../models/movie.model';
 
 @Component({
   selector: 'app-favorites-card',
@@ -6,36 +7,46 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./favorites-card.component.css'],
 })
 export class FavoritesCardComponent {
-  @Input() item!: any;
-  @Output() itemIdEvent = new EventEmitter<string>();
-  @Output() itemUpdatedEvent = new EventEmitter<any>();
-  @Output() sendItemFavoriteEvent = new EventEmitter<any>();
+  @Input() item!: Movie;
+
+  @Output() itemToDelete = new EventEmitter<string>();
+  @Output() itemToOpen = new EventEmitter<any>();
+  @Output() descriptionToDelete = new EventEmitter<Movie>();
+  @Output() descriptionToAdd = new EventEmitter<Movie>();
+ 
 
   mode: string = 'view';
-  description: string = '';
+  inputDescription: string = '';
   hoverState: boolean = false;
 
   viewportWidth: number = window.innerWidth;
 
 
-  constructor() {}
+  constructor() { }
 
-  addDescription(item: any) {
-    const itemInfo = {
-      item: item,
-      description: this.description,
+  onDescriptionToAdd() {
+    const mediaItemWithDescription = {
+      ...this.item,
+      description: this.inputDescription,
     };
-    this.itemUpdatedEvent.emit(itemInfo);
+    this.descriptionToAdd.emit(mediaItemWithDescription);
     this.mode = 'view';
   }
-  sendItemId(id: string, event: MouseEvent) {
-    event.stopPropagation();
-    this.itemIdEvent.emit(id);
+  onDescriptionToDelete() {
+    const itemWithoutDescription = {
+      ...this.item,
+      description: '',
+    };
+    this.descriptionToDelete.emit(itemWithoutDescription);
   }
   onValueChange(event: Event): void {
-    const value = (event.target as HTMLTextAreaElement).value;
-    this.description = value;
+    this.inputDescription = (event.target as HTMLTextAreaElement).value;
   }
+  onItemToDelete( event: MouseEvent) {
+    event.stopPropagation();
+    this.itemToDelete.emit(this.item._id);
+  }
+
   toggleMode(event: MouseEvent): void {
     event.stopPropagation();
     this.mode = this.mode === 'view' ? 'edition' : 'view';
@@ -47,13 +58,13 @@ export class FavoritesCardComponent {
     this.hoverState = false;
   }
   areButtonsVisible(): boolean {
-    if(this.viewportWidth<= 1024){
+    if (this.viewportWidth <= 1024) {
       return true;
     }
     return this.hoverState;
   }
-  openItem(item: any) {
+  openitemToOpen(item: any) {
     this.hoverState = false;
-    this.sendItemFavoriteEvent.emit(item);
+    this.itemToOpen.emit(item);
   }
 }
