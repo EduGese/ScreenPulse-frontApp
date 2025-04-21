@@ -1,8 +1,8 @@
-import { Movie } from './movie.model';
+import { MediaItem } from './movie.model';
 
 export interface OmdbResponse {
   Response: 'True' | 'False';
-  Search?: Movie[];
+  Search?: MediaItem[];
   totalResults?: string;
   Error?: string;
 }

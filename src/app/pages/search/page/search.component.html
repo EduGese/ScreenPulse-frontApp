@@ -10,8 +10,8 @@
     <h1>
       Use the search bar to find by title, type, and year in our huge database.
     </h1>
-    <h4 tabindex="0">Powered by <img src="../../../../assets/images/omdb_api.png" alt="omdb_api logo"> <img
-        src="../../../../assets/images/imdb2.png" alt="imdb logo"></h4>
+    <h4 tabindex="0">Powered by <img src="assets/images/omdb_api.png" alt="omdb_api logo"> <img
+        src="assets/images/imdb2.png" alt="imdb logo"></h4>
     <h3>* First request might take up to 50 seconds. Please be patient.</h3>
   </div>
 
@@ -20,10 +20,7 @@
     <div class="filter-container" #myinput>
       <app-search-bar (onSubmitEvent)="onSubmit($event)"></app-search-bar>
       <ng-container *ngIf=" searchState.searchOnProcess">
-        <div class="loading-container">
-          <h3>Loading, please wait..</h3>
-          <mat-progress-bar mode="indeterminate" color="accent">Loading</mat-progress-bar>
-        </div>
+        <app-loading-spinner></app-loading-spinner>
       </ng-container>
     </div>
   </div>
@@ -34,5 +31,5 @@
   <span tabindex="0" id="tableFocus"></span>
   <app-movie-results-table [displayedColumns]="displayedColumns" [collection]="searchState.collection" [collectionSize]="searchState.collectionSize"
     [currentPage]="searchState.currentPage" [pageSize]="searchState.pageSize" (pageChanged)="loadPage($event)"
-    (detailsOpened)="openMovie($event)" (favoriteAdded)="addToFavorites($event)"></app-movie-results-table>
+    (detailsOpened)="openMediaItem($event)" (favoriteAdded)="addToFavorites($event)"></app-movie-results-table>
 </section>

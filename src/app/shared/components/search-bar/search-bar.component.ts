@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MediaType, SearchFilters } from 'src/app/shared/models/search.model';
 
@@ -6,14 +6,13 @@ import { MediaType, SearchFilters } from 'src/app/shared/models/search.model';
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent {
 
   searchForm: FormGroup;
   types: MediaType[] = ['movie', 'series', 'game', 'all'];
-  currentYear: number = new Date().getFullYear();
+  currentyear: number = new Date().getFullYear();
 
   @Output() onSubmitEvent = new EventEmitter<SearchFilters>();
   @ViewChild('searchFormFocus') searchFormFocus!: ElementRef<HTMLInputElement>;
@@ -22,7 +21,7 @@ export class SearchBarComponent {
     this.searchForm = this.formBuilder.group({
       title: ['', Validators.required],
       type: ['all'],
-      year: [null as number | null, [Validators.min(1900), Validators.max(this.currentYear)]]
+      year: [null as number | null, [Validators.min(1900), Validators.max(this.currentyear)]]
     });
   }
   onSubmit(){

@@ -2,34 +2,34 @@
 
   <table mat-table [dataSource]="dataSource" matSort layout="flexLayout" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="Title">
-      <th class="head" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Title"> Title
+    <ng-container matColumnDef="title">
+      <th class="head" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by title"> title
       </th>
-      <td mat-cell *matCellDef="let item" class="title-cell"><span class="title-text"> {{item.Title}}</span> </td>
+      <td mat-cell *matCellDef="let item" class="title-cell"><span class="title-text"> {{item.title}}</span> </td>
     </ng-container>
 
-    <ng-container matColumnDef="Year">
-      <th class="head" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Year"> Year
+    <ng-container matColumnDef="year">
+      <th class="head" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by year"> year
       </th>
-      <td mat-cell *matCellDef="let item"><span> {{item.Year}}</span> </td>
+      <td mat-cell *matCellDef="let item"><span> {{item.year}}</span> </td>
     </ng-container>
 
-    <ng-container matColumnDef="Type">
-      <th class="head" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Type"> Type
+    <ng-container matColumnDef="type">
+      <th class="head" mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by type"> type
       </th>
-      <td mat-cell *matCellDef="let item"><span> {{item.Type}}</span> </td>
+      <td mat-cell *matCellDef="let item"><span> {{item.type}}</span> </td>
     </ng-container>
 
-    <ng-container matColumnDef="Poster">
-      <th class="poster-head" mat-header-cell *matHeaderCellDef> Poster </th>
+    <ng-container matColumnDef="poster">
+      <th class="poster-head" mat-header-cell *matHeaderCellDef> poster </th>
       <td mat-cell *matCellDef="let item">
 
-        <ng-container *ngIf="item.Poster === 'N/A'; else Poster">
-          <img src="../../../../assets/images/no_poster.jpg" alt="No/Poster" matTooltip="+ info"
+        <ng-container *ngIf="item.poster === 'N/A'; else poster">
+          <img src="../../../../assets/images/no_poster.jpg" alt="No/poster" matTooltip="+ info"
             matTooltipPosition="left" (click)="onDetailsOpened(item)">
         </ng-container>
-        <ng-template #Poster>
-          <img [src]="item.Poster" alt="Poster" matTooltip="+ info" matTooltipPosition="left" (click)="onDetailsOpened(item)">
+        <ng-template #poster>
+          <img [src]="item.poster" alt="poster" matTooltip="+ info" matTooltipPosition="left" (click)="onDetailsOpened(item)">
         </ng-template>
       </td>
     </ng-container>
@@ -51,5 +51,5 @@
   <mat-paginator [pageSize]="pageSize" [length]="collectionSize" (page)="onPageChanged($event)" showFirstLastButtons
     aria-label="Select page of results">
   </mat-paginator>
-
+{{collection}}
 </div>

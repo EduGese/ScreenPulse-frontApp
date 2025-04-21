@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Movie } from '../../models/movie.model';
+import { MediaItem } from '../../models/movie.model';
 
 @Component({
   selector: 'app-favorites-card',
@@ -7,12 +7,12 @@ import { Movie } from '../../models/movie.model';
   styleUrls: ['./favorites-card.component.css'],
 })
 export class FavoritesCardComponent {
-  @Input() item!: Movie;
+  @Input() item!: MediaItem;
 
   @Output() itemToDelete = new EventEmitter<string>();
   @Output() itemToOpen = new EventEmitter<any>();
-  @Output() descriptionToDelete = new EventEmitter<Movie>();
-  @Output() descriptionToAdd = new EventEmitter<Movie>();
+  @Output() descriptionToDelete = new EventEmitter<MediaItem>();
+  @Output() descriptionToAdd = new EventEmitter<MediaItem>();
  
 
   mode: string = 'view';

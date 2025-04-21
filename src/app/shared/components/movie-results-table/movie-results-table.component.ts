@@ -1,4 +1,4 @@
-import { Movie } from 'src/app/shared/models/movie.model';
+import { MediaItem } from 'src/app/shared/models/movie.model';
 import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -10,19 +10,19 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './movie-results-table.component.html',
   styleUrls: ['./movie-results-table.component.css'],
 })
-export class MovieResultsTableComponent implements AfterViewInit, OnChanges {
-  @Input() collection!: Movie[];
+export class MediaItemResultsTableComponent implements AfterViewInit, OnChanges {
+  @Input() collection!: MediaItem[];
   @Input() collectionSize!: number;
   @Input() currentPage!: number;
   @Input() pageSize!: number;
   @Input() displayedColumns!: string[];
 
-  @Output() favoriteAdded  = new EventEmitter<Movie>();
-  @Output() detailsOpened  = new EventEmitter<Movie>();
+  @Output() favoriteAdded  = new EventEmitter<MediaItem>();
+  @Output() detailsOpened  = new EventEmitter<MediaItem>();
   @Output() pageChanged = new EventEmitter<number>();
 
 
-  dataSource = new MatTableDataSource<Movie>();
+  dataSource = new MatTableDataSource<MediaItem>();
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -43,11 +43,11 @@ export class MovieResultsTableComponent implements AfterViewInit, OnChanges {
     this.dataSource.sort = this.sort;
   }
 
-  onFavoriteAdded(item: Movie) {
+  onFavoriteAdded(item: MediaItem) {
     this.favoriteAdded .emit(item);
   }
 
-  onDetailsOpened(item: Movie) {
+  onDetailsOpened(item: MediaItem) {
     this.detailsOpened .emit(item);
   }
 

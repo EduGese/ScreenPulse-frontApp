@@ -1,7 +1,7 @@
 import { ToastrService } from 'ngx-toastr';
 import { OmdbService } from 'src/app/shared/services/omdb/omdb.service';
 import { Component, ViewChild } from '@angular/core';
-import { Movie } from 'src/app/shared/models/movie.model';
+import { MediaItem } from 'src/app/shared/models/movie.model';
 import { SearchState, SearchFilters } from 'src/app/shared/models/search.model';
 import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
 import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FEATURED_MEDIA } from 'src/app/core/constants/featured-media.const';
 
 
 @Component({
@@ -59,7 +60,7 @@ export class SearchComponent {
     this.fetchMediaItems();
   }
 
-  addToFavorites(mediaItem: Movie): void {
+  addToFavorites(mediaItem: MediaItem): void {
     if (!this.authService.isLoggedIn()) {
       this.toastrService.error('You must be logged in to add movies to your list');
       this.router.navigate(['/login']);
@@ -68,7 +69,7 @@ export class SearchComponent {
 
     this.favoritesService.addToFavorites(mediaItem).subscribe({
       next: () => {
-        this.toastrService.success(mediaItem.Title, 'Added to favorites');
+        this.toastrService.success(mediaItem.title, 'Added to favorites');
       },
       error: (error: HttpErrorResponse) => {
         this.toastrService.error(error.message, 'Error adding to favorites');
@@ -76,8 +77,8 @@ export class SearchComponent {
     });
   }
 
-  openMovie(mediaItem: Movie): void {
-    this.dialogService.openMovie(window.innerWidth, mediaItem, false);
+  openMediaItem(mediaItem: MediaItem): void {
+    this.dialogService.openMediaItem(window.innerWidth, mediaItem, false);
   }
 
   formSearchFocus(): void {
@@ -95,12 +96,13 @@ export class SearchComponent {
       this.searchState.currentPage)
       .subscribe({
         next: (response) => {
+          console.log("response",response);
           if (response.Response === "True") {
             this.searchState.collection = response.Search || [];
             this.searchState.collectionSize = Number(response.totalResults) || 0;
             this.focusOnResultsTable()
           } else {
-            this.toastrService.warning('Try another search', 'No results found');
+            this.toastrService.warning(response.Error, 'Try again!');
             this.searchState.collection = [];
           }
           this.searchState.searchOnProcess = false;

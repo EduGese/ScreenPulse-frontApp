@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MovieDialogComponent } from './movie-dialog.component';
+import { MediaItemDialogComponent } from './movie-dialog.component';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 
-describe('MovieDialogComponent', () => {
-  let component: MovieDialogComponent;
-  let fixture: ComponentFixture<MovieDialogComponent>;
+describe('MediaItemDialogComponent', () => {
+  let component: MediaItemDialogComponent;
+  let fixture: ComponentFixture<MediaItemDialogComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MovieDialogComponent],
+      declarations: [MediaItemDialogComponent],
       imports:[MatDialogModule, 
         ToastrModule.forRoot(),
          HttpClientModule,
@@ -22,7 +22,7 @@ describe('MovieDialogComponent', () => {
         { provide: MAT_DIALOG_DATA, useValue: {} } 
       ]
     });
-    fixture = TestBed.createComponent(MovieDialogComponent);
+    fixture = TestBed.createComponent(MediaItemDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

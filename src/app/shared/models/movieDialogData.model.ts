@@ -1,7 +1,7 @@
-import { Movie } from "./movie.model";
+import { MediaItem } from "./movie.model";
 
-export interface MovieDialogData {
-    movie: Movie;
+export interface MediaItemDialogData {
+    movie: MediaItem;
     response: any; 
     fromFavoritesSection: boolean; 
   }

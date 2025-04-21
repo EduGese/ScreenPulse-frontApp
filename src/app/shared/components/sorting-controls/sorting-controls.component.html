@@ -1,25 +1,25 @@
 <div class="sorting-filter-container">
     <div class="sorting-container">
       <div class="sorting-item">
-        <mat-icon (click)="onSort('Year')">
-          <span>{{ currentSort.sortField === 'Year' && currentSort.sortOrder === -1 ? 'expand_less' : 'expand_more'
+        <mat-icon (click)="onSort('year')">
+          <span>{{ currentSort.sortField === 'year' && currentSort.sortOrder === -1 ? 'expand_less' : 'expand_more'
             }}</span>
         </mat-icon>
-        <span class="sortByName">Year</span>
-        <mat-icon (click)="onSort('Year')">
-          <span>{{ currentSort.sortField === 'Year' && currentSort.sortOrder === 1 ? 'expand_more' : 'expand_less'
+        <span class="sortByName">year</span>
+        <mat-icon (click)="onSort('year')">
+          <span>{{ currentSort.sortField === 'year' && currentSort.sortOrder === 1 ? 'expand_more' : 'expand_less'
             }}</span>
         </mat-icon>
       </div>
 
       <div class="sorting-item">
-        <mat-icon (click)="onSort('Title')">
-          <span>{{ currentSort.sortField === 'Title' && currentSort.sortOrder === -1 ? 'expand_less' : 'expand_more'
+        <mat-icon (click)="onSort('title')">
+          <span>{{ currentSort.sortField === 'title' && currentSort.sortOrder === -1 ? 'expand_less' : 'expand_more'
             }}</span>
         </mat-icon>
-        <span class="sortByName">Title</span>
-        <mat-icon (click)="onSort('Title')">
-          <span>{{ currentSort.sortField === 'Title' && currentSort.sortOrder === 1 ? 'expand_more' : 'expand_less'
+        <span class="sortByName">title</span>
+        <mat-icon (click)="onSort('title')">
+          <span>{{ currentSort.sortField === 'title' && currentSort.sortOrder === 1 ? 'expand_more' : 'expand_less'
             }}</span>
         </mat-icon>
       </div>

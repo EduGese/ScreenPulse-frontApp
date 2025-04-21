@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Movie } from 'src/app/shared/models/movie.model';
+import { MediaItem } from 'src/app/shared/models/movie.model';
 import { FavoritesFilterService } from '../services/favoritesFilterService/favorites-filter.service';
 import { ToastrService } from 'ngx-toastr';
 import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
@@ -15,8 +15,7 @@ import { FavoritesSearchParams } from 'src/app/shared/models/favoritesSearchPara
   styleUrls: ['./favorites.component.css'],
 })
 export class FavoritesComponent implements OnInit {
-  /*Favorties collection */
-  favorites: Movie[] | [] = [];
+  favorites: MediaItem[] | [] = [];
   favoritesSize: number = 0;
   isLoadingFavorites: boolean = false;
   userName: string | null = '';
@@ -42,6 +41,7 @@ export class FavoritesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isLoadingFavorites = true;
     this.loadAllFavorites();
     this.userName = this.authService.getUserName();
   }
@@ -93,15 +93,16 @@ export class FavoritesComponent implements OnInit {
     this.loadAllFavorites();
   }
 
-  openFavorite(favoriteMovieToOpen: Movie): void {
-    this.dialogService.openMovie(window.innerWidth, favoriteMovieToOpen, true);
+  openFavorite(favoriteMediaItemToOpen: MediaItem): void {
+    this.dialogService.openMediaItem(window.innerWidth, favoriteMediaItemToOpen, true);
   }
 
   deleteFavorite(_id: string): void {
-    this.favoritesService.deleteMovie(_id).subscribe({
+    this.favoritesService.deleteMediaItem(_id).subscribe({
       next: () => {
         this.favorites = this.favorites.filter((movie) => movie._id != _id);
          if (this.favorites.length === 0) {
+          this.isLoadingFavorites = true;
           this.isRevalidatingAfterDelete = true;
           this.searchParams.currentPage = 1;
           this.loadAllFavorites();
@@ -114,12 +115,12 @@ export class FavoritesComponent implements OnInit {
     });
   }
 
-  updateFavorite(mediaItem: Movie): void {
+  updateFavorite(mediaItem: MediaItem): void {
     this.favoritesService.updateFavorite(mediaItem)
       .subscribe({
-        next: (updatedMovie) => {
+        next: (updatedMediaItem) => {
           this.favorites = this.favorites.map(movie =>
-            movie._id === updatedMovie._id ? { ...movie, description: updatedMovie.description } : movie
+            movie._id === updatedMediaItem._id ? { ...movie, description: updatedMediaItem.description } : movie
           );
           this.toastrService.success('Item updated');
         },
@@ -129,7 +130,7 @@ export class FavoritesComponent implements OnInit {
       });
   }
 
-  trackByFn(index: number, item: Movie): string {
+  trackByFn(index: number, item: MediaItem): string {
     return item.imdbID;
   }
 }

@@ -20,7 +20,7 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { SearchCoverComponent } from './components/search-cover/search-cover.component';
-import { MovieResultsTableComponent } from './components/movie-results-table/movie-results-table.component';
+import { MediaItemResultsTableComponent } from './components/movie-results-table/movie-results-table.component';
 import { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
@@ -33,7 +33,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDialogModule} from '@angular/material/dialog';
-import { MovieDialogComponent } from './components/movie-dialog/movie-dialog.component';
+import { MediaItemDialogComponent } from './components/movie-dialog/movie-dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import {MatSortModule} from '@angular/material/sort';
@@ -71,12 +71,12 @@ const materialModules = [
     NavbarComponent,
     FooterComponent,
     SearchCoverComponent,
-    MovieResultsTableComponent,
+    MediaItemResultsTableComponent,
     FavoritesCardComponent,
     SearchBarComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    MovieDialogComponent,
+    MediaItemDialogComponent,
     CarouselComponent,
     SortingControlsComponent,
     LoadingSpinnerComponent,
@@ -103,12 +103,12 @@ const materialModules = [
     NavbarComponent,
     FooterComponent,
     SearchCoverComponent,
-    MovieResultsTableComponent,
+    MediaItemResultsTableComponent,
     FavoritesCardComponent,
     SearchBarComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    MovieDialogComponent,
+    MediaItemDialogComponent,
     CarouselComponent,
     NgbModule,
     SortingControlsComponent,

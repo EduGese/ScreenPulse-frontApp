@@ -13,7 +13,7 @@ export class SortingControlsComponent {
   @Output() filterChange = new EventEmitter<string>();
   @Output() mediaTypeChange = new EventEmitter<string>();
 
-  onSort(field: 'Title' | 'Year'): void {
+  onSort(field: 'title' | 'year'): void {
     this.sortChange.emit({
       field,
       order: this.currentSort.sortField === field ? 

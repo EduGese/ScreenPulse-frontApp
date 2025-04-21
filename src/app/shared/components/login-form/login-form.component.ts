@@ -27,7 +27,7 @@ export class LoginFormComponent {
     this.form.reset();
   }
   getAccessToGuess(){
-    const formData = {email: 'Guest', password: 'abc123.'};
+    const formData = {email: 'guest@mail.com', password: 'abc123.'};
     this.formDataEvent.emit(formData);
   }
 }

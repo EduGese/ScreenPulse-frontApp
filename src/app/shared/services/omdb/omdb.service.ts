@@ -14,25 +14,26 @@ export class OmdbService {
   constructor(private http: HttpClient) { }
 
   fetchMediaItems(title:string, type:string, year:string, page:number):Observable<OmdbResponse>{
-    const httpOptions = {
+    const options = {
       params: new HttpParams()
         .set('title', title.trim())
         .set('type', type)
         .set('year', year)
         .set('page', page.toString())
     };
-    return this.http.get<OmdbResponse>(environment.serverSearchURL, httpOptions)
+    return this.http.get<OmdbResponse>(`${environment.serverSearchURL}`, options)
     .pipe(
       catchError(error => {
+        console.log(error);
         if (error.status === 404) {
-          return throwError(() => new Error('EndpointNotFound')); 
+          return throwError(() => new Error('App error, contact service please')); 
         }
         return throwError(() => new Error('UnknownError'));
       })
     );
   }
-  getMovieInfo(imdbId:string){
-    return this.http.get<any>(`${environment.serverSearchURL}/${imdbId}`, {
+  getMediaItemInfo(imdbId:string){
+    return this.http.get<OmdbResponse>(`${environment.serverSearchURL}/${imdbId}`, {
     });
   }
 }

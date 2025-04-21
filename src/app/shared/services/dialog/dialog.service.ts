@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { OmdbService } from 'src/app/shared/services/omdb/omdb.service';
-import { MovieDialogComponent } from '../../components/movie-dialog/movie-dialog.component';
+import { MediaItemDialogComponent } from '../../components/movie-dialog/movie-dialog.component';
 import { ToastrService } from 'ngx-toastr';
-import { Movie } from '../../models/movie.model';
+import { MediaItem } from '../../models/movie.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class DialogService {
 
   constructor(private OmdbService: OmdbService, private dialog: MatDialog, private toastrService: ToastrService) { }
 
-  openMovie(windowWidth: number, mediaItem: Movie, fromFavoritesSection : boolean) {
+  openMediaItem(windowWidth: number, mediaItem: MediaItem, fromFavoritesSection : boolean) {
 
       let dialogHeight = '90%';
       let dialogWidth = '80%';
@@ -25,9 +25,9 @@ export class DialogService {
       dialogHeight = '85%';
       dialogWidth = '85%';
     }
-    this.OmdbService.getMovieInfo(mediaItem.imdbID).subscribe({
+    this.OmdbService.getMediaItemInfo(mediaItem.imdbID).subscribe({
       next: (response) => {
-        this.dialog.open(MovieDialogComponent, {
+        this.dialog.open(MediaItemDialogComponent, {
           data: {
             movie: mediaItem,
             response: response,
