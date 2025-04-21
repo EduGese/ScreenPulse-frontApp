@@ -16,7 +16,7 @@
   </div>
 
   <div class="search-container">
-    <app-carousel (sendItemCarousel)="openMovie($event)"></app-carousel>
+    <app-carousel (sendItemCarousel)="openMediaItem($event)" [collection]="featuredMedia"></app-carousel>
     <div class="filter-container" #myinput>
       <app-search-bar (onSubmitEvent)="onSubmit($event)"></app-search-bar>
       <ng-container *ngIf=" searchState.searchOnProcess">

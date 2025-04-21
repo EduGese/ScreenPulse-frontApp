@@ -1,26 +1,20 @@
 <div class="carousel-container">
-	<ngb-carousel #carousel *ngIf="collection" paused="false" [interval]="4000" [showNavigationIndicators]="true" [showNavigationArrows]="true">
-	  <ng-template ngbSlide *ngFor="let collectionIndex of getIndexes();">
+	<ngb-carousel 
+	  *ngIf="collection?.length"
+	  [interval]="4000"
+	  [showNavigationArrows]="showNavigationArrows"
+	  [showNavigationIndicators]="showNavigationIndicators"
+	>
+	  <ng-template ngbSlide *ngFor="let group of groupedItems">
 		<div class="slide-group">
-		  <div class="picsum-img-wrapper">
-			<img [src]="collection[collectionIndex ].Poster" alt="Random slide" (click)="openItem(collection[collectionIndex ])"/>
+		  <div class="picsum-img-wrapper" *ngFor="let item of group">
+			<img 
+			  [src]="item.poster" 
+			  [alt]="item.title"
+			  (click)="onOpenItem(item)"
+			/>
 		  </div>
-		  <div class="picsum-img-wrapper">
-			<img [src]="collection[collectionIndex  + 1].Poster" alt="Random slide" (click)="openItem(collection[collectionIndex +1])"/>
-		  </div>
-		  <div class="picsum-img-wrapper">
-			<img [src]="collection[collectionIndex  + 2].Poster" alt="Random slide" (click)="openItem(collection[collectionIndex +2])"/>
-		  </div>
-		  <div class="picsum-img-wrapper">
-			<img [src]="collection[collectionIndex  + 3].Poster" alt="Random slide" (click)="openItem(collection[collectionIndex +3])"/>
-		  </div>
-		  
 		</div>
-		
 	  </ng-template>
 	</ngb-carousel>
   </div>
-  
-  
-  
-

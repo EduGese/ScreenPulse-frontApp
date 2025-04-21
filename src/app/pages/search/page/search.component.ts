@@ -19,7 +19,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 
 export class SearchComponent {
-  displayedColumns: string[] = ['Title', 'Year', 'Type', 'Poster', 'Add'];
+  featuredMedia: MediaItem[] = FEATURED_MEDIA;
+  displayedColumns: string[] = ['title', 'year', 'type', 'poster', 'Add'];
   searchState: SearchState = {
     title: '',
     type: 'all',
