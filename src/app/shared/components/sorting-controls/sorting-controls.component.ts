@@ -5,7 +5,7 @@ import { FavoritesSearchParams } from '../../models/favoritesSearchParams.model'
 @Component({
   selector: 'app-sorting-controls',
   templateUrl: './sorting-controls.component.html',
-  styleUrls: ['./sorting-controls.component.css']
+  styleUrls: ['./sorting-controls.component.scss']
 })
 export class SortingControlsComponent {
   @Input() currentSort!: FavoritesSearchParams;

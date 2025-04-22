@@ -8,7 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-movie-results-table',
   templateUrl: './movie-results-table.component.html',
-  styleUrls: ['./movie-results-table.component.css'],
+  styleUrls: ['./movie-results-table.component.scss'],
 })
 export class MediaItemResultsTableComponent implements AfterViewInit, OnChanges {
   @Input() collection!: MediaItem[];

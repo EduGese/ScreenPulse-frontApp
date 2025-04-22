@@ -6,7 +6,7 @@ import { MediaType, SearchFilters } from 'src/app/shared/models/search.model';
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.css']
+  styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent {
 

@@ -15,7 +15,7 @@ import { FEATURED_MEDIA } from 'src/app/core/constants/featured-media.const';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.scss']
 })
 
 

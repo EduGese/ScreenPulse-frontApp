@@ -12,7 +12,7 @@ import { FavoritesSearchParams } from 'src/app/shared/models/favoritesSearchPara
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
-  styleUrls: ['./favorites.component.css'],
+  styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent implements OnInit {
   favorites: MediaItem[] | [] = [];

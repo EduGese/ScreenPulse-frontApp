@@ -4,7 +4,7 @@ import { MediaItem } from '../../models/movie.model';
 @Component({
   selector: 'app-favorites-card',
   templateUrl: './favorites-card.component.html',
-  styleUrls: ['./favorites-card.component.css'],
+  styleUrls: ['./favorites-card.component.scss'],
 })
 export class FavoritesCardComponent {
   @Input() item!: MediaItem;

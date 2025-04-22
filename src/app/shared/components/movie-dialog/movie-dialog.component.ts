@@ -10,7 +10,7 @@ import { MediaItemDialogData } from '../../models/movieDialogData.model';
 @Component({
   selector: 'app-movie-dialog',
   templateUrl: './movie-dialog.component.html',
-  styleUrls: ['./movie-dialog.component.css']
+  styleUrls: ['./movie-dialog.component.scss']
 })
 export class MediaItemDialogComponent {
 constructor(
