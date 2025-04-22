@@ -1,4 +1,3 @@
-
 <div class="head-icon">
 
     <h1>Open the door</h1>
@@ -9,30 +8,37 @@
         <input matInput type="email" formControlName="email">
         <button mat-icon-button matSuffix type="button">
             <mat-icon>mail</mat-icon>
-          </button>
-          <mat-error>Incorrect email format</mat-error>
+        </button>
+        <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('email')">Incorrect email format</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" color="accent">
         <mat-label>Password</mat-label>
-        <input  matInput [type]="hide ? 'password' : 'text'" formControlName="password" pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_\\]).{6,}$">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"
+            pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_\\]).{6,}$">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide" type="button">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-          <mat-error>Min 6 char incl. letters, numbers and special characters (!$^&=..).</mat-error>
+        </button>
+        <mat-error *ngIf="form.get('password')?.hasError('required')">Password is required</mat-error>
+        <mat-error *ngIf="form.get('password')?.hasError('pattern')">
+          Min 6 char incl. letters, numbers and special characters (!#..)
+        </mat-error>
     </mat-form-field>
     <span class="not-register-text">Not registered yet?</span><a routerLink="/register">Sign up here</a>
     <div class="button-container">
-        <button mat-raised-button class="button-login" color="primary" type="submit">
-            <mat-icon color="">login</mat-icon>Login
+        <button mat-raised-button class="button-login" color="primary" type="submit" [disabled]="form.invalid">
+            <mat-icon [ngClass]="form.invalid ? 'button-icon-disabled' : 'button-icon-enabled'">login</mat-icon>Login
         </button>
-        <button mat-raised-button class="button-clear" color="accent" type="button" (click)="onClear()">
-            <mat-icon>clear</mat-icon>
+        <button mat-raised-button class="button-guest" color="accent" type="button" (click)="onClear()">
+            <mat-icon >clear</mat-icon>
             Clear
         </button>
-        <button mat-raised-button class="button-guest" color="" type="button" matTooltip="Get guest access" (click)="getAccessToGuess()">
+        <button mat-raised-button class="button-guest" color="" type="button" matTooltip="Get guest access"
+            (click)="getAccessToGuest()">
             <mat-icon>lock_open</mat-icon>
             Guest
         </button>
     </div>
-    
+
 </form>

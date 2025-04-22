@@ -1,7 +1,4 @@
 <div class="view">
-    <app-register-form (formDataEvent)="getRegister($event)"></app-register-form>
-    <div class="loading-container" [ngStyle]="{'visibility': userSearch! ? 'visible' : 'hidden' }">
-        <h3>Loading, please wait..</h3>
-        <mat-progress-bar mode="indeterminate" color="accent">Loading</mat-progress-bar>
-    </div>
+    <app-register-form (submitRegisterData)="getRegistered($event)"></app-register-form>
+    <app-loading-spinner  [visible]="isRegistering" ></app-loading-spinner>
 </div>

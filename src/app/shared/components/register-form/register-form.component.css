@@ -43,6 +43,12 @@ mat-hint{
 .button mat-icon{
     color: rgb(0, 0, 0);
 }
+.button-container button[disabled] {
+    opacity: 1;
+    background-color: #333 !important;
+    border: 1px solid #555;
+  }
+
 .button-container{
     display: flex;
     flex-direction: row;

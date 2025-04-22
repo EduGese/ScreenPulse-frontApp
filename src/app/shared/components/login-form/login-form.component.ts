@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-login-form',
@@ -9,25 +10,30 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginFormComponent {
   hide = true;
   form: FormGroup;
-@Output() formDataEvent = new EventEmitter<any>();
+  private passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
+  private guestLoginData = { email: 'guest@mail.com', password: 'abc123.' }
 
+  @Output() formDataEvent = new EventEmitter<User>();
+
+ 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [
+        Validators.required, Validators.pattern(this.passwordPattern)]]
     });
   }
-  onSubmit() {
+  onSubmit(): void {
     if (this.form.valid) {
       const formData = this.form.value;
       this.formDataEvent.emit(formData);
     }
   }
-  onClear(){
+  onClear(): void {
     this.form.reset();
   }
-  getAccessToGuess(){
-    const formData = {email: 'guest@mail.com', password: 'abc123.'};
+  getAccessToGuest(): void {
+    const formData = this.guestLoginData;
     this.formDataEvent.emit(formData);
   }
 }

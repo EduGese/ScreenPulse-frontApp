@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -11,18 +11,18 @@ import { Subscription } from 'rxjs';
 export class NavbarComponent implements OnInit {
 
   userMail: string | null = '';
-  private userMailSubscription!: Subscription;
+  private destroy$ = new Subject<void>();
   expanded: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.userMailSubscription = this.authService.getUserMailObservable().subscribe(userMail => {
-      this.userMail = userMail;
-    });
+    this.authService.getUserMailObservable()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(userMail => {
+        this.userMail = userMail;
+      });
   }
-
-
 
   isLoggedIn() {
     return this.authService.isLoggedIn();
@@ -33,10 +33,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['']);
   }
   toogleMenu() {
-    if(!this.expanded){
-    this.expanded = true;
-  }else{
-    this.expanded = false;
+    this.expanded = !this.expanded;
   }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

@@ -45,7 +45,6 @@ a {
 
 .button {
     margin: 10px;
-    /* color: black !important; */
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
@@ -79,6 +78,19 @@ h1 {
     justify-content: center;
 
 }
+
+.button-container button[disabled] {
+    opacity: 1;
+    background-color: #333 !important;
+    border: 1px solid #555;
+  }
+.button-icon-disabled{
+    color:#202020 !important;
+}
+.button-icon-enabled{
+    color:#ffffff !important;
+}
+
 .mat-mdc-form-field.mat-accent {
     --mdc-outlined-text-field-outline-color: var(--custom-amber);
     --mdc-outlined-text-field-focus-outline-color: var(--custom-amber);

@@ -1,7 +1,4 @@
 <div class="view">
         <app-login-form (formDataEvent)="login($event)"></app-login-form>
-        <div class="loading-container" [ngStyle]="{'visibility': userSearch! ? 'visible' : 'hidden' }">
-                <h3>Loading, please wait..</h3>
-                <mat-progress-bar mode="indeterminate" color="accent">Loading</mat-progress-bar>
-        </div>
+        <app-loading-spinner [visible]="isLogin"></app-loading-spinner>
 </div>
