@@ -28,13 +28,13 @@
     </mat-form-field>
   
     
-    <div class="buttons-container">
-      <button mat-raised-button class="big-button" color="primary" type="submit" >
-      <mat-icon>send</mat-icon>
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit" [disabled]="searchForm.invalid">
+      <mat-icon [ngClass]="searchForm.invalid ? 'button-icon-disabled' : 'button-icon-enabled'">send</mat-icon>
       Find
     </button>
   
-    <button mat-raised-button class="big-button" color="accent" type="button" (click)="onClear()">
+    <button mat-raised-button color="accent" type="button" (click)="onClear()">
       <mat-icon>clear</mat-icon>
       Clear
     </button>

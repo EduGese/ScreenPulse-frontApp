@@ -39,7 +39,8 @@ export class SearchBarComponent {
     this.searchForm.reset({
       type: 'all',
     });
-    this.searchFormFocus.nativeElement.focus();
+    this.searchForm.markAsUntouched();
+    
   }
 
 }

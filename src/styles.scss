@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 html, body { height: 100%; }
 body {
@@ -7,12 +8,36 @@ body {
     background-color: black;
 }
 
-@import '~ngx-toastr/toastr';
+@import 'ngx-toastr/toastr';
 @font-face{
     font-family: Glegoo;
     src: url(./assets/fonts/Glegoo-Regular.ttf) format('truetype');
 }
 :root {
     --custom-amber: #f5cf3d;
+    --custom-amber-disabled: #f5d03d4d;
     --custom-error: red;
+    
   }
+
+  .mat-mdc-paginator{
+    background-color: #00000000 !important;
+    border-radius: 20px;
+    border: 2px solid var(--custom-amber);
+}
+
+.mat-mdc-paginator-range-label {
+    color: var(--custom-amber);
+}
+
+.mat-mdc-paginator-range-actions {
+    background-color: transparent !important;
+}
+.mat-mdc-paginator-icon{
+    fill: var(--custom-amber) !important;
+}
+.mat-mdc-icon-button[disabled] .mat-mdc-paginator-icon {
+    fill: var(--custom-amber-disabled) !important;
+}
+  
+  
