@@ -27,17 +27,12 @@ export class LoginComponent {
       next: (data) => {
         this.authService.setUserSession(data.user, data.token);
         this.toastrService.success(`Welcome, ${data.user.name}`, `You are logged in`)
-        this.isLogin = true;
+        this.isLogin = false;
         this.router.navigate(['']);
       },
       error: (error) => {
-        if (error.status === 0) {
-          this.isLogin = false;
-          this.toastrService.error("There was a problem connecting to the server. Please check your internet connection or try again later.")
-        } else {
-          this.toastrService.error(error.message);
-          this.isLogin = false;
-        }
+        this.toastrService.error(error.message);
+        this.isLogin = false;
       }
     });
   }

@@ -20,7 +20,7 @@ constructor(
   private authService: AuthService,
   private router: Router,
   private dialogRef: MatDialogRef<MediaItemDialogComponent>
-  ){}
+  ){ }
 
 addToFavorites(movie:MediaItem){
   if(!this.authService.isLoggedIn()){
@@ -34,7 +34,7 @@ addToFavorites(movie:MediaItem){
       this.toastrService.success(movie.title, 'Added to favorites');
     },
     error:(error) => {
-      this.toastrService.error(error.message, 'Error adding to favorites');
+      this.toastrService.warning(error.message);
     }
    });
 }

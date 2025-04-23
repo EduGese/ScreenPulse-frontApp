@@ -12,34 +12,24 @@ import { User } from 'src/app/shared/models/user.model';
 })
 export class RegisterComponent {
 
-  isRegistering: boolean = false;
+  isRegistering = false;
 
   constructor(
-    private userService: UserService, 
-    private router: Router, 
-    private toastrService: ToastrService) {}
+    private userService: UserService,
+    private router: Router,
+    private toastrService: ToastrService) { }
 
   getRegistered(formData: User): void {
     this.isRegistering = true;
     this.userService.register(formData).subscribe({
       next: (data) => {
         this.isRegistering = false;
-        this.toastrService.success(`Welcome to ScreenPulse ${data.name}`,`Succesful registration`, )
+        this.toastrService.success(`Welcome to ScreenPulse ${data.name}`, `Succesful registration`,)
         this.router.navigate(['login']);
       },
       error: (error) => {
         this.isRegistering = false;
-        if (error.status === 0) {
-          this.toastrService.error(
-            'There was a problem connecting to the server. Please check your internet connection or try again later.'
-          );
-        } else if (error.message === 'User already exists') {
-          this.toastrService.error(
-            'This email is already registered. Please use a different email.'
-          );
-        } else {
-          this.toastrService.error(error.message);
-        }
+        this.toastrService.error(error.message);
       }
     });
   }

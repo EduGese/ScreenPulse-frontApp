@@ -1,9 +1,11 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { ErrorHandler, EventEmitter, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { EventEmitter, Injectable } from '@angular/core';
 import { MediaItem } from '../../models/movie.model';
 import { environment } from 'src/environments/environment.development';
-import { catchError, Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { DeleteResponse } from '../../models/deleteResponse.model';
+import { FavoritesResponse } from '../../models/favoritesResponse.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,20 +21,12 @@ export class FavoritesService {
     if (!userId) {
       return throwError(() => new Error('User ID not available'));
     }
-    console.log("Movie", movie)
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
     };
     return this.http.post<MediaItem>(`${this.baseUrl}/${userId}`, movie, options)
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          const errorMessage = error.status === 409
-            ? `"${movie.title}" is already in favorites`
-            : 'Failed to add to favorites. Please try again later.';
-          return throwError(() => new Error(errorMessage));
-        }))
   }
 
   getFavorites(
@@ -42,7 +36,7 @@ export class FavoritesService {
     sortOrder?: number,
     searchTerm?: string,
     mediaType?: string,
-   ): Observable<any> {
+   ): Observable<FavoritesResponse> {
     const userId = this.authService.getUserId();
     if (!userId) return of({
       favorites: [],
@@ -50,21 +44,20 @@ export class FavoritesService {
       currentPage,
       pageSize
     });
+    
     let params = new HttpParams()
       .set('page', currentPage.toString())
       .set('pageSize', pageSize.toString());
-
     if (sortField) params = params.set('sortField', sortField);
     if (sortOrder) params = params.set('sortOrder', sortOrder.toString());
     if (mediaType && mediaType !== 'all') params = params.set('type', mediaType);
     if (searchTerm) params = params.set('searchTerm', searchTerm);
-
-      return this.http.get<MediaItem[]>(`${this.baseUrl}/${userId}`, {params});
+      return this.http.get<FavoritesResponse>(`${this.baseUrl}/${userId}`, {params});
 
   }
-  deleteMediaItem(movieId: string): Observable<any> {
+  deleteMediaItem(movieId: string): Observable<DeleteResponse> {
     const userId = this.authService.getUserId();
-    return this.http.delete<any>(`${this.baseUrl}/${movieId}/${userId}`)
+    return this.http.delete<DeleteResponse>(`${this.baseUrl}/${movieId}/${userId}`);
   }
 
   updateFavorite(mediaItem: MediaItem): Observable<MediaItem> {
@@ -77,6 +70,6 @@ export class FavoritesService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.http.put<any>(`${this.baseUrl}/${mediaItem._id}/${userId}`, body, headers)
+    return this.http.put<MediaItem>(`${this.baseUrl}/${mediaItem._id}/${userId}`, body, headers)
   }
 }
