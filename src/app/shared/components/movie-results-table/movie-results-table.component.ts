@@ -27,8 +27,6 @@ export class MediaItemResultsTableComponent implements AfterViewInit, OnChanges 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor() { }
-
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes?.['collection']?.currentValue) {

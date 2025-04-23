@@ -10,19 +10,18 @@ export class FavoritesCardComponent {
   @Input() item!: MediaItem;
 
   @Output() itemToDelete = new EventEmitter<string>();
-  @Output() itemToOpen = new EventEmitter<any>();
+  @Output() itemToOpen = new EventEmitter<MediaItem>();
   @Output() descriptionToDelete = new EventEmitter<MediaItem>();
   @Output() descriptionToAdd = new EventEmitter<MediaItem>();
  
 
-  mode: string = 'view';
-  inputDescription: string = '';
-  hoverState: boolean = false;
+  mode = 'view';
+  inputDescription = '';
+  hoverState = false;
 
   viewportWidth: number = window.innerWidth;
 
 
-  constructor() { }
 
   onDescriptionToAdd() {
     const mediaItemWithDescription = {
@@ -38,6 +37,8 @@ export class FavoritesCardComponent {
       description: '',
     };
     this.descriptionToDelete.emit(itemWithoutDescription);
+    this.inputDescription = '';
+    this.mode = 'view';
   }
   onValueChange(event: Event): void {
     this.inputDescription = (event.target as HTMLTextAreaElement).value;
@@ -63,7 +64,7 @@ export class FavoritesCardComponent {
     }
     return this.hoverState;
   }
-  openitemToOpen(item: any) {
+  openitemToOpen(item: MediaItem) {
     this.hoverState = false;
     this.itemToOpen.emit(item);
   }

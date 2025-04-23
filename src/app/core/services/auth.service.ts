@@ -7,10 +7,10 @@ import { User } from 'src/app/shared/models/user.model';
 })
 export class AuthService {
 
-  private authTokenKey: string  = 'authToken';
-  private userMailKey: string = 'userMail';
-  private userNameKey: string = 'userName';
-  private userIdKey: string = 'userId';
+  private authTokenKey  = 'authToken';
+  private userMailKey = 'userMail';
+  private userNameKey = 'userName';
+  private userIdKey = 'userId';
 
   private userMailSubject = new BehaviorSubject<string | null>(null);
 

@@ -25,11 +25,24 @@
       <td mat-cell *matCellDef="let item">
 
         <ng-container *ngIf="item.poster === 'N/A'; else poster">
-          <img src="../../../../assets/images/no_poster.jpg" alt="No/poster" matTooltip="+ info"
-            matTooltipPosition="left" (click)="onDetailsOpened(item)">
+          <img src="assets/images/no_poster.jpg"  alt="No poster"
+          matTooltip="+ info"
+          matTooltipPosition="left"
+          (click)="onDetailsOpened(item)"
+          (keydown.enter)="onDetailsOpened(item)"
+          (keydown.space)="onDetailsOpened(item)"
+          tabindex="0"
+          role="button">
         </ng-container>
         <ng-template #poster>
-          <img [src]="item.poster" alt="poster" matTooltip="+ info" matTooltipPosition="left" (click)="onDetailsOpened(item)">
+          <img [src]="item.poster" alt="Poster"
+          matTooltip="+ info"
+          matTooltipPosition="left"
+          (click)="onDetailsOpened(item)"
+          (keydown.enter)="onDetailsOpened(item)"
+          (keydown.space)="onDetailsOpened(item)"
+          tabindex="0"
+          role="button">
         </ng-template>
       </td>
     </ng-container>

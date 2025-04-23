@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivateFn} from '@angular/router';
 import { of } from 'rxjs';
 
 import { AuthGuard } from './auth.guard';
@@ -9,8 +9,8 @@ describe('AuthGuard', () => {
   const authServiceStub = { isAuthenticated: () => of(true) }; 
   const routerStub = {}; 
 
-  const executeGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) =>
-    TestBed.runInInjectionContext(() => new AuthGuard(authServiceStub as unknown as AuthService, routerStub as any).canActivate());
+  const executeGuard: CanActivateFn = () =>
+    TestBed.runInInjectionContext(() => new AuthGuard(authServiceStub as unknown as AuthService, routerStub as never).canActivate());
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

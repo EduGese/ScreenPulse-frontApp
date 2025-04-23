@@ -14,7 +14,7 @@ export class SearchBarComponent {
   types: MediaType[] = ['movie', 'series', 'game', 'all'];
   currentyear: number = new Date().getFullYear();
 
-  @Output() onSubmitEvent = new EventEmitter<SearchFilters>();
+  @Output() searchSubmitted = new EventEmitter<SearchFilters>();
   @ViewChild('searchFormFocus') searchFormFocus!: ElementRef<HTMLInputElement>;
 
   constructor(private formBuilder: FormBuilder) {
@@ -32,7 +32,7 @@ export class SearchBarComponent {
       ...formValue,
       year: formValue.year?.toString() || ''
     };
-    this.onSubmitEvent.emit(payload);
+    this.searchSubmitted.emit(payload);
   
   }
   onClear(){

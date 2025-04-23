@@ -1,15 +1,13 @@
 <mat-card class="favorite-card">
-  <!--poster Container-->
   <mat-card-content class="img-container" matTooltip="{{item.title}}" matTooltipPosition="above">
     <div class="img-container2" [style.background-image]="'url(' + item.poster + ')'" (mouseenter)="onMouseEnter()"
-      (mouseleave)="onMouseLeave()" (click)="openitemToOpen(item)">
+      (mouseleave)="onMouseLeave()" (click)="openitemToOpen(item)" (keydown.enter)="openitemToOpen(item)"
+      (keydown.space)="openitemToOpen(item)" tabindex="0" role="button">
       <ng-container *ngIf="areButtonsVisible()">
-        <!--Delete button-->
         <button mat-mini-fab color="warn" aria-label="delete item" class='delete-button'
           (click)="onItemToDelete($event)">
           <mat-icon matTooltip="Delete" matTooltipPosition="below">delete</mat-icon>
         </button>
-        <!--Description button-->
         <button mat-mini-fab color="primary" class='review-button' (click)="toggleMode( $event)"
           [value]="mode === 'view' ? 'edition' : 'view'">
           <mat-icon> {{ mode === 'view' ? 'rate_review' : 'close' }}</mat-icon>
@@ -18,8 +16,6 @@
     </div>
   </mat-card-content>
 
-  <!--Info & buttons Container-->
-  <!--Description container-->
   <mat-card-content class="chip-container">
     <mat-card-subtitle [ngClass]="item.type">
       <div class="chip">
@@ -39,15 +35,16 @@
     <ng-template #noDescription>
     </ng-template>
 
-
-    <!--Edition Container-->
     <mat-card-content *ngIf="mode === 'edition'" class="edition">
-      <button mat-mini-fab aria-label="Add review" (click)="onDescriptionToAdd()">
-        <mat-icon>add</mat-icon>
-      </button>
-      <button *ngIf="item.description" mat-mini-fab aria-label="Add review" (click)="onDescriptionToDelete()">
-        <mat-icon>delete</mat-icon>
-      </button>
+      <div class="edition-buttons">
+        <button mat-mini-fab aria-label="Add review" (click)="onDescriptionToAdd()">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button *ngIf="item.description" mat-mini-fab aria-label="Add review" (click)="onDescriptionToDelete()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+ 
       <textarea [value]="item.description ? item.description : inputDescription" (input)="onValueChange($event)"
         maxlength="200" placeholder="Add your own review" id="textTarea"></textarea>
     </mat-card-content>
