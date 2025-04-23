@@ -17,47 +17,45 @@ mat-hint {
 .title {
     font-weight: 300;
     width: 45%;
-    margin: 10px auto 55px auto;
-    background: #000000;
-    border: 1px solid #f5cf3d;
+    margin: 10px auto 55px;
+    background: #000;
+    border: 1px solid var(--custom-amber);
     border-radius: 30px;
-}
 
-.title h1 {
-    text-align: center;
-    padding: 2px;
-    margin: 0;
-}
+    h1 {
+        text-align: center;
+        padding: 2px;
+        margin: 0;
+    }
 
-.user-name {
-    font-weight: bold;
-    font-style: italic;
-    text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+    .user-name {
+        font-weight: bold;
+        font-style: italic;
+        text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+    }
 }
 
 .all-favorites-container {
     min-width: 50%;
     max-width: 70%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+    background-color: #000;
+
+    h2 {
+        font-family: 'Glegoo';
+        color: var(--custom-amber);
+        border-bottom: 1px solid rgba(245, 208, 61, 0.47);
+    }
 }
 
-.all-favorites-container h2 {
-    font-family: 'Glegoo';
-    color: #f5cf3d;
-    border-bottom: 1px solid #f5d03d7a;
-}
 
 .all-favorites-card {
-    flex-direction: row;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    flex-shrink: inherit;
     gap: 70px;
     min-height: 250px;
     margin-bottom: 40px;
-
 }
 
 
@@ -65,17 +63,16 @@ mat-hint {
     width: 40%;
 }
 
-
 .back-top-button {
+    position: fixed;
     bottom: 10px;
+    right: 10px;
+    opacity: 0 !important;
     cursor: pointer;
     margin-left: auto;
     margin-right: auto;
-    position: fixed;
-    right: 10px;
-    opacity: 0 !important;
-
 }
+
 
 
 @media only screen and (max-width: 768px) {
@@ -97,19 +94,16 @@ mat-hint {
         flex-wrap: nowrap;
         overflow-x: scroll;
     }
+
     .paginator-container {
         width: 100%;
     }
 }
 
-@media only screen and (max-width: 1024px) {
-
-}
 
 @media only screen and (min-width: 1650px) {
     .all-favorites-container {
         min-width: 50%;
         max-width: 50%;
-
     }
 }

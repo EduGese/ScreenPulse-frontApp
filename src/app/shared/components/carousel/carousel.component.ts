@@ -1,15 +1,15 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { MediaItem } from '../../models/movie.model';
 
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.css']
+  styleUrls: ['./carousel.component.scss']
 })
-export class CarouselComponent {
+export class CarouselComponent implements OnInit {
   @Input() collection!: MediaItem[];
-  @Output() sendItemCarousel = new EventEmitter<any>();
+  @Output() sendItemCarousel = new EventEmitter<MediaItem>();
 
   showNavigationArrows = true;
   showNavigationIndicators = true;

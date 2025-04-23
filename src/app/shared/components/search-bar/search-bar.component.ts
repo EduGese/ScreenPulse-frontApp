@@ -6,7 +6,7 @@ import { MediaType, SearchFilters } from 'src/app/shared/models/search.model';
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.css']
+  styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent {
 
@@ -14,7 +14,7 @@ export class SearchBarComponent {
   types: MediaType[] = ['movie', 'series', 'game', 'all'];
   currentyear: number = new Date().getFullYear();
 
-  @Output() onSubmitEvent = new EventEmitter<SearchFilters>();
+  @Output() searchSubmitted = new EventEmitter<SearchFilters>();
   @ViewChild('searchFormFocus') searchFormFocus!: ElementRef<HTMLInputElement>;
 
   constructor(private formBuilder: FormBuilder) {
@@ -32,14 +32,15 @@ export class SearchBarComponent {
       ...formValue,
       year: formValue.year?.toString() || ''
     };
-    this.onSubmitEvent.emit(payload);
+    this.searchSubmitted.emit(payload);
   
   }
   onClear(){
     this.searchForm.reset({
       type: 'all',
     });
-    this.searchFormFocus.nativeElement.focus();
+    this.searchForm.markAsUntouched();
+    
   }
 
 }

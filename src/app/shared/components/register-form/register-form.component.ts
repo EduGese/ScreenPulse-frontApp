@@ -5,7 +5,7 @@ import { User } from '../../models/user.model';
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
-  styleUrls: ['./register-form.component.css']
+  styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent {
   hidePassword = true;

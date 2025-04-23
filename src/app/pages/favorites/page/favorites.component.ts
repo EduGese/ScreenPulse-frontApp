@@ -1,9 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component,OnInit, ViewChild } from '@angular/core';
 import { MediaItem } from 'src/app/shared/models/movie.model';
-import { FavoritesFilterService } from '../services/favoritesFilterService/favorites-filter.service';
 import { ToastrService } from 'ngx-toastr';
 import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
-import { ViewportRuler } from '@angular/cdk/scrolling';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -12,12 +10,12 @@ import { FavoritesSearchParams } from 'src/app/shared/models/favoritesSearchPara
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
-  styleUrls: ['./favorites.component.css'],
+  styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent implements OnInit {
   favorites: MediaItem[] | [] = [];
-  favoritesSize: number = 0;
-  isLoadingFavorites: boolean = false;
+  favoritesSize = 0;
+  isLoadingFavorites = false;
   userName: string | null = '';
 
   searchParams: FavoritesSearchParams = {
@@ -28,7 +26,7 @@ export class FavoritesComponent implements OnInit {
     sortOrder: undefined,
     searchTerm: undefined,
   };
-  isRevalidatingAfterDelete: boolean = false;
+  isRevalidatingAfterDelete = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -99,7 +97,7 @@ export class FavoritesComponent implements OnInit {
 
   deleteFavorite(_id: string): void {
     this.favoritesService.deleteMediaItem(_id).subscribe({
-      next: () => {
+      next: (response) => {
         this.favorites = this.favorites.filter((movie) => movie._id != _id);
          if (this.favorites.length === 0) {
           this.isLoadingFavorites = true;
@@ -107,7 +105,7 @@ export class FavoritesComponent implements OnInit {
           this.searchParams.currentPage = 1;
           this.loadAllFavorites();
         }
-        this.toastrService.success('Item deleted');
+        this.toastrService.success(response.message);
       },
       error: () => {
         this.toastrService.error('Cannot delete item, try again later');

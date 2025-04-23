@@ -7,4 +7,6 @@ export interface MediaItem{
   poster: string;
   description? : string
   user?: string
+  createdAt?: string
+  updatedAt?: string
 }

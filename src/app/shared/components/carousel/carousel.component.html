@@ -7,13 +7,20 @@
 	>
 	  <ng-template ngbSlide *ngFor="let group of groupedItems">
 		<div class="slide-group">
-		  <div class="picsum-img-wrapper" *ngFor="let item of group">
-			<img 
-			  [src]="item.poster" 
-			  [alt]="item.title"
-			  (click)="onOpenItem(item)"
-			/>
-		  </div>
+			<div class="picsum-img-wrapper" *ngFor="let item of group">
+				<div
+				  role="button"
+				  tabindex="0"
+				  (click)="onOpenItem(item)"
+				  (keydown.enter)="onOpenItem(item)"
+				  (keydown.space)="onOpenItem(item)"
+				>
+				  <img 
+					[src]="item.poster" 
+					[alt]="item.title"
+				  />
+				</div>
+			  </div>
 		</div>
 	  </ng-template>
 	</ngb-carousel>

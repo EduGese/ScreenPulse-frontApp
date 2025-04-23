@@ -40,8 +40,9 @@ export class DialogService {
           autoFocus: false,
         });
       },
-      error: () => {
-        this.toastrService.error('Failed to load movie details');
+      error: (error) => {
+        this.toastrService.error(error.message);
+        
       },
     });
   }

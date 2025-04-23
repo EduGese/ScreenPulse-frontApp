@@ -15,7 +15,7 @@ import { FEATURED_MEDIA } from 'src/app/core/constants/featured-media.const';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.scss']
 })
 
 
@@ -72,7 +72,7 @@ export class SearchComponent {
         this.toastrService.success(mediaItem.title, 'Added to favorites');
       },
       error: (error: HttpErrorResponse) => {
-        this.toastrService.error(error.message, 'Error adding to favorites');
+        this.toastrService.warning(error.message);
       }
     });
   }
@@ -96,7 +96,6 @@ export class SearchComponent {
       this.searchState.currentPage)
       .subscribe({
         next: (response) => {
-          console.log("response",response);
           if (response.Response === "True") {
             this.searchState.collection = response.Search || [];
             this.searchState.collectionSize = Number(response.totalResults) || 0;
@@ -108,7 +107,8 @@ export class SearchComponent {
           this.searchState.searchOnProcess = false;
         },
         error: (error) => {
-          this.toastrService.error(error.message, 'Major error');
+          this.toastrService.error(error.message);
+          this.searchState.searchOnProcess = false;
         }
       })
   }
