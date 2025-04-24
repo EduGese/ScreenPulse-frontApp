@@ -7,7 +7,7 @@ import { MediaItem } from '../../models/movie.model';
   styleUrls: ['./favorites-card.component.scss'],
 })
 export class FavoritesCardComponent {
-  @Input() item!: MediaItem;
+  @Input() item: MediaItem = {} as MediaItem;
 
   @Output() itemToDelete = new EventEmitter<string>();
   @Output() itemToOpen = new EventEmitter<MediaItem>();

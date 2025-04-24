@@ -8,7 +8,7 @@ import { MediaItem } from '../../models/movie.model';
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit {
-  @Input() collection!: MediaItem[];
+  @Input() collection: MediaItem[] = [];
   @Output() sendItemCarousel = new EventEmitter<MediaItem>();
 
   showNavigationArrows = true;

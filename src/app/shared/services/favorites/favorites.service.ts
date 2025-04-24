@@ -70,6 +70,6 @@ export class FavoritesService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.http.put<MediaItem>(`${this.baseUrl}/${mediaItem._id}/${userId}`, body, headers)
+    return this.http.patch<MediaItem>(`${this.baseUrl}/${mediaItem._id}/${userId}`, body, headers)
   }
 }

@@ -62,7 +62,7 @@ const materialModules = [
   MatTooltipModule,
   MatProgressBarModule,
   MatDialogModule,
-  MatSortModule
+  MatSortModule, 
 ]
 
 

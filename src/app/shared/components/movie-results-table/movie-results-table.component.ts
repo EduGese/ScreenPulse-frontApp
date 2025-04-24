@@ -11,11 +11,12 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./movie-results-table.component.scss'],
 })
 export class MediaItemResultsTableComponent implements AfterViewInit, OnChanges {
-  @Input() collection!: MediaItem[];
-  @Input() collectionSize!: number;
-  @Input() currentPage!: number;
-  @Input() pageSize!: number;
-  @Input() displayedColumns!: string[];
+  @Input() collection: MediaItem[] = [];
+  @Input() collectionSize = 0;
+  @Input() currentPage = 1;
+  @Input() pageSize = 10;
+  @Input() displayedColumns: string[] = [];
+  
 
   @Output() favoriteAdded  = new EventEmitter<MediaItem>();
   @Output() detailsOpened  = new EventEmitter<MediaItem>();
