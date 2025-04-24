@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FavoritesComponent } from './favorites.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { FavoritesFilterService } from '../services/favoritesFilterService/favorites-filter.service';
 import { NavbarComponent } from 'src/app/shared/components/navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 describe('FavoritesComponent', () => {
   let component: FavoritesComponent;
@@ -38,9 +39,11 @@ describe('FavoritesComponent', () => {
         BrowserAnimationsModule,
         HttpClientModule,
         MatDialogModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        SharedModule,
+        MatPaginatorModule,
       ],
-      providers: [ToastrService, FavoritesFilterService],
+      providers: [ToastrService],
     });
     fixture = TestBed.createComponent(FavoritesComponent);
     component = fixture.componentInstance;

@@ -1,10 +1,12 @@
-export interface Movie{
+export interface MediaItem{
    _id?: string;
-  Title: string;
-  Year: string;
+  title: string;
+  year: string;
   imdbID: string;
-  Type: string; 
-  Poster: string;
+  type: string; 
+  poster: string;
   description? : string
   user?: string
+  createdAt?: string
+  updatedAt?: string
 }

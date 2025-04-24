@@ -1,0 +1,23 @@
+.img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-container img {
+    width: 35%;
+    filter: brightness(0.9);
+    border-radius: 50%;
+}
+h1 {
+    font-family: 'Glegoo';
+    color: #f5cf3d;
+    text-align: center;
+    padding: 20px;
+
+}
+@media only screen and (max-width: 1024px) {
+    .img-container img {
+        width: 80%;
+    }
+}

@@ -1,32 +1,37 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
-  styleUrls: ['./register-form.component.css']
+  styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent {
-hide = true;
-form: FormGroup;
-@Output() formDataEvent = new EventEmitter<any>();
+  hidePassword = true;
+  form: FormGroup; 
+  private passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
+  
+  @Output() submitRegisterData = new EventEmitter<User>();
+
+ 
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      userName: ['', Validators.required],
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.pattern(this.passwordPattern)
+      ]]
     });
   }
-  onSubmit() {
-    if (this.form.valid) {
-      const formData = this.form.value;
-      this.formDataEvent.emit(formData);
-    }
+  onSubmit(): void {
+    if (this.form.invalid) return;
+    this.submitRegisterData.emit(this.form.value);
   }
-  onClear(){
+  onClear(): void {
     this.form.reset();
   }
-  
-
 }

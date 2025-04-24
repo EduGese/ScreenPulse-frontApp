@@ -8,6 +8,7 @@ import { FavoritesRoutingModule } from './favorites-routing.module';
 import { FavoritesComponent } from './page/favorites.component';
 import { FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -21,6 +22,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatProgressBarModule,
     SharedModule,
     FormsModule,
+    MatPaginatorModule
   ]
 })
 export class FavoritesModule { }

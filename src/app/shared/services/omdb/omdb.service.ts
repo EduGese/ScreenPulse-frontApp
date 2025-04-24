@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable} from 'rxjs';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment.development';
-import { Movie } from '../../models/movie.model';
+import { OmdbResponse } from '../../models/omdbResponse.model';
+import { OmdbDetails } from '../../models/ombdDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -13,34 +14,17 @@ export class OmdbService {
 
   constructor(private http: HttpClient) { }
 
-  getMovies(title:string, type:string, year:string):Observable<Movie[]>{
-    const body = {
-      s: title.trim(),
-      type: type,
-      y: year,
+  fetchMediaItems(title: string, type: string, year: string, page: number): Observable<OmdbResponse> {
+    const options = {
+      params: new HttpParams()
+        .set('title', title.trim())
+        .set('type', type)
+        .set('year', year)
+        .set('page', page.toString())
     };
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
-    return this.http.post<any>(environment.serverSearchURL, body, httpOptions)
-    .pipe(
-
-      catchError(error => {
-  
-        if (error.status === 404) {
-          return throwError(() => new Error('EndpointNotFound')); 
-        }
-        return throwError(() => new Error('UnknownError'));
-  
-      })
-  
-    );
+    return this.http.get<OmdbResponse>(`${environment.serverSearchURL}`, options)
   }
-  getMovieInfo(imdbId:string){
-    
-    return this.http.get<any>(`${environment.serverSearchURL}/${imdbId}`, {
-    });
+  getMediaItemInfo(imdbId: string): Observable<OmdbDetails> {
+    return this.http.get<OmdbDetails>(`${environment.serverSearchURL}/${imdbId}`)
   }
 }

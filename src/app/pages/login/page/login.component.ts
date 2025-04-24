@@ -8,42 +8,33 @@ import { User } from 'src/app/shared/models/user.model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
 
-  userSearch: boolean = false;
-  
+  isLogin = false;
+
   constructor(
-    private userService: UserService, 
-    private authService: AuthService, 
+    private userService: UserService,
+    private authService: AuthService,
     private router: Router,
     private toastrService: ToastrService
-    ) {}
+  ) { }
 
-  login(formData: User) {
-    this.userSearch = true;
+  login(formData: User): void {
+    this.isLogin = true;
     this.userService.login(formData).subscribe({
       next: (data) => {
-        this.authService.setAuthToken(data.token);
-        this.authService.setUserMail(data.user.email);
-        this.authService.setUserName(data.user.userName);
-        this.authService.setUserId(data.user._id);
-        this.toastrService.success(`Welcome, ${data.user.userName}`,`You are logged in`, )
-        this.userSearch = false;
+        this.authService.setUserSession(data.user, data.token);
+        this.toastrService.success(`Welcome, ${data.user.name}`, `You are logged in`)
+        this.isLogin = false;
         this.router.navigate(['']);
       },
       error: (error) => {
-        if(error.status===0){
-          this.userSearch = false;
-          this.toastrService.error("There was a problem connecting to the server. Please check your internet connection or try again later.")
-        }else{
-          this.toastrService.error(error.error.message);
-          this.userSearch = false;
-        }
-       
+        this.toastrService.error(error.message);
+        this.isLogin = false;
       }
     });
   }
-  
+
 }

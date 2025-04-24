@@ -10,42 +10,24 @@
     <h1>
       Use the search bar to find by title, type, and year in our huge database.
     </h1>
-    <h4 tabindex="0">Powered by <img src="../../../../assets/images/omdb_api.png" alt="omdb_api logo"> <img
-        src="../../../../assets/images/imdb2.png" alt="imdb logo"></h4>
+    <h4 tabindex="0">Powered by <img src="assets/images/omdb_api.png" alt="omdb_api logo"> <img
+        src="assets/images/imdb2.png" alt="imdb logo"></h4>
     <h3>* First request might take up to 50 seconds. Please be patient.</h3>
   </div>
-  
+
   <div class="search-container">
-    <app-carousel (sendItemCarousel)="openMovie($event)"></app-carousel>
+    <app-carousel (sendItemCarousel)="openMediaItem($event)" [collection]="featuredMedia"></app-carousel>
     <div class="filter-container" #myinput>
-      <app-search-bar [types]="types" (onSubmitEvent)="onSubmit($event)"></app-search-bar>
-      <ng-container *ngIf=" userSearch">
-        <div class="loading-container">
-          <h3>Loading, please wait..</h3>
-          <mat-progress-bar mode="indeterminate" color="accent">Loading</mat-progress-bar>
-        </div>
-      </ng-container>
+      <app-search-bar (searchSubmitted)="onSubmit($event)"></app-search-bar>
+        <app-loading-spinner [visible]="searchState.searchOnProcess"></app-loading-spinner>
     </div>
-    
   </div>
-  
- 
 </section>
 
-
-
-<section class="table-section" *ngIf="results.length>0">
+<section class="table-section" *ngIf="searchState.collection.length>0">
   <h1>This is what we have found...</h1>
-  <ngb-pagination [(page)]="page" [collectionSize]="results.length" [maxSize]="2" [pageSize]="pageSize" [rotate]="true"
-    [ellipses]="true" [boundaryLinks]="true" size="sm"></ngb-pagination>
-    <span tabindex="0" id="tableFocus"></span>
-  <app-movie-results-table [results]="results | slice:(page-1) * pageSize : page * pageSize"
-    (sendItem2)="openMovie($event)" (sendItem)="addToFavories($event)"></app-movie-results-table>
-
-  <ngb-pagination [(page)]="page" [collectionSize]="results.length" [maxSize]="2" [pageSize]="pageSize" [rotate]="true"
-    [ellipses]="true" [boundaryLinks]="true" size="sm"></ngb-pagination>
+  <span tabindex="0" id="tableFocus"></span>
+  <app-movie-results-table [displayedColumns]="displayedColumns" [collection]="searchState.collection" [collectionSize]="searchState.collectionSize"
+    [currentPage]="searchState.currentPage" [pageSize]="searchState.pageSize" (pageChanged)="loadPage($event)"
+    (detailsOpened)="openMediaItem($event)" (favoriteAdded)="addToFavorites($event)"></app-movie-results-table>
 </section>
-
-
-
-

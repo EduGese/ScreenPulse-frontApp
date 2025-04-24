@@ -1,41 +1,53 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { MediaItem } from '../../models/movie.model';
 
 @Component({
   selector: 'app-favorites-card',
   templateUrl: './favorites-card.component.html',
-  styleUrls: ['./favorites-card.component.css'],
+  styleUrls: ['./favorites-card.component.scss'],
 })
 export class FavoritesCardComponent {
-  @Input() item!: any;
-  @Output() itemIdEvent = new EventEmitter<string>();
-  @Output() itemUpdatedEvent = new EventEmitter<any>();
-  @Output() sendItemFavoriteEvent = new EventEmitter<any>();
+  @Input() item: MediaItem = {} as MediaItem;
 
-  mode: string = 'view';
-  description: string = '';
-  hoverState: boolean = false;
+  @Output() itemToDelete = new EventEmitter<string>();
+  @Output() itemToOpen = new EventEmitter<MediaItem>();
+  @Output() descriptionToDelete = new EventEmitter<MediaItem>();
+  @Output() descriptionToAdd = new EventEmitter<MediaItem>();
+ 
+
+  mode = 'view';
+  inputDescription = '';
+  hoverState = false;
 
   viewportWidth: number = window.innerWidth;
 
 
-  constructor() {}
 
-  addDescription(item: any) {
-    const itemInfo = {
-      item: item,
-      description: this.description,
+  onDescriptionToAdd() {
+    const mediaItemWithDescription = {
+      ...this.item,
+      description: this.inputDescription,
     };
-    this.itemUpdatedEvent.emit(itemInfo);
+    this.descriptionToAdd.emit(mediaItemWithDescription);
     this.mode = 'view';
   }
-  sendItemId(id: string, event: MouseEvent) {
-    event.stopPropagation();
-    this.itemIdEvent.emit(id);
+  onDescriptionToDelete() {
+    const itemWithoutDescription = {
+      ...this.item,
+      description: '',
+    };
+    this.descriptionToDelete.emit(itemWithoutDescription);
+    this.inputDescription = '';
+    this.mode = 'view';
   }
   onValueChange(event: Event): void {
-    const value = (event.target as HTMLTextAreaElement).value;
-    this.description = value;
+    this.inputDescription = (event.target as HTMLTextAreaElement).value;
   }
+  onItemToDelete( event: MouseEvent) {
+    event.stopPropagation();
+    this.itemToDelete.emit(this.item._id);
+  }
+
   toggleMode(event: MouseEvent): void {
     event.stopPropagation();
     this.mode = this.mode === 'view' ? 'edition' : 'view';
@@ -47,13 +59,13 @@ export class FavoritesCardComponent {
     this.hoverState = false;
   }
   areButtonsVisible(): boolean {
-    if(this.viewportWidth<= 1024){
+    if (this.viewportWidth <= 1024) {
       return true;
     }
     return this.hoverState;
   }
-  openItem(item: any) {
+  openitemToOpen(item: MediaItem) {
     this.hoverState = false;
-    this.sendItemFavoriteEvent.emit(item);
+    this.itemToOpen.emit(item);
   }
 }

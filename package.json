@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng build && firebase deploy --only hosting"
+    "deploy": "ng build && firebase deploy --only hosting",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -35,12 +36,16 @@
     "@angular/compiler-cli": "^16.2.0",
     "@angular/localize": "^16.2.12",
     "@types/jasmine": "~4.3.0",
+    "angular-eslint": "19.3.0",
+    "eslint": "^9.23.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.1.3"
+    "schematics-scss-migrate": "^2.3.17",
+    "typescript": "~5.1.3",
+    "typescript-eslint": "8.27.0"
   }
 }

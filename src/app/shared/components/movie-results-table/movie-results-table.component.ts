@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, EventEmitter, Input,  OnChanges,  OnInit,  Output, SimpleChanges, ViewChild } from '@angular/core';
+import { MediaItem } from 'src/app/shared/models/movie.model';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -6,37 +8,50 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-movie-results-table',
   templateUrl: './movie-results-table.component.html',
-  styleUrls: ['./movie-results-table.component.css'],
+  styleUrls: ['./movie-results-table.component.scss'],
 })
-export class MovieResultsTableComponent implements AfterViewInit, OnChanges {
-  @Input() results!: any[];
-  @Output() sendItem = new EventEmitter<any>();
-  @Output() sendItem2 = new EventEmitter<any>();
-
-  displayedColumns: string[] =  ['Title', 'Year', 'Type', 'Poster', 'Add' ];
-  dataSource = new MatTableDataSource<any>();
-
+export class MediaItemResultsTableComponent implements AfterViewInit, OnChanges {
+  @Input() collection: MediaItem[] = [];
+  @Input() collectionSize = 0;
+  @Input() currentPage = 1;
+  @Input() pageSize = 10;
+  @Input() displayedColumns: string[] = [];
   
-  constructor() {}
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['results'] && changes['results'].currentValue) {
-      this.dataSource.data = changes['results'].currentValue || [];
+
+  @Output() favoriteAdded  = new EventEmitter<MediaItem>();
+  @Output() detailsOpened  = new EventEmitter<MediaItem>();
+  @Output() pageChanged = new EventEmitter<number>();
+
+
+  dataSource = new MatTableDataSource<MediaItem>();
+
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes?.['collection']?.currentValue) {
+      this.dataSource.data = changes['collection'].currentValue || [];
+    }
+    if (changes['currentPage']?.currentValue === 1 && this.paginator) {
+      this.paginator.firstPage();
     }
   }
 
-  @ViewChild(MatSort) sort!: MatSort;
-  
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
 
-  addNewItem(item: any) {
-    
-    this.sendItem.emit(item);
-  }
-  openItem(item: any) {
-
-    this.sendItem2.emit(item);
+  onFavoriteAdded(item: MediaItem) {
+    this.favoriteAdded .emit(item);
   }
 
+  onDetailsOpened(item: MediaItem) {
+    this.detailsOpened .emit(item);
+  }
+
+  onPageChanged(event: PageEvent) {
+    const pageNumber = event.pageIndex + 1;
+    this.pageChanged.emit(pageNumber);
+  }
 }

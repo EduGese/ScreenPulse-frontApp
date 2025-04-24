@@ -1,0 +1,109 @@
+h1 {
+    font-family: 'Glegoo';
+    color: #f5cf3d;
+    text-align: center;
+    padding: 20px;
+}
+
+h3 {
+    color: #ffffffc2;
+    font-family: 'Glegoo';
+}
+
+mat-hint {
+    color: gray;
+}
+
+.title {
+    font-weight: 300;
+    width: 45%;
+    margin: 10px auto 55px;
+    background: #000;
+    border: 1px solid var(--custom-amber);
+    border-radius: 30px;
+
+    h1 {
+        text-align: center;
+        padding: 2px;
+        margin: 0;
+    }
+
+    .user-name {
+        font-weight: bold;
+        font-style: italic;
+        text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+    }
+}
+
+.all-favorites-container {
+    min-width: 50%;
+    max-width: 70%;
+    margin: 0 auto;
+    background-color: #000;
+
+    h2 {
+        font-family: 'Glegoo';
+        color: var(--custom-amber);
+        border-bottom: 1px solid rgba(245, 208, 61, 0.47);
+    }
+}
+
+
+.all-favorites-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 70px;
+    min-height: 250px;
+    margin-bottom: 40px;
+}
+
+
+.paginator-container {
+    width: 40%;
+}
+
+.back-top-button {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    opacity: 0 !important;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    .search-bar-container {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    input {
+        width: 50%;
+    }
+
+    .all-favorites-container {
+        min-width: 50%;
+        max-width: 90%;
+    }
+
+    .all-favorites-card {
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+    }
+
+    .paginator-container {
+        width: 100%;
+    }
+}
+
+
+@media only screen and (min-width: 1650px) {
+    .all-favorites-container {
+        min-width: 50%;
+        max-width: 50%;
+    }
+}

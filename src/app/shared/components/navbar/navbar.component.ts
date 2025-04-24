@@ -1,28 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
+  styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
   userMail: string | null = '';
-  private userMailSubscription!: Subscription;
-  expanded: boolean = false;
+  private destroy$ = new Subject<void>();
+  expanded = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.userMailSubscription = this.authService.getUserMailObservable().subscribe(userMail => {
-      this.userMail = userMail;
-    });
+    this.authService.getUserMailObservable()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(userMail => {
+        this.userMail = userMail;
+      });
   }
-
-
 
   isLoggedIn() {
     return this.authService.isLoggedIn();
@@ -33,10 +33,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['']);
   }
   toogleMenu() {
-    if(!this.expanded){
-    this.expanded = true;
-  }else{
-    this.expanded = false;
+    this.expanded = !this.expanded;
   }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
