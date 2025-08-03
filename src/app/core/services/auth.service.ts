@@ -54,10 +54,10 @@ export class AuthService {
   getUserName(): string | null {
     return sessionStorage.getItem(this.userNameKey);
   }
-  setUserId(userId: string){
+  setUserId(userId: string){//ELIMINAR
     sessionStorage.setItem(this.userIdKey, userId);
   }
-  getUserId(): string | null {
+  getUserId(): string | null {//ELIMINAR
     return sessionStorage.getItem(this.userIdKey);
   }
 
