@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { MediaItem } from '../../models/movie.model';
 import { environment } from 'src/environments/environment.development';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { DeleteResponse } from '../../models/deleteResponse.model';
 import { FavoritesResponse } from '../../models/favoritesResponse.model';
@@ -17,16 +17,15 @@ export class FavoritesService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   addToFavorites(movie: MediaItem): Observable<MediaItem> {
-    const userId = this.authService.getUserId();
-    if (!userId) {
-      return throwError(() => new Error('User ID not available'));
-    }
+    const token = this.authService.getAuthToken();
+    console.log('token', token);
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       }),
     };
-    return this.http.post<MediaItem>(`${this.baseUrl}/${userId}`, movie, options)
+    return this.http.post<MediaItem>(this.baseUrl, movie, options)
   }
 
   getFavorites(
@@ -36,15 +35,8 @@ export class FavoritesService {
     sortOrder?: number,
     searchTerm?: string,
     mediaType?: string,
-   ): Observable<FavoritesResponse> {
-    const userId = this.authService.getUserId();
-    if (!userId) return of({
-      favorites: [],
-      totalFavorites: 0,
-      currentPage,
-      pageSize
-    });
-    
+  ): Observable<FavoritesResponse> {
+    const token = this.authService.getAuthToken();
     let params = new HttpParams()
       .set('page', currentPage.toString())
       .set('pageSize', pageSize.toString());
@@ -52,24 +44,37 @@ export class FavoritesService {
     if (sortOrder) params = params.set('sortOrder', sortOrder.toString());
     if (mediaType && mediaType !== 'all') params = params.set('type', mediaType);
     if (searchTerm) params = params.set('searchTerm', searchTerm);
-      return this.http.get<FavoritesResponse>(`${this.baseUrl}/${userId}`, {params});
 
+    const options = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      }),
+      params: params
+    };
+
+    return this.http.get<FavoritesResponse>(this.baseUrl, options);
   }
-  deleteMediaItem(movieId: string): Observable<DeleteResponse> {
-    const userId = this.authService.getUserId();
-    return this.http.delete<DeleteResponse>(`${this.baseUrl}/${movieId}/${userId}`);
+  deleteMediaItem(mediaId: string): Observable<DeleteResponse> {
+    const token = this.authService.getAuthToken();
+    const options = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      })
+    };
+    return this.http.delete<DeleteResponse>(`${this.baseUrl}/${mediaId}`, options);
   }
 
   updateFavorite(mediaItem: MediaItem): Observable<MediaItem> {
-    const userId = this.authService.getUserId();
+    const token = this.authService.getAuthToken();
     const body = {
       description: mediaItem.description
     }
-    const headers = {
+    const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${token}`
       }),
     };
-    return this.http.patch<MediaItem>(`${this.baseUrl}/${mediaItem._id}/${userId}`, body, headers)
+    return this.http.patch<MediaItem>(`${this.baseUrl}/${mediaItem._id}`, body, options)
   }
 }

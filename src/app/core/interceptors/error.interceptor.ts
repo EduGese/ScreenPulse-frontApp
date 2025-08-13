@@ -20,7 +20,10 @@ export class ErrorInterceptor implements HttpInterceptor {
             message = 'Cannot connect to server. Please check your internet connection';
             break;
           case 401:
-            message = 'Unauthorized access. Please login again';
+            message = 'Unauthorized access. Please try it again';
+             if (error.error.code === 'AUTH_TOKEN_EXPIRED') {
+              message = 'Session expired. Please login again';
+            }
             break;
           case 404:
             message = 'The favorite you are trying to delete could not be found in your list. Please try again later.';
