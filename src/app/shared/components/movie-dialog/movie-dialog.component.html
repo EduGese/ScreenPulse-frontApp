@@ -6,7 +6,7 @@
       <img src="assets/images/no_poster.jpg" alt="No/poster">
     </ng-container>
     <ng-template #poster>
-      <img [src]="data.response.Poster" alt="poster">
+      <img [src]="data.response.Poster" [alt]="data.response.Title" (error)="onImageError($event)">
     </ng-template>
   </div>
   <div class="details-container">

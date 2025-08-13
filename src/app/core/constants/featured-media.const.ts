@@ -33,14 +33,14 @@ export const FEATURED_MEDIA: MediaItem[] = [ {
   year: "2014–",
   imdbID: "tt2356777",
   type: "series",
-  poster: "https://m.media-amazon.com/images/M/MV5BNTEzMzBiNGYtYThiZS00MzBjLTk5ZWItM2FmMzU3Y2RjYTVlXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_SX300.jpg"
+  poster: "https://m.media-amazon.com/images/M/MV5BYjgwYzA1NWMtNDYyZi00ZGQyLWI5NTktMDYwZjE2OTIwZWEwXkEyXkFqcGc@._V1_SX300.jpg"
 },
 {
   title: "House of the Dragon",
   year: "2022–",
   imdbID: "tt11198330",
   type: "series",
-  poster: "https://m.media-amazon.com/images/M/MV5BMjk2NjgzMTEtYWViZS00NTMyLWFjMzctODczYmQzNzk2NjIwXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_SX300.jpg"
+  poster: "https://m.media-amazon.com/images/M/MV5BM2QzMGVkNjUtN2Y4Yi00ODMwLTg3YzktYzUxYjJlNjFjNDY1XkEyXkFqcGc@._V1_SX300.jpg"
 },
 {
   title: "Better Call Saul",

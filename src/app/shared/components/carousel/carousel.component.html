@@ -18,6 +18,7 @@
 				  <img 
 					[src]="item.poster" 
 					[alt]="item.title"
+					(error)="onImageError($event)"
 				  />
 				</div>
 			  </div>

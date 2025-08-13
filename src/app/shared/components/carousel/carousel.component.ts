@@ -31,6 +31,11 @@ export class CarouselComponent implements OnInit {
   onOpenItem(item: MediaItem): void {
     this.sendItemCarousel.emit(item);
   }
+
+  onImageError(event: Event) {
+  const target = event.target as HTMLImageElement;
+  target.src = 'assets/images/no_poster.jpg'; 
+}
   
 }
 
