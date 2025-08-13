@@ -55,7 +55,6 @@ export class FavoritesService {
     return this.http.get<FavoritesResponse>(this.baseUrl, options);
   }
   deleteMediaItem(mediaId: string): Observable<DeleteResponse> {
-    //const userId = this.authService.getUserId();
     const token = this.authService.getAuthToken();
     const options = {
       headers: new HttpHeaders({
@@ -66,7 +65,6 @@ export class FavoritesService {
   }
 
   updateFavorite(mediaItem: MediaItem): Observable<MediaItem> {
-    // const userId = this.authService.getUserId();
     const token = this.authService.getAuthToken();
     const body = {
       description: mediaItem.description

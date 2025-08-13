@@ -67,7 +67,7 @@ export class FavoritesComponent implements OnInit {
       },
       error: (error) => {
         console.error(error);
-        this.toastrService.error('Cannot load favorites, try again later');
+        this.toastrService.error(error.message);
         this.isLoadingFavorites = false;
       },
     });
