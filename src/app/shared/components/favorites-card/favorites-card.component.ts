@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { MediaItem } from '../../models/movie.model';
 
 @Component({
@@ -6,14 +6,15 @@ import { MediaItem } from '../../models/movie.model';
   templateUrl: './favorites-card.component.html',
   styleUrls: ['./favorites-card.component.scss'],
 })
-export class FavoritesCardComponent {
+export class FavoritesCardComponent implements OnInit{
   @Input() item: MediaItem = {} as MediaItem;
 
   @Output() itemToDelete = new EventEmitter<string>();
   @Output() itemToOpen = new EventEmitter<MediaItem>();
   @Output() descriptionToDelete = new EventEmitter<MediaItem>();
   @Output() descriptionToAdd = new EventEmitter<MediaItem>();
- 
+
+  backgroundUrl = '';
 
   mode = 'view';
   inputDescription = '';
@@ -21,6 +22,9 @@ export class FavoritesCardComponent {
 
   viewportWidth: number = window.innerWidth;
 
+  ngOnInit() {
+    this.backgroundUrl = this.item.poster;
+  }
 
 
   onDescriptionToAdd() {
@@ -43,7 +47,7 @@ export class FavoritesCardComponent {
   onValueChange(event: Event): void {
     this.inputDescription = (event.target as HTMLTextAreaElement).value;
   }
-  onItemToDelete( event: MouseEvent) {
+  onItemToDelete(event: MouseEvent) {
     event.stopPropagation();
     this.itemToDelete.emit(this.item._id);
   }
@@ -67,5 +71,8 @@ export class FavoritesCardComponent {
   openitemToOpen(item: MediaItem) {
     this.hoverState = false;
     this.itemToOpen.emit(item);
+  }
+  setDefaultBackground() {
+    this.backgroundUrl = 'assets/images/no_poster.jpg'; // ruta a imagen predeterminada
   }
 }

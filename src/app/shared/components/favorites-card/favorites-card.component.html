@@ -1,8 +1,9 @@
 <mat-card class="favorite-card">
   <mat-card-content class="img-container" matTooltip="{{item.title}}" matTooltipPosition="above">
-    <div class="img-container2" [style.background-image]="'url(' + item.poster + ')'" (mouseenter)="onMouseEnter()"
+    <div class="img-container2" [style.background-image]="'url(' + backgroundUrl + ')'" (mouseenter)="onMouseEnter()"
       (mouseleave)="onMouseLeave()" (click)="openitemToOpen(item)" (keydown.enter)="openitemToOpen(item)"
       (keydown.space)="openitemToOpen(item)" tabindex="0" role="button">
+        <img [src]="item.poster" [alt]="item.poster" (error)="setDefaultBackground()" style="display:none" />
       <ng-container *ngIf="areButtonsVisible()">
         <button mat-mini-fab color="warn" aria-label="delete item" class='delete-button'
           (click)="onItemToDelete($event)">
