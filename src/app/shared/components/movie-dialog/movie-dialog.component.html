@@ -17,6 +17,16 @@
     <p><span class="title">Language:</span> {{data.response.Language}}</p>
     <p><span class="title">Country:</span> {{data.response.Country}}</p>
     <p><span class="title">Runtime:</span> {{data.response.Runtime}}</p>
+    <a mat-raised-button
+   *ngIf="data.response.youtubeURLTrailer"
+   [href]="data.response.youtubeURLTrailer"
+   target="_blank"
+   rel="noopener"
+   color="warn">
+  <mat-icon>ondemand_video</mat-icon>
+  Watch trailer
+</a>
+
   </div>
   <div class="rating-container">
     <img src="assets/images/imdb.png" alt="imdb logo">
@@ -35,7 +45,7 @@
     <button mat-raised-button color="accent" aria-label="Add to favorites" (click)="addToFavorites(data.movie)">
       <mat-icon>favorite</mat-icon>
       Add
-    </button></ng-container>
-
+    </button>
+  </ng-container>
 
 </mat-dialog-actions>
