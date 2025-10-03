@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { FavoritesComponent } from './favorites.component';
 import { FormsModule } from '@angular/forms';
@@ -11,11 +12,34 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
+import { OmdbService } from 'src/app/shared/services/omdb/omdb.service';
+import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
+
+
+
+const favoritesServiceStub = {
+  getFavorites: jasmine.createSpy('getFavorites').and.returnValue(of({
+    favorites: [],
+    totalFavorites: 0,
+    currentPage: 1,
+    pageSize: 10
+  })),
+  addToFavorites: jasmine.createSpy('addToFavorites').and.returnValue(of({})),
+  deleteMediaItem: jasmine.createSpy('deleteMediaItem').and.returnValue(of({})),
+  updateFavorite: jasmine.createSpy('updateFavorite').and.returnValue(of({}))
+};
+
+const omdbServiceStub = {
+  search: jasmine.createSpy('search').and.returnValue(of([]))
+};
+const dialogServiceStub = {
+  open: jasmine.createSpy('open')
+};
 
 describe('FavoritesComponent', () => {
   let component: FavoritesComponent;
@@ -37,14 +61,19 @@ describe('FavoritesComponent', () => {
         MatSelectModule,
         MatButtonModule,
         BrowserAnimationsModule,
-        HttpClientModule,
         MatDialogModule,
         MatProgressBarModule,
         SharedModule,
-        MatPaginatorModule,
+        MatPaginatorModule
       ],
-      providers: [ToastrService],
+      providers: [
+        ToastrService,
+        { provide: FavoritesService, useValue: favoritesServiceStub },
+        { provide: OmdbService, useValue: omdbServiceStub },
+        { provide: DialogService, useValue: dialogServiceStub }
+      ]
     });
+
     fixture = TestBed.createComponent(FavoritesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
