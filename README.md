@@ -3,6 +3,78 @@
 
 ScreenPulse is the frontend part of a full stack application built with Angular, integrating with a custom [backend API](https://github.com/EduGese/ScreenPulse-backend-Api) built with Node.js and Express, and MongoDB Atlas for database storage. The frontend allows users to search for movies, series, or video games in the OMDB API, view detailed information, and save favorites to collections after registering and logging in.
 
+## System Requirements📋
+- **Operating System:** Windows 10/11, macOS 10.15+, or Linux
+- **Node.js:** v18.19.1 (LTS)  
+  ⚠️ **Do NOT use** Node.js v22.x.x with Angular 16 (unsupported)
+- **npm:** v8.0.0 or higher  
+- **Angular CLI:** v16.2.16
+- **Git:** For cloning the repository
+- **Browser:** Chrome, Firefox, or Edge (latest versions)
+
+
+
+## Installation 🚀
+
+1.  **Clone the repository**  
+
+```bash
+git clone https://github.com/EduGese/ScreenPulse-frontApp.git
+```
+```bash
+cd ScreenPulse-frontApp
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Serve in development mode**  
+```bash
+npm start
+```
+The app will be available at `http://localhost:4200/` and reload automatically on changes.
+
+## 📜 Available Scripts
+
+- `npm start`  
+  Alias for `ng serve`. Starts the development server with live reload.
+
+- `npm run build`  
+  Runs `ng build`. Compiles the application into the `dist/` directory for production.
+
+- `npm run watch`  
+  Runs `ng build --watch --configuration development`. Rebuilds on file changes.
+
+- `npm test`  
+  Runs `ng test` via Karma. Executes unit tests and watches for changes.
+
+- `npm run lint`  
+  Runs `ng lint`. Lints the codebase with ESLint.
+
+- `npm run deploy`  
+  Builds the project and deploys to Firebase Hosting (`ng build && firebase deploy --only hosting`).
+
+- `npm run ng`  
+  Shortcut for running Angular CLI commands (e.g., `npm run ng generate component x`).
+
+ ## 🧪 Testing
+
+### Unit Tests
+- **Framework:** Jasmine & Karma (configured by Angular CLI)  
+- **Specs Location:** `src/**/*.spec.ts`  
+- **Run Tests:**  
+```bash
+npm test
+```
+This runs `ng test`, launches Karma, and executes all unit tests in watch mode. Ensure it completes without errors.
+
+### Configuration Files
+- **angular.json** – Contains the `"test"` target configuration (Karma settings).  
+- **karma.conf.js** – Karma runner settings.  
+- **src/test.ts** – Test entry point loading Angular testing modules.
+
 ## Features ✨
 - **Search:** Search for movies, series, or video games
 - **Sort:** Sort results by title, year, or type
@@ -26,13 +98,270 @@ ScreenPulse is the frontend part of a full stack application built with Angular,
 - **[OMDB API](https://www.omdbapi.com/):** Provides the data source for movie, series, and video game information.
 
 ## Angular Architecture 🏗️
-ScreenPulse is optimized for modularity and scalability, using lazy loading for performance:
-- **Core Module:** Houses core functionalities like guards and services, eagerly loaded for application-wide availability.
-- **Feature Modules:** Each page or feature has its module with components, services, and routing configurations, lazily loaded to minimize initial load time.
-- **Shared Module:** Centralizes reusable components, services, and models for easy access across feature modules, fostering code reusability.
-- **App Module and Routing:** The main AppModule handles bootstrapping and imports the AppRoutingModule for application-level routing. Lazy loading improves performance by loading feature modules on-demand.
 
-Lazy loading ensures swift load times, resource efficiency, and a seamless user experience while maintaining a modular codebase.
+ScreenPulse front app is organized for **modularity**, **scalability** and **performance**, leveraging Angular’s module system and lazy loading.
+
+- **App Module & Routing**  
+  - `app.module.ts` and `app-routing.module.ts` bootstrap the app and define top-level routes.  
+  - Feature modules are loaded via `loadChildren` to minimize initial bundle size.
+
+- **Core Module (`/src/app/core`)**  
+  - **Services:** Authentication (`auth.service.ts`), user management (`user.service.ts`), dialog management (`dialog.service.ts`).  
+  - **Guards:** `AuthGuard` protects routes.  
+  - **Interceptors:** `auth.interceptor.ts` attaches tokens; `error.interceptor.ts` handles HTTP errors.  
+  - Eagerly loaded to provide singletons across the app.
+
+- **Feature Modules (`/src/app/pages`)**  
+  Each feature under `/pages` has its own module, routing, and page component:
+  - **Favorites** (`favorites.module.ts`)  
+    - `/page/favorites.component.*` handles display and management of favorites.  
+  - **Login** (`login.module.ts`)  
+  - **Register** (`register.module.ts`)  
+  - **Search** (`search.module.ts`)  
+  All are lazily loaded to improve startup performance.
+
+- **Shared Module (`/src/app/shared`)**  
+  Central registry of reusable UI building blocks and utilities:
+  - **Components:** Carousel, empty state, favorites card, footer, loading spinner, login/register forms, movie dialog, results table, navbar, search bar/cover, sorting controls.  
+  - **Models:** TypeScript interfaces (e.g., `MediaItem`, `FavoritesResponse`, `User`).  
+  - **Pipes & Directives:** If needed, placed here for cross-module use.  
+  Imported by feature modules to avoid duplication.
+
+- **Environments (`/src/environments`)**  
+  - `environment.ts`, `environment.development.ts`, `environment.production.ts` store API URLs and flags per build configuration.
+
+- **Testing**  
+  - Unit tests alongside each component/service (`*.spec.ts`) using Jasmine & Karma with `HttpClientTestingModule`.  
+  - No E2E tests by default; Cypress is recommended for future end-to-end coverage.
+
+This structure ensures a **clean separation of concerns**, **singleton services** for core functionality, **on-demand loading** for features, and **shared reusable assets** for maintainability and team collaboration.
+
+
+````
+
+app-routing.module.ts
+│   app.component.html
+│   app.component.scss
+│   app.component.spec.ts
+│   app.component.ts
+│   app.module.ts
+│   
+├───core
+│   │   core.module.ts
+│   │
+│   ├───constants
+│   │       featured-media.const.ts
+│   │
+│   ├───guards
+│   │       auth.guard.spec.ts
+│   │       auth.guard.ts
+│   │
+│   ├───interceptors
+│   │       auth.interceptor.ts
+│   │       error.interceptor.ts
+│   │
+│   └───services
+│           auth.service.spec.ts
+│           auth.service.ts
+│           user.service.spec.ts
+│           user.service.ts
+│
+├───pages
+│   ├───favorites
+│   │   │   favorites-routing.module.ts
+│   │   │   favorites.module.ts
+│   │   │
+│   │   └───page
+│   │           favorites.component.html
+│   │           favorites.component.scss
+│   │           favorites.component.spec.ts
+│   │           favorites.component.ts
+│   │
+│   ├───login
+│   │   │   login-routing.module.ts
+│   │   │   login.module.ts
+│   │   │
+│   │   └───page
+│   │           login.component.html
+│   │           login.component.scss
+│   │           login.component.spec.ts
+│   │           login.component.ts
+│   │
+│   ├───register
+│   │   │   register-routing.module.ts
+│   │   │   register.module.ts
+│   │   │
+│   │   └───page
+│   │           register.component.html
+│   │           register.component.scss
+│   │           register.component.spec.ts
+│   │           register.component.ts
+│   │
+│   └───search
+│       │   search-routing.module.ts
+│       │   search.module.ts
+│       │
+│       └───page
+│               search.component.html
+│               search.component.scss
+│               search.component.spec.ts
+│               search.component.ts
+│
+└───shared
+    │   shared.module.ts
+    │
+    ├───components
+    │   ├───carousel
+    │   │       carousel.component.html
+    │   │       carousel.component.scss
+    │   │       carousel.component.spec.ts
+    │   │       carousel.component.ts
+    │   │
+    │   ├───empty-state
+    │   │       empty-state.component.html
+    │   │       empty-state.component.scss
+    │   │       empty-state.component.spec.ts
+    │   │       empty-state.component.ts
+    │   │
+    │   ├───favorites-card
+    │   │       favorites-card.component.html
+    │   │       favorites-card.component.scss
+    │   │       favorites-card.component.spec.ts
+    │   │       favorites-card.component.ts
+    │   │
+    │   ├───footer
+    │   │       footer.component.html
+    │   │       footer.component.scss
+    │   │       footer.component.spec.ts
+    │   │       footer.component.ts
+    │   │
+    │   ├───loading-spinner
+    │   │       loading-spinner.component.html
+    │   │       loading-spinner.component.scss
+    │   │       loading-spinner.component.spec.ts
+    │   │       loading-spinner.component.ts
+    │   │
+    │   ├───login-form
+    │   │       login-form.component.html
+    │   │       login-form.component.scss
+    │   │       login-form.component.spec.ts
+    │   │       login-form.component.ts
+    │   │
+    │   ├───movie-dialog
+    │   │       movie-dialog.component.html
+    │   │       movie-dialog.component.scss
+    │   │       movie-dialog.component.spec.ts
+    │   │       movie-dialog.component.ts
+    │   │
+    │   ├───movie-results-table
+    │   │       movie-results-table.component.html
+    │   │       movie-results-table.component.scss
+    │   │       movie-results-table.component.spec.ts
+    │   │       movie-results-table.component.ts
+    │   │
+    │   ├───navbar
+    │   │       navbar.component.html
+    │   │       navbar.component.scss
+    │   │       navbar.component.spec.ts
+    │   │       navbar.component.ts
+    │   │
+    │   ├───register-form
+    │   │       register-form.component.html
+    │   │       register-form.component.scss
+    │   │       register-form.component.spec.ts
+    │   │       register-form.component.ts
+    │   │
+    │   ├───search-bar
+    │   │       search-bar.component.html
+    │   │       search-bar.component.scss
+    │   │       search-bar.component.spec.ts
+    │   │       search-bar.component.ts
+    │   │
+    │   ├───search-cover
+    │   │       search-cover.component.html
+    │   │       search-cover.component.scss
+    │   │       search-cover.component.spec.ts
+    │   │       search-cover.component.ts
+    │   │
+    │   └───sorting-controls
+    │           sorting-controls.component.html
+    │           sorting-controls.component.scss
+    │           sorting-controls.component.spec.ts
+    │           sorting-controls.component.ts
+    │
+    ├───models
+    │       deleteResponse.model.ts
+    │       favoritesResponse.model.ts
+    │       favoritesSearchParams.model.ts
+    │       movie.model.ts
+    │       movieDialogData.model.ts
+    │       ombdDetails.ts
+    │       omdbResponse.model.ts
+    │       search.model.ts
+    │       tableColumn.model.ts
+    │       user.model.ts
+    │
+    └───services
+        ├───dialog
+        │       dialog.service.spec.ts
+        │       dialog.service.ts
+        │       dialog.service.ts
+        │
+        ├───favorites
+        │       favorites.service.spec.ts
+        │       favorites.service.ts
+        │
+        └───omdb
+                omdb.service.spec.ts
+                omdb.service.ts
+				
+````
+
+## 🔧 Environment Configuration
+
+ScreenPulse uses Angular’s built-in environment files to manage API endpoints for development and production. These files are committed to source control because they contain only public URLs.
+
+### Files in `src/environments/`
+
+src/environments/
+├── environment.development.ts # Local development settings
+├── environment.ts # Default settings (ng serve)
+└── environment.production.ts # Production build settings
+
+
+### Contents
+
+Each file exports an `environment` object with these properties:
+
+```typescript
+export const environment = {
+serverFavoritesURL: 'http://localhost:9000/api/favorites', // Backend favorites endpoint
+serverSearchURL: 'http://localhost:9000/api/omdb', // Backend proxy for OMDB
+serverUserURL: 'http://localhost:9000/api/user' // Backend user endpoint
+};
+```
+
+- In **development** (`environment.development.ts`):
+  - `serverFavoritesURL`: `http://localhost:9000/api/favorites`
+  - `serverSearchURL`:    `http://localhost:9000/api/omdb`
+  - `serverUserURL`:      `http://localhost:9000/api/user`
+
+- In **default** (`environment.ts`, used by `ng serve`):
+  - Replace `localhost:9000` with the production backend URL if desired; by default, it points to `https://screenpulse-api.onrender.com/...`.
+
+- In **production** (`environment.production.ts`):
+  - `serverFavoritesURL`: `https://screenpulse-api.onrender.com/api/favorites`
+  - `serverSearchURL`:    `https://screenpulse-api.onrender.com/api/omdb`
+  - `serverUserURL`:      `https://screenpulse-api.onrender.com/api/user`
+
+### Notes
+
+- Do **not** store private API keys or secrets in these files.  
+- If you require sensitive data (e.g., Firebase API keys), use a `.env` file and the Angular CLI’s `fileReplacements` or a CI/CD secret manager.  
+- The Angular build automatically replaces `environment.ts` with `environment.production.ts` when you run:  
+```bash
+ng build --configuration production
+```
 
 ## UX/UI Design 🎨
 ScreenPulse combines ng-bootstrap, Angular Material, and custom components to create an engaging user experience. These libraries also speed up the development process and ensure consistency in page design.
