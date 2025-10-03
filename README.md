@@ -317,6 +317,52 @@ app-routing.module.ts
 				
 ````
 
+## 🔧 Environment Configuration
+
+ScreenPulse uses Angular’s built-in environment files to manage API endpoints for development and production. These files are committed to source control because they contain only public URLs.
+
+### Files in `src/environments/`
+
+src/environments/
+├── environment.development.ts # Local development settings
+├── environment.ts # Default settings (ng serve)
+└── environment.production.ts # Production build settings
+
+
+### Contents
+
+Each file exports an `environment` object with these properties:
+
+```typescript
+export const environment = {
+serverFavoritesURL: 'http://localhost:9000/api/favorites', // Backend favorites endpoint
+serverSearchURL: 'http://localhost:9000/api/omdb', // Backend proxy for OMDB
+serverUserURL: 'http://localhost:9000/api/user' // Backend user endpoint
+};
+```
+
+- In **development** (`environment.development.ts`):
+  - `serverFavoritesURL`: `http://localhost:9000/api/favorites`
+  - `serverSearchURL`:    `http://localhost:9000/api/omdb`
+  - `serverUserURL`:      `http://localhost:9000/api/user`
+
+- In **default** (`environment.ts`, used by `ng serve`):
+  - Replace `localhost:9000` with the production backend URL if desired; by default, it points to `https://screenpulse-api.onrender.com/...`.
+
+- In **production** (`environment.production.ts`):
+  - `serverFavoritesURL`: `https://screenpulse-api.onrender.com/api/favorites`
+  - `serverSearchURL`:    `https://screenpulse-api.onrender.com/api/omdb`
+  - `serverUserURL`:      `https://screenpulse-api.onrender.com/api/user`
+
+### Notes
+
+- Do **not** store private API keys or secrets in these files.  
+- If you require sensitive data (e.g., Firebase API keys), use a `.env` file and the Angular CLI’s `fileReplacements` or a CI/CD secret manager.  
+- The Angular build automatically replaces `environment.ts` with `environment.production.ts` when you run:  
+```bash
+ng build --configuration production
+```
+
 ## UX/UI Design 🎨
 ScreenPulse combines ng-bootstrap, Angular Material, and custom components to create an engaging user experience. These libraries also speed up the development process and ensure consistency in page design.
 
