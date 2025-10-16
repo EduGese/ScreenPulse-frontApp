@@ -24,4 +24,5 @@ export interface OmdbDetails {
     Type: string;
     totalSeasons?: string;
     Response: string; 
+    youtubeURLTrailer: string;
   }

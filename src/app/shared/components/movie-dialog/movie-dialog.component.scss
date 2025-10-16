@@ -11,14 +11,14 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    height: 90%;
+    height: 100%;
   }
   .card-button{
     height: 10%;
   }
   
   .poster-container {
-    width: 50%;
+    width: 45%;
     text-align: center;
     margin-top: auto;
     margin-bottom: auto;
@@ -92,7 +92,7 @@
   mat-dialog-actions{
     height: 40px;
     justify-content: center;
-
+    margin: 0;
   }
   
   button{
@@ -103,43 +103,55 @@
     
 
   }
-    @media only screen and (max-width: 1024px) {
-  
-      .card-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center ;
-        justify-content: center;
-        height: auto;
-        
-      }
-      .mat-mdc-dialog-content {
-        max-height: 140vh;
-    }
-      .poster-container{
-        width: 100%;
-        height: 100%;
-      }
-      .poster-container img {
-        width: 50%;
-       
-      }
-      .details{
-        width: 100%;
-      }
-      .rating-container {
-        width: 50%;
-        height: 60%;
-      }
-      .rating{
-        font-size: 40px; 
-      }
-      .details-container{
-        width: 100%;
-        padding: 0;
-        font-size: 14px;
-      }
-    }
+        @media only screen and (max-width: 1024px) {
+    
+          .card-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: auto;
+    
+          }
+    
+          .mat-mdc-dialog-content {
+            max-height: 140vh;
+          }
+    
+          .poster-container {
+            width: 100%;
+            height: 100%;
+          }
+    
+          .poster-container img {
+            width: 50%;
+    
+          }
+    
+          .details {
+            width: 100%;
+          }
+    
+          .rating-container {
+            width: 50%;
+            height: 60%;
+          }
+    
+          .rating {
+            font-size: 40px;
+          }
+    
+          .details-container {
+            width: 100%;
+            padding: 0;
+            font-size: 14px;
+          }
+    
+          mat-dialog-actions {
+            height: 100px;
+            justify-content: center;
+          }
+        }
   
     @media only screen and (min-width: 1601px) {
       .details-container p {

@@ -6,6 +6,8 @@ import { FavoritesService } from '../../services/favorites/favorites.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { MediaItemDialogData } from '../../models/movieDialogData.model';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DialogService } from '../../services/dialog/dialog.service';
 
 @Component({
   selector: 'app-movie-dialog',
@@ -13,13 +15,17 @@ import { MediaItemDialogData } from '../../models/movieDialogData.model';
   styleUrls: ['./movie-dialog.component.scss']
 })
 export class MediaItemDialogComponent {
+  showPlayer = false;
+  videoUrl!: SafeResourceUrl;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: MediaItemDialogData,
     private toastrService: ToastrService,
     private favoritesService: FavoritesService,
     private authService: AuthService,
     private router: Router,
-    private dialogRef: MatDialogRef<MediaItemDialogComponent>
+    private dialogRef: MatDialogRef<MediaItemDialogComponent>,
+    private sanitizer: DomSanitizer,
+    private dialogService: DialogService
   ) { }
 
   addToFavorites(movie: MediaItem) {
@@ -41,5 +47,13 @@ export class MediaItemDialogComponent {
   onImageError(event: Event) {
     const target = event.target as HTMLImageElement;
     target.src = 'assets/images/no_poster.jpg';
+  }
+
+  playTrailer(): void {
+    if (!this.data.response.youtubeURLTrailer) return;
+
+    this.dialogService.openTrailerDialog(
+      this.data.response.youtubeURLTrailer,
+    );
   }
 }

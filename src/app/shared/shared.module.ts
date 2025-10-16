@@ -41,6 +41,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { SortingControlsComponent } from './components/sorting-controls/sorting-controls.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
+import { TrailerDialogComponent } from './components/trailer-dialog/trailer-dialog.component';
 
 
 
@@ -80,7 +81,8 @@ const materialModules = [
     CarouselComponent,
     SortingControlsComponent,
     LoadingSpinnerComponent,
-    EmptyStateComponent
+    EmptyStateComponent,
+    TrailerDialogComponent
 
   
   ],
@@ -113,9 +115,8 @@ const materialModules = [
     NgbModule,
     SortingControlsComponent,
     LoadingSpinnerComponent,
-    EmptyStateComponent
-
-    
+    EmptyStateComponent,
+    TrailerDialogComponent
   ]  
 })
 export class SharedModule { }
