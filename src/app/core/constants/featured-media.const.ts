@@ -64,11 +64,11 @@ export const FEATURED_MEDIA: MediaItem[] = [ {
   poster: "https://m.media-amazon.com/images/M/MV5BZmY5ZDMxODEtNWIwOS00NjdkLTkyMjktNWRjMDhmYjJjN2RmXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
 },
 {
-  title: "El viaje a ninguna parte",
-  year:  "1986",
-  imdbID: "tt0090259",
-  type: "movie",
-  poster: "https://m.media-amazon.com/images/M/MV5BMTU5NGRiNDktYjU2Yy00NTczLTg4MjEtOTM1NmI2MDQ2NDdkXkEyXkFqcGdeQXVyMTA0MjU0Ng@@._V1_SX300.jpg"
+  title: "MobLand",
+  year:  "2025–",
+  imdbID: "tt31510819",
+  type: "series",
+  poster: "https://m.media-amazon.com/images/M/MV5BZDVmMzJkOWUtMjdjMi00NzA4LTgxMTItYjA4NjVjZDI0ZWU1XkEyXkFqcGc@._V1_SX300.jpg"
 },
 {
   title: "REC",
