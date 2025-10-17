@@ -42,6 +42,7 @@ import { SortingControlsComponent } from './components/sorting-controls/sorting-
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { TrailerDialogComponent } from './components/trailer-dialog/trailer-dialog.component';
+import { FallbackImagesDirective } from './directives/fallback-images.directive';
 
 
 
@@ -82,7 +83,8 @@ const materialModules = [
     SortingControlsComponent,
     LoadingSpinnerComponent,
     EmptyStateComponent,
-    TrailerDialogComponent
+    TrailerDialogComponent,
+    FallbackImagesDirective
 
   
   ],
@@ -116,7 +118,8 @@ const materialModules = [
     SortingControlsComponent,
     LoadingSpinnerComponent,
     EmptyStateComponent,
-    TrailerDialogComponent
+    TrailerDialogComponent,
+    FallbackImagesDirective
   ]  
 })
 export class SharedModule { }
