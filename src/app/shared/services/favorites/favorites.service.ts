@@ -18,7 +18,6 @@ export class FavoritesService {
 
   addToFavorites(movie: MediaItem): Observable<MediaItem> {
     const token = this.authService.getAuthToken();
-    console.log('token', token);
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
