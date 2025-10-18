@@ -1,28 +1,14 @@
 <div class="carousel-container">
-	<ngb-carousel 
-	  *ngIf="collection.length"
-	  [interval]="4000"
-	  [showNavigationArrows]="showNavigationArrows"
-	  [showNavigationIndicators]="showNavigationIndicators"
-	>
-	  <ng-template ngbSlide *ngFor="let group of groupedItems">
-		<div class="slide-group">
-			<div class="picsum-img-wrapper" *ngFor="let item of group">
-				<div
-				  role="button"
-				  tabindex="0"
-				  (click)="onOpenItem(item)"
-				  (keydown.enter)="onOpenItem(item)"
-				  (keydown.space)="onOpenItem(item)"
-				>
-				  <img 
-					[src]="item.poster" 
-					[alt]="item.title"
-					(error)="onImageError($event)"
-				  />
+	<ngb-carousel *ngIf="collection.length" [interval]="4000" [showNavigationArrows]="showNavigationArrows"
+		[showNavigationIndicators]="showNavigationIndicators">
+		<ng-template ngbSlide *ngFor="let group of groupedItems">
+			<div class="slide-group">
+				<div class="picsum-img-wrapper" *ngFor="let item of group">
+						<img [src]="item.poster" [alt]="item.title" role="button" tabindex="0"
+							(click)="onOpenItem(item)" (keydown.enter)="onOpenItem(item)"
+							(keydown.space)="onOpenItem(item)" (error)="onImageError($event)" />
 				</div>
-			  </div>
-		</div>
-	  </ng-template>
+			</div>
+		</ng-template>
 	</ngb-carousel>
-  </div>
+</div>

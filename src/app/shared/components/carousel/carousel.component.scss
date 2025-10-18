@@ -12,18 +12,37 @@
   flex-direction: column;
 }
 
+:host {
+  --carousel-btn-size: 50px;
+  --carousel-btn-bg: rgba(0, 0, 0, 0.5);
+}
+
+:host ::ng-deep .carousel-control-prev,
+:host ::ng-deep .carousel-control-next {
+  height: 20%;
+  margin: auto 0;
+}
+
+:host ::ng-deep .carousel-control-prev:hover .carousel-control-prev-icon,
+:host ::ng-deep .carousel-control-next:hover .carousel-control-next-icon {
+  filter: brightness(0) saturate(100%) invert(87%) sepia(47%) 
+          saturate(542%) hue-rotate(358deg) brightness(102%) contrast(92%);
+  width: 40px;
+  height: 40px;
+}
+
 .slide-group {
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
-
 }
 
 .picsum-img-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 125;
 }
 
 .picsum-img-wrapper img {
@@ -32,7 +51,6 @@
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   cursor: pointer;
-
 }
 
 h1 {
@@ -42,9 +60,7 @@ h1 {
 
 @media only screen and (min-width: 1367px) {
   .carousel-container {
-
     height: 100%;
-
   }
 
 }
