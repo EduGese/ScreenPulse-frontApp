@@ -10,6 +10,7 @@ import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
 import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FEATURED_MEDIA } from 'src/app/core/constants/featured-media.const';
+import { finalize } from 'rxjs';
 
 
 @Component({
@@ -30,8 +31,9 @@ export class SearchComponent {
     pageSize: 10,
     collection: [],
     collectionSize: 0,
-    searchOnProcess: false
+    searchOnProcess: false,
   };
+  loadingCard = false;
 
   @ViewChild(SearchBarComponent) SearchComponent!: SearchBarComponent | null;
 
@@ -78,7 +80,11 @@ export class SearchComponent {
   }
 
   openMediaItem(mediaItem: MediaItem): void {
-    this.dialogService.openMediaItem(window.innerWidth, mediaItem, false);
+    this.loadingCard = true;
+    this.dialogService
+      .openMediaItem(window.innerWidth, mediaItem, false)
+      .pipe(finalize(() => (this.loadingCard = false)))
+      .subscribe();
   }
 
   formSearchFocus(): void {

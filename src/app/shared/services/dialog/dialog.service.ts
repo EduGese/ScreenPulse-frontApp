@@ -5,6 +5,7 @@ import { MediaItemDialogComponent } from '../../components/movie-dialog/movie-di
 import { ToastrService } from 'ngx-toastr';
 import { MediaItem } from '../../models/movie.model';
 import { TrailerDialogComponent } from '../../components/trailer-dialog/trailer-dialog.component';
+import { map, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +14,25 @@ export class DialogService {
 
   constructor(private OmdbService: OmdbService, private dialog: MatDialog, private toastrService: ToastrService) { }
 
-  openMediaItem(windowWidth: number, mediaItem: MediaItem, fromFavoritesSection: boolean) {
+openMediaItem(
+  windowWidth: number, 
+  mediaItem: MediaItem, 
+  fromFavoritesSection: boolean
+): Observable<void> {
+  let dialogHeight = '90%';
+  let dialogWidth = '80%';
 
-    let dialogHeight = '90%';
-    let dialogWidth = '80%';
+  if (windowWidth > 600 && windowWidth < 800) {
+    dialogHeight = '85%';
+    dialogWidth = '70%';
+  }
+  if (windowWidth > 800) {
+    dialogHeight = '85%';
+    dialogWidth = '85%';
+  }
 
-    if (windowWidth > 600 && windowWidth < 800) {
-      dialogHeight = '85%';
-      dialogWidth = '70%';
-    }
-    if (windowWidth > 800) {
-      dialogHeight = '85%';
-      dialogWidth = '85%';
-    }
-    this.OmdbService.getMediaItemInfo(mediaItem.imdbID).subscribe({
+  return this.OmdbService.getMediaItemInfo(mediaItem.imdbID).pipe(
+    tap({
       next: (response) => {
         this.dialog.open(MediaItemDialogComponent, {
           data: {
@@ -44,10 +50,12 @@ export class DialogService {
       },
       error: (error) => {
         this.toastrService.error(error.message);
+      }
+    }),
+    map(() => undefined)
+  );
+}
 
-      },
-    });
-  }
 
   openTrailerDialog(videoUrl: string) {
     this.dialog.open(TrailerDialogComponent, {

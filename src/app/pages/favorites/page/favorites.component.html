@@ -26,6 +26,9 @@
     </div>
   </div>
 </ng-container>
+<div class="loading-container">
+  <app-loading-spinner [visible]="loadingCard"></app-loading-spinner>
+</div>      
 
 <ng-template #noFavoritesLoaded>
   <app-loading-spinner></app-loading-spinner>

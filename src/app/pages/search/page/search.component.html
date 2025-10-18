@@ -12,7 +12,7 @@
     </h1>
     <h4 tabindex="0">Powered by <img src="assets/images/omdb_api.png" alt="omdb_api logo"> <img
         src="assets/images/imdb2.png" alt="imdb logo"></h4>
-    <h3>* First request might take up to 50 seconds. Please be patient.</h3>
+    <h3>* First request might take up to 50 seconds. Please be patient.</h3>  
   </div>
 
   <div class="search-container">
@@ -22,6 +22,9 @@
         <app-loading-spinner [visible]="searchState.searchOnProcess"></app-loading-spinner>
     </div>
   </div>
+      <div class="loading-container">
+      <app-loading-spinner [visible]="loadingCard"></app-loading-spinner>
+    </div>
 </section>
 
 <section class="table-section" *ngIf="searchState.collection.length>0">

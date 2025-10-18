@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { FavoritesSearchParams } from 'src/app/shared/models/favoritesSearchParams.model';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-favorites',
@@ -27,6 +28,7 @@ export class FavoritesComponent implements OnInit {
     searchTerm: undefined,
   };
   isRevalidatingAfterDelete = false;
+  loadingCard = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -92,7 +94,11 @@ export class FavoritesComponent implements OnInit {
   }
 
   openFavorite(favoriteMediaItemToOpen: MediaItem): void {
-    this.dialogService.openMediaItem(window.innerWidth, favoriteMediaItemToOpen, true);
+ this.loadingCard = true;
+  this.dialogService
+    .openMediaItem(window.innerWidth, favoriteMediaItemToOpen, false)
+    .pipe(finalize(() => (this.loadingCard = false)))
+    .subscribe();
   }
 
   deleteFavorite(_id: string): void {
