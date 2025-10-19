@@ -1,22 +1,24 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
+
 import { MatIconModule } from '@angular/material/icon';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { LayoutModule } from './layout/layout.module';
+
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [
       RouterTestingModule,
       MatIconModule,
-      MatToolbarModule
+      MatToolbarModule,
+      LayoutModule  
     ],
     declarations: [
       AppComponent,
-      FooterComponent,
-      NavbarComponent
+
     ]
   }));
 
