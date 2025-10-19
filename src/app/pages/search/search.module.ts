@@ -8,6 +8,7 @@ import { SearchRoutingModule } from './search-routing.module';
 
 import { SearchComponent } from './page/search.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -21,7 +22,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SearchRoutingModule,
     SharedModule,
     FormsModule,
-    
+    MatDialogModule  
    
   ]
 })
