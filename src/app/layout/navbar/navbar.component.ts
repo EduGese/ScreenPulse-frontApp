@@ -1,42 +1,33 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { Subject, takeUntil } from 'rxjs';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit, OnDestroy {
+export class NavbarComponent {
 
-  userMail: string | null = '';
-  private destroy$ = new Subject<void>();
+  //userMail$: Observable<string | null> = this.authService.getUserMailObservable();
   expanded = false;
+  userData$ = combineLatest({
+  email: this.authService.getUserMailObservable(),
+  isLoggedIn: this.authService.isLoggedInObservable() // Mejor que método
+});
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void {
-    this.authService.getUserMailObservable()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(userMail => {
-        this.userMail = userMail;
-      });
-  }
-
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
+  // isLoggedIn() {
+  //   return this.authService.isLoggedIn();
+  // }
 
   logOut() {
     this.authService.logOut();
     this.router.navigate(['']);
   }
-  toogleMenu() {
+  toggleMenu() {
     this.expanded = !this.expanded;
-  }
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 }

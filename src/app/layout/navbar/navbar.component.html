@@ -1,80 +1,74 @@
 <mat-toolbar color="primary">
-  <div class="navbar-container">   
+  <div class="navbar-container">
     <span class="screen">ScreenPulse</span>
-    <mat-icon aria-hidden="true" aria-label="movie icon" class="icon">tv</mat-icon>
+    <mat-icon aria-hidden="true" class="icon">tv</mat-icon>
     <span class="spacer"></span>
 
-
-
-    <ng-container *ngIf="!isLoggedIn(); else elseBlock">
-      <a routerLink="/register" mat-icon-button class="register-container">
-        <div class="login-container">
-          <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="person_add_alt"></mat-icon>
-          <span class="join">Join us!</span>
-        </div>
-
-      </a>
-      <a routerLink="/login" mat-icon-button class="login-container">
-        <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="login"></mat-icon>
-      </a>
-    </ng-container>
-    <ng-template #elseBlock>
-      <div class="loggedin-navbar-container">
-        <span class="logged">Welcome <span class="user-mail">{{userMail}}</span></span>
-        <a routerLink="/" mat-icon-button (click)="logOut()" class="logout-container">
-          <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="logout" class="logOut"></mat-icon>
+    <ng-container *ngIf="userData$ | async as data">
+      <!-- logged out -->
+      <ng-container *ngIf="!data.isLoggedIn; else loggedInBlock">
+        <a routerLink="/register" mat-icon-button class="register-container">
+          <div class="login-container">
+            <mat-icon fontIcon="person_add_alt"></mat-icon>
+            <span class="join">Join us!</span>
+          </div>
         </a>
+        <a routerLink="/login" mat-icon-button class="login-container">
+          <mat-icon fontIcon="login"></mat-icon>
+        </a>
+      </ng-container>
+
+      <!-- logged in -->
+      <ng-template #loggedInBlock>
+        <div class="loggedin-navbar-container">
+          <span class="logged">
+            Welcome <span class="user-mail">{{ data.email }}</span>
+          </span>
+          <button mat-icon-button (click)="logOut()" class="logout-container">
+            <mat-icon fontIcon="logout"></mat-icon>
+          </button>
+        </div>
+      </ng-template>
+
+      <!-- static links -->
+      <div class="button-links-container">
+        <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Search</a>
+        <a routerLink="/favorites" routerLinkActive="active">Favorites</a>
       </div>
 
-    </ng-template>
-
-    <div class="button-links-container">
-      <a routerLink="">Search</a>
-      <a routerLink="/favorites">Favorites</a>
-    </div>
-
-    <button mat-icon-button class="toogle-menu-button" (click)="toogleMenu()">
-      <mat-icon>menu</mat-icon>
-    </button>
+      <button mat-icon-button class="toogle-menu-button" (click)="toggleMenu()">
+        <mat-icon>{{ expanded ? 'close' : 'menu' }}</mat-icon>
+      </button>
+    </ng-container>
   </div>
 
-
-  <div class="expanded-menu-container">
-    <ng-container class="expanded-menu" *ngIf="expanded === true">
-      <ng-container *ngIf="isLoggedIn();else blockLogout">
+  <!-- mobile expanded menu -->
+  <div class="expanded-menu-container" *ngIf="expanded">
+    <ng-container *ngIf="userData$ | async as data">
+      <ng-container *ngIf="data.isLoggedIn; else mobileLoggedOut">
         <div class="loggedin-expanded-menu-container">
-          <span class="logged">Welcome, <span class="user-mail">{{userMail}}</span></span>
-          <a routerLink="/" mat-icon-button (click)="logOut()" class="logout-container">
-            <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="logout" class="logOut"></mat-icon>
-          </a>
+          <span class="logged">Welcome, <span class="user-mail">{{ data.email }}</span></span>
+          <button mat-icon-button (click)="logOut()" class="logout-container">
+            <mat-icon fontIcon="logout"></mat-icon>
+          </button>
         </div>
-
       </ng-container>
 
       <mat-list>
-        <mat-list-item (click)="toogleMenu()"><a routerLink="" routerLinkActive="active">Search</a></mat-list-item>
-        <mat-list-item (click)="toogleMenu()"><a routerLink="/favorites"
-            routerLinkActive="active">Favorites</a></mat-list-item>
-        <ng-template #blockLogout>
-          <div class="loggedout-expanded-menu-container">
-
-            <mat-list>
-              <mat-list-item (click)="toogleMenu()">
-                <a routerLink="/register" routerLinkActive="active">
-                  <mat-icon aria-hidden="false" aria-label="movi icon" fontIcon="person_add_alt"></mat-icon>
-                </a></mat-list-item>
-              <mat-list-item (click)="toogleMenu()">
-                <a routerLink="/login" routerLinkActive="active"><mat-icon aria-hidden="false" aria-label="movi icon"
-                    fontIcon="login"></mat-icon></a>
-              </mat-list-item>
-
-            </mat-list>
-          </div>
-
-        </ng-template>
+        <mat-list-item (click)="toggleMenu()"><a routerLink="">Search</a></mat-list-item>
+        <mat-list-item (click)="toggleMenu()"><a routerLink="/favorites">Favorites</a></mat-list-item>
       </mat-list>
+
+      <ng-template #mobileLoggedOut>
+        <mat-list>
+          <mat-list-item (click)="toggleMenu()">
+            <a routerLink="/register"><mat-icon fontIcon="person_add_alt"></mat-icon></a>
+          </mat-list-item>
+          <mat-list-item (click)="toggleMenu()">
+            <a routerLink="/login"><mat-icon fontIcon="login"></mat-icon></a>
+          </mat-list-item>
+        </mat-list>
+      </ng-template>
     </ng-container>
   </div>
-
-
 </mat-toolbar>

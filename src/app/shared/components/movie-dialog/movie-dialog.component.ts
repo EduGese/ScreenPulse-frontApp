@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { MediaItemDialogData } from '../../models/movieDialogData.model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { DialogService } from '../../services/dialog/dialog.service';
+import { EMPTY, switchMap, take } from 'rxjs';
 
 @Component({
   selector: 'app-movie-dialog',
@@ -28,22 +29,24 @@ export class MediaItemDialogComponent {
     private dialogService: DialogService
   ) { }
 
-  addToFavorites(movie: MediaItem) {
-    if (!this.authService.isLoggedIn()) {
-      this.toastrService.error('You must be logged in to add movies to your list', 'Error');
-      this.dialogRef.close();
-      this.router.navigate(['/login']);
-      return;
-    }
-    this.favoritesService.addToFavorites(movie).subscribe({
-      next: () => {
-        this.toastrService.success(movie.title, 'Added to favorites');
-      },
-      error: (error) => {
-        this.toastrService.warning(error.message);
+addToFavorites(mediaItem: MediaItem) {
+  this.authService.isLoggedInObservable().pipe(
+    take(1),
+    switchMap(loggedIn => {
+      if (!loggedIn) {
+        this.toastrService.error('You must be logged in to add movies to your list', 'Error');
+        this.dialogRef.close();
+        this.router.navigate(['/login']);
+        return EMPTY; 
       }
-    });
-  }
+      return this.favoritesService.addToFavorites(mediaItem);
+    })
+  ).subscribe({
+    next: () => this.toastrService.success(mediaItem.title, 'Added to favorites'),
+    error: (error) => this.toastrService.warning(error.message)
+  });
+}
+
   onImageError(event: Event) {
     const target = event.target as HTMLImageElement;
     target.src = 'assets/images/no_poster.jpg';
