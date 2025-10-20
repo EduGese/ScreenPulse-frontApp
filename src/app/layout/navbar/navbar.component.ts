@@ -1,27 +1,24 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
+import { UserSessionData } from 'src/app/shared/models/user-session.model';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent {
 
-  //userMail$: Observable<string | null> = this.authService.getUserMailObservable();
   expanded = false;
-  userData$ = combineLatest({
+  readonly userData$ : Observable<UserSessionData> = combineLatest({
   email: this.authService.getUserMailObservable(),
-  isLoggedIn: this.authService.isLoggedInObservable() // Mejor que método
+  isLoggedIn: this.authService.isLoggedInObservable() 
 });
 
   constructor(private authService: AuthService, private router: Router) { }
-
-  // isLoggedIn() {
-  //   return this.authService.isLoggedIn();
-  // }
 
   logOut() {
     this.authService.logOut();

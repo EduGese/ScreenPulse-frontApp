@@ -5,7 +5,7 @@
     <span class="spacer"></span>
 
     <ng-container *ngIf="userData$ | async as data">
-      <!-- logged out -->
+
       <ng-container *ngIf="!data.isLoggedIn; else loggedInBlock">
         <a routerLink="/register" mat-icon-button class="register-container">
           <div class="login-container">
@@ -18,7 +18,7 @@
         </a>
       </ng-container>
 
-      <!-- logged in -->
+
       <ng-template #loggedInBlock>
         <div class="loggedin-navbar-container">
           <span class="logged">
@@ -30,7 +30,7 @@
         </div>
       </ng-template>
 
-      <!-- static links -->
+
       <div class="button-links-container">
         <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Search</a>
         <a routerLink="/favorites" routerLinkActive="active">Favorites</a>
@@ -42,7 +42,7 @@
     </ng-container>
   </div>
 
-  <!-- mobile expanded menu -->
+
   <div class="expanded-menu-container" *ngIf="expanded">
     <ng-container *ngIf="userData$ | async as data">
       <ng-container *ngIf="data.isLoggedIn; else mobileLoggedOut">
