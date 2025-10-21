@@ -7,13 +7,11 @@
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true
   },
-  "files": [
-    "./main.ts",
-    "./preview.ts"
-  ],
   "include": [
     "../src/**/*.stories.ts",
     "../src/**/*.stories.tsx",
+    "./main.ts",
+    "./preview.ts",
     "./**/*.ts"
   ],
   "exclude": [

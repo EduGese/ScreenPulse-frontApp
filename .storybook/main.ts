@@ -13,6 +13,7 @@ const config: StorybookConfig = {
   },
   docs: {},
   staticDirs: ['../src/assets'],
+  
 };
 
 export default config;
