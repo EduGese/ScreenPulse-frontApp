@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoadingSpinnerComponent } from './loading-spinner.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('LoadingSpinnerComponent', () => {
   let component: LoadingSpinnerComponent;
@@ -12,6 +13,8 @@ describe('LoadingSpinnerComponent', () => {
       declarations: [LoadingSpinnerComponent],
       imports: [
         MatProgressBarModule,
+        MatIconModule
+
       ]
     });
     fixture = TestBed.createComponent(LoadingSpinnerComponent);

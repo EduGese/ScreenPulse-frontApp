@@ -9,21 +9,25 @@ import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './page/search.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { SearchCoverComponent } from './components/search-cover/search-cover.component';
 
-
+const MATERIAL_MODULES = [
+  MatIconModule,
+];
 
 @NgModule({
   declarations: [
-    SearchComponent
-   
+    SearchComponent,
+    SearchCoverComponent
   ],
   imports: [
     CommonModule,
     SearchRoutingModule,
     SharedModule,
     FormsModule,
-    MatDialogModule  
-   
+    MatDialogModule,
+    ...MATERIAL_MODULES
   ]
 })
 export class SearchModule { }
