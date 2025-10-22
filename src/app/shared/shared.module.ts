@@ -28,7 +28,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { OmdbService } from './services/omdb/omdb.service';
 
-import { MediaItemResultsTableComponent } from './components/movie-results-table/movie-results-table.component';
 import { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
@@ -66,7 +65,6 @@ const MATERIAL_MODULES = [
 
 @NgModule({
   declarations: [
-    MediaItemResultsTableComponent,
     FavoritesCardComponent,
     SearchBarComponent,
     LoginFormComponent,
@@ -92,10 +90,7 @@ const MATERIAL_MODULES = [
   ],
   exports: [
     ...MATERIAL_MODULES,
-    
     NgbModule,
-    
-    MediaItemResultsTableComponent,
     FavoritesCardComponent,
     SearchBarComponent,
     LoginFormComponent,
