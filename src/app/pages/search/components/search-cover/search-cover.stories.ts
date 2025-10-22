@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
 const meta: Meta<SearchCoverComponent> = {
-  title: 'Search/Feature/SearchCover',
+  title: 'Search/Components/SearchCover',
   component: SearchCoverComponent,
   tags: ['autodocs'],
   decorators: [
@@ -23,20 +23,25 @@ const meta: Meta<SearchCoverComponent> = {
     docs: {
       description: {
         component: `
-Displays a visually rich cover for the search page.
+Displays the prominent cover area for the search page, highlighting three main categories (MediaItems, TV Shows, Videogames) with their respective icons and descriptions.
+
+The content is static and visually styled, designed as a "dumb" presentational component without inputs or outputs.
 
 ## Features
-- Highlights MediaItems, Series, and Videogames with category icons
-- Provides descriptive sections for each media type
-- Responsive layout optimized for desktop and mobile
-- Presents a background image with gradient overlay
-- No inputs: designed strictly for static display
 
-## Example Usage
+- 📱 Responsive layout adapts on mobile and tablet devices
+- 🎨 Uses Angular Material icons for visual identification
+- ✨ Strong UX emphasis on clarity and design
+- 🚫 No dynamic behavior; purely for display purposes
+
+## Usage Example
+
+### Template (HTML)
+
 \`\`\`html
 <app-search-cover></app-search-cover>
 \`\`\`
-        `
+`
       }
     }
   }
