@@ -16,6 +16,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MediaItemResultsTableComponent } from './components/movie-results-table/movie-results-table.component';
 import { MatButtonModule } from '@angular/material/button';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const MATERIAL_MODULES = [
   MatIconModule,
@@ -29,7 +31,8 @@ const MATERIAL_MODULES = [
   declarations: [
     SearchComponent,
     SearchCoverComponent,
-    MediaItemResultsTableComponent
+    MediaItemResultsTableComponent,
+    CarouselComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +40,8 @@ const MATERIAL_MODULES = [
     SharedModule,
     FormsModule,
     MatDialogModule,
-    ...MATERIAL_MODULES
+    ...MATERIAL_MODULES,
+    NgbModule
   ]
 })
 export class SearchModule { }

@@ -1,0 +1,24 @@
+<ngb-carousel 
+	*ngIf="collection.length" 
+	[interval]="4000" 
+	[showNavigationArrows]="showNavigationArrows"
+	[showNavigationIndicators]="showNavigationIndicators" 
+	role="region"
+	aria-label="Featured media carousel">
+	<ng-template ngbSlide *ngFor="let group of groupedItems; trackBy: trackByFn">
+		<div class="slide-group">
+			<div *ngFor="let item of group; trackBy: trackByItem">
+				<img 
+					[src]="item.poster" 
+					[alt]="item.title" 
+					[title]="item.title"
+					role="button" 
+					tabindex="0" 
+					(click)="onOpenItem(item)"
+					(keydown.enter)="onOpenItem(item)" 
+					(keydown.space)="onOpenItem(item)"
+					(error)="onImageError($event)" />
+			</div>
+		</div>
+	</ng-template>
+</ngb-carousel>
