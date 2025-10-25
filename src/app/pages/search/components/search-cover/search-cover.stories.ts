@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
 const meta: Meta<SearchCoverComponent> = {
-  title: 'Search/Components/SearchCover',
+  title: 'Pages/Search/Components/SearchCover',
   component: SearchCoverComponent,
   tags: ['autodocs'],
   decorators: [

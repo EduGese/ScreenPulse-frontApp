@@ -49,7 +49,7 @@ const sampleData = [
 ];
 
 const meta: Meta<MediaItemResultsTableComponent> = {
-  title: 'Search/Components/MediaItemResultsTable',
+  title: 'Pages/Search/Components/MediaItemResultsTable',
   component: MediaItemResultsTableComponent,
   tags: ['autodocs'],
   decorators: [
