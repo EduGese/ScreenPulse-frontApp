@@ -1,0 +1,215 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guidelines/Material Components Usage" />
+
+# Angular Material Components Usage
+
+ScreenPulse uses Angular Material 16 as its primary UI component library. This guide documents the standard patterns and configurations used throughout the application.
+
+---
+
+## Pagination with mat-paginator
+
+### Overview
+
+`mat-paginator` is used in ScreenPulse to handle pagination in paginated views. All implementations follow the same configuration pattern to ensure consistency across the application.
+
+### Standard Configuration
+
+All paginated views use this standard configuration:
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Value</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>pageSize</code></td>
+      <td><code>10</code></td>
+      <td>Default number of items per page</td>
+    </tr>
+    <tr>
+      <td><code>showFirstLastButtons</code></td>
+      <td><code>true</code></td>
+      <td>Enables first/last page navigation</td>
+    </tr>
+    <tr>
+      <td><code>aria-label</code></td>
+      <td><code>"Select page of results"</code></td>
+      <td>Accessibility label for screen readers</td>
+    </tr>
+  </tbody>
+</table>
+
+### Implementation Example 1: Inside a Table Component
+
+When `mat-paginator` is inside a reusable presentational component (like a table), emit the page change as an event:
+
+**Template:**
+
+```html
+<mat-paginator 
+  [pageSize]="pageSize" 
+  [length]="collectionSize" 
+  (page)="onPageChanged($event)" 
+  showFirstLastButtons
+  aria-label="Select page of results">
+</mat-paginator>
+```
+
+**Component:**
+
+```typescript
+export class MediaItemResultsTableComponent implements OnChanges {
+  
+  @Input() collection: MediaItem[] = [];
+  @Input() collectionSize = 0;
+  @Input() currentPage = 1;
+  @Input() pageSize = 10;
+  
+  @Output() pageChanged = new EventEmitter<number>();
+  
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  dataSource = new MatTableDataSource<MediaItem>();
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    // Update table data when collection changes
+    if (changes['collection']?.currentValue) {
+      this.dataSource.data = changes['collection'].currentValue || [];
+    }
+    // Reset paginator to first page when parent initiates new search
+    if (changes['currentPage']?.currentValue === 1 && this.paginator) {
+      this.paginator.firstPage();
+    }
+  }
+  
+  onPageChanged(event: PageEvent): void {
+    const pageNumber = event.pageIndex + 1; // Convert 0-based to 1-based
+    this.pageChanged.emit(pageNumber);
+  }
+}
+```
+
+**Parent Usage:**
+
+```typescript
+export class SearchComponent {
+  searchState = {
+    currentPage: 1,
+    // ... other properties
+  };
+  
+  loadPage(page: number): void {
+    this.searchState.currentPage = page;
+    this.fetchMediaItems();
+  }
+}
+```
+
+---
+
+### Implementation Example 2: Directly in a Page Component
+
+When `mat-paginator` is used directly in a smart component (page-level component), handle the page change locally:
+
+**Template:**
+
+```html
+<mat-paginator 
+  [pageSize]="pageSize" 
+  [pageIndex]="currentPage - 1" 
+  [length]="totalItems" 
+  (page)="onPageChanged($event)" 
+  showFirstLastButtons
+  aria-label="Select page of results">
+</mat-paginator>
+```
+
+**Component:**
+
+```typescript
+export class FavoritesComponent implements OnInit {
+  pageSize = 10;
+  currentPage = 1;
+  totalItems = 0;
+  
+  constructor(private service: FavoritesService) {}
+  
+  ngOnInit(): void {
+    this.loadData();
+  }
+  
+  onPageChanged(event: PageEvent): void {
+    // Convert zero-based pageIndex to 1-based page number
+    this.currentPage = event.pageIndex + 1;
+    this.loadData();
+  }
+  
+  private loadData(): void {
+    this.service.getItems(this.currentPage, this.pageSize)
+      .subscribe(response => {
+        this.totalItems = response.total;
+        // ...
+      });
+  }
+}
+```
+
+---
+
+### Important Notes
+
+**Index Conversion**: `mat-paginator` uses zero-based indexing (`pageIndex: 0, 1, 2...`), but APIs typically use one-based page numbers (`page: 1, 2, 3...`). Always convert:
+
+```typescript
+// From paginator (0-based) to API (1-based)
+const pageNumber = event.pageIndex + 1;
+
+// From API (1-based) to paginator (0-based)
+[pageIndex]="currentPage - 1"
+```
+
+**Reset to First Page**: If needed, reset the paginator after search/filter changes:
+
+```typescript
+@ViewChild(MatPaginator) paginator!: MatPaginator;
+
+onFilterChange(): void {
+  this.currentPage = 1;
+  if (this.paginator) {
+    this.paginator.firstPage();
+  }
+  this.loadData();
+}
+```
+
+---
+
+## Future Patterns
+
+### Form Controls
+
+*(Documentation for mat-form-field patterns will be added here)*
+
+### Dialogs
+
+*(Documentation for mat-dialog patterns will be added here)*
+
+### Snackbars and Toasts
+
+*(Documentation for notification patterns will be added here)*
+
+---
+
+## Official Documentation
+
+For detailed API documentation and advanced features:
+
+- [Angular Material Paginator API](https://material.angular.io/components/paginator/api)
+- [Angular Material Paginator Overview](https://material.angular.io/components/paginator/overview)
+- [Angular Material Components](https://material.angular.io/components)
+```

@@ -2992,7 +2992,7 @@
         },
         {
             "name": "FavoritesComponent",
-            "id": "component-FavoritesComponent-a496668faf08993253ddfd81ad6b8e916bdd4cae989c0df35c0b11490b33276a2197521d83be34cc142bf8b6e48fc32bedea8966899d533c659e6d29631a4efc",
+            "id": "component-FavoritesComponent-02838ccae3de4883a481b268fb16445b5a1e2afc4f0b551f352b9ecea2179d7b2130eafae0f35e68b8b1b2bd147fab032442fd0611cf272cd94a5d7a1f7d4cd1",
             "file": "src/app/pages/favorites/page/favorites.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3068,25 +3068,6 @@
                     "line": 31
                 },
                 {
-                    "name": "paginator",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "MatPaginator",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 33,
-                    "decorators": [
-                        {
-                            "name": "ViewChild",
-                            "stringifiedArguments": "MatPaginator"
-                        }
-                    ],
-                    "modifierKind": [
-                        171
-                    ]
-                },
-                {
                     "name": "searchParams",
                     "defaultValue": "{\r\n    currentPage: 1,\r\n    pageSize: 10,\r\n    sortField: undefined,\r\n    mediaType: undefined,\r\n    sortOrder: undefined,\r\n    searchTerm: undefined,\r\n  }",
                     "deprecated": false,
@@ -3123,7 +3104,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 104,
+                    "line": 102,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3144,7 +3125,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 55,
+                    "line": 53,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -3154,7 +3135,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 43,
+                    "line": 41,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -3171,7 +3152,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 90,
+                    "line": 88,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3199,7 +3180,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 77,
+                    "line": 75,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3227,7 +3208,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 50,
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3255,7 +3236,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 83,
+                    "line": 81,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3283,7 +3264,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 96,
+                    "line": 94,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3317,7 +3298,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 137,
+                    "line": 135,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3354,7 +3335,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 122,
+                    "line": 120,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3379,7 +3360,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component,OnInit, ViewChild } from '@angular/core';\r\nimport { MediaItem } from 'src/app/shared/models/movie.model';\r\nimport { ToastrService } from 'ngx-toastr';\r\nimport { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { DialogService } from 'src/app/shared/services/dialog/dialog.service';\r\nimport { MatPaginator, PageEvent } from '@angular/material/paginator';\r\nimport { FavoritesSearchParams } from 'src/app/shared/models/favoritesSearchParams.model';\r\nimport { finalize } from 'rxjs';\r\n\r\n@Component({\r\n  selector: 'app-favorites',\r\n  templateUrl: './favorites.component.html',\r\n  styleUrls: ['./favorites.component.scss'],\r\n})\r\nexport class FavoritesComponent implements OnInit {\r\n  favorites: MediaItem[] | [] = [];\r\n  favoritesSize = 0;\r\n  isLoadingFavorites = false;\r\n  userName: string | null = '';\r\n\r\n  searchParams: FavoritesSearchParams = {\r\n    currentPage: 1,\r\n    pageSize: 10,\r\n    sortField: undefined,\r\n    mediaType: undefined,\r\n    sortOrder: undefined,\r\n    searchTerm: undefined,\r\n  };\r\n  isRevalidatingAfterDelete = false;\r\n  loadingCard = false;\r\n\r\n  @ViewChild(MatPaginator) paginator!: MatPaginator;\r\n\r\n\r\n  constructor(\r\n    private toastrService: ToastrService,\r\n    private favoritesService: FavoritesService,\r\n    private authService: AuthService,\r\n    private dialogService: DialogService\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n    this.isLoadingFavorites = true;\r\n    this.loadAllFavorites();\r\n    this.userName = this.authService.getUserName();\r\n  }\r\n\r\n\r\n  onPageChanged(event: PageEvent): void {\r\n    this.searchParams.currentPage = event.pageIndex + 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  loadAllFavorites(): void {\r\n    this.favoritesService.getFavorites(\r\n      this.searchParams.currentPage,\r\n      this.searchParams.pageSize,\r\n      this.searchParams.sortField,\r\n      this.searchParams.sortOrder,\r\n      this.searchParams.searchTerm,\r\n      this.searchParams.mediaType\r\n    ).subscribe({\r\n      next: (response) => {\r\n        this.favorites = response.favorites;\r\n        this.favoritesSize = response.totalFavorites;\r\n        this.isLoadingFavorites = false;\r\n        this.isRevalidatingAfterDelete = false;\r\n      },\r\n      error: (error) => {\r\n        console.error(error);\r\n        this.toastrService.error(error.message);\r\n        this.isLoadingFavorites = false;\r\n      },\r\n    });\r\n  }\r\n  onMediaTypeChange(mediaType:string): void {\r\n    this.searchParams.mediaType = mediaType;\r\n    this.searchParams.currentPage = 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  onSort(event: { field: string, order: number }): void {\r\n    this.searchParams.sortField = event.field;\r\n    this.searchParams.sortOrder = event.order;\r\n    this.searchParams.currentPage = 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  onFilter(searchTerm: string): void {\r\n    this.searchParams.searchTerm = searchTerm;\r\n    this.searchParams.currentPage = 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  openFavorite(favoriteMediaItemToOpen: MediaItem): void {\r\n this.loadingCard = true;\r\n  this.dialogService\r\n    .openMediaItem(window.innerWidth, favoriteMediaItemToOpen, false)\r\n    .pipe(finalize(() => (this.loadingCard = false)))\r\n    .subscribe();\r\n  }\r\n\r\n  deleteFavorite(_id: string): void {\r\n    this.favoritesService.deleteMediaItem(_id).subscribe({\r\n      next: (response) => {\r\n        this.favorites = this.favorites.filter((movie) => movie._id != _id);\r\n         if (this.favorites.length === 0) {\r\n          this.isLoadingFavorites = true;\r\n          this.isRevalidatingAfterDelete = true;\r\n          this.searchParams.currentPage = 1;\r\n          this.loadAllFavorites();\r\n        }\r\n        this.toastrService.success(response.message);\r\n      },\r\n      error: () => {\r\n        this.toastrService.error('Cannot delete item, try again later');\r\n      },\r\n    });\r\n  }\r\n\r\n  updateFavorite(mediaItem: MediaItem): void {\r\n    this.favoritesService.updateFavorite(mediaItem)\r\n      .subscribe({\r\n        next: (updatedMediaItem) => {\r\n          this.favorites = this.favorites.map(movie =>\r\n            movie._id === updatedMediaItem._id ? { ...movie, description: updatedMediaItem.description } : movie\r\n          );\r\n          this.toastrService.success('Item updated');\r\n        },\r\n        error: () => {\r\n          this.toastrService.error('Cannot update item, try again later');\r\n        },\r\n      });\r\n  }\r\n\r\n  trackByFn(index: number, item: MediaItem): string {\r\n    return item.imdbID;\r\n  }\r\n}\r\n\r\n",
+            "sourceCode": "import { Component,OnInit } from '@angular/core';\r\nimport { MediaItem } from 'src/app/shared/models/movie.model';\r\nimport { ToastrService } from 'ngx-toastr';\r\nimport { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { DialogService } from 'src/app/shared/services/dialog/dialog.service';\r\nimport { PageEvent } from '@angular/material/paginator';\r\nimport { FavoritesSearchParams } from 'src/app/shared/models/favoritesSearchParams.model';\r\nimport { finalize } from 'rxjs';\r\n\r\n@Component({\r\n  selector: 'app-favorites',\r\n  templateUrl: './favorites.component.html',\r\n  styleUrls: ['./favorites.component.scss'],\r\n})\r\nexport class FavoritesComponent implements OnInit {\r\n  favorites: MediaItem[] | [] = [];\r\n  favoritesSize = 0;\r\n  isLoadingFavorites = false;\r\n  userName: string | null = '';\r\n\r\n  searchParams: FavoritesSearchParams = {\r\n    currentPage: 1,\r\n    pageSize: 10,\r\n    sortField: undefined,\r\n    mediaType: undefined,\r\n    sortOrder: undefined,\r\n    searchTerm: undefined,\r\n  };\r\n  isRevalidatingAfterDelete = false;\r\n  loadingCard = false;\r\n\r\n\r\n  constructor(\r\n    private toastrService: ToastrService,\r\n    private favoritesService: FavoritesService,\r\n    private authService: AuthService,\r\n    private dialogService: DialogService\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n    this.isLoadingFavorites = true;\r\n    this.loadAllFavorites();\r\n    this.userName = this.authService.getUserName();\r\n  }\r\n\r\n\r\n  onPageChanged(event: PageEvent): void {\r\n    this.searchParams.currentPage = event.pageIndex + 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  loadAllFavorites(): void {\r\n    this.favoritesService.getFavorites(\r\n      this.searchParams.currentPage,\r\n      this.searchParams.pageSize,\r\n      this.searchParams.sortField,\r\n      this.searchParams.sortOrder,\r\n      this.searchParams.searchTerm,\r\n      this.searchParams.mediaType\r\n    ).subscribe({\r\n      next: (response) => {\r\n        this.favorites = response.favorites;\r\n        this.favoritesSize = response.totalFavorites;\r\n        this.isLoadingFavorites = false;\r\n        this.isRevalidatingAfterDelete = false;\r\n      },\r\n      error: (error) => {\r\n        console.error(error);\r\n        this.toastrService.error(error.message);\r\n        this.isLoadingFavorites = false;\r\n      },\r\n    });\r\n  }\r\n  onMediaTypeChange(mediaType:string): void {\r\n    this.searchParams.mediaType = mediaType;\r\n    this.searchParams.currentPage = 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  onSort(event: { field: string, order: number }): void {\r\n    this.searchParams.sortField = event.field;\r\n    this.searchParams.sortOrder = event.order;\r\n    this.searchParams.currentPage = 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  onFilter(searchTerm: string): void {\r\n    this.searchParams.searchTerm = searchTerm;\r\n    this.searchParams.currentPage = 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  openFavorite(favoriteMediaItemToOpen: MediaItem): void {\r\n this.loadingCard = true;\r\n  this.dialogService\r\n    .openMediaItem(window.innerWidth, favoriteMediaItemToOpen, false)\r\n    .pipe(finalize(() => (this.loadingCard = false)))\r\n    .subscribe();\r\n  }\r\n\r\n  deleteFavorite(_id: string): void {\r\n    this.favoritesService.deleteMediaItem(_id).subscribe({\r\n      next: (response) => {\r\n        this.favorites = this.favorites.filter((movie) => movie._id != _id);\r\n         if (this.favorites.length === 0) {\r\n          this.isLoadingFavorites = true;\r\n          this.isRevalidatingAfterDelete = true;\r\n          this.searchParams.currentPage = 1;\r\n          this.loadAllFavorites();\r\n        }\r\n        this.toastrService.success(response.message);\r\n      },\r\n      error: () => {\r\n        this.toastrService.error('Cannot delete item, try again later');\r\n      },\r\n    });\r\n  }\r\n\r\n  updateFavorite(mediaItem: MediaItem): void {\r\n    this.favoritesService.updateFavorite(mediaItem)\r\n      .subscribe({\r\n        next: (updatedMediaItem) => {\r\n          this.favorites = this.favorites.map(movie =>\r\n            movie._id === updatedMediaItem._id ? { ...movie, description: updatedMediaItem.description } : movie\r\n          );\r\n          this.toastrService.success('Item updated');\r\n        },\r\n        error: () => {\r\n          this.toastrService.error('Cannot update item, try again later');\r\n        },\r\n      });\r\n  }\r\n\r\n  trackByFn(index: number, item: MediaItem): string {\r\n    return item.imdbID;\r\n  }\r\n}\r\n\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -3419,7 +3400,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 33,
+                "line": 31,
                 "jsdoctags": [
                     {
                         "name": "toastrService",
@@ -4187,7 +4168,7 @@
         },
         {
             "name": "MediaItemResultsTableComponent",
-            "id": "component-MediaItemResultsTableComponent-7a7fd9d1531e0f318028fe5a8f9b220b62f5fc557d107e1613a97e7aed186eee43c0f97bec0232a98f954844bef217597521c63bc02c564199a6b1548a0b4bd0",
+            "id": "component-MediaItemResultsTableComponent-9e0efa91d4e8b8439b70885fa95d0444a6977fbcfb149b360ebf4ee326e08060329d64c0fe33e6190f81fead769a18458f5eba6d08498ee1ac39780449b9414c",
             "file": "src/app/pages/search/components/movie-results-table/movie-results-table.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -4354,7 +4335,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 76,
+                    "line": 83,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -4371,18 +4352,35 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 67,
+                    "line": 74,
                     "deprecated": false,
                     "deprecationMessage": "",
+                    "rawdescription": "\n\nLifecycle hook: called when input properties change\n\nUpdates the data source when the collection input changes\nResets paginator to first page if currentPage input is set to 1\n",
+                    "description": "<p>Lifecycle hook: called when input properties change</p>\n<p>Updates the data source when the collection input changes\nResets paginator to first page if currentPage input is set to 1</p>\n",
                     "jsdoctags": [
                         {
-                            "name": "changes",
+                            "name": {
+                                "pos": 2635,
+                                "end": 2642,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "changes"
+                            },
                             "type": "SimpleChanges",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "text": "param"
-                            }
+                                "pos": 2629,
+                                "end": 2634,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<ul>\n<li>Object containing the changed properties</li>\n</ul>\n<p>Updates the data source when the collection input changes\nResets paginator to first page if currentPage input is set to 1</p>\n"
                         }
                     ]
                 },
@@ -4399,7 +4397,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 86,
+                    "line": 93,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nUser clicks or navigates to open details",
@@ -4429,7 +4427,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 81,
+                    "line": 88,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nUser clicks on “add to favorites” button",
@@ -4459,7 +4457,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 91,
+                    "line": 98,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nUser changes paginator page",
@@ -4486,7 +4484,7 @@
             "description": "<p>Displays a <strong>Material Design styled table</strong> for listing media items such as movies, series, or videogames.</p>\n<h2>Features</h2>\n<ul>\n<li>📋 Displays columns for <strong>title</strong>, <strong>year</strong>, <strong>type</strong>, <strong>poster</strong>, and an add favorite button</li>\n<li>🔄 Supports <strong>sorting</strong> and <strong>pagination</strong> using MatSort and MatPaginator</li>\n<li>🎯 Emits events on favorite item addition, item detail opening, and page changes</li>\n<li>📱 Responsive styles for images and layout on smaller screens</li>\n</ul>\n<h2>Key Capabilities</h2>\n<p>The component provides a fully interactive table with:</p>\n<ul>\n<li><strong>Client-side sorting</strong> on all columns (title, year, type)</li>\n<li><strong>Server-side pagination</strong> support with page change events</li>\n<li><strong>Clickable poster images</strong> that trigger detail views</li>\n<li><strong>Favorite button</strong> for each item with Material icon</li>\n</ul>\n",
             "rawdescription": "\n\n\nDisplays a **Material Design styled table** for listing media items such as movies, series, or videogames.\n\n## Features\n\n- 📋 Displays columns for **title**, **year**, **type**, **poster**, and an add favorite button\n- 🔄 Supports **sorting** and **pagination** using MatSort and MatPaginator\n- 🎯 Emits events on favorite item addition, item detail opening, and page changes\n- 📱 Responsive styles for images and layout on smaller screens\n\n## Key Capabilities\n\nThe component provides a fully interactive table with:\n- **Client-side sorting** on all columns (title, year, type)\n- **Server-side pagination** support with page change events\n- **Clickable poster images** that trigger detail views\n- **Favorite button** for each item with Material icon\n\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output, AfterViewInit, OnChanges, SimpleChanges, ViewChild } from '@angular/core';\r\nimport { MediaItem } from 'src/app/shared/models/movie.model';\r\nimport { MatPaginator, PageEvent } from '@angular/material/paginator';\r\nimport { MatSort } from '@angular/material/sort';\r\nimport { MatTableDataSource } from '@angular/material/table';\r\n\r\n/**\r\n * \r\n * Displays a **Material Design styled table** for listing media items such as movies, series, or videogames.\r\n * \r\n * ## Features\r\n * \r\n * - 📋 Displays columns for **title**, **year**, **type**, **poster**, and an add favorite button\r\n * - 🔄 Supports **sorting** and **pagination** using MatSort and MatPaginator\r\n * - 🎯 Emits events on favorite item addition, item detail opening, and page changes\r\n * - 📱 Responsive styles for images and layout on smaller screens\r\n * \r\n * ## Key Capabilities\r\n * \r\n * The component provides a fully interactive table with:\r\n * - **Client-side sorting** on all columns (title, year, type)\r\n * - **Server-side pagination** support with page change events\r\n * - **Clickable poster images** that trigger detail views\r\n * - **Favorite button** for each item with Material icon\r\n * \r\n */\r\n@Component({\r\n  selector: 'app-movie-results-table',\r\n  templateUrl: './movie-results-table.component.html',\r\n  styleUrls: ['./movie-results-table.component.scss'],\r\n})\r\nexport class MediaItemResultsTableComponent implements AfterViewInit, OnChanges {\r\n\r\n  /** Data collection to be shown in the table */\r\n  @Input() collection: MediaItem[] = [];\r\n\r\n  /** Total items count, used for paginator length */\r\n  @Input() collectionSize = 0;\r\n\r\n  /** Current page index (starting at 1) */\r\n  @Input() currentPage = 1;\r\n\r\n  /** Number of rows per page */\r\n  @Input() pageSize = 10;\r\n\r\n  /** List of visible columns in the table */\r\n  @Input() displayedColumns: string[] = [];\r\n\r\n  /** Emits when user adds an item to favorites */\r\n  @Output() favoriteAdded = new EventEmitter<MediaItem>();\r\n\r\n  /** Emits when user opens details for an item */\r\n  @Output() detailsOpened = new EventEmitter<MediaItem>();\r\n\r\n  /** Emits when user changes paginator page */\r\n  @Output() pageChanged = new EventEmitter<number>();\r\n\r\n  /** MatTableDataSource used internally by the Material table */\r\n  dataSource = new MatTableDataSource<MediaItem>();\r\n\r\n  /** Reference to the Angular Material Sort directive */\r\n  @ViewChild(MatSort) sort!: MatSort;\r\n\r\n  /** Reference to the Angular Material Paginator directive */\r\n  @ViewChild(MatPaginator) paginator!: MatPaginator;\r\n\r\n  ngOnChanges(changes: SimpleChanges) {\r\n    if (changes['collection']?.currentValue) {\r\n      this.dataSource.data = changes['collection'].currentValue || [];\r\n    }\r\n    if (changes['currentPage']?.currentValue === 1 && this.paginator) {\r\n      this.paginator.firstPage();\r\n    }\r\n  }\r\n\r\n  ngAfterViewInit() {\r\n    this.dataSource.sort = this.sort;\r\n  }\r\n\r\n  /** User clicks on “add to favorites” button */\r\n  onFavoriteAdded(item: MediaItem) {\r\n    this.favoriteAdded.emit(item);\r\n  }\r\n\r\n  /** User clicks or navigates to open details */\r\n  onDetailsOpened(item: MediaItem) {\r\n    this.detailsOpened.emit(item);\r\n  }\r\n\r\n  /** User changes paginator page */\r\n  onPageChanged(event: PageEvent) {\r\n    const pageNumber = event.pageIndex + 1;\r\n    this.pageChanged.emit(pageNumber);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output, AfterViewInit, OnChanges, SimpleChanges, ViewChild } from '@angular/core';\r\nimport { MediaItem } from 'src/app/shared/models/movie.model';\r\nimport { MatPaginator, PageEvent } from '@angular/material/paginator';\r\nimport { MatSort } from '@angular/material/sort';\r\nimport { MatTableDataSource } from '@angular/material/table';\r\n\r\n/**\r\n * \r\n * Displays a **Material Design styled table** for listing media items such as movies, series, or videogames.\r\n * \r\n * ## Features\r\n * \r\n * - 📋 Displays columns for **title**, **year**, **type**, **poster**, and an add favorite button\r\n * - 🔄 Supports **sorting** and **pagination** using MatSort and MatPaginator\r\n * - 🎯 Emits events on favorite item addition, item detail opening, and page changes\r\n * - 📱 Responsive styles for images and layout on smaller screens\r\n * \r\n * ## Key Capabilities\r\n * \r\n * The component provides a fully interactive table with:\r\n * - **Client-side sorting** on all columns (title, year, type)\r\n * - **Server-side pagination** support with page change events\r\n * - **Clickable poster images** that trigger detail views\r\n * - **Favorite button** for each item with Material icon\r\n * \r\n */\r\n@Component({\r\n  selector: 'app-movie-results-table',\r\n  templateUrl: './movie-results-table.component.html',\r\n  styleUrls: ['./movie-results-table.component.scss'],\r\n})\r\nexport class MediaItemResultsTableComponent implements AfterViewInit, OnChanges {\r\n\r\n  /** Data collection to be shown in the table */\r\n  @Input() collection: MediaItem[] = [];\r\n\r\n  /** Total items count, used for paginator length */\r\n  @Input() collectionSize = 0;\r\n\r\n  /** Current page index (starting at 1) */\r\n  @Input() currentPage = 1;\r\n\r\n  /** Number of rows per page */\r\n  @Input() pageSize = 10;\r\n\r\n  /** List of visible columns in the table */\r\n  @Input() displayedColumns: string[] = [];\r\n\r\n  /** Emits when user adds an item to favorites */\r\n  @Output() favoriteAdded = new EventEmitter<MediaItem>();\r\n\r\n  /** Emits when user opens details for an item */\r\n  @Output() detailsOpened = new EventEmitter<MediaItem>();\r\n\r\n  /** Emits when user changes paginator page */\r\n  @Output() pageChanged = new EventEmitter<number>();\r\n\r\n  /** MatTableDataSource used internally by the Material table */\r\n  dataSource = new MatTableDataSource<MediaItem>();\r\n\r\n  /** Reference to the Angular Material Sort directive */\r\n  @ViewChild(MatSort) sort!: MatSort;\r\n\r\n  /** Reference to the Angular Material Paginator directive */\r\n  @ViewChild(MatPaginator) paginator!: MatPaginator;\r\n\r\n  /** \r\n  * Lifecycle hook: called when input properties change\r\n  * @param changes - Object containing the changed properties\r\n  * \r\n  * Updates the data source when the collection input changes\r\n  * Resets paginator to first page if currentPage input is set to 1\r\n  */\r\n  ngOnChanges(changes: SimpleChanges) {\r\n    if (changes['collection']?.currentValue) {\r\n      this.dataSource.data = changes['collection'].currentValue || [];\r\n    }\r\n    if (changes['currentPage']?.currentValue === 1 && this.paginator) {\r\n      this.paginator.firstPage();\r\n    }\r\n  }\r\n\r\n  ngAfterViewInit() {\r\n    this.dataSource.sort = this.sort;\r\n  }\r\n\r\n  /** User clicks on “add to favorites” button */\r\n  onFavoriteAdded(item: MediaItem) {\r\n    this.favoriteAdded.emit(item);\r\n  }\r\n\r\n  /** User clicks or navigates to open details */\r\n  onDetailsOpened(item: MediaItem) {\r\n    this.detailsOpened.emit(item);\r\n  }\r\n\r\n  /** User changes paginator page */\r\n  onPageChanged(event: PageEvent) {\r\n    const pageNumber = event.pageIndex + 1;\r\n    this.pageChanged.emit(pageNumber);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -6481,7 +6479,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n    args: {\r\n        collection: sampleData,\r\n        collectionSize: sampleData.length,\r\n        currentPage: 1,\r\n        pageSize: 5,\r\n        displayedColumns: ['poster', 'title', 'year', 'type', 'Add'],\r\n        favoriteAdded: action('favoriteAdded'),\r\n        detailsOpened: action('detailsOpened'),\r\n        pageChanged: action('pageChanged'),\r\n    },\r\n    argTypes: {\r\n        favoriteAdded: { action: 'favoriteAdded' },\r\n        detailsOpened: { action: 'detailsOpened' },\r\n        pageChanged: { action: 'pageChanged' },\r\n    },\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    collection: sampleData,\r\n    collectionSize: sampleData.length,\r\n    currentPage: 1,\r\n    pageSize: 5,\r\n    displayedColumns: ['poster', 'title', 'year', 'type', 'Add'],\r\n    favoriteAdded: action('favoriteAdded'),\r\n    detailsOpened: action('detailsOpened'),\r\n    pageChanged: action('pageChanged'),\r\n  },\r\n  argTypes: {\r\n    favoriteAdded: { action: 'favoriteAdded' },\r\n    detailsOpened: { action: 'detailsOpened' },\r\n    pageChanged: { action: 'pageChanged' },\r\n  },\r\n}"
             },
             {
                 "name": "Default",
@@ -6591,7 +6589,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<MediaItemResultsTableComponent>",
-                "defaultValue": "{\r\n  title: 'Search/Components/MediaItemResultsTable',\r\n  component: MediaItemResultsTableComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        MatTableModule,\r\n        MatPaginatorModule,\r\n        MatSortModule,\r\n        MatIconModule,\r\n        MatButtonModule,\r\n        BrowserAnimationsModule,\r\n      ],\r\n      declarations: [MediaItemResultsTableComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    docs: {\r\n      description: {\r\n        component: `\r\n\r\nDisplays a **Material Design styled table** for listing media items such as movies, series, or videogames.\r\n \r\n  ## Features\r\n  \r\n  - 📋 Displays columns for **title**, **year**, **type**, **poster**, and an add favorite button\r\n  - 🔄 Supports **sorting** and **pagination** using MatSort and MatPaginator\r\n  - 🎯 Emits events on favorite item addition, item detail opening, and page changes\r\n \r\n  ## Key Capabilities\r\n  \r\n  The component provides a fully interactive table with:\r\n  - **Client-side sorting** on all columns (title, year, type)\r\n  - **Server-side pagination** support with page change events\r\n  - **Clickable poster images** that trigger detail views\r\n  - **Favorite button** for each item with Material icon\r\n\r\n## Usage Example\r\n\r\n### Template (HTML)\r\n\r\n\\`\\`\\`html\r\n<app-movie-results-table\r\n  [collection]=\"mediaItems\"\r\n  [collectionSize]=\"totalCount\"\r\n  [currentPage]=\"currentPage\"\r\n  [pageSize]=\"pageSize\"\r\n  [displayedColumns]=\"['poster', 'title', 'year', 'type', 'Add']\"\r\n  (favoriteAdded)=\"addToFavorites($event)\"\r\n  (detailsOpened)=\"openDetails($event)\"\r\n  (pageChanged)=\"onPageChange($event)\">\r\n</app-movie-results-table>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class MyComponent {\r\n  mediaItems: MediaItem[] = [];\r\n  totalCount = 100;\r\n  currentPage = 1;\r\n  pageSize = 10;\r\n\r\n  addToFavorites(item: MediaItem) {\r\n    console.log('Added to favorites:', item);\r\n    this.favoritesService.add(item);\r\n  }\r\n\r\n  openDetails(item: MediaItem) {\r\n    this.router.navigate(['/details', item.imdbID]);\r\n  }\r\n\r\n  onPageChange(page: number) {\r\n    this.currentPage = page;\r\n    this.loadItems(page);\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`favoriteAdded\\` | \\`MediaItem\\` | Emitted when user clicks the favorite button |\r\n| \\`detailsOpened\\` | \\`MediaItem\\` | Emitted when user clicks on a poster image |\r\n| \\`pageChanged\\` | \\`number\\` | Emitted when user changes the paginator page |\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    favoriteAdded: { action: 'favoriteAdded' },\r\n    detailsOpened: { action: 'detailsOpened' },\r\n    pageChanged: { action: 'pageChanged' },\r\n  },\r\n}"
+                "defaultValue": "{\r\n  title: 'Search/Components/MediaItemResultsTable',\r\n  component: MediaItemResultsTableComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        MatTableModule,\r\n        MatPaginatorModule,\r\n        MatSortModule,\r\n        MatIconModule,\r\n        MatButtonModule,\r\n        BrowserAnimationsModule,\r\n      ],\r\n      declarations: [MediaItemResultsTableComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    docs: {\r\n      description: {\r\n        component: `\r\nDisplays a **Material Design styled table** for listing media items such as movies, series, or videogames.\r\n\r\n## Features\r\n\r\n- 📋 Displays columns for **title**, **year**, **type**, **poster**, and an add favorite button\r\n- 🔄 Supports **sorting** and **pagination** using MatSort and MatPaginator\r\n- 🎯 Emits events on favorite item addition, item detail opening, and page changes\r\n\r\n## Key Capabilities\r\n\r\nThe component provides a fully interactive table with:\r\n- **Client-side sorting** on all columns (title, year, type)\r\n- **Server-side pagination** support with page change events\r\n- **Clickable poster images** that trigger detail views\r\n- **Favorite button** for each item with Material icon\r\n\r\n## Usage Example\r\n\r\n### Template (HTML)\r\n\r\n\\`\\`\\`html\r\n<app-movie-results-table\r\n  [collection]=\"mediaItems\"\r\n  [collectionSize]=\"totalCount\"\r\n  [currentPage]=\"currentPage\"\r\n  [pageSize]=\"pageSize\"\r\n  [displayedColumns]=\"['poster', 'title', 'year', 'type', 'Add']\"\r\n  (favoriteAdded)=\"addToFavorites($event)\"\r\n  (detailsOpened)=\"openDetails($event)\"\r\n  (pageChanged)=\"onPageChange($event)\">\r\n</app-movie-results-table>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class MyComponent {\r\n  mediaItems: MediaItem[] = [];\r\n  totalCount = 100;\r\n  currentPage = 1;\r\n  pageSize = 10;\r\n\r\n  addToFavorites(item: MediaItem) {\r\n    console.log('Added to favorites:', item);\r\n    this.favoritesService.add(item);\r\n  }\r\n\r\n  openDetails(item: MediaItem) {\r\n    this.router.navigate(['/details', item.imdbID]);\r\n  }\r\n\r\n  onPageChange(page: number) {\r\n    this.currentPage = page;\r\n    this.loadItems(page);\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`favoriteAdded\\` | \\`MediaItem\\` | Emitted when user clicks the favorite button |\r\n| \\`detailsOpened\\` | \\`MediaItem\\` | Emitted when user clicks on a poster image |\r\n| \\`pageChanged\\` | \\`number\\` | Emitted when user changes the paginator page |\r\n      `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    favoriteAdded: { action: 'favoriteAdded' },\r\n    detailsOpened: { action: 'detailsOpened' },\r\n    pageChanged: { action: 'pageChanged' },\r\n  },\r\n}"
             },
             {
                 "name": "meta",
@@ -6601,7 +6599,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<SearchCoverComponent>",
-                "defaultValue": "{\r\n  title: 'Search/Components/SearchCover',\r\n  component: SearchCoverComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [SearchCoverComponent],\r\n      imports: [CommonModule, MatIconModule],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [{ name: 'app background', value: '#000000' }]\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n\r\n## Usage Example \r\n\r\n### Template (HTML)\r\n\r\n\\`\\`\\`html\r\n<app-search-cover></app-search-cover>\r\n\\`\\`\\`\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+                "defaultValue": "{\r\n  title: 'Search/Components/SearchCover',\r\n  component: SearchCoverComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [SearchCoverComponent],\r\n      imports: [CommonModule, MatIconModule],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [{ name: 'app background', value: '#000000' }]\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nDisplays the prominent cover area for the search page, highlighting three main categories (MediaItems, TV Shows, Videogames) with their respective icons and descriptions.\r\n\r\nThe content is static and visually styled, designed as a \"dumb\" presentational component without inputs or outputs.\r\n\r\n## Features\r\n\r\n- 📱 Responsive layout adapts on mobile and tablet devices\r\n- 🎨 Uses Angular Material icons for visual identification\r\n- ✨ Strong UX emphasis on clarity and design\r\n- 🚫 No dynamic behavior; purely for display purposes\r\n\r\n## Usage Example\r\n\r\n### Template (HTML)\r\n\r\n\\`\\`\\`html\r\n<app-search-cover></app-search-cover>\r\n\\`\\`\\`\r\n`\r\n      }\r\n    }\r\n  }\r\n}"
             },
             {
                 "name": "sampleData",
@@ -6611,7 +6609,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "[]",
-                "defaultValue": "[\r\n    {\r\n        title: 'Batman Begins',\r\n        year: '2005',\r\n        imdbID: 'tt0372784',\r\n        type: 'movie',\r\n        poster: 'https://m.media-amazon.com/images/M/MV5BODIyMDdhNTgtNDlmOC00MjUxLWE2NDItODA5MTdkNzY3ZTdhXkEyXkFqcGc@._V1_SX300.jpg'\r\n    },\r\n    {\r\n        title: 'The Batman',\r\n        year: '2022',\r\n        imdbID: 'tt1877830',\r\n        type: 'movie',\r\n        poster: 'https://m.media-amazon.com/images/M/MV5BMmU5NGJlMzAtMGNmOC00YjJjLTgyMzUtNjAyYmE4Njg5YWMyXkEyXkFqcGc@._V1_SX300.jpg'\r\n    },\r\n    {\r\n        title: 'Batman v Superman: Dawn of Justice',\r\n        year: '2016',\r\n        imdbID: 'tt2975590',\r\n        type: 'movie',\r\n        poster: 'https://m.media-amazon.com/images/M/MV5BZTJkYjdmYjYtOGMyNC00ZGU1LThkY2ItYTc1OTVlMmE2YWY1XkEyXkFqcGc@._V1_SX300.jpg'\r\n    },\r\n    {\r\n        title: 'Batman Returns',\r\n        year: '1992',\r\n        imdbID: 'tt0103776',\r\n        type: 'movie',\r\n        poster: 'https://m.media-amazon.com/images/M/MV5BZTliMDVkYTktZDdlMS00NTAwLWJhNzYtMWIwMDZjN2ViMGFiXkEyXkFqcGc@._V1_SX300.jpg'\r\n    },\r\n    {\r\n        title: 'Batman & Robin',\r\n        year: '1997',\r\n        imdbID: 'tt0118688',\r\n        type: 'movie',\r\n        poster: 'https://m.media-amazon.com/images/M/MV5BYzU3ZjE3M2UtM2E4Ni00MDI5LTkyZGUtOTFkMGIyYjNjZGU3XkEyXkFqcGc@._V1_SX300.jpg'\r\n    }\r\n]"
+                "defaultValue": "[\r\n  {\r\n    title: 'Batman Begins',\r\n    year: '2005',\r\n    imdbID: 'tt0372784',\r\n    type: 'movie',\r\n    poster: 'https://m.media-amazon.com/images/M/MV5BODIyMDdhNTgtNDlmOC00MjUxLWE2NDItODA5MTdkNzY3ZTdhXkEyXkFqcGc@._V1_SX300.jpg'\r\n  },\r\n  {\r\n    title: 'The Batman',\r\n    year: '2022',\r\n    imdbID: 'tt1877830',\r\n    type: 'movie',\r\n    poster: 'https://m.media-amazon.com/images/M/MV5BMmU5NGJlMzAtMGNmOC00YjJjLTgyMzUtNjAyYmE4Njg5YWMyXkEyXkFqcGc@._V1_SX300.jpg'\r\n  },\r\n  {\r\n    title: 'Batman v Superman: Dawn of Justice',\r\n    year: '2016',\r\n    imdbID: 'tt2975590',\r\n    type: 'movie',\r\n    poster: 'https://m.media-amazon.com/images/M/MV5BZTJkYjdmYjYtOGMyNC00ZGU1LThkY2ItYTc1OTVlMmE2YWY1XkEyXkFqcGc@._V1_SX300.jpg'\r\n  },\r\n  {\r\n    title: 'Batman Returns',\r\n    year: '1992',\r\n    imdbID: 'tt0103776',\r\n    type: 'movie',\r\n    poster: 'https://m.media-amazon.com/images/M/MV5BZTliMDVkYTktZDdlMS00NTAwLWJhNzYtMWIwMDZjN2ViMGFiXkEyXkFqcGc@._V1_SX300.jpg'\r\n  },\r\n  {\r\n    title: 'Batman & Robin',\r\n    year: '1997',\r\n    imdbID: 'tt0118688',\r\n    type: 'movie',\r\n    poster: 'https://m.media-amazon.com/images/M/MV5BYzU3ZjE3M2UtM2E4Ni00MDI5LTkyZGUtOTFkMGIyYjNjZGU3XkEyXkFqcGc@._V1_SX300.jpg'\r\n  }\r\n]"
             },
             {
                 "name": "Visible",
@@ -6725,7 +6723,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n    args: {\r\n        collection: sampleData,\r\n        collectionSize: sampleData.length,\r\n        currentPage: 1,\r\n        pageSize: 5,\r\n        displayedColumns: ['poster', 'title', 'year', 'type', 'Add'],\r\n        favoriteAdded: action('favoriteAdded'),\r\n        detailsOpened: action('detailsOpened'),\r\n        pageChanged: action('pageChanged'),\r\n    },\r\n    argTypes: {\r\n        favoriteAdded: { action: 'favoriteAdded' },\r\n        detailsOpened: { action: 'detailsOpened' },\r\n        pageChanged: { action: 'pageChanged' },\r\n    },\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    collection: sampleData,\r\n    collectionSize: sampleData.length,\r\n    currentPage: 1,\r\n    pageSize: 5,\r\n    displayedColumns: ['poster', 'title', 'year', 'type', 'Add'],\r\n    favoriteAdded: action('favoriteAdded'),\r\n    detailsOpened: action('detailsOpened'),\r\n    pageChanged: action('pageChanged'),\r\n  },\r\n  argTypes: {\r\n    favoriteAdded: { action: 'favoriteAdded' },\r\n    detailsOpened: { action: 'detailsOpened' },\r\n    pageChanged: { action: 'pageChanged' },\r\n  },\r\n}"
                 },
                 {
                     "name": "meta",
@@ -6735,7 +6733,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<MediaItemResultsTableComponent>",
-                    "defaultValue": "{\r\n  title: 'Search/Components/MediaItemResultsTable',\r\n  component: MediaItemResultsTableComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        MatTableModule,\r\n        MatPaginatorModule,\r\n        MatSortModule,\r\n        MatIconModule,\r\n        MatButtonModule,\r\n        BrowserAnimationsModule,\r\n      ],\r\n      declarations: [MediaItemResultsTableComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    docs: {\r\n      description: {\r\n        component: `\r\n\r\nDisplays a **Material Design styled table** for listing media items such as movies, series, or videogames.\r\n \r\n  ## Features\r\n  \r\n  - 📋 Displays columns for **title**, **year**, **type**, **poster**, and an add favorite button\r\n  - 🔄 Supports **sorting** and **pagination** using MatSort and MatPaginator\r\n  - 🎯 Emits events on favorite item addition, item detail opening, and page changes\r\n \r\n  ## Key Capabilities\r\n  \r\n  The component provides a fully interactive table with:\r\n  - **Client-side sorting** on all columns (title, year, type)\r\n  - **Server-side pagination** support with page change events\r\n  - **Clickable poster images** that trigger detail views\r\n  - **Favorite button** for each item with Material icon\r\n\r\n## Usage Example\r\n\r\n### Template (HTML)\r\n\r\n\\`\\`\\`html\r\n<app-movie-results-table\r\n  [collection]=\"mediaItems\"\r\n  [collectionSize]=\"totalCount\"\r\n  [currentPage]=\"currentPage\"\r\n  [pageSize]=\"pageSize\"\r\n  [displayedColumns]=\"['poster', 'title', 'year', 'type', 'Add']\"\r\n  (favoriteAdded)=\"addToFavorites($event)\"\r\n  (detailsOpened)=\"openDetails($event)\"\r\n  (pageChanged)=\"onPageChange($event)\">\r\n</app-movie-results-table>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class MyComponent {\r\n  mediaItems: MediaItem[] = [];\r\n  totalCount = 100;\r\n  currentPage = 1;\r\n  pageSize = 10;\r\n\r\n  addToFavorites(item: MediaItem) {\r\n    console.log('Added to favorites:', item);\r\n    this.favoritesService.add(item);\r\n  }\r\n\r\n  openDetails(item: MediaItem) {\r\n    this.router.navigate(['/details', item.imdbID]);\r\n  }\r\n\r\n  onPageChange(page: number) {\r\n    this.currentPage = page;\r\n    this.loadItems(page);\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`favoriteAdded\\` | \\`MediaItem\\` | Emitted when user clicks the favorite button |\r\n| \\`detailsOpened\\` | \\`MediaItem\\` | Emitted when user clicks on a poster image |\r\n| \\`pageChanged\\` | \\`number\\` | Emitted when user changes the paginator page |\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    favoriteAdded: { action: 'favoriteAdded' },\r\n    detailsOpened: { action: 'detailsOpened' },\r\n    pageChanged: { action: 'pageChanged' },\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  title: 'Search/Components/MediaItemResultsTable',\r\n  component: MediaItemResultsTableComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        MatTableModule,\r\n        MatPaginatorModule,\r\n        MatSortModule,\r\n        MatIconModule,\r\n        MatButtonModule,\r\n        BrowserAnimationsModule,\r\n      ],\r\n      declarations: [MediaItemResultsTableComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    docs: {\r\n      description: {\r\n        component: `\r\nDisplays a **Material Design styled table** for listing media items such as movies, series, or videogames.\r\n\r\n## Features\r\n\r\n- 📋 Displays columns for **title**, **year**, **type**, **poster**, and an add favorite button\r\n- 🔄 Supports **sorting** and **pagination** using MatSort and MatPaginator\r\n- 🎯 Emits events on favorite item addition, item detail opening, and page changes\r\n\r\n## Key Capabilities\r\n\r\nThe component provides a fully interactive table with:\r\n- **Client-side sorting** on all columns (title, year, type)\r\n- **Server-side pagination** support with page change events\r\n- **Clickable poster images** that trigger detail views\r\n- **Favorite button** for each item with Material icon\r\n\r\n## Usage Example\r\n\r\n### Template (HTML)\r\n\r\n\\`\\`\\`html\r\n<app-movie-results-table\r\n  [collection]=\"mediaItems\"\r\n  [collectionSize]=\"totalCount\"\r\n  [currentPage]=\"currentPage\"\r\n  [pageSize]=\"pageSize\"\r\n  [displayedColumns]=\"['poster', 'title', 'year', 'type', 'Add']\"\r\n  (favoriteAdded)=\"addToFavorites($event)\"\r\n  (detailsOpened)=\"openDetails($event)\"\r\n  (pageChanged)=\"onPageChange($event)\">\r\n</app-movie-results-table>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class MyComponent {\r\n  mediaItems: MediaItem[] = [];\r\n  totalCount = 100;\r\n  currentPage = 1;\r\n  pageSize = 10;\r\n\r\n  addToFavorites(item: MediaItem) {\r\n    console.log('Added to favorites:', item);\r\n    this.favoritesService.add(item);\r\n  }\r\n\r\n  openDetails(item: MediaItem) {\r\n    this.router.navigate(['/details', item.imdbID]);\r\n  }\r\n\r\n  onPageChange(page: number) {\r\n    this.currentPage = page;\r\n    this.loadItems(page);\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`favoriteAdded\\` | \\`MediaItem\\` | Emitted when user clicks the favorite button |\r\n| \\`detailsOpened\\` | \\`MediaItem\\` | Emitted when user clicks on a poster image |\r\n| \\`pageChanged\\` | \\`number\\` | Emitted when user changes the paginator page |\r\n      `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    favoriteAdded: { action: 'favoriteAdded' },\r\n    detailsOpened: { action: 'detailsOpened' },\r\n    pageChanged: { action: 'pageChanged' },\r\n  },\r\n}"
                 },
                 {
                     "name": "sampleData",
@@ -6745,7 +6743,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "[]",
-                    "defaultValue": "[\r\n    {\r\n        title: 'Batman Begins',\r\n        year: '2005',\r\n        imdbID: 'tt0372784',\r\n        type: 'movie',\r\n        poster: 'https://m.media-amazon.com/images/M/MV5BODIyMDdhNTgtNDlmOC00MjUxLWE2NDItODA5MTdkNzY3ZTdhXkEyXkFqcGc@._V1_SX300.jpg'\r\n    },\r\n    {\r\n        title: 'The Batman',\r\n        year: '2022',\r\n        imdbID: 'tt1877830',\r\n        type: 'movie',\r\n        poster: 'https://m.media-amazon.com/images/M/MV5BMmU5NGJlMzAtMGNmOC00YjJjLTgyMzUtNjAyYmE4Njg5YWMyXkEyXkFqcGc@._V1_SX300.jpg'\r\n    },\r\n    {\r\n        title: 'Batman v Superman: Dawn of Justice',\r\n        year: '2016',\r\n        imdbID: 'tt2975590',\r\n        type: 'movie',\r\n        poster: 'https://m.media-amazon.com/images/M/MV5BZTJkYjdmYjYtOGMyNC00ZGU1LThkY2ItYTc1OTVlMmE2YWY1XkEyXkFqcGc@._V1_SX300.jpg'\r\n    },\r\n    {\r\n        title: 'Batman Returns',\r\n        year: '1992',\r\n        imdbID: 'tt0103776',\r\n        type: 'movie',\r\n        poster: 'https://m.media-amazon.com/images/M/MV5BZTliMDVkYTktZDdlMS00NTAwLWJhNzYtMWIwMDZjN2ViMGFiXkEyXkFqcGc@._V1_SX300.jpg'\r\n    },\r\n    {\r\n        title: 'Batman & Robin',\r\n        year: '1997',\r\n        imdbID: 'tt0118688',\r\n        type: 'movie',\r\n        poster: 'https://m.media-amazon.com/images/M/MV5BYzU3ZjE3M2UtM2E4Ni00MDI5LTkyZGUtOTFkMGIyYjNjZGU3XkEyXkFqcGc@._V1_SX300.jpg'\r\n    }\r\n]"
+                    "defaultValue": "[\r\n  {\r\n    title: 'Batman Begins',\r\n    year: '2005',\r\n    imdbID: 'tt0372784',\r\n    type: 'movie',\r\n    poster: 'https://m.media-amazon.com/images/M/MV5BODIyMDdhNTgtNDlmOC00MjUxLWE2NDItODA5MTdkNzY3ZTdhXkEyXkFqcGc@._V1_SX300.jpg'\r\n  },\r\n  {\r\n    title: 'The Batman',\r\n    year: '2022',\r\n    imdbID: 'tt1877830',\r\n    type: 'movie',\r\n    poster: 'https://m.media-amazon.com/images/M/MV5BMmU5NGJlMzAtMGNmOC00YjJjLTgyMzUtNjAyYmE4Njg5YWMyXkEyXkFqcGc@._V1_SX300.jpg'\r\n  },\r\n  {\r\n    title: 'Batman v Superman: Dawn of Justice',\r\n    year: '2016',\r\n    imdbID: 'tt2975590',\r\n    type: 'movie',\r\n    poster: 'https://m.media-amazon.com/images/M/MV5BZTJkYjdmYjYtOGMyNC00ZGU1LThkY2ItYTc1OTVlMmE2YWY1XkEyXkFqcGc@._V1_SX300.jpg'\r\n  },\r\n  {\r\n    title: 'Batman Returns',\r\n    year: '1992',\r\n    imdbID: 'tt0103776',\r\n    type: 'movie',\r\n    poster: 'https://m.media-amazon.com/images/M/MV5BZTliMDVkYTktZDdlMS00NTAwLWJhNzYtMWIwMDZjN2ViMGFiXkEyXkFqcGc@._V1_SX300.jpg'\r\n  },\r\n  {\r\n    title: 'Batman & Robin',\r\n    year: '1997',\r\n    imdbID: 'tt0118688',\r\n    type: 'movie',\r\n    poster: 'https://m.media-amazon.com/images/M/MV5BYzU3ZjE3M2UtM2E4Ni00MDI5LTkyZGUtOTFkMGIyYjNjZGU3XkEyXkFqcGc@._V1_SX300.jpg'\r\n  }\r\n]"
                 }
             ],
             "src/app/pages/search/components/search-cover/search-cover.stories.ts": [
@@ -6767,7 +6765,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<SearchCoverComponent>",
-                    "defaultValue": "{\r\n  title: 'Search/Components/SearchCover',\r\n  component: SearchCoverComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [SearchCoverComponent],\r\n      imports: [CommonModule, MatIconModule],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [{ name: 'app background', value: '#000000' }]\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n\r\n## Usage Example \r\n\r\n### Template (HTML)\r\n\r\n\\`\\`\\`html\r\n<app-search-cover></app-search-cover>\r\n\\`\\`\\`\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+                    "defaultValue": "{\r\n  title: 'Search/Components/SearchCover',\r\n  component: SearchCoverComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [SearchCoverComponent],\r\n      imports: [CommonModule, MatIconModule],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [{ name: 'app background', value: '#000000' }]\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nDisplays the prominent cover area for the search page, highlighting three main categories (MediaItems, TV Shows, Videogames) with their respective icons and descriptions.\r\n\r\nThe content is static and visually styled, designed as a \"dumb\" presentational component without inputs or outputs.\r\n\r\n## Features\r\n\r\n- 📱 Responsive layout adapts on mobile and tablet devices\r\n- 🎨 Uses Angular Material icons for visual identification\r\n- ✨ Strong UX emphasis on clarity and design\r\n- 🚫 No dynamic behavior; purely for display purposes\r\n\r\n## Usage Example\r\n\r\n### Template (HTML)\r\n\r\n\\`\\`\\`html\r\n<app-search-cover></app-search-cover>\r\n\\`\\`\\`\r\n`\r\n      }\r\n    }\r\n  }\r\n}"
                 }
             ],
             "src/environments/environment.development.ts": [
@@ -7127,7 +7125,7 @@
                 "linktype": "component",
                 "name": "FavoritesComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/20",
+                "coverageCount": "0/19",
                 "status": "low"
             },
             {
@@ -7153,8 +7151,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "MediaItemResultsTableComponent",
-                "coveragePercent": 88,
-                "coverageCount": "15/17",
+                "coveragePercent": 94,
+                "coverageCount": "16/17",
                 "status": "very-good"
             },
             {

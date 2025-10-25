@@ -64,6 +64,13 @@ export class MediaItemResultsTableComponent implements AfterViewInit, OnChanges 
   /** Reference to the Angular Material Paginator directive */
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  /*
+  * Lifecycle hook: called when input properties change
+  * @param changes - Object containing the changed properties
+  * 
+  * Updates the data source when the collection input changes
+  * Resets paginator to first page if currentPage input is set to 1
+  */
   ngOnChanges(changes: SimpleChanges) {
     if (changes['collection']?.currentValue) {
       this.dataSource.data = changes['collection'].currentValue || [];

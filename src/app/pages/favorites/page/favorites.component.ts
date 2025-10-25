@@ -1,10 +1,10 @@
-import { Component,OnInit, ViewChild } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { MediaItem } from 'src/app/shared/models/movie.model';
 import { ToastrService } from 'ngx-toastr';
 import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { PageEvent } from '@angular/material/paginator';
 import { FavoritesSearchParams } from 'src/app/shared/models/favoritesSearchParams.model';
 import { finalize } from 'rxjs';
 
@@ -29,8 +29,6 @@ export class FavoritesComponent implements OnInit {
   };
   isRevalidatingAfterDelete = false;
   loadingCard = false;
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
 
   constructor(
