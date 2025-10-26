@@ -95,7 +95,7 @@ export class MediaItemResultsTableComponent implements AfterViewInit, OnChanges 
   }
 
   /** User changes paginator page */
-  onPageChanged(event: PageEvent) {
+  handlePageChanged(event: PageEvent) {
     const pageNumber = event.pageIndex + 1;
     this.pageChanged.emit(pageNumber);
   }
