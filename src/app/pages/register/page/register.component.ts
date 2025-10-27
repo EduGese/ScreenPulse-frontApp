@@ -19,7 +19,7 @@ export class RegisterComponent {
     private router: Router,
     private toastrService: ToastrService) { }
 
-  getRegistered(formData: User): void {
+  handleRegister(formData: User): void {
     this.isRegistering = true;
     this.userService.register(formData).subscribe({
       next: (data) => {

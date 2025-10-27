@@ -21,7 +21,7 @@ export class LoginComponent {
     private toastrService: ToastrService
   ) { }
 
-  login(formData: User): void {
+  handleLogin(formData: User): void {
     this.isLogin = true;
     this.userService.login(formData).subscribe({
       next: (data) => {

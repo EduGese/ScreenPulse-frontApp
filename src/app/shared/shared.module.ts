@@ -30,8 +30,6 @@ import { OmdbService } from './services/omdb/omdb.service';
 
 import { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { LoginFormComponent } from './components/login-form/login-form.component';
-import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { MediaItemDialogComponent } from './components/movie-dialog/movie-dialog.component';
 import { SortingControlsComponent } from './components/sorting-controls/sorting-controls.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
@@ -39,6 +37,7 @@ import { EmptyStateComponent } from './components/empty-state/empty-state.compon
 import { TrailerDialogComponent } from './components/trailer-dialog/trailer-dialog.component';
 
 import { FallbackImagesDirective } from './directives/fallback-images.directive';
+import { AuthFormComponent } from './components/auth-form/auth-form.component';
 
 const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -66,14 +65,13 @@ const MATERIAL_MODULES = [
   declarations: [
     FavoritesCardComponent,
     SearchBarComponent,
-    LoginFormComponent,
-    RegisterFormComponent,
     MediaItemDialogComponent,
     SortingControlsComponent,
     LoadingSpinnerComponent,
     EmptyStateComponent,
     TrailerDialogComponent,
-    FallbackImagesDirective
+    FallbackImagesDirective,
+    AuthFormComponent
   ],
   imports: [
     CommonModule,
@@ -91,15 +89,13 @@ const MATERIAL_MODULES = [
     NgbModule,
     FavoritesCardComponent,
     SearchBarComponent,
-    LoginFormComponent,
-    RegisterFormComponent,
     MediaItemDialogComponent,
     SortingControlsComponent,
     LoadingSpinnerComponent,
     EmptyStateComponent,
     TrailerDialogComponent,
-    
-    FallbackImagesDirective
+    FallbackImagesDirective,
+    AuthFormComponent
   ]
 })
 export class SharedModule { }
