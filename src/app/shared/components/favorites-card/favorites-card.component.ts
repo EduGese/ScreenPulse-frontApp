@@ -73,6 +73,6 @@ export class FavoritesCardComponent implements OnInit{
     this.itemToOpen.emit(item);
   }
   setDefaultBackground() {
-    this.backgroundUrl = 'assets/images/no_poster.jpg'; // ruta a imagen predeterminada
+    this.backgroundUrl = 'assets/images/no_poster.jpg'; 
   }
 }

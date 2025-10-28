@@ -4,25 +4,8 @@ import { User } from '../../models/user.model';
 
 /**
  * 
- * Reusable authentication form component supporting login and sign-up flows
+ * Reusable authentication form component supporting login and registration flows
  * 
- * ## Features
- * 
- * - 📋 Dynamic form rendering based on formType (login or register)
- * - ✅ Reactive form validation with email and password patterns
- * - 🔐 Password visibility toggle
- * - 👤 Optional name field for registration
- * - 📱 Responsive Material Design layout
- * 
- * ## Key Capabilities
- * 
- * The component provides a flexible authentication interface with:
- * - **Configurable form modes** (login or registration) via @Input() properties
- * - **Real-time validation** with email format and password strength requirements
- * - **Accessible password toggle** with ARIA labels for screen readers
- * - **Dynamic field rendering** (name field appears conditionally for register mode)
- * - **Customizable UI text** (title, button text, helper messages)
- * - **Type-safe form handling** with strict TypeScript typing
  */
 @Component({
   selector: 'app-auth-form',
@@ -33,32 +16,44 @@ export class AuthFormComponent implements OnInit {
   /** Form type: login or register */
   @Input() formType: 'login' | 'register' = 'login';
 
-  /** Header title */
-  @Input() title = 'Open the door';
-
-  /** Show name field (register only) */
-  @Input() showNameField = false;
-
-  /** Show register link (login only) */
-  @Input() showRegisterLink = false;
-
-  /** Show password hint (register only) */
-  @Input() showPasswordHint = false;
-
-  /** Submit button text */
-  @Input() submitButtonText = 'Login';
-
   /** Emits validated user data on form submission */
   @Output() formSubmit = new EventEmitter<User>();
+
+  title!: string;
+  submitButtonText!: string;
+  showNameField!: boolean;
+  showRegisterLink!: boolean;
+  showPasswordHint!: boolean;
 
   form!: FormGroup;
   hidePassword = true;
   private passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.configureByFormType();
     this.buildForm();
+  }
+  
+
+    /**
+   * Configures form properties based on formType
+   */
+  private configureByFormType(): void {
+    if (this.formType === 'register') {
+      this.title = 'Join us!';
+      this.submitButtonText = 'Sign Up';
+      this.showNameField = true;
+      this.showRegisterLink = false;
+      this.showPasswordHint = true;
+    } else {
+      this.title = 'Open the door';
+      this.submitButtonText = 'Login';
+      this.showNameField = false;
+      this.showRegisterLink = true;
+      this.showPasswordHint = false;
+    }
   }
 
   /**
@@ -81,14 +76,14 @@ export class AuthFormComponent implements OnInit {
   }
 
   /** Validates and emits form data */
-  onSubmit(): void {
+  handleSubmit(): void {
     if (this.form.valid) {
       this.formSubmit.emit(this.form.value);
     }
   }
 
   /** Resets all form fields */
-  onClear(): void {
+  handleClear(): void {
     this.form.reset();
   }
 }

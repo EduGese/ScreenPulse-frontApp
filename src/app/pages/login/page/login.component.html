@@ -1,9 +1,6 @@
 <div class="view">
 <app-auth-form
   formType="login"
-  title="Open the door"
-  submitButtonText="Login"
-  [showRegisterLink]="true"
   (formSubmit)="handleLogin($event)"
 ></app-auth-form>
         <app-loading-spinner [visible]="isLogin"></app-loading-spinner>

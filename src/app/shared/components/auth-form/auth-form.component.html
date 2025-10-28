@@ -2,7 +2,7 @@
   <h1>{{ title }}</h1>
 </div>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="handleSubmit()">
   
   <mat-form-field *ngIf="showNameField" appearance="outline" color="accent">
     <mat-label>Name</mat-label>
@@ -85,7 +85,7 @@
       class="button-clear" 
       color="accent" 
       type="button" 
-      (click)="onClear()"
+      (click)="handleClear()"
     >
       <mat-icon>clear</mat-icon>
       Clear

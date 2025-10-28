@@ -1,10 +1,6 @@
 <div class="view">
 <app-auth-form
   formType="register"
-  title="Join us!"
-  submitButtonText="Sign Up"
-  [showNameField]="true"
-  [showPasswordHint]="true"
   (formSubmit)="handleRegister($event)"
 ></app-auth-form>
     <app-loading-spinner  [visible]="isRegistering" ></app-loading-spinner>
