@@ -3,7 +3,7 @@ name: 📚 Deploy Storybook Documentation
 on:
   push:
     branches:
-      - storybook
+      - storyBook
 
 permissions:
   contents: read
@@ -43,4 +43,4 @@ jobs:
           echo "✅ Storybook deployed!"
           echo "📍 URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
 
-          
+
