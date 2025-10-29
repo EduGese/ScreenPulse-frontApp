@@ -18,3 +18,9 @@ export interface SearchFilters {
   type: MediaType;
   year: string;
 }
+
+export interface SearchFormValue {
+  title: string;
+  type: MediaType;
+  year: number | null;
+}

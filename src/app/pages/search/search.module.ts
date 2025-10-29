@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,6 +18,7 @@ import { MediaItemResultsTableComponent } from './components/movie-results-table
 import { MatButtonModule } from '@angular/material/button';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 const MATERIAL_MODULES = [
   MatIconModule,
@@ -32,13 +33,16 @@ const MATERIAL_MODULES = [
     SearchComponent,
     SearchCoverComponent,
     MediaItemResultsTableComponent,
-    CarouselComponent
+    CarouselComponent,
+    SearchBarComponent,
+    
   ],
   imports: [
     CommonModule,
     SearchRoutingModule,
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
     MatDialogModule,
     ...MATERIAL_MODULES,
     NgbModule

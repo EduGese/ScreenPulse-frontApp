@@ -29,7 +29,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OmdbService } from './services/omdb/omdb.service';
 
 import { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { MediaItemDialogComponent } from './components/movie-dialog/movie-dialog.component';
 import { SortingControlsComponent } from './components/sorting-controls/sorting-controls.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
@@ -64,7 +63,6 @@ const MATERIAL_MODULES = [
 @NgModule({
   declarations: [
     FavoritesCardComponent,
-    SearchBarComponent,
     MediaItemDialogComponent,
     SortingControlsComponent,
     LoadingSpinnerComponent,
@@ -88,7 +86,6 @@ const MATERIAL_MODULES = [
     ...MATERIAL_MODULES,
     NgbModule,
     FavoritesCardComponent,
-    SearchBarComponent,
     MediaItemDialogComponent,
     SortingControlsComponent,
     LoadingSpinnerComponent,

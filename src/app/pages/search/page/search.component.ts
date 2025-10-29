@@ -7,8 +7,9 @@ import { FavoritesService } from 'src/app/shared/services/favorites/favorites.se
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
-import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';import { FEATURED_MEDIA } from 'src/app/core/constants/featured-media.const';
+import { FEATURED_MEDIA } from 'src/app/core/constants/featured-media.const';
 import { EMPTY, finalize, switchMap, take } from 'rxjs';
+import { SearchBarComponent } from '../components/search-bar/search-bar.component';
 
 
 @Component({
