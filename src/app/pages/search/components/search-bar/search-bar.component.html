@@ -1,4 +1,4 @@
-<form id="search-form" [formGroup]="searchForm" (submit)="onSubmit()">
+<form id="search-form" [formGroup]="searchForm" (submit)="handleSubmit()">
 
   <mat-form-field appearance="outline" color="accent">
     <mat-label>title</mat-label>
@@ -35,7 +35,7 @@
       Find
     </button>
 
-    <button mat-raised-button color="accent" type="button" (click)="onClear()">
+    <button mat-raised-button color="accent" type="button" (click)="handleClear()">
       <mat-icon>clear</mat-icon>
       Clear
     </button>

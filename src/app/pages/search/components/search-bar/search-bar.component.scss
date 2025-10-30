@@ -1,11 +1,15 @@
 form {
   background-color: #000000;
   width: 100%;
+  //max-width: 500px;
   padding-top: 20px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 10px;
   box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, inset 5px 5px 8px 12px rgba(0, 0, 0, 0);
+  border: 1px solid white;
+  display: flex;        
+  flex-direction: column;     
 }
 
 .mat-mdc-form-field.mat-accent {
@@ -20,6 +24,7 @@ form {
 
 .mat-mdc-form-field {
   color: var(--custom-amber);
+  padding: 10px;
 }
 
 .mdc-text-field {
@@ -61,6 +66,11 @@ mat-label {
   color: var(--custom-amber);
 }
 
+.button-container{
+  display: flex;
+  justify-content: center;
+}
+
 button {
   margin: 10px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -79,5 +89,11 @@ button {
 @media only screen and (max-width: 601px) {
   form {
     width: 100%;
+  }
+}
+
+@media only screen and (min-width: 602px) and (max-width: 992px) {
+  form {
+    width: 70%;
   }
 }

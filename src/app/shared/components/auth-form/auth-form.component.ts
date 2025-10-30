@@ -36,10 +36,6 @@ export class AuthFormComponent implements OnInit {
     this.buildForm();
   }
   
-
-    /**
-   * Configures form properties based on formType
-   */
   private configureByFormType(): void {
     if (this.formType === 'register') {
       this.title = 'Join us!';
@@ -56,9 +52,6 @@ export class AuthFormComponent implements OnInit {
     }
   }
 
-  /**
-   * Builds reactive form with email, password, and optional name field
-   */
   private buildForm(): void {
     const controls: Partial<Record<string, unknown>> = {
       email: ['', [Validators.required, Validators.email]],
@@ -75,14 +68,12 @@ export class AuthFormComponent implements OnInit {
     this.form = this.fb.group(controls);
   }
 
-  /** Validates and emits form data */
   handleSubmit(): void {
     if (this.form.valid) {
       this.formSubmit.emit(this.form.value);
     }
   }
 
-  /** Resets all form fields */
   handleClear(): void {
     this.form.reset();
   }

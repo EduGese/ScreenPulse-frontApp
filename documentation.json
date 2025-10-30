@@ -663,12 +663,12 @@
         },
         {
             "name": "SearchFilters",
-            "id": "interface-SearchFilters-8d89b25bb805ca0be4d8c296d77707ec4946a03b0db64cc643bd6612390c6296a290ddd3e190db50d39608755ea6ac8ca766daed6d5128cd3ed16bde21ec7021",
+            "id": "interface-SearchFilters-4c1d40c7523e5ba7a9c6d107bf23c4b00f01ed1cd5e9f7c09c1906a571ef6a20ba5766732d727cce750174482e8781d8c9f2eb8b3f2d8542fcf5a349ec4dcb96",
             "file": "src/app/shared/models/search.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { MediaItem } from './movie.model';\r\n\r\nexport type MediaType = 'movie' | 'series' | 'game' | 'all';\r\n\r\nexport interface SearchState {\r\n  title: string;\r\n  type: MediaType;\r\n  year: string;\r\n  currentPage: number;\r\n  pageSize: number;\r\n  collection: MediaItem[];\r\n  collectionSize: number;\r\n  searchOnProcess: boolean;\r\n}\r\n\r\nexport interface SearchFilters {\r\n  title: string;\r\n  type: MediaType;\r\n  year: string;\r\n}",
+            "sourceCode": "import { MediaItem } from './movie.model';\r\n\r\nexport type MediaType = 'movie' | 'series' | 'game' | 'all';\r\n\r\nexport interface SearchState {\r\n  title: string;\r\n  type: MediaType;\r\n  year: string;\r\n  currentPage: number;\r\n  pageSize: number;\r\n  collection: MediaItem[];\r\n  collectionSize: number;\r\n  searchOnProcess: boolean;\r\n}\r\n\r\nexport interface SearchFilters {\r\n  title: string;\r\n  type: MediaType;\r\n  year: string;\r\n}\r\n\r\nexport interface SearchFormValue {\r\n  title: string;\r\n  type: MediaType;\r\n  year: number | null;\r\n}",
             "properties": [
                 {
                     "name": "title",
@@ -707,13 +707,58 @@
             "extends": []
         },
         {
-            "name": "SearchState",
-            "id": "interface-SearchState-8d89b25bb805ca0be4d8c296d77707ec4946a03b0db64cc643bd6612390c6296a290ddd3e190db50d39608755ea6ac8ca766daed6d5128cd3ed16bde21ec7021",
+            "name": "SearchFormValue",
+            "id": "interface-SearchFormValue-4c1d40c7523e5ba7a9c6d107bf23c4b00f01ed1cd5e9f7c09c1906a571ef6a20ba5766732d727cce750174482e8781d8c9f2eb8b3f2d8542fcf5a349ec4dcb96",
             "file": "src/app/shared/models/search.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { MediaItem } from './movie.model';\r\n\r\nexport type MediaType = 'movie' | 'series' | 'game' | 'all';\r\n\r\nexport interface SearchState {\r\n  title: string;\r\n  type: MediaType;\r\n  year: string;\r\n  currentPage: number;\r\n  pageSize: number;\r\n  collection: MediaItem[];\r\n  collectionSize: number;\r\n  searchOnProcess: boolean;\r\n}\r\n\r\nexport interface SearchFilters {\r\n  title: string;\r\n  type: MediaType;\r\n  year: string;\r\n}",
+            "sourceCode": "import { MediaItem } from './movie.model';\r\n\r\nexport type MediaType = 'movie' | 'series' | 'game' | 'all';\r\n\r\nexport interface SearchState {\r\n  title: string;\r\n  type: MediaType;\r\n  year: string;\r\n  currentPage: number;\r\n  pageSize: number;\r\n  collection: MediaItem[];\r\n  collectionSize: number;\r\n  searchOnProcess: boolean;\r\n}\r\n\r\nexport interface SearchFilters {\r\n  title: string;\r\n  type: MediaType;\r\n  year: string;\r\n}\r\n\r\nexport interface SearchFormValue {\r\n  title: string;\r\n  type: MediaType;\r\n  year: number | null;\r\n}",
+            "properties": [
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 23
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "MediaType",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 24
+                },
+                {
+                    "name": "year",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number | null",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 25
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 172,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "SearchState",
+            "id": "interface-SearchState-4c1d40c7523e5ba7a9c6d107bf23c4b00f01ed1cd5e9f7c09c1906a571ef6a20ba5766732d727cce750174482e8781d8c9f2eb8b3f2d8542fcf5a349ec4dcb96",
+            "file": "src/app/shared/models/search.model.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { MediaItem } from './movie.model';\r\n\r\nexport type MediaType = 'movie' | 'series' | 'game' | 'all';\r\n\r\nexport interface SearchState {\r\n  title: string;\r\n  type: MediaType;\r\n  year: string;\r\n  currentPage: number;\r\n  pageSize: number;\r\n  collection: MediaItem[];\r\n  collectionSize: number;\r\n  searchOnProcess: boolean;\r\n}\r\n\r\nexport interface SearchFilters {\r\n  title: string;\r\n  type: MediaType;\r\n  year: string;\r\n}\r\n\r\nexport interface SearchFormValue {\r\n  title: string;\r\n  type: MediaType;\r\n  year: number | null;\r\n}",
             "properties": [
                 {
                     "name": "collection",
@@ -2342,7 +2387,7 @@
         },
         {
             "name": "AuthFormComponent",
-            "id": "component-AuthFormComponent-3d7454b078f2b62c98bfbf2bc2acdc9e2558e8c7a9c54792f6a9c4159f1e445b3e315cfd6c5ff3d99e6fdb5ddcec44c02897284ab9091a14a3f7ce31524cc1f1",
+            "id": "component-AuthFormComponent-9e75a18f36304a72be1fdaca7b97d454631efc5e1cf8560613386de73c9635b0a0f8f920f60358af355ef43856070abba6ba4ec5b7ce35e868b1a3c91b70c5ee",
             "file": "src/app/shared/components/auth-form/auth-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2393,7 +2438,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 32
+                    "line": 28
                 },
                 {
                     "name": "hidePassword",
@@ -2404,7 +2449,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 33
+                    "line": 29
                 },
                 {
                     "name": "passwordPattern",
@@ -2415,7 +2460,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 34,
+                    "line": 30,
                     "modifierKind": [
                         123
                     ]
@@ -2428,7 +2473,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 26
+                    "line": 24
                 },
                 {
                     "name": "showPasswordHint",
@@ -2438,7 +2483,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 28
+                    "line": 26
                 },
                 {
                     "name": "showRegisterLink",
@@ -2448,7 +2493,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 27
+                    "line": 25
                 },
                 {
                     "name": "submitButtonText",
@@ -2458,7 +2503,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 25
+                    "line": 23
                 },
                 {
                     "name": "title",
@@ -2468,7 +2513,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 24
+                    "line": 22
                 }
             ],
             "methodsClass": [
@@ -2478,11 +2523,9 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 65,
+                    "line": 55,
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\n\nBuilds reactive form with email, password, and optional name field\n",
-                    "description": "<p>Builds reactive form with email, password, and optional name field</p>\n",
                     "modifierKind": [
                         123
                     ]
@@ -2493,11 +2536,9 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 46,
+                    "line": 39,
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\n\nConfigures form properties based on formType\n",
-                    "description": "<p>Configures form properties based on formType</p>\n",
                     "modifierKind": [
                         123
                     ]
@@ -2508,11 +2549,9 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 89,
+                    "line": 77,
                     "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\nResets all form fields",
-                    "description": "<p>Resets all form fields</p>\n"
+                    "deprecationMessage": ""
                 },
                 {
                     "name": "handleSubmit",
@@ -2520,11 +2559,9 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 82,
+                    "line": 71,
                     "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\nValidates and emits form data",
-                    "description": "<p>Validates and emits form data</p>\n"
+                    "deprecationMessage": ""
                 },
                 {
                     "name": "ngOnInit",
@@ -2532,7 +2569,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 38,
+                    "line": 34,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -2546,7 +2583,7 @@
             "description": "<p>Reusable authentication form component supporting login and registration flows</p>\n",
             "rawdescription": "\n\n\nReusable authentication form component supporting login and registration flows\n\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\nimport { User } from '../../models/user.model';\n\n/**\n * \n * Reusable authentication form component supporting login and registration flows\n * \n */\n@Component({\n  selector: 'app-auth-form',\n  templateUrl: './auth-form.component.html',\n  styleUrls: ['./auth-form.component.scss']\n})\nexport class AuthFormComponent implements OnInit {\n  /** Form type: login or register */\n  @Input() formType: 'login' | 'register' = 'login';\n\n  /** Emits validated user data on form submission */\n  @Output() formSubmit = new EventEmitter<User>();\n\n\n  // Internal configuration properties\n  title!: string;\n  submitButtonText!: string;\n  showNameField!: boolean;\n  showRegisterLink!: boolean;\n  showPasswordHint!: boolean;\n\n\n\n  form!: FormGroup;\n  hidePassword = true;\n  private passwordPattern = /^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\\W_]).{6,}$/;\n\n  constructor(private fb: FormBuilder) { }\n\n  ngOnInit(): void {\n    this.configureByFormType();\n    this.buildForm();\n  }\n\n    /**\n   * Configures form properties based on formType\n   */\n  private configureByFormType(): void {\n    if (this.formType === 'register') {\n      this.title = 'Join us!';\n      this.submitButtonText = 'Sign Up';\n      this.showNameField = true;\n      this.showRegisterLink = false;\n      this.showPasswordHint = true;\n    } else {\n      this.title = 'Open the door';\n      this.submitButtonText = 'Login';\n      this.showNameField = false;\n      this.showRegisterLink = true;\n      this.showPasswordHint = false;\n    }\n  }\n\n  /**\n   * Builds reactive form with email, password, and optional name field\n   */\n  private buildForm(): void {\n    const controls: Partial<Record<string, unknown>> = {\n      email: ['', [Validators.required, Validators.email]],\n      password: ['', [\n        Validators.required,\n        Validators.pattern(this.passwordPattern)\n      ]]\n    };\n\n    if (this.showNameField) {\n      controls['name'] = ['', Validators.required];\n    }\n\n    this.form = this.fb.group(controls);\n  }\n\n  /** Validates and emits form data */\n  handleSubmit(): void {\n    if (this.form.valid) {\n      this.formSubmit.emit(this.form.value);\n    }\n  }\n\n  /** Resets all form fields */\n  handleClear(): void {\n    this.form.reset();\n  }\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\nimport { User } from '../../models/user.model';\n\n/**\n * \n * Reusable authentication form component supporting login and registration flows\n * \n */\n@Component({\n  selector: 'app-auth-form',\n  templateUrl: './auth-form.component.html',\n  styleUrls: ['./auth-form.component.scss']\n})\nexport class AuthFormComponent implements OnInit {\n  /** Form type: login or register */\n  @Input() formType: 'login' | 'register' = 'login';\n\n  /** Emits validated user data on form submission */\n  @Output() formSubmit = new EventEmitter<User>();\n\n  title!: string;\n  submitButtonText!: string;\n  showNameField!: boolean;\n  showRegisterLink!: boolean;\n  showPasswordHint!: boolean;\n\n  form!: FormGroup;\n  hidePassword = true;\n  private passwordPattern = /^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\\W_]).{6,}$/;\n\n  constructor(private fb: FormBuilder) { }\n\n  ngOnInit(): void {\n    this.configureByFormType();\n    this.buildForm();\n  }\n  \n  private configureByFormType(): void {\n    if (this.formType === 'register') {\n      this.title = 'Join us!';\n      this.submitButtonText = 'Sign Up';\n      this.showNameField = true;\n      this.showRegisterLink = false;\n      this.showPasswordHint = true;\n    } else {\n      this.title = 'Open the door';\n      this.submitButtonText = 'Login';\n      this.showNameField = false;\n      this.showRegisterLink = true;\n      this.showPasswordHint = false;\n    }\n  }\n\n  private buildForm(): void {\n    const controls: Partial<Record<string, unknown>> = {\n      email: ['', [Validators.required, Validators.email]],\n      password: ['', [\n        Validators.required,\n        Validators.pattern(this.passwordPattern)\n      ]]\n    };\n\n    if (this.showNameField) {\n      controls['name'] = ['', Validators.required];\n    }\n\n    this.form = this.fb.group(controls);\n  }\n\n  handleSubmit(): void {\n    if (this.form.valid) {\n      this.formSubmit.emit(this.form.value);\n    }\n  }\n\n  handleClear(): void {\n    this.form.reset();\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2568,7 +2605,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 34,
+                "line": 30,
                 "jsdoctags": [
                     {
                         "name": "fb",
@@ -2589,7 +2626,7 @@
         },
         {
             "name": "CarouselComponent",
-            "id": "component-CarouselComponent-4c9616954f3af3d983c9ecc0440526b8942a0f08beea17d21ddb2b9c246f2ba18da49405cb28443a2bef3c4b9a7d1e7c33bf3dc8df901def24123d88856e8ad1",
+            "id": "component-CarouselComponent-5d95e11a5098e3ac893e92da6c3ca9dc7082623cea804706089ceb86d0e4ff8d614144ea9c0bb090fc6eac05fbd8c1fc01cf99065f67bf1287fcfbb438cfb015",
             "file": "src/app/pages/search/components/carousel/carousel.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2614,7 +2651,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nCollection of media items to display in the carousel",
                     "description": "<p>Collection of media items to display in the carousel</p>\n",
-                    "line": 16,
+                    "line": 32,
                     "type": "MediaItem[]",
                     "decorators": []
                 }
@@ -2627,7 +2664,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nEmits the selected media item when user clicks on it",
                     "description": "<p>Emits the selected media item when user clicks on it</p>\n",
-                    "line": 19,
+                    "line": 35,
                     "type": "EventEmitter"
                 }
             ],
@@ -2641,7 +2678,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Items grouped into arrays for carousel slides</p>\n",
-                    "line": 31,
+                    "line": 47,
                     "rawdescription": "\nItems grouped into arrays for carousel slides"
                 },
                 {
@@ -2653,7 +2690,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Number of items per carousel slide</p>\n",
-                    "line": 34,
+                    "line": 50,
                     "rawdescription": "\nNumber of items per carousel slide",
                     "modifierKind": [
                         123,
@@ -2669,7 +2706,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Default fallback image URL when poster fails to load</p>\n",
-                    "line": 22,
+                    "line": 38,
                     "rawdescription": "\nDefault fallback image URL when poster fails to load",
                     "modifierKind": [
                         148
@@ -2684,7 +2721,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Controls visibility of carousel navigation arrows (disabled by default)</p>\n",
-                    "line": 25,
+                    "line": 41,
                     "rawdescription": "\nControls visibility of carousel navigation arrows (disabled by default)"
                 },
                 {
@@ -2696,7 +2733,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "<p>Controls visibility of carousel navigation indicators (enabled by default)</p>\n",
-                    "line": 28,
+                    "line": 44,
                     "rawdescription": "\nControls visibility of carousel navigation indicators (enabled by default)"
                 }
             ],
@@ -2707,7 +2744,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 85,
+                    "line": 101,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nGroups the media items into arrays of fixed size for carousel slides\nEach slide will contain up to `groupSize` items (default: 4)\n\n",
@@ -2718,8 +2755,8 @@
                     "jsdoctags": [
                         {
                             "tagName": {
-                                "pos": 2698,
-                                "end": 2705,
+                                "pos": 3400,
+                                "end": 3407,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -2743,7 +2780,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 50,
+                    "line": 66,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nLifecycle hook: responds to input property changes\nRe-groups items when the collection input changes (except first change)\n\n",
@@ -2751,8 +2788,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1604,
-                                "end": 1611,
+                                "pos": 2306,
+                                "end": 2313,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -2763,8 +2800,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1598,
-                                "end": 1603,
+                                "pos": 2300,
+                                "end": 2305,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -2781,7 +2818,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 40,
+                    "line": 56,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nLifecycle hook: initializes the component\nGroups the media items into slides on component initialization\n",
@@ -2800,7 +2837,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 108,
+                    "line": 124,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nHandles image loading errors by setting a fallback image\nAutomatically replaces broken poster images with the default placeholder\n\n",
@@ -2808,8 +2845,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 3395,
-                                "end": 3400,
+                                "pos": 4097,
+                                "end": 4102,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -2820,8 +2857,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 3389,
-                                "end": 3394,
+                                "pos": 4091,
+                                "end": 4096,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -2845,7 +2882,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 98,
+                    "line": 114,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nHandles user interaction when clicking on a media item\nEmits the selected item to the parent component\n\n",
@@ -2853,8 +2890,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 3095,
-                                "end": 3099,
+                                "pos": 3797,
+                                "end": 3801,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -2865,8 +2902,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 3089,
-                                "end": 3094,
+                                "pos": 3791,
+                                "end": 3796,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -2890,7 +2927,7 @@
                     "optional": false,
                     "returnType": "number",
                     "typeParameters": [],
-                    "line": 63,
+                    "line": 79,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nTrackBy function for carousel slide groups\nUsed to optimize ngFor rendering performance at the slide level\n\n",
@@ -2898,8 +2935,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1967,
-                                "end": 1972,
+                                "pos": 2669,
+                                "end": 2674,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -2910,8 +2947,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1961,
-                                "end": 1966,
+                                "pos": 2663,
+                                "end": 2668,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -2922,8 +2959,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 2013,
-                                "end": 2020,
+                                "pos": 2715,
+                                "end": 2722,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -2953,7 +2990,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 75,
+                    "line": 91,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nTrackBy function for individual media items within slides\nUsed to optimize ngFor rendering performance at the item level\n\n",
@@ -2961,8 +2998,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 2306,
-                                "end": 2311,
+                                "pos": 3008,
+                                "end": 3013,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -2973,8 +3010,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 2300,
-                                "end": 2305,
+                                "pos": 3002,
+                                "end": 3007,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -2985,8 +3022,8 @@
                         },
                         {
                             "name": {
-                                "pos": 2358,
-                                "end": 2362,
+                                "pos": 3060,
+                                "end": 3064,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -2997,8 +3034,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 2352,
-                                "end": 2357,
+                                "pos": 3054,
+                                "end": 3059,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -3009,8 +3046,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 2394,
-                                "end": 2401,
+                                "pos": 3096,
+                                "end": 3103,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -3028,10 +3065,10 @@
             "hostListeners": [],
             "standalone": false,
             "imports": [],
-            "description": "<p>Displays a <strong>carousel of media items</strong> grouped into slides using ng-bootstrap.</p>\n",
-            "rawdescription": "\n\nDisplays a **carousel of media items** grouped into slides using ng-bootstrap.\n\n",
+            "description": "<p>Displays a <strong>carousel of media items</strong> grouped into slides using ng-bootstrap.</p>\n<h2>Features</h2>\n<ul>\n<li>🎠 Auto-rotating carousel with 4-second intervals</li>\n<li>📸 Groups items into slides of 4 items each</li>\n<li>♿ Fully accessible with ARIA labels and keyboard navigation</li>\n<li>🖼️ Automatic fallback image on poster load errors</li>\n<li>🎯 Emits events when user clicks on a media item</li>\n</ul>\n<h2>Key Capabilities</h2>\n<p>The component provides an interactive carousel with:</p>\n<ul>\n<li><strong>Automatic slide transitions</strong> every 4 seconds</li>\n<li><strong>Navigation indicators</strong> (dots) for manual slide selection</li>\n<li><strong>Keyboard accessible</strong> poster images with Enter/Space handlers</li>\n<li><strong>Performance optimized</strong> with trackBy functions</li>\n<li><strong>Responsive grouping</strong> that adapts to collection size</li>\n</ul>\n",
+            "rawdescription": "\n\nDisplays a **carousel of media items** grouped into slides using ng-bootstrap.\n\n## Features\n\n- 🎠 Auto-rotating carousel with 4-second intervals\n- 📸 Groups items into slides of 4 items each\n- ♿ Fully accessible with ARIA labels and keyboard navigation\n- 🖼️ Automatic fallback image on poster load errors\n- 🎯 Emits events when user clicks on a media item\n\n## Key Capabilities\n\nThe component provides an interactive carousel with:\n- **Automatic slide transitions** every 4 seconds\n- **Navigation indicators** (dots) for manual slide selection\n- **Keyboard accessible** poster images with Enter/Space handlers\n- **Performance optimized** with trackBy functions\n- **Responsive grouping** that adapts to collection size\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';\r\nimport { MediaItem } from 'src/app/shared/models/movie.model';\r\n\r\n/**\r\n * Displays a **carousel of media items** grouped into slides using ng-bootstrap.\r\n * \r\n */\r\n@Component({\r\n  selector: 'app-carousel',\r\n  templateUrl: './carousel.component.html',\r\n  styleUrls: ['./carousel.component.scss']\r\n})\r\nexport class CarouselComponent implements OnInit, OnChanges {\r\n  \r\n  /** Collection of media items to display in the carousel */\r\n  @Input() collection: MediaItem[] = [];\r\n  \r\n  /** Emits the selected media item when user clicks on it */\r\n  @Output() sendItemCarousel = new EventEmitter<MediaItem>();\r\n\r\n  /** Default fallback image URL when poster fails to load */\r\n  readonly noImageUrl = 'assets/images/no_poster.jpg';\r\n  \r\n  /** Controls visibility of carousel navigation arrows (disabled by default) */\r\n  showNavigationArrows = false;\r\n  \r\n  /** Controls visibility of carousel navigation indicators (enabled by default) */\r\n  showNavigationIndicators = true;\r\n  \r\n  /** Items grouped into arrays for carousel slides */\r\n  groupedItems: MediaItem[][] = [];\r\n  \r\n  /** Number of items per carousel slide */\r\n  private readonly groupSize = 4;\r\n\r\n  /**\r\n   * Lifecycle hook: initializes the component\r\n   * Groups the media items into slides on component initialization\r\n   */\r\n  ngOnInit(): void {\r\n    this.groupItems();\r\n  }\r\n  \r\n  /**\r\n   * Lifecycle hook: responds to input property changes\r\n   * Re-groups items when the collection input changes (except first change)\r\n   * \r\n   * @param changes - Object containing the changed properties\r\n   */\r\n  ngOnChanges(changes: SimpleChanges): void {\r\n    if (changes['collection'] && !changes['collection'].firstChange) {\r\n      this.groupItems();\r\n    }\r\n  }\r\n\r\n  /**\r\n   * TrackBy function for carousel slide groups\r\n   * Used to optimize ngFor rendering performance at the slide level\r\n   * \r\n   * @param index - The current index in the array\r\n   * @returns The index as unique identifier for each slide group\r\n   */\r\n  trackByFn(index: number): number {\r\n    return index;\r\n  }\r\n  \r\n  /**\r\n   * TrackBy function for individual media items within slides\r\n   * Used to optimize ngFor rendering performance at the item level\r\n   * \r\n   * @param index - The current index in the array\r\n   * @param item - The media item object\r\n   * @returns The unique IMDB ID of the media item\r\n   */\r\n  trackByItem(index: number, item: MediaItem): string {\r\n    return item.imdbID;\r\n  }\r\n\r\n  /**\r\n   * Groups the media items into arrays of fixed size for carousel slides\r\n   * Each slide will contain up to `groupSize` items (default: 4)\r\n   * \r\n   * @private\r\n   */\r\n  private groupItems(): void {\r\n    this.groupedItems = Array.from(\r\n      { length: Math.ceil(this.collection.length / this.groupSize) },\r\n      (_, i) => this.collection.slice(i * this.groupSize, (i + 1) * this.groupSize)\r\n    );\r\n  }\r\n\r\n  /**\r\n   * Handles user interaction when clicking on a media item\r\n   * Emits the selected item to the parent component\r\n   * \r\n   * @param item - The media item that was clicked\r\n   */\r\n  onOpenItem(item: MediaItem): void {\r\n    this.sendItemCarousel.emit(item);\r\n  }\r\n\r\n  /**\r\n   * Handles image loading errors by setting a fallback image\r\n   * Automatically replaces broken poster images with the default placeholder\r\n   * \r\n   * @param event - The error event from the image element\r\n   */\r\n  onImageError(event: Event): void {\r\n    const target = event.target as HTMLImageElement;\r\n    target.src = this.noImageUrl; \r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';\r\nimport { MediaItem } from 'src/app/shared/models/movie.model';\r\n\r\n/**\r\n * Displays a **carousel of media items** grouped into slides using ng-bootstrap.\r\n * \r\n * ## Features\r\n * \r\n * - 🎠 Auto-rotating carousel with 4-second intervals\r\n * - 📸 Groups items into slides of 4 items each\r\n * - ♿ Fully accessible with ARIA labels and keyboard navigation\r\n * - 🖼️ Automatic fallback image on poster load errors\r\n * - 🎯 Emits events when user clicks on a media item\r\n * \r\n * ## Key Capabilities\r\n * \r\n * The component provides an interactive carousel with:\r\n * - **Automatic slide transitions** every 4 seconds\r\n * - **Navigation indicators** (dots) for manual slide selection\r\n * - **Keyboard accessible** poster images with Enter/Space handlers\r\n * - **Performance optimized** with trackBy functions\r\n * - **Responsive grouping** that adapts to collection size\r\n */\r\n@Component({\r\n  selector: 'app-carousel',\r\n  templateUrl: './carousel.component.html',\r\n  styleUrls: ['./carousel.component.scss']\r\n})\r\nexport class CarouselComponent implements OnInit, OnChanges {\r\n  \r\n  /** Collection of media items to display in the carousel */\r\n  @Input() collection: MediaItem[] = [];\r\n  \r\n  /** Emits the selected media item when user clicks on it */\r\n  @Output() sendItemCarousel = new EventEmitter<MediaItem>();\r\n\r\n  /** Default fallback image URL when poster fails to load */\r\n  readonly noImageUrl = 'assets/images/no_poster.jpg';\r\n  \r\n  /** Controls visibility of carousel navigation arrows (disabled by default) */\r\n  showNavigationArrows = false;\r\n  \r\n  /** Controls visibility of carousel navigation indicators (enabled by default) */\r\n  showNavigationIndicators = true;\r\n  \r\n  /** Items grouped into arrays for carousel slides */\r\n  groupedItems: MediaItem[][] = [];\r\n  \r\n  /** Number of items per carousel slide */\r\n  private readonly groupSize = 4;\r\n\r\n  /**\r\n   * Lifecycle hook: initializes the component\r\n   * Groups the media items into slides on component initialization\r\n   */\r\n  ngOnInit(): void {\r\n    this.groupItems();\r\n  }\r\n  \r\n  /**\r\n   * Lifecycle hook: responds to input property changes\r\n   * Re-groups items when the collection input changes (except first change)\r\n   * \r\n   * @param changes - Object containing the changed properties\r\n   */\r\n  ngOnChanges(changes: SimpleChanges): void {\r\n    if (changes['collection'] && !changes['collection'].firstChange) {\r\n      this.groupItems();\r\n    }\r\n  }\r\n\r\n  /**\r\n   * TrackBy function for carousel slide groups\r\n   * Used to optimize ngFor rendering performance at the slide level\r\n   * \r\n   * @param index - The current index in the array\r\n   * @returns The index as unique identifier for each slide group\r\n   */\r\n  trackByFn(index: number): number {\r\n    return index;\r\n  }\r\n  \r\n  /**\r\n   * TrackBy function for individual media items within slides\r\n   * Used to optimize ngFor rendering performance at the item level\r\n   * \r\n   * @param index - The current index in the array\r\n   * @param item - The media item object\r\n   * @returns The unique IMDB ID of the media item\r\n   */\r\n  trackByItem(index: number, item: MediaItem): string {\r\n    return item.imdbID;\r\n  }\r\n\r\n  /**\r\n   * Groups the media items into arrays of fixed size for carousel slides\r\n   * Each slide will contain up to `groupSize` items (default: 4)\r\n   * \r\n   * @private\r\n   */\r\n  private groupItems(): void {\r\n    this.groupedItems = Array.from(\r\n      { length: Math.ceil(this.collection.length / this.groupSize) },\r\n      (_, i) => this.collection.slice(i * this.groupSize, (i + 1) * this.groupSize)\r\n    );\r\n  }\r\n\r\n  /**\r\n   * Handles user interaction when clicking on a media item\r\n   * Emits the selected item to the parent component\r\n   * \r\n   * @param item - The media item that was clicked\r\n   */\r\n  onOpenItem(item: MediaItem): void {\r\n    this.sendItemCarousel.emit(item);\r\n  }\r\n\r\n  /**\r\n   * Handles image loading errors by setting a fallback image\r\n   * Automatically replaces broken poster images with the default placeholder\r\n   * \r\n   * @param event - The error event from the image element\r\n   */\r\n  onImageError(event: Event): void {\r\n    const target = event.target as HTMLImageElement;\r\n    target.src = this.noImageUrl; \r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -5126,8 +5163,8 @@
         },
         {
             "name": "SearchBarComponent",
-            "id": "component-SearchBarComponent-e895c18e9fee1780df118ed3609c3782a5df9bb0c6ffb5808680b1e170c57de8d885b34142ebccd2befc91fe5c6ddc7ad40091369b1b464fc7a721c05248b04c",
-            "file": "src/app/shared/components/search-bar/search-bar.component.ts",
+            "id": "component-SearchBarComponent-295db38862fc91c74a5476afbdfe35b1963c4486ad1a590f2c48a2f7ed24c5529eff2869fd7a6f1e8723b03dac550de40d7dba4eb33c0c643339c5e41885f17b",
+            "file": "src/app/pages/search/components/search-bar/search-bar.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -5150,13 +5187,36 @@
                     "defaultValue": "new EventEmitter<SearchFilters>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 17,
+                    "rawdescription": "\n\nEmits search filters when the form is submitted\n",
+                    "description": "<p>Emits search filters when the form is submitted</p>\n",
+                    "jsdoctags": [
+                        {
+                            "pos": 748,
+                            "end": 775,
+                            "kind": 328,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 749,
+                                "end": 754,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "event"
+                            },
+                            "comment": "<p>searchSubmitted</p>\n"
+                        }
+                    ],
+                    "line": 24,
                     "type": "EventEmitter"
                 }
             ],
             "propertiesClass": [
                 {
-                    "name": "currentyear",
+                    "name": "currentYear",
                     "defaultValue": "new Date().getFullYear()",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -5164,7 +5224,10 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 15
+                    "line": 28,
+                    "modifierKind": [
+                        148
+                    ]
                 },
                 {
                     "name": "searchForm",
@@ -5174,7 +5237,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 13
+                    "line": 26
                 },
                 {
                     "name": "searchFormFocus",
@@ -5182,9 +5245,9 @@
                     "deprecationMessage": "",
                     "type": "ElementRef<HTMLInputElement>",
                     "indexKey": "",
-                    "optional": false,
+                    "optional": true,
                     "description": "",
-                    "line": 18,
+                    "line": 34,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -5204,27 +5267,30 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 14
+                    "line": 27,
+                    "modifierKind": [
+                        148
+                    ]
                 }
             ],
             "methodsClass": [
                 {
-                    "name": "onClear",
+                    "name": "handleClear",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 38,
+                    "line": 52,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
                 {
-                    "name": "onSubmit",
+                    "name": "handleSubmit",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 27,
+                    "line": 44,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -5235,14 +5301,14 @@
             "hostListeners": [],
             "standalone": false,
             "imports": [],
-            "description": "",
-            "rawdescription": "\n",
+            "description": "<p>Search bar component for movies, series, and games.</p>\n<p>Reactive form that allows users to search media content by title, type, and year.\nEmits search filters to parent component on form submission.</p>\n",
+            "rawdescription": "\n\nSearch bar component for movies, series, and games.\n\nReactive form that allows users to search media content by title, type, and year.\nEmits search filters to parent component on form submission.\n\n",
             "type": "component",
-            "sourceCode": "import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';\r\nimport { FormGroup, FormBuilder, Validators } from '@angular/forms';\r\nimport { MediaType, SearchFilters } from 'src/app/shared/models/search.model';\r\n\r\n\r\n@Component({\r\n  selector: 'app-search-bar',\r\n  templateUrl: './search-bar.component.html',\r\n  styleUrls: ['./search-bar.component.scss']\r\n})\r\nexport class SearchBarComponent {\r\n\r\n  searchForm: FormGroup;\r\n  types: MediaType[] = ['movie', 'series', 'game', 'all'];\r\n  currentyear: number = new Date().getFullYear();\r\n\r\n  @Output() searchSubmitted = new EventEmitter<SearchFilters>();\r\n  @ViewChild('searchFormFocus') searchFormFocus!: ElementRef<HTMLInputElement>;\r\n\r\n  constructor(private formBuilder: FormBuilder) {\r\n    this.searchForm = this.formBuilder.group({\r\n      title: ['', Validators.required],\r\n      type: ['all'],\r\n      year: [null as number | null, [Validators.min(1900), Validators.max(this.currentyear)]]\r\n    });\r\n  }\r\n  onSubmit(){\r\n    if (this.searchForm.invalid) return;\r\n    \r\n    const formValue = this.searchForm.value;\r\n    const payload: SearchFilters = {\r\n      ...formValue,\r\n      year: formValue.year?.toString() || ''\r\n    };\r\n    this.searchSubmitted.emit(payload);\r\n  \r\n  }\r\n  onClear(){\r\n    this.searchForm.reset({\r\n      type: 'all',\r\n    });\r\n    this.searchForm.markAsUntouched();\r\n    \r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';\r\nimport { FormGroup, FormBuilder, Validators } from '@angular/forms';\r\nimport { MediaType, SearchFilters, SearchFormValue } from 'src/app/shared/models/search.model';\r\n\r\n/**\r\n * Search bar component for movies, series, and games.\r\n * \r\n * @description\r\n * Reactive form that allows users to search media content by title, type, and year.\r\n * Emits search filters to parent component on form submission.\r\n * \r\n */\r\n\r\n@Component({\r\n  selector: 'app-search-bar',\r\n  templateUrl: './search-bar.component.html',\r\n  styleUrls: ['./search-bar.component.scss']\r\n})\r\nexport class SearchBarComponent {\r\n   /**\r\n   * Emits search filters when the form is submitted\r\n   * @event searchSubmitted\r\n   */\r\n  @Output() searchSubmitted = new EventEmitter<SearchFilters>();\r\n\r\n  searchForm: FormGroup;\r\n  readonly types: MediaType[] = ['movie', 'series', 'game', 'all'];\r\n  readonly currentYear: number = new Date().getFullYear();\r\n  /**\r\n * @private\r\n * @ignore\r\n */\r\n  private titlePattern = /^\\S.+|^\\S$/;\r\n  @ViewChild('searchFormFocus') searchFormFocus?: ElementRef<HTMLInputElement>;\r\n\r\n\r\n  constructor(private formBuilder: FormBuilder) {\r\n    this.searchForm = this.formBuilder.group({\r\n      title: ['', [Validators.required, Validators.pattern(this.titlePattern)]],\r\n      type: ['all'],\r\n      year: [null as number | null, [Validators.min(1900), Validators.max(this.currentYear)]]\r\n    });\r\n  }\r\n  handleSubmit() {\r\n    if (this.searchForm.invalid) return;\r\n\r\n    const formValue = this.searchForm.value;\r\n    const payload: SearchFilters = this.buildSearchPayload(formValue);\r\n    this.searchSubmitted.emit(payload);\r\n\r\n  }\r\n  handleClear() {\r\n    this.searchForm.reset({\r\n      title: '',\r\n      type: 'all',\r\n      year: null\r\n    });\r\n    this.searchForm.markAsUntouched();\r\n  }\r\n\r\n  /**\r\n * @private\r\n * @ignore\r\n */\r\n  private buildSearchPayload(formValue: SearchFormValue): SearchFilters {\r\n  return {\r\n    title: formValue.title,\r\n    type: formValue.type,\r\n    year: formValue.year !== null ? formValue.year.toString() : ''\r\n  };\r\n}\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "form {\r\n  background-color: #000000;\r\n  width: 100%;\r\n  padding-top: 20px;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  border-radius: 10px;\r\n  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, inset 5px 5px 8px 12px rgba(0, 0, 0, 0);\r\n}\r\n\r\n.mat-mdc-form-field.mat-accent {\r\n  --mdc-outlined-text-field-outline-color: var(--custom-amber);\r\n  --mdc-outlined-text-field-focus-outline-color: var(--custom-amber);\r\n  --mdc-outlined-text-field-hover-outline-color: var(--custom-amber);\r\n}\r\n\r\n.mat-mdc-form-field.mat-accent.mat-form-field-invalid {\r\n  --mdc-outlined-text-field-outline-color: var(--custom-error);\r\n}\r\n\r\n.mat-mdc-form-field {\r\n  color: var(--custom-amber);\r\n}\r\n\r\n.mdc-text-field {\r\n  color: var(--custom-amber) !important;\r\n}\r\n\r\nmat-label {\r\n  color: var(--custom-amber) !important;\r\n}\r\n\r\n.mdc-text-field__input {\r\n  color: var(--custom-amber) !important;\r\n}\r\n::ng-deep div.mat-mdc-select-panel {\r\n  background-color: rgb(0, 0, 0) !important;\r\n  border-left: 1px solid var(--custom-amber);\r\n  border-right: 1px solid var(--custom-amber);\r\n  border-bottom: 1px solid var(--custom-amber);\r\n}\r\n\r\n.mat-mdc-option {\r\n  color: white;\r\n}\r\n\r\n::ng-deep .mat-mdc-option:hover {\r\n  background-color: var(--custom-amber) !important;\r\n  color: black !important;\r\n}\r\n\r\n.mat-mdc-select {\r\n  color: var(--custom-amber);\r\n}\r\n\r\n#search-form .mat-mdc-select-arrow {\r\n  color: var(--custom-amber);\r\n}\r\n\r\n#search-form .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {\r\n  color: var(--custom-amber);\r\n}\r\n\r\nbutton {\r\n  margin: 10px;\r\n  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;\r\n}\r\n.button-container button[disabled] {\r\n  opacity: 1;\r\n  background-color: #683ab76e;\r\n}\r\n.button-icon-disabled{\r\n  color:#202020 !important;\r\n}\r\n.button-icon-enabled{\r\n  color:#ffffff !important;\r\n}\r\n\r\n@media only screen and (max-width: 601px) {\r\n  form {\r\n    width: 100%;\r\n  }\r\n}\r\n",
+                    "data": "form {\r\n  background-color: #000000;\r\n  width: 100%;\r\n  //max-width: 500px;\r\n  padding-top: 20px;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  border-radius: 10px;\r\n  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, inset 5px 5px 8px 12px rgba(0, 0, 0, 0);\r\n  border: 1px solid white;\r\n  display: flex;        \r\n  flex-direction: column;     \r\n}\r\n\r\n.mat-mdc-form-field.mat-accent {\r\n  --mdc-outlined-text-field-outline-color: var(--custom-amber);\r\n  --mdc-outlined-text-field-focus-outline-color: var(--custom-amber);\r\n  --mdc-outlined-text-field-hover-outline-color: var(--custom-amber);\r\n}\r\n\r\n.mat-mdc-form-field.mat-accent.mat-form-field-invalid {\r\n  --mdc-outlined-text-field-outline-color: var(--custom-error);\r\n}\r\n\r\n.mat-mdc-form-field {\r\n  color: var(--custom-amber);\r\n  padding: 10px;\r\n}\r\n\r\n.mdc-text-field {\r\n  color: var(--custom-amber) !important;\r\n}\r\n\r\nmat-label {\r\n  color: var(--custom-amber) !important;\r\n}\r\n\r\n.mdc-text-field__input {\r\n  color: var(--custom-amber) !important;\r\n}\r\n::ng-deep div.mat-mdc-select-panel {\r\n  background-color: rgb(0, 0, 0) !important;\r\n  border-left: 1px solid var(--custom-amber);\r\n  border-right: 1px solid var(--custom-amber);\r\n  border-bottom: 1px solid var(--custom-amber);\r\n}\r\n\r\n.mat-mdc-option {\r\n  color: white;\r\n}\r\n\r\n::ng-deep .mat-mdc-option:hover {\r\n  background-color: var(--custom-amber) !important;\r\n  color: black !important;\r\n}\r\n\r\n.mat-mdc-select {\r\n  color: var(--custom-amber);\r\n}\r\n\r\n#search-form .mat-mdc-select-arrow {\r\n  color: var(--custom-amber);\r\n}\r\n\r\n#search-form .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {\r\n  color: var(--custom-amber);\r\n}\r\n\r\n.button-container{\r\n  display: flex;\r\n  justify-content: center;\r\n}\r\n\r\nbutton {\r\n  margin: 10px;\r\n  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;\r\n}\r\n.button-container button[disabled] {\r\n  opacity: 1;\r\n  background-color: #683ab76e;\r\n}\r\n.button-icon-disabled{\r\n  color:#202020 !important;\r\n}\r\n.button-icon-enabled{\r\n  color:#ffffff !important;\r\n}\r\n\r\n@media only screen and (max-width: 601px) {\r\n  form {\r\n    width: 100%;\r\n  }\r\n}\r\n\r\n@media only screen and (min-width: 602px) and (max-width: 992px) {\r\n  form {\r\n    width: 70%;\r\n  }\r\n}",
                     "styleUrl": "./search-bar.component.scss"
                 }
             ],
@@ -5260,7 +5326,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 18,
+                "line": 34,
                 "jsdoctags": [
                     {
                         "name": "formBuilder",
@@ -5274,11 +5340,11 @@
                 ]
             },
             "extends": [],
-            "templateData": "<form id=\"search-form\" [formGroup]=\"searchForm\" (submit)=\"onSubmit()\">\r\n\r\n    <mat-form-field appearance=\"outline\" color=\"accent\">\r\n      <mat-label>title</mat-label>\r\n      <input matInput formControlName=\"title\" #searchFormFocus>\r\n      <mat-hint>Mandatory</mat-hint>\r\n      <mat-error *ngIf=\"searchForm.get('title')?.invalid\">\r\n        Required field\r\n      </mat-error>\r\n    </mat-form-field>\r\n  \r\n    <mat-form-field appearance=\"outline\" color=\"accent\">\r\n      <mat-label>type</mat-label>\r\n      <mat-select formControlName=\"type\">\r\n        <mat-option *ngFor=\"let type of types\" [value]=\"type\">\r\n          {{type | titlecase}} \r\n        </mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n  \r\n    <mat-form-field appearance=\"outline\" color=\"accent\">\r\n      <mat-label>year (optional)</mat-label>\r\n      <input matInput formControlName=\"year\" type=\"number\" placeholder=\"1900-{{currentyear}}\" >\r\n      <mat-hint>Empty to search all years</mat-hint>\r\n      <mat-error *ngIf=\"searchForm.get('year')?.invalid\">\r\n        Must be between 1900- {{currentyear}}\r\n      </mat-error>\r\n    </mat-form-field>\r\n  \r\n    \r\n    <div class=\"button-container\">\r\n      <button mat-raised-button color=\"primary\" type=\"submit\" [disabled]=\"searchForm.invalid\">\r\n      <mat-icon [ngClass]=\"searchForm.invalid ? 'button-icon-disabled' : 'button-icon-enabled'\">send</mat-icon>\r\n      Find\r\n    </button>\r\n  \r\n    <button mat-raised-button color=\"accent\" type=\"button\" (click)=\"onClear()\">\r\n      <mat-icon>clear</mat-icon>\r\n      Clear\r\n    </button>\r\n    </div>\r\n\r\n  </form>\r\n"
+            "templateData": "<form id=\"search-form\" [formGroup]=\"searchForm\" (submit)=\"handleSubmit()\">\r\n\r\n  <mat-form-field appearance=\"outline\" color=\"accent\">\r\n    <mat-label>title</mat-label>\r\n    <input matInput formControlName=\"title\" #searchFormFocus>\r\n    <mat-hint>Mandatory</mat-hint>\r\n    <mat-error *ngIf=\"searchForm.get('title')?.errors as errors\">\r\n      <span *ngIf=\"errors['required']\">Required field</span>\r\n      <span *ngIf=\"errors['pattern']\">No spaces or empty</span>\r\n    </mat-error>\r\n  </mat-form-field>\r\n\r\n  <mat-form-field appearance=\"outline\" color=\"accent\">\r\n    <mat-label>type</mat-label>\r\n    <mat-select formControlName=\"type\">\r\n      <mat-option *ngFor=\"let type of types\" [value]=\"type\">\r\n        {{type | titlecase}}\r\n      </mat-option>\r\n    </mat-select>\r\n  </mat-form-field>\r\n\r\n  <mat-form-field appearance=\"outline\" color=\"accent\">\r\n    <mat-label>year (optional)</mat-label>\r\n    <input matInput formControlName=\"year\" type=\"number\" placeholder=\"1900-{{currentYear}}\">\r\n    <mat-hint>Empty to search all years</mat-hint>\r\n    <mat-error *ngIf=\"searchForm.get('year')?.invalid\">\r\n      Must be between 1900- {{currentYear}}\r\n    </mat-error>\r\n  </mat-form-field>\r\n\r\n\r\n  <div class=\"button-container\">\r\n    <button mat-raised-button color=\"primary\" type=\"submit\" [disabled]=\"searchForm.invalid\">\r\n      <mat-icon [ngClass]=\"searchForm.invalid ? 'button-icon-disabled' : 'button-icon-enabled'\">send</mat-icon>\r\n      Find\r\n    </button>\r\n\r\n    <button mat-raised-button color=\"accent\" type=\"button\" (click)=\"handleClear()\">\r\n      <mat-icon>clear</mat-icon>\r\n      Clear\r\n    </button>\r\n  </div>\r\n\r\n</form>"
         },
         {
             "name": "SearchComponent",
-            "id": "component-SearchComponent-95f64bac820b7cc11fcd27dca69e742866568028682958c19a706fff226e56503a0c9e9b9ad8149811364d475b5e87bd0ceb40445b4b8273959a393b7a6fbf24",
+            "id": "component-SearchComponent-67bcea0883619448df55f0a239413dad8a9180ea84d69269de1949eda1fed998be4243f6a20007dbed7c0fcaafd8575bdff428c7c06d40bffd2ab035d33c1b42",
             "file": "src/app/pages/search/page/search.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -5307,7 +5373,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 23
+                    "line": 24
                 },
                 {
                     "name": "featuredMedia",
@@ -5318,7 +5384,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 22
+                    "line": 23
                 },
                 {
                     "name": "loadingCard",
@@ -5329,7 +5395,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 34
+                    "line": 35
                 },
                 {
                     "name": "SearchComponent",
@@ -5339,7 +5405,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 36,
+                    "line": 37,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -5359,7 +5425,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 24
+                    "line": 25
                 }
             ],
             "methodsClass": [
@@ -5376,7 +5442,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 63,
+                    "line": 64,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5397,7 +5463,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 96,
+                    "line": 97,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -5410,7 +5476,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 121,
+                    "line": 122,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -5423,7 +5489,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 89,
+                    "line": 90,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -5440,7 +5506,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 58,
+                    "line": 59,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5468,7 +5534,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 48,
+                    "line": 49,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5496,7 +5562,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 81,
+                    "line": 82,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -5521,11 +5587,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ToastrService } from 'ngx-toastr';\r\nimport { OmdbService } from 'src/app/shared/services/omdb/omdb.service';\r\nimport { Component, ViewChild } from '@angular/core';\r\nimport { MediaItem } from 'src/app/shared/models/movie.model';\r\nimport { SearchState, SearchFilters } from 'src/app/shared/models/search.model';\r\nimport { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { Router } from '@angular/router';\r\nimport { DialogService } from 'src/app/shared/services/dialog/dialog.service';\r\nimport { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';import { FEATURED_MEDIA } from 'src/app/core/constants/featured-media.const';\r\nimport { EMPTY, finalize, switchMap, take } from 'rxjs';\r\n\r\n\r\n@Component({\r\n  selector: 'app-search',\r\n  templateUrl: './search.component.html',\r\n  styleUrls: ['./search.component.scss']\r\n})\r\n\r\n\r\nexport class SearchComponent {\r\n  featuredMedia: MediaItem[] = FEATURED_MEDIA;\r\n  displayedColumns: string[] = ['title', 'year', 'type', 'poster', 'Add'];\r\n  searchState: SearchState = {\r\n    title: '',\r\n    type: 'all',\r\n    year: '',\r\n    currentPage: 1,\r\n    pageSize: 10,\r\n    collection: [],\r\n    collectionSize: 0,\r\n    searchOnProcess: false,\r\n  };\r\n  loadingCard = false;\r\n\r\n  @ViewChild(SearchBarComponent) SearchComponent!: SearchBarComponent | null;\r\n\r\n  constructor(\r\n    private omdbService: OmdbService,\r\n    private toastrService: ToastrService,\r\n    private favoritesService: FavoritesService,\r\n    private authService: AuthService,\r\n    private router: Router,\r\n    private dialogService: DialogService\r\n  ) { }\r\n\r\n\r\n  onSubmit(filters: SearchFilters): void {\r\n    this.searchState = {\r\n      ...this.searchState,\r\n      ...filters,\r\n      currentPage: 1,\r\n      searchOnProcess: true\r\n    };\r\n    this.fetchMediaItems();\r\n  }\r\n\r\n  loadPage(page: number): void {\r\n    this.searchState.currentPage = page;\r\n    this.fetchMediaItems();\r\n  }\r\n\r\naddToFavorites(mediaItem: MediaItem) {\r\n  this.authService.isLoggedInObservable().pipe(\r\n    take(1),\r\n    switchMap(loggedIn => {\r\n      if (!loggedIn) {\r\n        this.toastrService.error('You must be logged in to add movies to your list', 'Error');\r\n        this.router.navigate(['/login']);\r\n        return EMPTY; \r\n      }\r\n      return this.favoritesService.addToFavorites(mediaItem);\r\n    })\r\n  ).subscribe({\r\n    next: () => this.toastrService.success(mediaItem.title, 'Added to favorites'),\r\n    error: (error) => this.toastrService.warning(error.message)\r\n  });\r\n}\r\n\r\n\r\n  openMediaItem(mediaItem: MediaItem): void {\r\n    this.loadingCard = true;\r\n    this.dialogService\r\n      .openMediaItem(window.innerWidth, mediaItem, false)\r\n      .pipe(finalize(() => (this.loadingCard = false)))\r\n      .subscribe();\r\n  }\r\n\r\n  formSearchFocus(): void {\r\n    setTimeout(() => {\r\n      this.SearchComponent?.searchFormFocus?.nativeElement.focus();\r\n    });\r\n  }\r\n\r\n\r\n  private fetchMediaItems(): void {\r\n    this.omdbService.fetchMediaItems(\r\n      this.searchState.title,\r\n      this.searchState.type,\r\n      this.searchState.year,\r\n      this.searchState.currentPage)\r\n      .subscribe({\r\n        next: (response) => {\r\n          if (response.Response === \"True\") {\r\n            this.searchState.collection = response.Search || [];\r\n            this.searchState.collectionSize = Number(response.totalResults) || 0;\r\n            this.focusOnResultsTable()\r\n          } else {\r\n            this.toastrService.warning(response.Error, 'Try again!');\r\n            this.searchState.collection = [];\r\n          }\r\n          this.searchState.searchOnProcess = false;\r\n        },\r\n        error: (error) => {\r\n          this.toastrService.error(error.message);\r\n          this.searchState.searchOnProcess = false;\r\n        }\r\n      })\r\n  }\r\n\r\n  private focusOnResultsTable(): void {\r\n    setTimeout(() => {\r\n      document.getElementById('tableFocus')?.focus();\r\n    });\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ToastrService } from 'ngx-toastr';\r\nimport { OmdbService } from 'src/app/shared/services/omdb/omdb.service';\r\nimport { Component, ViewChild } from '@angular/core';\r\nimport { MediaItem } from 'src/app/shared/models/movie.model';\r\nimport { SearchState, SearchFilters } from 'src/app/shared/models/search.model';\r\nimport { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { Router } from '@angular/router';\r\nimport { DialogService } from 'src/app/shared/services/dialog/dialog.service';\r\nimport { FEATURED_MEDIA } from 'src/app/core/constants/featured-media.const';\r\nimport { EMPTY, finalize, switchMap, take } from 'rxjs';\r\nimport { SearchBarComponent } from '../components/search-bar/search-bar.component';\r\n\r\n\r\n@Component({\r\n  selector: 'app-search',\r\n  templateUrl: './search.component.html',\r\n  styleUrls: ['./search.component.scss']\r\n})\r\n\r\n\r\nexport class SearchComponent {\r\n  featuredMedia: MediaItem[] = FEATURED_MEDIA;\r\n  displayedColumns: string[] = ['title', 'year', 'type', 'poster', 'Add'];\r\n  searchState: SearchState = {\r\n    title: '',\r\n    type: 'all',\r\n    year: '',\r\n    currentPage: 1,\r\n    pageSize: 10,\r\n    collection: [],\r\n    collectionSize: 0,\r\n    searchOnProcess: false,\r\n  };\r\n  loadingCard = false;\r\n\r\n  @ViewChild(SearchBarComponent) SearchComponent!: SearchBarComponent | null;\r\n\r\n  constructor(\r\n    private omdbService: OmdbService,\r\n    private toastrService: ToastrService,\r\n    private favoritesService: FavoritesService,\r\n    private authService: AuthService,\r\n    private router: Router,\r\n    private dialogService: DialogService\r\n  ) { }\r\n\r\n\r\n  onSubmit(filters: SearchFilters): void {\r\n    this.searchState = {\r\n      ...this.searchState,\r\n      ...filters,\r\n      currentPage: 1,\r\n      searchOnProcess: true\r\n    };\r\n    this.fetchMediaItems();\r\n  }\r\n\r\n  loadPage(page: number): void {\r\n    this.searchState.currentPage = page;\r\n    this.fetchMediaItems();\r\n  }\r\n\r\naddToFavorites(mediaItem: MediaItem) {\r\n  this.authService.isLoggedInObservable().pipe(\r\n    take(1),\r\n    switchMap(loggedIn => {\r\n      if (!loggedIn) {\r\n        this.toastrService.error('You must be logged in to add movies to your list', 'Error');\r\n        this.router.navigate(['/login']);\r\n        return EMPTY; \r\n      }\r\n      return this.favoritesService.addToFavorites(mediaItem);\r\n    })\r\n  ).subscribe({\r\n    next: () => this.toastrService.success(mediaItem.title, 'Added to favorites'),\r\n    error: (error) => this.toastrService.warning(error.message)\r\n  });\r\n}\r\n\r\n\r\n  openMediaItem(mediaItem: MediaItem): void {\r\n    this.loadingCard = true;\r\n    this.dialogService\r\n      .openMediaItem(window.innerWidth, mediaItem, false)\r\n      .pipe(finalize(() => (this.loadingCard = false)))\r\n      .subscribe();\r\n  }\r\n\r\n  formSearchFocus(): void {\r\n    setTimeout(() => {\r\n      this.SearchComponent?.searchFormFocus?.nativeElement.focus();\r\n    });\r\n  }\r\n\r\n\r\n  private fetchMediaItems(): void {\r\n    this.omdbService.fetchMediaItems(\r\n      this.searchState.title,\r\n      this.searchState.type,\r\n      this.searchState.year,\r\n      this.searchState.currentPage)\r\n      .subscribe({\r\n        next: (response) => {\r\n          if (response.Response === \"True\") {\r\n            this.searchState.collection = response.Search || [];\r\n            this.searchState.collectionSize = Number(response.totalResults) || 0;\r\n            this.focusOnResultsTable()\r\n          } else {\r\n            this.toastrService.warning(response.Error, 'Try again!');\r\n            this.searchState.collection = [];\r\n          }\r\n          this.searchState.searchOnProcess = false;\r\n        },\r\n        error: (error) => {\r\n          this.toastrService.error(error.message);\r\n          this.searchState.searchOnProcess = false;\r\n        }\r\n      })\r\n  }\r\n\r\n  private focusOnResultsTable(): void {\r\n    setTimeout(() => {\r\n      document.getElementById('tableFocus')?.focus();\r\n    });\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "\r\n.search-container-section{\r\n  min-height: 100vh;\r\n}\r\n.search-container-section h3{\r\n  text-align: center;\r\n  margin-top: 5%;\r\n}\r\n.float-search-button{\r\n  position:fixed;\r\n  right: 10px;\r\n  bottom: 10px;\r\n  z-index: 2;\r\n\r\n\r\n}\r\n.title {\r\n  color: #ffffff;\r\n  font-weight: 300;\r\n  background-color: rgba(0, 0, 0, 0);\r\n}\r\n\r\n.title h1 {\r\n  text-align: center;\r\n  padding: 20px;\r\n  color:#f5cf3d;\r\n  font-family: 'Glegoo';\r\n  font-size: 25px;\r\n}\r\n.title h4{\r\n  text-align: center;\r\n  color: #e7e4d8d5;\r\n  font-family: 'Brush Script MT', cursive;\r\n  font-size: 20px;\r\n}\r\n.title h3{\r\n  font-family: 'Glegoo';\r\n}\r\n.title img{\r\n  width: 100px;\r\n}\r\n.loading-container{\r\n  width: 20%;\r\n  margin: 0 auto 0 auto;\r\n}\r\n\r\n.search-container {\r\n  display: grid;\r\n  grid-template-columns: 78% 22%;\r\n  width: 100%;\r\n  background: #000000;\r\n  background: -moz-linear-gradient(top, #000000 0%, #f5d03d6e 50%, #000000 100%);\r\n  background: -webkit-linear-gradient(top, #000000 0%, #f5d03d6e 50%, #000000 100%);\r\n  background: linear-gradient(to bottom, #000000 0%, #f5d03d6e 50%, #000000 100%);\r\n}\r\n.filter-container {\r\n  background-color: #000000;\r\n  text-align: center;\r\n}\r\n\r\napp-search-bar {\r\n  display: flex;\r\n  margin: 0 auto;\r\n  width: 90%;\r\n  text-align: center;\r\n  padding: 20px;\r\n}\r\n.loading-container{\r\n  text-align: center;\r\n  color: var(--custom-amber);\r\n}\r\n.table-section {\r\n  margin: 40px auto 20px auto;\r\n  width: 80%;\r\n  padding-bottom: 30px;\r\n}\r\n#tableFocus{\r\n  z-index: 2;\r\n  position: relative;\r\n  top: 150px;\r\n}\r\n.table-section h1{\r\n  text-align: center;\r\n  color: #ffffff;\r\n  font-family: 'Glegoo' ; \r\n}\r\n\r\n\r\n@media only screen and (max-width: 601px) {\r\n  app-carousel {\r\n    display: none;\r\n  }\r\n\r\n  app-search-bar {\r\n    width: 100%;\r\n  }\r\n\r\n  .search-container {\r\n    display: flex;\r\n\r\n  }\r\n  .table-section {\r\n    margin: 20px auto 20px auto;\r\n    width: 80%;\r\n    padding-bottom: 30px;\r\n  }\r\n\r\n\r\n}",
+                    "data": "\r\n.search-container-section{\r\n  min-height: 100vh;\r\n}\r\n.search-container-section h3{\r\n  text-align: center;\r\n  margin-top: 5%;\r\n}\r\n.float-search-button{\r\n  position:fixed;\r\n  right: 10px;\r\n  bottom: 10px;\r\n  z-index: 2;\r\n\r\n\r\n}\r\n.title {\r\n  color: #ffffff;\r\n  font-weight: 300;\r\n  background-color: rgba(0, 0, 0, 0);\r\n}\r\n\r\n.title h1 {\r\n  text-align: center;\r\n  padding: 20px;\r\n  color:#f5cf3d;\r\n  font-family: 'Glegoo';\r\n  font-size: 25px;\r\n}\r\n.title h4{\r\n  text-align: center;\r\n  color: #e7e4d8d5;\r\n  font-family: 'Brush Script MT', cursive;\r\n  font-size: 20px;\r\n}\r\n.title h3{\r\n  font-family: 'Glegoo';\r\n}\r\n.title img{\r\n  width: 100px;\r\n}\r\n.loading-container{\r\n  width: 20%;\r\n  margin: 0 auto 0 auto;\r\n}\r\n\r\n.search-container {\r\n  display: grid;\r\n  grid-template-columns: 78% 22%;\r\n  width: 100%;\r\n  background: #000000;\r\n  background: -moz-linear-gradient(top, #000000 0%, #f5d03d6e 50%, #000000 100%);\r\n  background: -webkit-linear-gradient(top, #000000 0%, #f5d03d6e 50%, #000000 100%);\r\n  background: linear-gradient(to bottom, #000000 0%, #f5d03d6e 50%, #000000 100%);\r\n}\r\n.filter-container {\r\n  background-color: #000000;\r\n  text-align: center;\r\n}\r\n\r\napp-search-bar {\r\n  display: flex;\r\n  margin: 0 auto;\r\n  width: 90%;\r\n  text-align: center;\r\n  padding: 20px;\r\n}\r\n.loading-container{\r\n  text-align: center;\r\n  color: var(--custom-amber);\r\n}\r\n.table-section {\r\n  margin: 40px auto 20px auto;\r\n  width: 80%;\r\n  padding-bottom: 30px;\r\n}\r\n#tableFocus{\r\n  z-index: 2;\r\n  position: relative;\r\n  top: 150px;\r\n}\r\n.table-section h1{\r\n  text-align: center;\r\n  color: #ffffff;\r\n  font-family: 'Glegoo' ; \r\n}\r\n\r\n\r\n@media only screen and (max-width: 601px) {\r\n  app-carousel {\r\n    display: none;\r\n  }\r\n\r\n  app-search-bar {\r\n    width: 100%;\r\n  }\r\n\r\n  .search-container {\r\n    display: flex;\r\n    justify-content: center;\r\n\r\n  }\r\n  .table-section {\r\n    margin: 20px auto 20px auto;\r\n    width: 80%;\r\n    padding-bottom: 30px;\r\n  }\r\n\r\n\r\n}\r\n\r\n@media only screen and (min-width: 602px) and (max-width: 992px) {\r\n  .table-section {\r\n    width: 90%;\r\n  }\r\n  .search-container {\r\n    display: flex;\r\n    flex-direction: column;\r\n  }\r\n\r\n\r\n}",
                     "styleUrl": "./search.component.scss"
                 }
             ],
@@ -5573,7 +5639,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 36,
+                "line": 37,
                 "jsdoctags": [
                     {
                         "name": "omdbService",
@@ -5632,7 +5698,7 @@
                 ]
             },
             "extends": [],
-            "templateData": "<button mat-mini-fab color=\"accent\" class=\"float-search-button\" (click)=\"formSearchFocus()\">\r\n  <mat-icon>search</mat-icon>\r\n</button>\r\n<section>\r\n  <app-search-cover></app-search-cover>\r\n</section>\r\n\r\n<section class=\"search-container-section\">\r\n  <div class=\"title\">\r\n    <h1>\r\n      Use the search bar to find by title, type, and year in our huge database.\r\n    </h1>\r\n    <h4 tabindex=\"0\">Powered by <img src=\"assets/images/omdb_api.png\" alt=\"omdb_api logo\"> <img\r\n        src=\"assets/images/imdb2.png\" alt=\"imdb logo\"></h4>\r\n    <h3>* First request might take up to 50 seconds. Please be patient.</h3>  \r\n  </div>\r\n\r\n  <div class=\"search-container\">\r\n    <app-carousel (sendItemCarousel)=\"openMediaItem($event)\" [collection]=\"featuredMedia\"></app-carousel>\r\n    <div class=\"filter-container\" #myinput>\r\n      <app-search-bar (searchSubmitted)=\"onSubmit($event)\"></app-search-bar>\r\n        <app-loading-spinner [visible]=\"searchState.searchOnProcess\"></app-loading-spinner>\r\n    </div>\r\n  </div>\r\n      <div class=\"loading-container\">\r\n      <app-loading-spinner [visible]=\"loadingCard\"></app-loading-spinner>\r\n    </div>\r\n</section>\r\n\r\n<section class=\"table-section\" *ngIf=\"searchState.collection.length>0\">\r\n  <h1>This is what we have found...</h1>\r\n  <span tabindex=\"0\" id=\"tableFocus\"></span>\r\n  <app-movie-results-table [displayedColumns]=\"displayedColumns\" [collection]=\"searchState.collection\" [collectionSize]=\"searchState.collectionSize\"\r\n    [currentPage]=\"searchState.currentPage\" [pageSize]=\"searchState.pageSize\" (pageChanged)=\"loadPage($event)\"\r\n    (detailsOpened)=\"openMediaItem($event)\" (favoriteAdded)=\"addToFavorites($event)\"></app-movie-results-table>\r\n</section>"
+            "templateData": "<button mat-mini-fab color=\"accent\" class=\"float-search-button\" (click)=\"formSearchFocus()\">\r\n  <mat-icon>search</mat-icon>\r\n</button>\r\n<section>\r\n  <app-search-cover></app-search-cover>\r\n</section>\r\n\r\n<section class=\"search-container-section\">\r\n  <div class=\"title\">\r\n    <h1>\r\n      Use the search bar to find by title, type, and year in our huge database.\r\n    </h1>\r\n    <h4 tabindex=\"0\">Powered by <img src=\"assets/images/omdb_api.png\" alt=\"omdb_api logo\"> <img\r\n        src=\"assets/images/imdb2.png\" alt=\"imdb logo\"></h4>\r\n    <h3>* First request might take up to 50 seconds. Please be patient.</h3>  \r\n  </div>\r\n\r\n  <div class=\"search-container\">\r\n    <app-carousel (sendItemCarousel)=\"openMediaItem($event)\" [collection]=\"featuredMedia\"></app-carousel>\r\n    <div class=\"filter-container\" #myinput>\r\n      <app-search-bar (searchSubmitted)=\"onSubmit($event)\"></app-search-bar>\r\n        <app-loading-spinner [visible]=\"searchState.searchOnProcess\"></app-loading-spinner>\r\n    </div>\r\n  </div>\r\n      <div class=\"loading-container\">\r\n      <app-loading-spinner [visible]=\"loadingCard\"></app-loading-spinner>\r\n    </div>\r\n</section>\r\n\r\n<section class=\"table-section\" *ngIf=\"searchState.collection.length>0\">\r\n  <h1>This is what we have found...</h1>\r\n  <span tabindex=\"0\" id=\"tableFocus\"></span>\r\n  <app-movie-results-table [displayedColumns]=\"displayedColumns\" [collection]=\"searchState.collection\" [collectionSize]=\"searchState.collectionSize\"\r\n    [currentPage]=\"searchState.currentPage\" [pageSize]=\"searchState.pageSize\" (pageChanged)=\"loadPage($event)\"\r\n    (detailsOpened)=\"openMediaItem($event)\" (favoriteAdded)=\"addToFavorites($event)\"></app-movie-results-table>\r\n</section>\r\n"
         },
         {
             "name": "SearchCoverComponent",
@@ -6467,13 +6533,13 @@
         },
         {
             "name": "SearchModule",
-            "id": "module-SearchModule-c29fada022ae163da89b2e977f7fb2581e9b4f7d5ebfa5d5b996c1b7fa31d93225cef8ce0424bded961ac8f27bbf69ec3a2ef1af6bcefd73a07f44142acef2e2",
+            "id": "module-SearchModule-0250f7846d6760861f93c9e89a5069c5c76aa9029c0d0d45617f3b314d7e42e68f852284eaa9e62c5afda3cf6a91b69b14048cb1511d939092b23d76c6be818b",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/pages/search/search.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormsModule } from '@angular/forms';\r\n\r\n\r\n\r\nimport { SearchRoutingModule } from './search-routing.module';\r\n\r\nimport { SearchComponent } from './page/search.component';\r\nimport { SharedModule } from 'src/app/shared/shared.module';\r\nimport { MatDialogModule } from '@angular/material/dialog';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { SearchCoverComponent } from './components/search-cover/search-cover.component';\r\nimport { MatTableModule } from '@angular/material/table';\r\nimport { MatSortModule } from '@angular/material/sort';\r\nimport { MatPaginatorModule } from '@angular/material/paginator';\r\nimport { MediaItemResultsTableComponent } from './components/movie-results-table/movie-results-table.component';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { CarouselComponent } from './components/carousel/carousel.component';\r\nimport { NgbModule } from '@ng-bootstrap/ng-bootstrap';\r\n\r\nconst MATERIAL_MODULES = [\r\n  MatIconModule,\r\n  MatTableModule,\r\n  MatSortModule,\r\n  MatPaginatorModule,\r\n  MatButtonModule\r\n];\r\n\r\n@NgModule({\r\n  declarations: [\r\n    SearchComponent,\r\n    SearchCoverComponent,\r\n    MediaItemResultsTableComponent,\r\n    CarouselComponent\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    SearchRoutingModule,\r\n    SharedModule,\r\n    FormsModule,\r\n    MatDialogModule,\r\n    ...MATERIAL_MODULES,\r\n    NgbModule\r\n  ]\r\n})\r\nexport class SearchModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\n\r\n\r\n\r\nimport { SearchRoutingModule } from './search-routing.module';\r\n\r\nimport { SearchComponent } from './page/search.component';\r\nimport { SharedModule } from 'src/app/shared/shared.module';\r\nimport { MatDialogModule } from '@angular/material/dialog';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { SearchCoverComponent } from './components/search-cover/search-cover.component';\r\nimport { MatTableModule } from '@angular/material/table';\r\nimport { MatSortModule } from '@angular/material/sort';\r\nimport { MatPaginatorModule } from '@angular/material/paginator';\r\nimport { MediaItemResultsTableComponent } from './components/movie-results-table/movie-results-table.component';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { CarouselComponent } from './components/carousel/carousel.component';\r\nimport { NgbModule } from '@ng-bootstrap/ng-bootstrap';\r\nimport { SearchBarComponent } from './components/search-bar/search-bar.component';\r\n\r\nconst MATERIAL_MODULES = [\r\n  MatIconModule,\r\n  MatTableModule,\r\n  MatSortModule,\r\n  MatPaginatorModule,\r\n  MatButtonModule\r\n];\r\n\r\n@NgModule({\r\n  declarations: [\r\n    SearchComponent,\r\n    SearchCoverComponent,\r\n    MediaItemResultsTableComponent,\r\n    CarouselComponent,\r\n    SearchBarComponent,\r\n    \r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    SearchRoutingModule,\r\n    SharedModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    MatDialogModule,\r\n    ...MATERIAL_MODULES,\r\n    NgbModule\r\n  ]\r\n})\r\nexport class SearchModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -6487,6 +6553,9 @@
                         },
                         {
                             "name": "MediaItemResultsTableComponent"
+                        },
+                        {
+                            "name": "SearchBarComponent"
                         },
                         {
                             "name": "SearchComponent"
@@ -6559,13 +6628,13 @@
         },
         {
             "name": "SharedModule",
-            "id": "module-SharedModule-6fe0269043f6a03f48679cd21e131c5cacfc186cbad0ced24d11fa89f5c9378c6877a1ccbc46da66a3c1a627e10a8abdbefe1ce6a5d971ddb913cfd8b3d98bba",
+            "id": "module-SharedModule-118fd3feb478047d5bbfd1cf78ae19a151ce2b3e530b47b4f41de8fecc9b72e4be7401e933b0791af4342cce22397520dbdd164013ad708e2af4590a725a143d",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/shared/shared.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { RouterModule } from '@angular/router';\r\n\r\n// Angular Material Modules\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { MatTableModule } from '@angular/material/table';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatCardModule } from '@angular/material/card';\r\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\r\nimport { MatInputModule } from '@angular/material/input';\r\nimport { MatSelectModule } from '@angular/material/select';\r\nimport { MatGridListModule } from '@angular/material/grid-list';\r\nimport { MatListModule } from '@angular/material/list';\r\nimport { MatDividerModule } from '@angular/material/divider';\r\nimport { MatFormFieldModule } from '@angular/material/form-field';\r\nimport { MatExpansionModule } from '@angular/material/expansion';\r\nimport { MatChipsModule } from '@angular/material/chips';\r\nimport { MatTooltipModule } from '@angular/material/tooltip';\r\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\r\nimport { MatDialogModule } from '@angular/material/dialog';\r\nimport { MatSortModule } from '@angular/material/sort';\r\nimport { MatPaginatorModule } from '@angular/material/paginator';\r\n\r\nimport { NgbModule } from '@ng-bootstrap/ng-bootstrap';\r\n\r\nimport { OmdbService } from './services/omdb/omdb.service';\r\n\r\nimport { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';\r\nimport { SearchBarComponent } from './components/search-bar/search-bar.component';\r\nimport { MediaItemDialogComponent } from './components/movie-dialog/movie-dialog.component';\r\nimport { SortingControlsComponent } from './components/sorting-controls/sorting-controls.component';\r\nimport { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';\r\nimport { EmptyStateComponent } from './components/empty-state/empty-state.component';\r\nimport { TrailerDialogComponent } from './components/trailer-dialog/trailer-dialog.component';\r\n\r\nimport { FallbackImagesDirective } from './directives/fallback-images.directive';\r\nimport { AuthFormComponent } from './components/auth-form/auth-form.component';\r\n\r\nconst MATERIAL_MODULES = [\r\n  MatToolbarModule,\r\n  MatTableModule,\r\n  MatIconModule,\r\n  MatButtonModule,\r\n  MatCardModule,\r\n  MatButtonToggleModule,\r\n  MatInputModule,\r\n  MatSelectModule,\r\n  MatGridListModule,\r\n  MatListModule,\r\n  MatDividerModule,\r\n  MatFormFieldModule,\r\n  MatExpansionModule,\r\n  MatChipsModule,\r\n  MatTooltipModule,\r\n  MatProgressBarModule,\r\n  MatDialogModule,\r\n  MatSortModule,\r\n  MatPaginatorModule \r\n];\r\n\r\n@NgModule({\r\n  declarations: [\r\n    FavoritesCardComponent,\r\n    SearchBarComponent,\r\n    MediaItemDialogComponent,\r\n    SortingControlsComponent,\r\n    LoadingSpinnerComponent,\r\n    EmptyStateComponent,\r\n    TrailerDialogComponent,\r\n    FallbackImagesDirective,\r\n    AuthFormComponent\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    RouterModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgbModule,\r\n    ...MATERIAL_MODULES \r\n  ],\r\n  providers: [\r\n    OmdbService  \r\n  ],\r\n  exports: [\r\n    ...MATERIAL_MODULES,\r\n    NgbModule,\r\n    FavoritesCardComponent,\r\n    SearchBarComponent,\r\n    MediaItemDialogComponent,\r\n    SortingControlsComponent,\r\n    LoadingSpinnerComponent,\r\n    EmptyStateComponent,\r\n    TrailerDialogComponent,\r\n    FallbackImagesDirective,\r\n    AuthFormComponent\r\n  ]\r\n})\r\nexport class SharedModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { RouterModule } from '@angular/router';\r\n\r\n// Angular Material Modules\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { MatTableModule } from '@angular/material/table';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatCardModule } from '@angular/material/card';\r\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\r\nimport { MatInputModule } from '@angular/material/input';\r\nimport { MatSelectModule } from '@angular/material/select';\r\nimport { MatGridListModule } from '@angular/material/grid-list';\r\nimport { MatListModule } from '@angular/material/list';\r\nimport { MatDividerModule } from '@angular/material/divider';\r\nimport { MatFormFieldModule } from '@angular/material/form-field';\r\nimport { MatExpansionModule } from '@angular/material/expansion';\r\nimport { MatChipsModule } from '@angular/material/chips';\r\nimport { MatTooltipModule } from '@angular/material/tooltip';\r\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\r\nimport { MatDialogModule } from '@angular/material/dialog';\r\nimport { MatSortModule } from '@angular/material/sort';\r\nimport { MatPaginatorModule } from '@angular/material/paginator';\r\n\r\nimport { NgbModule } from '@ng-bootstrap/ng-bootstrap';\r\n\r\nimport { OmdbService } from './services/omdb/omdb.service';\r\n\r\nimport { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';\r\nimport { MediaItemDialogComponent } from './components/movie-dialog/movie-dialog.component';\r\nimport { SortingControlsComponent } from './components/sorting-controls/sorting-controls.component';\r\nimport { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';\r\nimport { EmptyStateComponent } from './components/empty-state/empty-state.component';\r\nimport { TrailerDialogComponent } from './components/trailer-dialog/trailer-dialog.component';\r\n\r\nimport { FallbackImagesDirective } from './directives/fallback-images.directive';\r\nimport { AuthFormComponent } from './components/auth-form/auth-form.component';\r\n\r\nconst MATERIAL_MODULES = [\r\n  MatToolbarModule,\r\n  MatTableModule,\r\n  MatIconModule,\r\n  MatButtonModule,\r\n  MatCardModule,\r\n  MatButtonToggleModule,\r\n  MatInputModule,\r\n  MatSelectModule,\r\n  MatGridListModule,\r\n  MatListModule,\r\n  MatDividerModule,\r\n  MatFormFieldModule,\r\n  MatExpansionModule,\r\n  MatChipsModule,\r\n  MatTooltipModule,\r\n  MatProgressBarModule,\r\n  MatDialogModule,\r\n  MatSortModule,\r\n  MatPaginatorModule \r\n];\r\n\r\n@NgModule({\r\n  declarations: [\r\n    FavoritesCardComponent,\r\n    MediaItemDialogComponent,\r\n    SortingControlsComponent,\r\n    LoadingSpinnerComponent,\r\n    EmptyStateComponent,\r\n    TrailerDialogComponent,\r\n    FallbackImagesDirective,\r\n    AuthFormComponent\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    RouterModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgbModule,\r\n    ...MATERIAL_MODULES \r\n  ],\r\n  providers: [\r\n    OmdbService  \r\n  ],\r\n  exports: [\r\n    ...MATERIAL_MODULES,\r\n    NgbModule,\r\n    FavoritesCardComponent,\r\n    MediaItemDialogComponent,\r\n    SortingControlsComponent,\r\n    LoadingSpinnerComponent,\r\n    EmptyStateComponent,\r\n    TrailerDialogComponent,\r\n    FallbackImagesDirective,\r\n    AuthFormComponent\r\n  ]\r\n})\r\nexport class SharedModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -6595,9 +6664,6 @@
                         },
                         {
                             "name": "MediaItemDialogComponent"
-                        },
-                        {
-                            "name": "SearchBarComponent"
                         },
                         {
                             "name": "SortingControlsComponent"
@@ -6633,9 +6699,6 @@
                             "name": "MediaItemDialogComponent"
                         },
                         {
-                            "name": "SearchBarComponent"
-                        },
-                        {
                             "name": "SortingControlsComponent"
                         },
                         {
@@ -6664,7 +6727,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    message: `No favorites yet — start exploring!`,\r\n    imageUrl: '/images/monkey2.jpg',\r\n    alt: 'empty state image'\r\n  }\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    message: `No favorites yet — start exploring!`,\r\n    imageUrl: '/images/monkey3.jpg',\r\n    alt: 'empty state image'\r\n  }\r\n}"
             },
             {
                 "name": "Default",
@@ -6700,11 +6763,31 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        background-color: #1a1a1a;\r\n        padding: 40px 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <div style=\"width: 100%; max-width: 500px;\">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nIsolated/standalone mode with component centered at max-width 500px.\r\n\r\nUseful for testing, debugging, or when using SearchBar independently.\r\n        `,\r\n      },\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/pages/search/components/search-cover/search-cover.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {}\r\n}"
+            },
+            {
+                "name": "Desktop",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        align-items: center;\r\n        gap: 20px;\r\n        background-color: #1a1a1a;\r\n        padding: 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <!-- Gallery/Results Container (2/3 width) -->\r\n        <div style=\"\r\n          flex: 4;\r\n          background-color: #000000;\r\n          border: 1px solid #444;\r\n          border-radius: 8px;\r\n          padding: 20px;\r\n          display: flex;\r\n          align-items: center;\r\n          justify-content: center;\r\n          min-height: 400px;\r\n        \">\r\n          <p style=\"\r\n            color: #888;\r\n            text-align: center;\r\n            font-size: 14px;\r\n            margin: 0;\r\n          \">\r\n            📹 Gallery / Search Results Content\r\n            <br>\r\n            <span style=\"font-size: 12px; color: #666;\">(2/3 of width)</span>\r\n          </p>\r\n        </div>\r\n\r\n        <!-- SearchBar: 1/3 width -->\r\n        <div style=\"flex: 1; min-width: 300px;\">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nDesktop layout (1920px+): SearchBar takes ~1/3 width, gallery takes ~2/3.\r\n\r\nThis is the primary layout and most realistic view of how it works in production.\r\n        `,\r\n      },\r\n    },\r\n    viewport: {\r\n      defaultViewport: 'iphone12',\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "EmptyTable",
@@ -6780,11 +6863,11 @@
                 "name": "LoginForm",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/shared/components/auth-form/auth-form.component.stories.ts",
+                "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    formType: 'login',\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Standard login form with email, password, and link to registration page.',\r\n      },\r\n    },\r\n  },\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    formType: 'login',\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true },     \r\n    },\r\n    formSubmit: {\r\n      control: { disable: true },\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Standard login form with email, password, and link to registration page. This matches the production implementation.',\r\n      },\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "MATERIAL_MODULES",
@@ -6810,11 +6893,11 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/shared/components/auth-form/auth-form.component.stories.ts",
+                "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<AuthFormComponent>",
-                "defaultValue": "{\r\n  title: 'Shared/AuthForm',\r\n  component: AuthFormComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        RouterTestingModule\r\n      ],\r\n      declarations: [AuthFormComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#000000d5' }\r\n      ],\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n  Reusable authentication form component supporting login and registration flows\r\n  \r\n  ## Features\r\n  \r\n  - 📋 Two form modes: login and register\r\n  - ✅ Reactive form validation with email and password patterns\r\n  - 🔐 Password visibility toggle\r\n  - 👤 Dynamic name field for registration\r\n  - 📱 Responsive Material Design layout\r\n  \r\n  ## Key Capabilities\r\n  \r\n  The component provides a simple authentication interface:\r\n  - **Two form modes** controlled by single formType input\r\n  - **Real-time validation** with email and password requirements\r\n  - **Accessible controls** with ARIA labels\r\n  - **Automatic configuration** based on form type\r\n  - **Type-safe form handling**\r\n\r\n## Usage Example\r\n\r\n### Login Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Registration Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"register\"\r\n  (formSubmit)=\"handleRegister($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class AuthPageComponent {\r\n  handleLogin(user: User): void {\r\n    this.authService.login(user).subscribe(\r\n      (response) => this.router.navigate(['/dashboard']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  handleRegister(user: User): void {\r\n    this.authService.register(user).subscribe(\r\n      (response) => this.router.navigate(['/email-verification']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Message |\r\n|-------|-------|---------------|\r\n| **Email** | Required, valid email format | \"Email is required\" or \"Incorrect email format\" |\r\n| **Password** | Required, min 6 chars, letters + numbers + special chars | \"Password is required\" or \"Min 6 char incl. letters, numbers and special characters\" |\r\n| **Name** | Required (register only) | \"Name is required\" |\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`formSubmit\\` | \\`User\\` | Emitted when form is submitted with valid values |\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields and buttons\r\n- ✅ Keyboard accessible password visibility toggle\r\n- ✅ Proper label associations with form inputs\r\n- ✅ Error messages linked to form fields\r\n- ✅ Focus management and visual indicators\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  // ✅ LIMPIO: Solo @Input() + @Output()\r\n  argTypes: {\r\n    formType: {\r\n      control: 'radio',\r\n      options: ['login', 'register'],\r\n      description: 'Type of authentication form to display',\r\n    },\r\n    formSubmit: {\r\n      action: 'formSubmit',\r\n    },\r\n  },\r\n}"
+                "defaultValue": "{\r\n  title: 'Shared/AuthForm',\r\n  component: AuthFormComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        RouterTestingModule\r\n      ],\r\n      declarations: [AuthFormComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#000000d5' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['formSubmit'], \r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n  Reusable authentication form component supporting login and registration flows\r\n  \r\n  ## Features\r\n  \r\n  - 📋 Two form modes: login and register\r\n  - ✅ Reactive form validation with email and password patterns\r\n  - 🔐 Password visibility toggle\r\n  - 👤 Dynamic name field for registration\r\n  - 📱 Responsive Material Design layout\r\n  \r\n  ## Key Capabilities\r\n  \r\n  The component provides a simple authentication interface:\r\n  - **Two form modes** controlled by single formType input\r\n  - **Real-time validation** with email and password requirements\r\n  - **Accessible controls** with ARIA labels\r\n  - **Automatic configuration** based on form type\r\n  - **Type-safe form handling**\r\n\r\n## Usage Example\r\n\r\n### Login Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Registration Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"register\"\r\n  (formSubmit)=\"handleRegister($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class AuthPageComponent {\r\n  handleLogin(user: User): void {\r\n    this.authService.login(user).subscribe(\r\n      (response) => this.router.navigate(['/dashboard']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  handleRegister(user: User): void {\r\n    this.authService.register(user).subscribe(\r\n      (response) => this.router.navigate(['/email-verification']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Message |\r\n|-------|-------|---------------|\r\n| **Email** | Required, valid email format | \"Email is required\" or \"Incorrect email format\" |\r\n| **Password** | Required, min 6 chars, letters + numbers + special chars | \"Password is required\" or \"Min 6 char incl. letters, numbers and special characters\" |\r\n| **Name** | Required (register only) | \"Name is required\" |\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`formSubmit\\` | \\`User\\` | Emitted when form is submitted with valid values |\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields and buttons\r\n- ✅ Keyboard accessible password visibility toggle\r\n- ✅ Proper label associations with form inputs\r\n- ✅ Error messages linked to form fields\r\n- ✅ Focus management and visual indicators\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: 'radio',\r\n      options: ['login', 'register'],\r\n      description: 'Type of authentication form to display',\r\n    },\r\n    formSubmit: {\r\n      action: 'formSubmit',\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "meta",
@@ -6860,11 +6943,31 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<SearchBarComponent>",
+                "defaultValue": "{\r\n  title: 'Pages/Search/Components/SearchBar',\r\n  component: SearchBarComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        MatSelectModule,\r\n        BrowserAnimationsModule\r\n      ],\r\n      declarations: [SearchBarComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#1a1a1a' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['searchSubmitted'],\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nSearch bar component for filtering movies, series, and games.\r\n\r\n## Features\r\n\r\n- 🔍 Search by title, type, and year\r\n- ✅ Reactive form validation with pattern matching\r\n- 📱 Responsive Material Design layout\r\n- 🎯 Multiple validation error messages\r\n- 🧹 Clear form functionality\r\n- 📍 External focus control via public method\r\n\r\n## Key Capabilities\r\n\r\nThe component provides a comprehensive search interface:\r\n- **Title validation** prevents leading spaces and empty inputs\r\n- **Year range validation** limits input between 1900 and current year\r\n- **Type filtering** supports movies, series, games, or all\r\n- **Flexible API** with public focusSearchInput() method\r\n- **Type-safe form handling** with SearchFormValue interface\r\n\r\n## Usage Example\r\n\r\n### Basic Implementation\r\n\r\n\\`\\`\\`html\r\n<app-search-bar\r\n  (searchSubmitted)=\"handleSearch($event)\">\r\n</app-search-bar>\r\n\\`\\`\\`\r\n\r\n### With External Focus Control\r\n\r\n\\`\\`\\`html\r\n<app-search-bar\r\n  #searchBar\r\n  (searchSubmitted)=\"handleSearch($event)\">\r\n</app-search-bar>\r\n\r\n<button (click)=\"searchBar.focusSearchInput()\">\r\n  Go to search\r\n</button>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class SearchComponent {\r\n  @ViewChild(SearchBarComponent) searchBar!: SearchBarComponent;\r\n\r\n  handleSearch(filters: SearchFilters): void {\r\n    this.searchService.searchMedia(filters).subscribe(\r\n      (results) => this.displayResults(results),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  scrollToSearch(): void {\r\n    this.searchBar.focusSearchInput();\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Messages |\r\n|-------|-------|----------------|\r\n| **Title** | Required, no leading spaces | \"Required field\" or \"Title cannot start with spaces or be only spaces\" |\r\n| **Type** | One of: movie, series, game, all | N/A (select dropdown) |\r\n| **Year** | Optional, min 1900, max current year | \"Must be between 1900-{currentYear}\" |\r\n\r\n## SearchFilters Interface\r\n\r\n\\`\\`\\`typescript\r\ninterface SearchFilters {\r\n  title: string;\r\n  type: MediaType; // 'movie' | 'series' | 'game' | 'all'\r\n  year: string; // Empty string if not provided\r\n}\r\n\\`\\`\\`\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`searchSubmitted\\` | \\`SearchFilters\\` | Emitted when form is submitted with valid values |\r\n\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields\r\n- ✅ Clear error messages for each validation rule\r\n- ✅ Keyboard accessible controls\r\n- ✅ Proper label associations with inputs\r\n- ✅ Smooth scroll behavior for focus control\r\n- ✅ Visual feedback for invalid states\r\n\r\n## Component Architecture\r\n\r\nThis component is designed to work within a responsive layout:\r\n\r\n- **Desktop (>992px)**: Takes ~1/3 of width (flex: 1), alongside gallery (flex: 2)\r\n- **Tablet (602px-992px)**: Vertical stack (column), below gallery\r\n- **Mobile (<602px)**: Vertical stack, 100% width with padding\r\n        `,\r\n      },\r\n    },\r\n  },\r\nargTypes: {\r\n    // ✅ SOLO mostrar searchSubmitted\r\n    searchSubmitted: {\r\n      action: 'searchSubmitted',\r\n      description: 'Emitted when search form is submitted with valid filters',\r\n    },\r\n    // ❌ Excluir todo lo demás\r\n    searchForm: {\r\n      table: { disable: true }\r\n    },\r\n    types: {\r\n      table: { disable: true }\r\n    },\r\n    currentYear: {\r\n      table: { disable: true }\r\n    },\r\n    searchFormFocus: {\r\n      table: { disable: true }\r\n    },\r\n    handleSubmit: {\r\n      table: { disable: true }\r\n    },\r\n    handleClear: {\r\n      table: { disable: true }\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/pages/search/components/search-cover/search-cover.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<SearchCoverComponent>",
                 "defaultValue": "{\r\n  title: 'Pages/Search/Components/SearchCover',\r\n  component: SearchCoverComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [SearchCoverComponent],\r\n      imports: [CommonModule, MatIconModule],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [{ name: 'app background', value: '#000000' }]\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nDisplays the prominent cover area for the search page, highlighting three main categories (MediaItems, TV Shows, Videogames) with their respective icons and descriptions.\r\n\r\nThe content is static and visually styled, designed as a \"dumb\" presentational component without inputs or outputs.\r\n\r\n## Features\r\n\r\n- 📱 Responsive layout adapts on mobile and tablet devices\r\n- 🎨 Uses Angular Material icons for visual identification\r\n- ✨ Strong UX emphasis on clarity and design\r\n- 🚫 No dynamic behavior; purely for display purposes\r\n\r\n## Usage Example\r\n\r\n### Template (HTML)\r\n\r\n\\`\\`\\`html\r\n<app-search-cover></app-search-cover>\r\n\\`\\`\\`\r\n`\r\n      }\r\n    }\r\n  }\r\n}"
+            },
+            {
+                "name": "Mobile",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        background-color: #1a1a1a;\r\n        padding: 40px 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <div style=\"width: 100%; max-width: 250px; max-higth;\">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nMobile layout (375px - 601px): SearchBar takes 100% width.\r\n\r\nOn small mobile devices, SearchBar is the primary visible element.\r\nResults/gallery render below (below the fold).\r\n        `,\r\n      },\r\n    },\r\n    viewport: {\r\n      defaultViewport: 'iphone12',\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "NoPagination",
@@ -6880,11 +6983,11 @@
                 "name": "RegisterForm",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/shared/components/auth-form/auth-form.component.stories.ts",
+                "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    formType: 'register',\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Complete registration form with name, email, password fields, and password requirements hint.',\r\n      },\r\n    },\r\n  },\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    formType: 'register',\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true },  \r\n      table: { disable: false }\r\n    },\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Complete registration form with name, email, password fields, and password requirements hint. This matches the production implementation.',\r\n      },\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "sampleData",
@@ -6917,6 +7020,16 @@
                 "defaultValue": "{\r\n    args: {\r\n        collection: sampleData.slice(0, 3),\r\n        sendItemCarousel: action('sendItemCarousel'),\r\n    },\r\n    argTypes: {\r\n        collection: { control: false },\r\n    },\r\n    parameters: {\r\n        docs: {\r\n            description: {\r\n                story: 'Carousel with only 3 items (single slide).',\r\n            },\r\n        },\r\n    },\r\n}"
             },
             {
+                "name": "Tablet",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        flex-direction: column;\r\n        gap: 20px;\r\n        background-color: #1a1a1a;\r\n        padding: 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <!-- Gallery/Results Container -->\r\n        <div style=\"\r\n          flex: 1;\r\n          background-color: #000000;\r\n          border: 1px solid #444;\r\n          border-radius: 8px;\r\n          padding: 20px;\r\n          display: flex;\r\n          align-items: center;\r\n          justify-content: center;\r\n          min-height: 200px;\r\n        \">\r\n          <p style=\"\r\n            color: #888;\r\n            text-align: center;\r\n            font-size: 14px;\r\n            margin: 0;\r\n          \">\r\n            📹 Gallery Content\r\n          </p>\r\n        </div>\r\n\r\n        <!-- SearchBar: centered in column -->\r\n        <div style=\"\r\n          width: 100%;\r\n          max-width: 500px;\r\n          margin: 0 auto;\r\n        \">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nTablet layout (768px - 992px): SearchBar is placed below gallery in column layout.\r\n\r\nComponent is centered with max-width 500px and respects SCSS breakpoints.\r\n        `,\r\n      },\r\n    },\r\n    viewport: {\r\n      defaultViewport: 'ipad',\r\n    },\r\n  },\r\n}"
+            },
+            {
                 "name": "Visible",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -6935,6 +7048,26 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  name: 'Many items (Pagination Enabled)',\r\n  args: {\r\n    collection: sampleData.slice(0, 5),\r\n    collectionSize: 20,\r\n    currentPage: 1,\r\n    pageSize: 5,\r\n    displayedColumns: ['title', 'year', 'type', 'poster', 'Add'],\r\n    favoriteAdded: action('favoriteAdded'),\r\n    detailsOpened: action('detailsOpened'),\r\n    pageChanged: action('pageChanged'),\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Table with pagination enabled. Try clicking next/previous buttons - pageChanged event will be emitted in Actions tab.',\r\n      },\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "WithValidationError",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        background-color: #1a1a1a;\r\n        padding: 40px 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <div style=\"width: 100%; max-width: 500px;\">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  play: async ({ canvasElement }) => {\r\n    const titleInput = canvasElement.querySelector(\r\n      'input[formcontrolname=\"title\"]'\r\n    ) as HTMLInputElement;\r\n\r\n    if (titleInput) {\r\n      titleInput.value = '   '; // Only spaces - invalid\r\n      titleInput.dispatchEvent(new Event('input', { bubbles: true }));\r\n      titleInput.dispatchEvent(new Event('blur', { bubbles: true }));\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nValidation error example: title field has only spaces (invalid).\r\n\r\nShows how component validates and displays specific error messages.\r\n        `,\r\n      },\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "WithValidInput",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        background-color: #1a1a1a;\r\n        padding: 40px 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <div style=\"width: 100%; max-width: 500px;\">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  play: async ({ canvasElement }) => {\r\n    const titleInput = canvasElement.querySelector(\r\n      'input[formcontrolname=\"title\"]'\r\n    ) as HTMLInputElement;\r\n\r\n    if (titleInput) {\r\n      titleInput.value = 'Inception';\r\n      titleInput.dispatchEvent(new Event('input', { bubbles: true }));\r\n      titleInput.dispatchEvent(new Event('blur', { bubbles: true }));\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nInteractive example with form pre-filled with valid data.\r\n\r\nDemonstrates how the component looks with valid data ready to submit.\r\nTry clicking the \"Find\" button to see the action logged.\r\n        `,\r\n      },\r\n    },\r\n  },\r\n}"
             }
         ],
         "functions": [],
@@ -6955,7 +7088,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "StoryObj<AuthFormComponent>",
-                "file": "src/app/shared/components/auth-form/auth-form.component.stories.ts",
+                "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -7009,6 +7142,17 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<SearchBarComponent>",
+                "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<SearchCoverComponent>",
                 "file": "src/app/pages/search/components/search-cover/search-cover.stories.ts",
                 "deprecated": false,
@@ -7028,7 +7172,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    message: `No favorites yet — start exploring!`,\r\n    imageUrl: '/images/monkey2.jpg',\r\n    alt: 'empty state image'\r\n  }\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    message: `No favorites yet — start exploring!`,\r\n    imageUrl: '/images/monkey3.jpg',\r\n    alt: 'empty state image'\r\n  }\r\n}"
                 },
                 {
                     "name": "Default",
@@ -7165,6 +7309,78 @@
                     "defaultValue": "{\r\n  name: 'Many items (Pagination Enabled)',\r\n  args: {\r\n    collection: sampleData.slice(0, 5),\r\n    collectionSize: 20,\r\n    currentPage: 1,\r\n    pageSize: 5,\r\n    displayedColumns: ['title', 'year', 'type', 'poster', 'Add'],\r\n    favoriteAdded: action('favoriteAdded'),\r\n    detailsOpened: action('detailsOpened'),\r\n    pageChanged: action('pageChanged'),\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Table with pagination enabled. Try clicking next/previous buttons - pageChanged event will be emitted in Actions tab.',\r\n      },\r\n    },\r\n  },\r\n}"
                 }
             ],
+            "src/app/pages/search/components/search-bar/search-bar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        background-color: #1a1a1a;\r\n        padding: 40px 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <div style=\"width: 100%; max-width: 500px;\">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nIsolated/standalone mode with component centered at max-width 500px.\r\n\r\nUseful for testing, debugging, or when using SearchBar independently.\r\n        `,\r\n      },\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "Desktop",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        align-items: center;\r\n        gap: 20px;\r\n        background-color: #1a1a1a;\r\n        padding: 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <!-- Gallery/Results Container (2/3 width) -->\r\n        <div style=\"\r\n          flex: 4;\r\n          background-color: #000000;\r\n          border: 1px solid #444;\r\n          border-radius: 8px;\r\n          padding: 20px;\r\n          display: flex;\r\n          align-items: center;\r\n          justify-content: center;\r\n          min-height: 400px;\r\n        \">\r\n          <p style=\"\r\n            color: #888;\r\n            text-align: center;\r\n            font-size: 14px;\r\n            margin: 0;\r\n          \">\r\n            📹 Gallery / Search Results Content\r\n            <br>\r\n            <span style=\"font-size: 12px; color: #666;\">(2/3 of width)</span>\r\n          </p>\r\n        </div>\r\n\r\n        <!-- SearchBar: 1/3 width -->\r\n        <div style=\"flex: 1; min-width: 300px;\">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nDesktop layout (1920px+): SearchBar takes ~1/3 width, gallery takes ~2/3.\r\n\r\nThis is the primary layout and most realistic view of how it works in production.\r\n        `,\r\n      },\r\n    },\r\n    viewport: {\r\n      defaultViewport: 'iphone12',\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<SearchBarComponent>",
+                    "defaultValue": "{\r\n  title: 'Pages/Search/Components/SearchBar',\r\n  component: SearchBarComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        MatSelectModule,\r\n        BrowserAnimationsModule\r\n      ],\r\n      declarations: [SearchBarComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#1a1a1a' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['searchSubmitted'],\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nSearch bar component for filtering movies, series, and games.\r\n\r\n## Features\r\n\r\n- 🔍 Search by title, type, and year\r\n- ✅ Reactive form validation with pattern matching\r\n- 📱 Responsive Material Design layout\r\n- 🎯 Multiple validation error messages\r\n- 🧹 Clear form functionality\r\n- 📍 External focus control via public method\r\n\r\n## Key Capabilities\r\n\r\nThe component provides a comprehensive search interface:\r\n- **Title validation** prevents leading spaces and empty inputs\r\n- **Year range validation** limits input between 1900 and current year\r\n- **Type filtering** supports movies, series, games, or all\r\n- **Flexible API** with public focusSearchInput() method\r\n- **Type-safe form handling** with SearchFormValue interface\r\n\r\n## Usage Example\r\n\r\n### Basic Implementation\r\n\r\n\\`\\`\\`html\r\n<app-search-bar\r\n  (searchSubmitted)=\"handleSearch($event)\">\r\n</app-search-bar>\r\n\\`\\`\\`\r\n\r\n### With External Focus Control\r\n\r\n\\`\\`\\`html\r\n<app-search-bar\r\n  #searchBar\r\n  (searchSubmitted)=\"handleSearch($event)\">\r\n</app-search-bar>\r\n\r\n<button (click)=\"searchBar.focusSearchInput()\">\r\n  Go to search\r\n</button>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class SearchComponent {\r\n  @ViewChild(SearchBarComponent) searchBar!: SearchBarComponent;\r\n\r\n  handleSearch(filters: SearchFilters): void {\r\n    this.searchService.searchMedia(filters).subscribe(\r\n      (results) => this.displayResults(results),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  scrollToSearch(): void {\r\n    this.searchBar.focusSearchInput();\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Messages |\r\n|-------|-------|----------------|\r\n| **Title** | Required, no leading spaces | \"Required field\" or \"Title cannot start with spaces or be only spaces\" |\r\n| **Type** | One of: movie, series, game, all | N/A (select dropdown) |\r\n| **Year** | Optional, min 1900, max current year | \"Must be between 1900-{currentYear}\" |\r\n\r\n## SearchFilters Interface\r\n\r\n\\`\\`\\`typescript\r\ninterface SearchFilters {\r\n  title: string;\r\n  type: MediaType; // 'movie' | 'series' | 'game' | 'all'\r\n  year: string; // Empty string if not provided\r\n}\r\n\\`\\`\\`\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`searchSubmitted\\` | \\`SearchFilters\\` | Emitted when form is submitted with valid values |\r\n\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields\r\n- ✅ Clear error messages for each validation rule\r\n- ✅ Keyboard accessible controls\r\n- ✅ Proper label associations with inputs\r\n- ✅ Smooth scroll behavior for focus control\r\n- ✅ Visual feedback for invalid states\r\n\r\n## Component Architecture\r\n\r\nThis component is designed to work within a responsive layout:\r\n\r\n- **Desktop (>992px)**: Takes ~1/3 of width (flex: 1), alongside gallery (flex: 2)\r\n- **Tablet (602px-992px)**: Vertical stack (column), below gallery\r\n- **Mobile (<602px)**: Vertical stack, 100% width with padding\r\n        `,\r\n      },\r\n    },\r\n  },\r\nargTypes: {\r\n    // ✅ SOLO mostrar searchSubmitted\r\n    searchSubmitted: {\r\n      action: 'searchSubmitted',\r\n      description: 'Emitted when search form is submitted with valid filters',\r\n    },\r\n    // ❌ Excluir todo lo demás\r\n    searchForm: {\r\n      table: { disable: true }\r\n    },\r\n    types: {\r\n      table: { disable: true }\r\n    },\r\n    currentYear: {\r\n      table: { disable: true }\r\n    },\r\n    searchFormFocus: {\r\n      table: { disable: true }\r\n    },\r\n    handleSubmit: {\r\n      table: { disable: true }\r\n    },\r\n    handleClear: {\r\n      table: { disable: true }\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "Mobile",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        background-color: #1a1a1a;\r\n        padding: 40px 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <div style=\"width: 100%; max-width: 250px; max-higth;\">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nMobile layout (375px - 601px): SearchBar takes 100% width.\r\n\r\nOn small mobile devices, SearchBar is the primary visible element.\r\nResults/gallery render below (below the fold).\r\n        `,\r\n      },\r\n    },\r\n    viewport: {\r\n      defaultViewport: 'iphone12',\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "Tablet",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        flex-direction: column;\r\n        gap: 20px;\r\n        background-color: #1a1a1a;\r\n        padding: 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <!-- Gallery/Results Container -->\r\n        <div style=\"\r\n          flex: 1;\r\n          background-color: #000000;\r\n          border: 1px solid #444;\r\n          border-radius: 8px;\r\n          padding: 20px;\r\n          display: flex;\r\n          align-items: center;\r\n          justify-content: center;\r\n          min-height: 200px;\r\n        \">\r\n          <p style=\"\r\n            color: #888;\r\n            text-align: center;\r\n            font-size: 14px;\r\n            margin: 0;\r\n          \">\r\n            📹 Gallery Content\r\n          </p>\r\n        </div>\r\n\r\n        <!-- SearchBar: centered in column -->\r\n        <div style=\"\r\n          width: 100%;\r\n          max-width: 500px;\r\n          margin: 0 auto;\r\n        \">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nTablet layout (768px - 992px): SearchBar is placed below gallery in column layout.\r\n\r\nComponent is centered with max-width 500px and respects SCSS breakpoints.\r\n        `,\r\n      },\r\n    },\r\n    viewport: {\r\n      defaultViewport: 'ipad',\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "WithValidationError",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        background-color: #1a1a1a;\r\n        padding: 40px 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <div style=\"width: 100%; max-width: 500px;\">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  play: async ({ canvasElement }) => {\r\n    const titleInput = canvasElement.querySelector(\r\n      'input[formcontrolname=\"title\"]'\r\n    ) as HTMLInputElement;\r\n\r\n    if (titleInput) {\r\n      titleInput.value = '   '; // Only spaces - invalid\r\n      titleInput.dispatchEvent(new Event('input', { bubbles: true }));\r\n      titleInput.dispatchEvent(new Event('blur', { bubbles: true }));\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nValidation error example: title field has only spaces (invalid).\r\n\r\nShows how component validates and displays specific error messages.\r\n        `,\r\n      },\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "WithValidInput",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        background-color: #1a1a1a;\r\n        padding: 40px 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <div style=\"width: 100%; max-width: 500px;\">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  play: async ({ canvasElement }) => {\r\n    const titleInput = canvasElement.querySelector(\r\n      'input[formcontrolname=\"title\"]'\r\n    ) as HTMLInputElement;\r\n\r\n    if (titleInput) {\r\n      titleInput.value = 'Inception';\r\n      titleInput.dispatchEvent(new Event('input', { bubbles: true }));\r\n      titleInput.dispatchEvent(new Event('blur', { bubbles: true }));\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nInteractive example with form pre-filled with valid data.\r\n\r\nDemonstrates how the component looks with valid data ready to submit.\r\nTry clicking the \"Find\" button to see the action logged.\r\n        `,\r\n      },\r\n    },\r\n  },\r\n}"
+                }
+            ],
             "src/app/pages/search/components/search-cover/search-cover.stories.ts": [
                 {
                     "name": "Default",
@@ -7267,36 +7483,36 @@
                     "defaultValue": "{\r\n  args: {\r\n    visible: true,\r\n  },\r\n}"
                 }
             ],
-            "src/app/shared/components/auth-form/auth-form.component.stories.ts": [
+            "src/app/shared/components/auth-form/auth-form.stories.ts": [
                 {
                     "name": "LoginForm",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/shared/components/auth-form/auth-form.component.stories.ts",
+                    "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    formType: 'login',\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Standard login form with email, password, and link to registration page.',\r\n      },\r\n    },\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    formType: 'login',\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true },     \r\n    },\r\n    formSubmit: {\r\n      control: { disable: true },\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Standard login form with email, password, and link to registration page. This matches the production implementation.',\r\n      },\r\n    },\r\n  },\r\n}"
                 },
                 {
                     "name": "meta",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/shared/components/auth-form/auth-form.component.stories.ts",
+                    "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<AuthFormComponent>",
-                    "defaultValue": "{\r\n  title: 'Shared/AuthForm',\r\n  component: AuthFormComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        RouterTestingModule\r\n      ],\r\n      declarations: [AuthFormComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#000000d5' }\r\n      ],\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n  Reusable authentication form component supporting login and registration flows\r\n  \r\n  ## Features\r\n  \r\n  - 📋 Two form modes: login and register\r\n  - ✅ Reactive form validation with email and password patterns\r\n  - 🔐 Password visibility toggle\r\n  - 👤 Dynamic name field for registration\r\n  - 📱 Responsive Material Design layout\r\n  \r\n  ## Key Capabilities\r\n  \r\n  The component provides a simple authentication interface:\r\n  - **Two form modes** controlled by single formType input\r\n  - **Real-time validation** with email and password requirements\r\n  - **Accessible controls** with ARIA labels\r\n  - **Automatic configuration** based on form type\r\n  - **Type-safe form handling**\r\n\r\n## Usage Example\r\n\r\n### Login Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Registration Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"register\"\r\n  (formSubmit)=\"handleRegister($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class AuthPageComponent {\r\n  handleLogin(user: User): void {\r\n    this.authService.login(user).subscribe(\r\n      (response) => this.router.navigate(['/dashboard']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  handleRegister(user: User): void {\r\n    this.authService.register(user).subscribe(\r\n      (response) => this.router.navigate(['/email-verification']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Message |\r\n|-------|-------|---------------|\r\n| **Email** | Required, valid email format | \"Email is required\" or \"Incorrect email format\" |\r\n| **Password** | Required, min 6 chars, letters + numbers + special chars | \"Password is required\" or \"Min 6 char incl. letters, numbers and special characters\" |\r\n| **Name** | Required (register only) | \"Name is required\" |\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`formSubmit\\` | \\`User\\` | Emitted when form is submitted with valid values |\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields and buttons\r\n- ✅ Keyboard accessible password visibility toggle\r\n- ✅ Proper label associations with form inputs\r\n- ✅ Error messages linked to form fields\r\n- ✅ Focus management and visual indicators\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  // ✅ LIMPIO: Solo @Input() + @Output()\r\n  argTypes: {\r\n    formType: {\r\n      control: 'radio',\r\n      options: ['login', 'register'],\r\n      description: 'Type of authentication form to display',\r\n    },\r\n    formSubmit: {\r\n      action: 'formSubmit',\r\n    },\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  title: 'Shared/AuthForm',\r\n  component: AuthFormComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        RouterTestingModule\r\n      ],\r\n      declarations: [AuthFormComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#000000d5' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['formSubmit'], \r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n  Reusable authentication form component supporting login and registration flows\r\n  \r\n  ## Features\r\n  \r\n  - 📋 Two form modes: login and register\r\n  - ✅ Reactive form validation with email and password patterns\r\n  - 🔐 Password visibility toggle\r\n  - 👤 Dynamic name field for registration\r\n  - 📱 Responsive Material Design layout\r\n  \r\n  ## Key Capabilities\r\n  \r\n  The component provides a simple authentication interface:\r\n  - **Two form modes** controlled by single formType input\r\n  - **Real-time validation** with email and password requirements\r\n  - **Accessible controls** with ARIA labels\r\n  - **Automatic configuration** based on form type\r\n  - **Type-safe form handling**\r\n\r\n## Usage Example\r\n\r\n### Login Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Registration Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"register\"\r\n  (formSubmit)=\"handleRegister($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class AuthPageComponent {\r\n  handleLogin(user: User): void {\r\n    this.authService.login(user).subscribe(\r\n      (response) => this.router.navigate(['/dashboard']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  handleRegister(user: User): void {\r\n    this.authService.register(user).subscribe(\r\n      (response) => this.router.navigate(['/email-verification']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Message |\r\n|-------|-------|---------------|\r\n| **Email** | Required, valid email format | \"Email is required\" or \"Incorrect email format\" |\r\n| **Password** | Required, min 6 chars, letters + numbers + special chars | \"Password is required\" or \"Min 6 char incl. letters, numbers and special characters\" |\r\n| **Name** | Required (register only) | \"Name is required\" |\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`formSubmit\\` | \\`User\\` | Emitted when form is submitted with valid values |\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields and buttons\r\n- ✅ Keyboard accessible password visibility toggle\r\n- ✅ Proper label associations with form inputs\r\n- ✅ Error messages linked to form fields\r\n- ✅ Focus management and visual indicators\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: 'radio',\r\n      options: ['login', 'register'],\r\n      description: 'Type of authentication form to display',\r\n    },\r\n    formSubmit: {\r\n      action: 'formSubmit',\r\n    },\r\n  },\r\n}"
                 },
                 {
                     "name": "RegisterForm",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/shared/components/auth-form/auth-form.component.stories.ts",
+                    "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    formType: 'register',\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Complete registration form with name, email, password fields, and password requirements hint.',\r\n      },\r\n    },\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    formType: 'register',\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true },  \r\n      table: { disable: false }\r\n    },\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Complete registration form with name, email, password fields, and password requirements hint. This matches the production implementation.',\r\n      },\r\n    },\r\n  },\r\n}"
                 }
             ],
             "src/app/shared/shared.module.ts": [
@@ -7340,13 +7556,13 @@
                     "kind": 193
                 }
             ],
-            "src/app/shared/components/auth-form/auth-form.component.stories.ts": [
+            "src/app/shared/components/auth-form/auth-form.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "StoryObj<AuthFormComponent>",
-                    "file": "src/app/shared/components/auth-form/auth-form.component.stories.ts",
+                    "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -7399,6 +7615,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<MediaItemResultsTableComponent>",
                     "file": "src/app/pages/search/components/movie-results-table/movie-results-table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/app/pages/search/components/search-bar/search-bar.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<SearchBarComponent>",
+                    "file": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -7502,7 +7731,7 @@
         ]
     },
     "coverage": {
-        "count": 7,
+        "count": 6,
         "status": "low",
         "files": [
             {
@@ -7772,6 +8001,95 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/pages/search/components/search-bar/search-bar.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SearchBarComponent",
+                "coveragePercent": 22,
+                "coverageCount": "2/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Desktop",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Mobile",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Tablet",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithValidationError",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithValidInput",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/search/components/search-bar/search-bar.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/pages/search/components/search-cover/search-cover.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -7830,7 +8148,16 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/shared/components/auth-form/auth-form.component.stories.ts",
+                "filePath": "src/app/shared/components/auth-form/auth-form.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AuthFormComponent",
+                "coveragePercent": 17,
+                "coverageCount": "3/17",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/auth-form/auth-form.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -7840,7 +8167,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/shared/components/auth-form/auth-form.component.stories.ts",
+                "filePath": "src/app/shared/components/auth-form/auth-form.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -7850,7 +8177,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/shared/components/auth-form/auth-form.component.stories.ts",
+                "filePath": "src/app/shared/components/auth-form/auth-form.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -7860,7 +8187,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/shared/components/auth-form/auth-form.component.stories.ts",
+                "filePath": "src/app/shared/components/auth-form/auth-form.stories.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
@@ -7868,15 +8195,6 @@
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
-            },
-            {
-                "filePath": "src/app/shared/components/auth-form/auth-form.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "AuthFormComponent",
-                "coveragePercent": 41,
-                "coverageCount": "7/17",
-                "status": "medium"
             },
             {
                 "filePath": "src/app/shared/components/empty-state/empty-state.component.ts",
@@ -7995,15 +8313,6 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/shared/components/search-bar/search-bar.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "SearchBarComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/9",
-                "status": "low"
-            },
-            {
                 "filePath": "src/app/shared/components/sorting-controls/sorting-controls.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -8098,6 +8407,15 @@
                 "type": "interface",
                 "linktype": "interface",
                 "name": "SearchFilters",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/models/search.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "SearchFormValue",
                 "coveragePercent": 0,
                 "coverageCount": "0/4",
                 "status": "low"
