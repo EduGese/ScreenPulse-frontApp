@@ -1,9 +1,10 @@
+import { SharedModule } from 'src/app/shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthPageComponent } from './page/auth-page.component';
+import { AuthFormComponent } from './components/auth-form/auth-form.component';
 
 
 
@@ -11,13 +12,15 @@ import { AuthPageComponent } from './page/auth-page.component';
 
 @NgModule({
   declarations: [
-    AuthPageComponent
+    AuthPageComponent,
+    AuthFormComponent,
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    SharedModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule
         
   ]
 })

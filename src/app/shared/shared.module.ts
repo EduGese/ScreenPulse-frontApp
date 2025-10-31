@@ -36,7 +36,6 @@ import { EmptyStateComponent } from './components/empty-state/empty-state.compon
 import { TrailerDialogComponent } from './components/trailer-dialog/trailer-dialog.component';
 
 import { FallbackImagesDirective } from './directives/fallback-images.directive';
-import { AuthFormComponent } from './components/auth-form/auth-form.component';
 
 const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -69,7 +68,7 @@ const MATERIAL_MODULES = [
     EmptyStateComponent,
     TrailerDialogComponent,
     FallbackImagesDirective,
-    AuthFormComponent
+
   ],
   imports: [
     CommonModule,
@@ -92,7 +91,7 @@ const MATERIAL_MODULES = [
     EmptyStateComponent,
     TrailerDialogComponent,
     FallbackImagesDirective,
-    AuthFormComponent
+
   ]
 })
 export class SharedModule { }

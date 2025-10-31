@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../../models/user.model';
+import { User } from 'src/app/shared/models/user.model';
+
 
 /**
  * 
@@ -13,13 +14,23 @@ import { User } from '../../models/user.model';
   styleUrls: ['./auth-form.component.scss']
 })
 export class AuthFormComponent implements OnInit {
-  /** Form type: login or register */
+  /**
+   * Form type determining fields and behavior
+   * - 'login': Email + Password only
+   * - 'register': Name + Email + Password
+   */
   @Input() formType: 'login' | 'register' = 'login';
 
-  /** Disables de form when true */
+    /**
+   * Disables form inputs and submit button when true
+   * Typically used during API calls to prevent duplicate submissions
+   */
   @Input() disabled = false;
 
-  /** Emits validated user data on form submission */
+    /**
+   * Emits validated user data when form is submitted
+   * Only fires if form passes all validation rules
+   */
   @Output() formSubmit = new EventEmitter<User>();
 
   title!: string;

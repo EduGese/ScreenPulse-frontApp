@@ -2000,7 +2000,7 @@
     "guards": [
         {
             "name": "AuthGuard",
-            "id": "injectable-AuthGuard-e899084260c6148b79ab464c796c55c748491ca8df267a812492a0dcdf9d566538584d30ccf82d1bef00311c8a8edd29731010fd62761b0cc7371a1b8d121c5d",
+            "id": "injectable-AuthGuard-ce42353a9bd0477ac9aec8a0ae50e491d29b6140a2931e5c57e95b7df5525137d48b2a705726af5e41619b9945eade1417e8824644f4017b5117610f09697b6d",
             "file": "src/app/core/guards/auth.guard.ts",
             "properties": [],
             "methods": [
@@ -2010,7 +2010,7 @@
                     "optional": false,
                     "returnType": "Observable<boolean>",
                     "typeParameters": [],
-                    "line": 14,
+                    "line": 15,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -2019,7 +2019,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { CanActivate, Router } from '@angular/router';\r\nimport { AuthService } from '../services/auth.service';\r\nimport { Observable } from 'rxjs';\r\nimport { tap, take } from 'rxjs/operators';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class AuthGuard implements CanActivate {\r\n\r\n  constructor(private authService: AuthService, private router: Router) { }\r\n\r\n  canActivate(): Observable<boolean> {\r\n    \r\n    return this.authService.isLoggedInObservable().pipe(\r\n      take(1),\r\n      tap(loggedIn => {\r\n        if (!loggedIn) {\r\n          this.router.navigate(['/login']);\r\n        }\r\n      })\r\n    );\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { CanActivate, Router } from '@angular/router';\r\nimport { AuthService } from '../services/auth.service';\r\nimport { Observable } from 'rxjs';\r\nimport { tap, take } from 'rxjs/operators';\r\nimport { ToastrService } from 'ngx-toastr';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class AuthGuard implements CanActivate {\r\n\r\n  constructor(private authService: AuthService, private router: Router, private toastService: ToastrService) { }\r\n\r\n  canActivate(): Observable<boolean> {\r\n    \r\n    return this.authService.isLoggedInObservable().pipe(\r\n      take(1),\r\n      tap(loggedIn => {\r\n        if (!loggedIn) {\r\n          this.toastService.warning('You must be logged in to access this page.', 'Access Denied');\r\n          this.router.navigate(['/auth/login']);\r\n        }\r\n      })\r\n    );\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -2037,9 +2037,15 @@
                         "type": "Router",
                         "deprecated": false,
                         "deprecationMessage": ""
+                    },
+                    {
+                        "name": "toastService",
+                        "type": "ToastrService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
                     }
                 ],
-                "line": 10,
+                "line": 11,
                 "jsdoctags": [
                     {
                         "name": "authService",
@@ -2058,6 +2064,15 @@
                         "tagName": {
                             "text": "param"
                         }
+                    },
+                    {
+                        "name": "toastService",
+                        "type": "ToastrService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
                     }
                 ]
             },
@@ -2068,7 +2083,7 @@
     "interceptors": [
         {
             "name": "AuthInterceptor",
-            "id": "injectable-AuthInterceptor-8507fe01085adc829d9f728b75f17397749f146e11eaa71ce064f43541bf2afe3c6653ba0db1981212782f2f21b9d631bf8134b65bfb1831a90c40ee311c76cf",
+            "id": "injectable-AuthInterceptor-730157b5a9d77993c82a59b492a15770e5dc4de04e1cd429f3974032047fad90525754b45fe0a94718482478ebf8e267847d8b865c19347d5d96befc0f83c0a6",
             "file": "src/app/core/interceptors/auth.interceptor.ts",
             "properties": [],
             "methods": [
@@ -2120,7 +2135,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { AuthService } from './../services/auth.service';\r\nimport { Injectable } from '@angular/core';\r\nimport { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';\r\nimport { Observable, throwError } from 'rxjs';\r\nimport { catchError } from 'rxjs/operators';\r\nimport { Router } from '@angular/router';\r\n\r\n@Injectable()\r\nexport class AuthInterceptor implements HttpInterceptor {\r\n  constructor(private router: Router, private authService: AuthService) {}\r\n\r\n  intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {\r\n    const token = this.authService.getAuthToken();\r\n    let authReq = req;\r\n    if (token) {\r\n      authReq = req.clone({\r\n        setHeaders: { Authorization: `Bearer ${token}` }\r\n      });\r\n    }\r\n    return next.handle(authReq).pipe(\r\n      catchError((error: HttpErrorResponse) => {\r\n        if (error.status === 401 && error.message === 'Session expired. Please login again') {\r\n        this.authService.logOut();\r\n          this.router.navigate(['/login']);\r\n        }\r\n        return throwError(() => error);\r\n      })\r\n    );\r\n  }\r\n}\r\n",
+            "sourceCode": "import { AuthService } from './../services/auth.service';\r\nimport { Injectable } from '@angular/core';\r\nimport { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';\r\nimport { Observable, throwError } from 'rxjs';\r\nimport { catchError } from 'rxjs/operators';\r\nimport { Router } from '@angular/router';\r\n\r\n@Injectable()\r\nexport class AuthInterceptor implements HttpInterceptor {\r\n  constructor(private router: Router, private authService: AuthService) {}\r\n\r\n  intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {\r\n    const token = this.authService.getAuthToken();\r\n    let authReq = req;\r\n    if (token) {\r\n      authReq = req.clone({\r\n        setHeaders: { Authorization: `Bearer ${token}` }\r\n      });\r\n    }\r\n    return next.handle(authReq).pipe(\r\n      catchError((error: HttpErrorResponse) => {\r\n        if (error.status === 401 && error.message === 'Session expired. Please login again') {\r\n        this.authService.logOut();\r\n          this.router.navigate(['/auth/login']);\r\n        }\r\n        return throwError(() => error);\r\n      })\r\n    );\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -2387,7 +2402,7 @@
         },
         {
             "name": "AuthFormComponent",
-            "id": "component-AuthFormComponent-9e75a18f36304a72be1fdaca7b97d454631efc5e1cf8560613386de73c9635b0a0f8f920f60358af355ef43856070abba6ba4ec5b7ce35e868b1a3c91b70c5ee",
+            "id": "component-AuthFormComponent-115419b90a03f68f6f0d84f958a678104268d2babe8ab0b0c69c12f83e2a3ea9870b8f2234d9b29ef60aaaef62990dd2767b3cfab0f23149f66a065d1835bf70",
             "file": "src/app/shared/components/auth-form/auth-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2405,6 +2420,17 @@
             "viewProviders": [],
             "hostDirectives": [],
             "inputsClass": [
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nDisables de form when true",
+                    "description": "<p>Disables de form when true</p>\n",
+                    "line": 20,
+                    "type": "boolean",
+                    "decorators": []
+                },
                 {
                     "name": "formType",
                     "defaultValue": "'login'",
@@ -2425,7 +2451,7 @@
                     "deprecationMessage": "",
                     "rawdescription": "\nEmits validated user data on form submission",
                     "description": "<p>Emits validated user data on form submission</p>\n",
-                    "line": 20,
+                    "line": 23,
                     "type": "EventEmitter"
                 }
             ],
@@ -2438,7 +2464,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 28
+                    "line": 31
                 },
                 {
                     "name": "hidePassword",
@@ -2449,7 +2475,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 29
+                    "line": 32
                 },
                 {
                     "name": "passwordPattern",
@@ -2460,7 +2486,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 30,
+                    "line": 33,
                     "modifierKind": [
                         123
                     ]
@@ -2473,7 +2499,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 24
+                    "line": 27
                 },
                 {
                     "name": "showPasswordHint",
@@ -2483,7 +2509,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 26
+                    "line": 29
                 },
                 {
                     "name": "showRegisterLink",
@@ -2493,7 +2519,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 25
+                    "line": 28
                 },
                 {
                     "name": "submitButtonText",
@@ -2503,7 +2529,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 23
+                    "line": 26
                 },
                 {
                     "name": "title",
@@ -2513,7 +2539,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 22
+                    "line": 25
                 }
             ],
             "methodsClass": [
@@ -2523,7 +2549,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 55,
+                    "line": 58,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -2536,7 +2562,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 39,
+                    "line": 42,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -2549,7 +2575,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 77,
+                    "line": 80,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -2559,7 +2585,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 71,
+                    "line": 74,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -2569,7 +2595,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 34,
+                    "line": 37,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -2583,7 +2609,7 @@
             "description": "<p>Reusable authentication form component supporting login and registration flows</p>\n",
             "rawdescription": "\n\n\nReusable authentication form component supporting login and registration flows\n\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\nimport { User } from '../../models/user.model';\n\n/**\n * \n * Reusable authentication form component supporting login and registration flows\n * \n */\n@Component({\n  selector: 'app-auth-form',\n  templateUrl: './auth-form.component.html',\n  styleUrls: ['./auth-form.component.scss']\n})\nexport class AuthFormComponent implements OnInit {\n  /** Form type: login or register */\n  @Input() formType: 'login' | 'register' = 'login';\n\n  /** Emits validated user data on form submission */\n  @Output() formSubmit = new EventEmitter<User>();\n\n  title!: string;\n  submitButtonText!: string;\n  showNameField!: boolean;\n  showRegisterLink!: boolean;\n  showPasswordHint!: boolean;\n\n  form!: FormGroup;\n  hidePassword = true;\n  private passwordPattern = /^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\\W_]).{6,}$/;\n\n  constructor(private fb: FormBuilder) { }\n\n  ngOnInit(): void {\n    this.configureByFormType();\n    this.buildForm();\n  }\n  \n  private configureByFormType(): void {\n    if (this.formType === 'register') {\n      this.title = 'Join us!';\n      this.submitButtonText = 'Sign Up';\n      this.showNameField = true;\n      this.showRegisterLink = false;\n      this.showPasswordHint = true;\n    } else {\n      this.title = 'Open the door';\n      this.submitButtonText = 'Login';\n      this.showNameField = false;\n      this.showRegisterLink = true;\n      this.showPasswordHint = false;\n    }\n  }\n\n  private buildForm(): void {\n    const controls: Partial<Record<string, unknown>> = {\n      email: ['', [Validators.required, Validators.email]],\n      password: ['', [\n        Validators.required,\n        Validators.pattern(this.passwordPattern)\n      ]]\n    };\n\n    if (this.showNameField) {\n      controls['name'] = ['', Validators.required];\n    }\n\n    this.form = this.fb.group(controls);\n  }\n\n  handleSubmit(): void {\n    if (this.form.valid) {\n      this.formSubmit.emit(this.form.value);\n    }\n  }\n\n  handleClear(): void {\n    this.form.reset();\n  }\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\nimport { User } from '../../models/user.model';\n\n/**\n * \n * Reusable authentication form component supporting login and registration flows\n * \n */\n@Component({\n  selector: 'app-auth-form',\n  templateUrl: './auth-form.component.html',\n  styleUrls: ['./auth-form.component.scss']\n})\nexport class AuthFormComponent implements OnInit {\n  /** Form type: login or register */\n  @Input() formType: 'login' | 'register' = 'login';\n\n  /** Disables de form when true */\n  @Input() disabled = false;\n\n  /** Emits validated user data on form submission */\n  @Output() formSubmit = new EventEmitter<User>();\n\n  title!: string;\n  submitButtonText!: string;\n  showNameField!: boolean;\n  showRegisterLink!: boolean;\n  showPasswordHint!: boolean;\n\n  form!: FormGroup;\n  hidePassword = true;\n  private passwordPattern = /^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\\W_]).{6,}$/;\n\n  constructor(private fb: FormBuilder) { }\n\n  ngOnInit(): void {\n    this.configureByFormType();\n    this.buildForm();\n  }\n  \n  private configureByFormType(): void {\n    if (this.formType === 'register') {\n      this.title = 'Join us!';\n      this.submitButtonText = 'Sign Up';\n      this.showNameField = true;\n      this.showRegisterLink = false;\n      this.showPasswordHint = true;\n    } else {\n      this.title = 'Open the door';\n      this.submitButtonText = 'Login';\n      this.showNameField = false;\n      this.showRegisterLink = true;\n      this.showPasswordHint = false;\n    }\n  }\n\n  private buildForm(): void {\n    const controls: Partial<Record<string, unknown>> = {\n      email: ['', [Validators.required, Validators.email]],\n      password: ['', [\n        Validators.required,\n        Validators.pattern(this.passwordPattern)\n      ]]\n    };\n\n    if (this.showNameField) {\n      controls['name'] = ['', Validators.required];\n    }\n\n    this.form = this.fb.group(controls);\n  }\n\n  handleSubmit(): void {\n    if (this.form.valid) {\n      this.formSubmit.emit(this.form.value);\n    }\n  }\n\n  handleClear(): void {\n    this.form.reset();\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2605,7 +2631,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 30,
+                "line": 33,
                 "jsdoctags": [
                     {
                         "name": "fb",
@@ -2622,7 +2648,202 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"head-icon\">\n  <h1>{{ title }}</h1>\n</div>\n\n<form [formGroup]=\"form\" (ngSubmit)=\"handleSubmit()\">\n  \n  <mat-form-field *ngIf=\"showNameField\" appearance=\"outline\" color=\"accent\">\n    <mat-label>Name</mat-label>\n    <input matInput type=\"text\" formControlName=\"name\" aria-label=\"Name\" required />\n    <button mat-icon-button matSuffix type=\"button\" aria-label=\"Name icon\">\n      <mat-icon>person</mat-icon>\n    </button>\n    <mat-error *ngIf=\"form.get('name')?.hasError('required')\">\n      Name is required\n    </mat-error>\n  </mat-form-field>\n\n  <mat-form-field appearance=\"outline\" color=\"accent\">\n    <mat-label>Email</mat-label>\n    <input matInput type=\"email\" formControlName=\"email\" aria-label=\"Email\" required />\n    <button mat-icon-button matSuffix type=\"button\" aria-label=\"Email icon\">\n      <mat-icon>mail</mat-icon>\n    </button>\n    <mat-error *ngIf=\"form.get('email')?.hasError('required')\">\n      Email is required\n    </mat-error>\n    <mat-error *ngIf=\"form.get('email')?.hasError('email')\">\n      Incorrect email format\n    </mat-error>\n  </mat-form-field>\n\n  <mat-form-field appearance=\"outline\" color=\"accent\">\n    <mat-label>Password</mat-label>\n    <input \n      matInput \n      [type]=\"hidePassword ? 'password' : 'text'\" \n      formControlName=\"password\"\n      aria-label=\"Password\" \n      required \n    />\n    <button \n      mat-icon-button \n      matSuffix \n      (click)=\"hidePassword = !hidePassword\" \n      [attr.aria-label]=\"'Toggle password visibility'\"\n      [attr.aria-pressed]=\"!hidePassword\" \n      type=\"button\"\n    >\n      <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>\n    </button>\n    \n    <mat-hint *ngIf=\"showPasswordHint\">\n      Min 6 char incl. letters, numbers and special characters (!#..)\n    </mat-hint>\n    \n    <mat-error *ngIf=\"form.get('password')?.hasError('required')\">\n      Password is required\n    </mat-error>\n    <mat-error *ngIf=\"form.get('password')?.hasError('pattern')\">\n      Min 6 char incl. letters, numbers and special characters (!#..)\n    </mat-error>\n  </mat-form-field>\n\n  <div *ngIf=\"showRegisterLink\" class=\"register-link\">\n    <span class=\"not-register-text\">Not registered yet?</span>\n    <a routerLink=\"/register\">Sign up here</a>\n  </div>\n\n  <div class=\"button-container\">\n    <button \n      mat-raised-button \n      class=\"button-submit\" \n      color=\"primary\" \n      type=\"submit\" \n      [disabled]=\"form.invalid\"\n    >\n      <mat-icon *ngIf=\"formType === 'login'\" [ngClass]=\"form.invalid ? 'button-icon-disabled' : 'button-icon-enabled'\">\n        {{ formType }}\n      </mat-icon>\n      {{ submitButtonText }}\n    </button>\n    \n    <button \n      mat-raised-button \n      class=\"button-clear\" \n      color=\"accent\" \n      type=\"button\" \n      (click)=\"handleClear()\"\n    >\n      <mat-icon>clear</mat-icon>\n      Clear\n    </button>\n  </div>\n</form>\n"
+            "templateData": "<div class=\"head-icon\">\n  <h1>{{ title }}</h1>\n</div>\n\n<form [formGroup]=\"form\" (ngSubmit)=\"handleSubmit()\">\n  \n  <mat-form-field *ngIf=\"showNameField\" appearance=\"outline\" color=\"accent\">\n    <mat-label>Name</mat-label>\n    <input matInput type=\"text\" formControlName=\"name\" aria-label=\"Name\" required />\n    <button mat-icon-button matSuffix type=\"button\" aria-label=\"Name icon\">\n      <mat-icon>person</mat-icon>\n    </button>\n    <mat-error *ngIf=\"form.get('name')?.hasError('required')\">\n      Name is required\n    </mat-error>\n  </mat-form-field>\n\n  <mat-form-field appearance=\"outline\" color=\"accent\">\n    <mat-label>Email</mat-label>\n    <input matInput type=\"email\" formControlName=\"email\" aria-label=\"Email\" required />\n    <button mat-icon-button matSuffix type=\"button\" aria-label=\"Email icon\">\n      <mat-icon>mail</mat-icon>\n    </button>\n    <mat-error *ngIf=\"form.get('email')?.hasError('required')\">\n      Email is required\n    </mat-error>\n    <mat-error *ngIf=\"form.get('email')?.hasError('email')\">\n      Incorrect email format\n    </mat-error>\n  </mat-form-field>\n\n  <mat-form-field appearance=\"outline\" color=\"accent\">\n    <mat-label>Password</mat-label>\n    <input \n      matInput \n      [type]=\"hidePassword ? 'password' : 'text'\" \n      formControlName=\"password\"\n      aria-label=\"Password\" \n      required \n    />\n    <button \n      mat-icon-button \n      matSuffix \n      (click)=\"hidePassword = !hidePassword\" \n      [attr.aria-label]=\"'Toggle password visibility'\"\n      [attr.aria-pressed]=\"!hidePassword\" \n      type=\"button\"\n    >\n      <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>\n    </button>\n    \n    <mat-hint *ngIf=\"showPasswordHint\">\n      Min 6 char incl. letters, numbers and special characters (!#..)\n    </mat-hint>\n    \n    <mat-error *ngIf=\"form.get('password')?.hasError('required')\">\n      Password is required\n    </mat-error>\n    <mat-error *ngIf=\"form.get('password')?.hasError('pattern')\">\n      Min 6 char incl. letters, numbers and special characters (!#..)\n    </mat-error>\n  </mat-form-field>\n\n  <div *ngIf=\"showRegisterLink\" class=\"register-link\">\n    <span class=\"not-register-text\">Not registered yet?</span>\n    <a routerLink=\"/auth/register\">Sign up here</a>\n  </div>\n\n  <div class=\"button-container\">\n    <button \n      mat-raised-button \n      class=\"button-submit\" \n      color=\"primary\" \n      type=\"submit\" \n      [disabled]=\"form.invalid || disabled\"\n    >\n      <mat-icon *ngIf=\"formType === 'login'\" [ngClass]=\"form.invalid || disabled ? 'button-icon-disabled' : 'button-icon-enabled'\">\n        {{ formType }}\n      </mat-icon>\n      {{ submitButtonText }}\n    </button>\n    \n    <button \n      mat-raised-button \n      class=\"button-clear\" \n      color=\"accent\" \n      type=\"button\" \n      (click)=\"handleClear()\"\n    >\n      <mat-icon>clear</mat-icon>\n      Clear\n    </button>\n  </div>\n</form>\n"
+        },
+        {
+            "name": "AuthPageComponent",
+            "id": "component-AuthPageComponent-c9308e9b41144a50d3e93ae1c1adb460e7b622fefad13b33246b34d4a39bbebdcf25967a5fba76153c0c725156f8e3959ba04920ad045f6237beb1e3d94d22ed",
+            "file": "src/app/pages/auth/page/auth-page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-auth-page",
+            "styleUrls": [
+                "./auth-page.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./auth-page.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "formType",
+                    "defaultValue": "'login'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "\"login\" | \"register\"",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 22
+                },
+                {
+                    "name": "isAuthenticating",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 23
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "handleFormSubmit",
+                    "args": [
+                        {
+                            "name": "user",
+                            "type": "User",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 40,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "user",
+                            "type": "User",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 34,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { finalize } from 'rxjs';\nimport { Component, OnInit } from '@angular/core';\nimport { ActivatedRoute, Router } from '@angular/router';\nimport { ToastrService } from 'ngx-toastr';\nimport { AuthService } from 'src/app/core/services/auth.service';\nimport { UserService } from 'src/app/core/services/user.service';\nimport { User } from 'src/app/shared/models/user.model';\n\n@Component({\n  selector: 'app-auth-page',\n  templateUrl: './auth-page.component.html',\n  styleUrls: ['./auth-page.component.scss']\n})\n/**\n * Unified authentication page component handling both login and registration flows.\n * \n * @description\n * Displays AuthFormComponent with form type determined by route data.\n * Handles form submission and navigation based on authentication result.\n */\nexport class AuthPageComponent implements OnInit {\n  formType: 'login' | 'register' = 'login';\n  isAuthenticating = false;\n\n\n  constructor(\n    private route: ActivatedRoute,\n    private router: Router,\n    private authService: AuthService,\n    private userService: UserService,\n    private toastrService: ToastrService\n  ) { }\n\n  ngOnInit(): void {\n    this.route.data.subscribe(data => {\n      this.formType = data['formType'] || 'login';\n    });\n  }\n\n  handleFormSubmit(user: User): void {\n    if (this.formType === 'login') {\n      this.handleLogin(user);\n    } else {\n      this.handleRegister(user);\n    }\n  }\n\n  /**\n   * @private\n   * @ignore\n   */\n  private handleLogin(formData: User): void {\n    this.isAuthenticating = true;\n    this.userService.login(formData)\n    .pipe(\n      finalize(()=>{\n        this.isAuthenticating = false;\n      })\n    )\n    .subscribe({\n      next: (data) => {\n        this.authService.setUserSession(data.user, data.token);\n        this.toastrService.success(`Welcome, ${data.user.name}`, `You are logged in`)\n        this.router.navigate(['']);\n      },\n      error: (error) => {\n        this.toastrService.error(error.message);\n      }\n    });\n  }\n\n  /**\n   * @private\n   * @ignore\n   */\n  private handleRegister(formData: User): void {\n    this.isAuthenticating = true;\n    this.userService.register(formData)\n    .pipe(\n      finalize(()=>{\n        this.isAuthenticating = false;\n      })\n    )\n    .subscribe({\n      next: (data) => {\n        this.toastrService.success(`Welcome to ScreenPulse ${data.name}`, `Succesful registration`,)\n        this.router.navigate(['login']);\n      },\n      error: (error) => {\n        this.toastrService.error(error.message);\n      }\n    });\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".view{\r\n    width: 100%;\r\n    height: 100vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n    background-image: url(\"/assets/1154.png\");\r\n    background-size: contain;\r\n}\r\n.loading-container{\r\n    text-align: center;\r\n    color: var(--custom-amber);\r\n  }\r\n",
+                    "styleUrl": "./auth-page.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "userService",
+                        "type": "UserService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "toastrService",
+                        "type": "ToastrService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 23,
+                "jsdoctags": [
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "userService",
+                        "type": "UserService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "toastrService",
+                        "type": "ToastrService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"view\">\n<app-auth-form\n  [formType]= \"formType\"\n  [disabled]=\"isAuthenticating\"\n  (formSubmit)=\"handleFormSubmit($event)\"\n></app-auth-form>\n        <app-loading-spinner [visible]=\"isAuthenticating\"></app-loading-spinner>\n</div>"
         },
         {
             "name": "CarouselComponent",
@@ -4131,164 +4352,8 @@
             "templateData": "<div class=\"loading-container\" [style.visibility]=\"visible ? 'visible' : 'hidden'\">\r\n  <h1 class=\"loading-text\">\r\n    <mat-icon [inline]=\"true\">hourglass_top</mat-icon>\r\n    Loading, please wait\r\n  </h1>\r\n  <mat-progress-bar mode=\"indeterminate\" color=\"accent\">Loading</mat-progress-bar>\r\n</div>\r\n"
         },
         {
-            "name": "LoginComponent",
-            "id": "component-LoginComponent-e233deba407a568f1c31086c2b68dfc9627c43d3a9301f934d4a5cabb16e5db66efd462d6823fe6fced4c4681d1167c1e0aaa3196f9048f160f7dadf7d6381bb",
-            "file": "src/app/pages/login/page/login.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "app-login",
-            "styleUrls": [
-                "./login.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./login.component.html"
-            ],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "isLogin",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 15
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "handleLogin",
-                    "args": [
-                        {
-                            "name": "formData",
-                            "type": "User",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 24,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "formData",
-                            "type": "User",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": false,
-            "imports": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport { Router } from '@angular/router';\r\nimport { ToastrService } from 'ngx-toastr';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { UserService } from 'src/app/core/services/user.service';\r\nimport { User } from 'src/app/shared/models/user.model';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login.component.html',\r\n  styleUrls: ['./login.component.scss'],\r\n})\r\nexport class LoginComponent {\r\n\r\n  isLogin = false;\r\n\r\n  constructor(\r\n    private userService: UserService,\r\n    private authService: AuthService,\r\n    private router: Router,\r\n    private toastrService: ToastrService\r\n  ) { }\r\n\r\n  handleLogin(formData: User): void {\r\n    this.isLogin = true;\r\n    this.userService.login(formData).subscribe({\r\n      next: (data) => {\r\n        this.authService.setUserSession(data.user, data.token);\r\n        this.toastrService.success(`Welcome, ${data.user.name}`, `You are logged in`)\r\n        this.isLogin = false;\r\n        this.router.navigate(['']);\r\n      },\r\n      error: (error) => {\r\n        this.toastrService.error(error.message);\r\n        this.isLogin = false;\r\n      }\r\n    });\r\n  }\r\n\r\n}\r\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".view{\r\n    width: 100%;\r\n    height: 100vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n    background-image: url(\"/assets/1154.png\");\r\n    background-size: contain;\r\n}\r\n.loading-container{\r\n    text-align: center;\r\n    color: var(--custom-amber);\r\n  }\r\n",
-                    "styleUrl": "./login.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "userService",
-                        "type": "UserService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "authService",
-                        "type": "AuthService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "router",
-                        "type": "Router",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "toastrService",
-                        "type": "ToastrService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 15,
-                "jsdoctags": [
-                    {
-                        "name": "userService",
-                        "type": "UserService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "authService",
-                        "type": "AuthService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "router",
-                        "type": "Router",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "toastrService",
-                        "type": "ToastrService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
-            "extends": [],
-            "templateData": "<div class=\"view\">\r\n<app-auth-form\r\n  formType=\"login\"\r\n  (formSubmit)=\"handleLogin($event)\"\r\n></app-auth-form>\r\n        <app-loading-spinner [visible]=\"isLogin\"></app-loading-spinner>\r\n</div>"
-        },
-        {
             "name": "MediaItemDialogComponent",
-            "id": "component-MediaItemDialogComponent-9375e4a88939f613b971f206a2b67ba03e16a6348975d843cdc1f8d431c8b629de0c5107bfe93087a4127283c19d9df6cf7e7cc7c1a488687b36407767bd660a",
+            "id": "component-MediaItemDialogComponent-53e6cf065c4f31c2d455ed5ffbaa145cdead433812fc3a6e24d90b921a0f30cf339d3059474ead0e3af0af6532d2c687ce64c66d8d5ad227c1a17f668882652a",
             "file": "src/app/shared/components/movie-dialog/movie-dialog.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -4427,7 +4492,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Inject } from '@angular/core';\r\nimport { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';\r\nimport { MediaItem } from '../../models/movie.model';\r\nimport { ToastrService } from 'ngx-toastr';\r\nimport { FavoritesService } from '../../services/favorites/favorites.service';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { Router } from '@angular/router';\r\nimport { MediaItemDialogData } from '../../models/movieDialogData.model';\r\nimport { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';\r\nimport { DialogService } from '../../services/dialog/dialog.service';\r\nimport { EMPTY, switchMap, take } from 'rxjs';\r\n\r\n@Component({\r\n  selector: 'app-movie-dialog',\r\n  templateUrl: './movie-dialog.component.html',\r\n  styleUrls: ['./movie-dialog.component.scss']\r\n})\r\nexport class MediaItemDialogComponent {\r\n  showPlayer = false;\r\n  videoUrl!: SafeResourceUrl;\r\n  constructor(\r\n    @Inject(MAT_DIALOG_DATA) public data: MediaItemDialogData,\r\n    private toastrService: ToastrService,\r\n    private favoritesService: FavoritesService,\r\n    private authService: AuthService,\r\n    private router: Router,\r\n    private dialogRef: MatDialogRef<MediaItemDialogComponent>,\r\n    private sanitizer: DomSanitizer,\r\n    private dialogService: DialogService\r\n  ) { }\r\n\r\naddToFavorites(mediaItem: MediaItem) {\r\n  this.authService.isLoggedInObservable().pipe(\r\n    take(1),\r\n    switchMap(loggedIn => {\r\n      if (!loggedIn) {\r\n        this.toastrService.error('You must be logged in to add movies to your list', 'Error');\r\n        this.dialogRef.close();\r\n        this.router.navigate(['/login']);\r\n        return EMPTY; \r\n      }\r\n      return this.favoritesService.addToFavorites(mediaItem);\r\n    })\r\n  ).subscribe({\r\n    next: () => this.toastrService.success(mediaItem.title, 'Added to favorites'),\r\n    error: (error) => this.toastrService.warning(error.message)\r\n  });\r\n}\r\n\r\n  onImageError(event: Event) {\r\n    const target = event.target as HTMLImageElement;\r\n    target.src = 'assets/images/no_poster.jpg';\r\n  }\r\n\r\n  playTrailer(): void {\r\n    if (!this.data.response.youtubeURLTrailer) return;\r\n\r\n    this.dialogService.openTrailerDialog(\r\n      this.data.response.youtubeURLTrailer,\r\n    );\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Inject } from '@angular/core';\r\nimport { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';\r\nimport { MediaItem } from '../../models/movie.model';\r\nimport { ToastrService } from 'ngx-toastr';\r\nimport { FavoritesService } from '../../services/favorites/favorites.service';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { Router } from '@angular/router';\r\nimport { MediaItemDialogData } from '../../models/movieDialogData.model';\r\nimport { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';\r\nimport { DialogService } from '../../services/dialog/dialog.service';\r\nimport { EMPTY, switchMap, take } from 'rxjs';\r\n\r\n@Component({\r\n  selector: 'app-movie-dialog',\r\n  templateUrl: './movie-dialog.component.html',\r\n  styleUrls: ['./movie-dialog.component.scss']\r\n})\r\nexport class MediaItemDialogComponent {\r\n  showPlayer = false;\r\n  videoUrl!: SafeResourceUrl;\r\n  constructor(\r\n    @Inject(MAT_DIALOG_DATA) public data: MediaItemDialogData,\r\n    private toastrService: ToastrService,\r\n    private favoritesService: FavoritesService,\r\n    private authService: AuthService,\r\n    private router: Router,\r\n    private dialogRef: MatDialogRef<MediaItemDialogComponent>,\r\n    private sanitizer: DomSanitizer,\r\n    private dialogService: DialogService\r\n  ) { }\r\n\r\naddToFavorites(mediaItem: MediaItem) {\r\n  this.authService.isLoggedInObservable().pipe(\r\n    take(1),\r\n    switchMap(loggedIn => {\r\n      if (!loggedIn) {\r\n        this.toastrService.error('You must be logged in to add movies to your list', 'Error');\r\n        this.dialogRef.close();\r\n        this.router.navigate(['/auth/login']);\r\n        return EMPTY; \r\n      }\r\n      return this.favoritesService.addToFavorites(mediaItem);\r\n    })\r\n  ).subscribe({\r\n    next: () => this.toastrService.success(mediaItem.title, 'Added to favorites'),\r\n    error: (error) => this.toastrService.warning(error.message)\r\n  });\r\n}\r\n\r\n  onImageError(event: Event) {\r\n    const target = event.target as HTMLImageElement;\r\n    target.src = 'assets/images/no_poster.jpg';\r\n  }\r\n\r\n  playTrailer(): void {\r\n    if (!this.data.response.youtubeURLTrailer) return;\r\n\r\n    this.dialogService.openTrailerDialog(\r\n      this.data.response.youtubeURLTrailer,\r\n    );\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -5018,148 +5083,7 @@
                 ]
             },
             "extends": [],
-            "templateData": "<mat-toolbar color=\"primary\">\r\n  <div class=\"navbar-container\">\r\n    <span class=\"screen\">ScreenPulse</span>\r\n    <mat-icon aria-hidden=\"true\" class=\"icon\">tv</mat-icon>\r\n    <span class=\"spacer\"></span>\r\n\r\n    <ng-container *ngIf=\"userData$ | async as data\">\r\n\r\n      <ng-container *ngIf=\"!data.isLoggedIn; else loggedInBlock\">\r\n        <a routerLink=\"/register\" mat-icon-button class=\"register-container\">\r\n          <div class=\"login-container\">\r\n            <mat-icon fontIcon=\"person_add_alt\"></mat-icon>\r\n            <span class=\"join\">Join us!</span>\r\n          </div>\r\n        </a>\r\n        <a routerLink=\"/login\" mat-icon-button class=\"login-container\">\r\n          <mat-icon fontIcon=\"login\"></mat-icon>\r\n        </a>\r\n      </ng-container>\r\n\r\n\r\n      <ng-template #loggedInBlock>\r\n        <div class=\"loggedin-navbar-container\">\r\n          <span class=\"logged\">\r\n            Welcome <span class=\"user-mail\">{{ data.email }}</span>\r\n          </span>\r\n          <button mat-icon-button (click)=\"logOut()\" class=\"logout-container\">\r\n            <mat-icon fontIcon=\"logout\"></mat-icon>\r\n          </button>\r\n        </div>\r\n      </ng-template>\r\n\r\n\r\n      <div class=\"button-links-container\">\r\n        <a routerLink=\"\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\">Search</a>\r\n        <a routerLink=\"/favorites\" routerLinkActive=\"active\">Favorites</a>\r\n      </div>\r\n\r\n      <button mat-icon-button class=\"toogle-menu-button\" (click)=\"toggleMenu()\">\r\n        <mat-icon>{{ expanded ? 'close' : 'menu' }}</mat-icon>\r\n      </button>\r\n    </ng-container>\r\n  </div>\r\n\r\n\r\n  <div class=\"expanded-menu-container\" *ngIf=\"expanded\">\r\n    <ng-container *ngIf=\"userData$ | async as data\">\r\n      <ng-container *ngIf=\"data.isLoggedIn; else mobileLoggedOut\">\r\n        <div class=\"loggedin-expanded-menu-container\">\r\n          <span class=\"logged\">Welcome, <span class=\"user-mail\">{{ data.email }}</span></span>\r\n          <button mat-icon-button (click)=\"logOut()\" class=\"logout-container\">\r\n            <mat-icon fontIcon=\"logout\"></mat-icon>\r\n          </button>\r\n        </div>\r\n      </ng-container>\r\n\r\n      <mat-list>\r\n        <mat-list-item (click)=\"toggleMenu()\"><a routerLink=\"\">Search</a></mat-list-item>\r\n        <mat-list-item (click)=\"toggleMenu()\"><a routerLink=\"/favorites\">Favorites</a></mat-list-item>\r\n      </mat-list>\r\n\r\n      <ng-template #mobileLoggedOut>\r\n        <mat-list>\r\n          <mat-list-item (click)=\"toggleMenu()\">\r\n            <a routerLink=\"/register\"><mat-icon fontIcon=\"person_add_alt\"></mat-icon></a>\r\n          </mat-list-item>\r\n          <mat-list-item (click)=\"toggleMenu()\">\r\n            <a routerLink=\"/login\"><mat-icon fontIcon=\"login\"></mat-icon></a>\r\n          </mat-list-item>\r\n        </mat-list>\r\n      </ng-template>\r\n    </ng-container>\r\n  </div>\r\n</mat-toolbar>\r\n"
-        },
-        {
-            "name": "RegisterComponent",
-            "id": "component-RegisterComponent-2d5e518320a8a81ec112a1c0295cb429d4647501c94e6f868e015ea2ea3cd13b0c981a5ddb254bd4888f4e87962b352419c816d40896d4e8adea6d9b6bd02293",
-            "file": "src/app/pages/register/page/register.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "app-register",
-            "styleUrls": [
-                "./register.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./register.component.html"
-            ],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "isRegistering",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 15
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "handleRegister",
-                    "args": [
-                        {
-                            "name": "formData",
-                            "type": "User",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 22,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "formData",
-                            "type": "User",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": false,
-            "imports": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport { Router } from '@angular/router';\r\nimport { ToastrService } from 'ngx-toastr';\r\nimport { UserService } from 'src/app/core/services/user.service';\r\nimport { User } from 'src/app/shared/models/user.model';\r\n\r\n\r\n@Component({\r\n  selector: 'app-register',\r\n  templateUrl: './register.component.html',\r\n  styleUrls: ['./register.component.scss'],\r\n})\r\nexport class RegisterComponent {\r\n\r\n  isRegistering = false;\r\n\r\n  constructor(\r\n    private userService: UserService,\r\n    private router: Router,\r\n    private toastrService: ToastrService) { }\r\n\r\n  handleRegister(formData: User): void {\r\n    this.isRegistering = true;\r\n    this.userService.register(formData).subscribe({\r\n      next: (data) => {\r\n        this.isRegistering = false;\r\n        this.toastrService.success(`Welcome to ScreenPulse ${data.name}`, `Succesful registration`,)\r\n        this.router.navigate(['login']);\r\n      },\r\n      error: (error) => {\r\n        this.isRegistering = false;\r\n        this.toastrService.error(error.message);\r\n      }\r\n    });\r\n  }\r\n}\r\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "\r\n.view{\r\n    width: 100%;\r\n    height: 100vh;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n    background-image: url(\"/assets/1154.png\");\r\n    background-size: contain;\r\n    \r\n}\r\n.loading-container{\r\n    text-align: center;\r\n    color: var(--custom-amber);\r\n  }\r\n\r\n",
-                    "styleUrl": "./register.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "userService",
-                        "type": "UserService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "router",
-                        "type": "Router",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "toastrService",
-                        "type": "ToastrService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 15,
-                "jsdoctags": [
-                    {
-                        "name": "userService",
-                        "type": "UserService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "router",
-                        "type": "Router",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "toastrService",
-                        "type": "ToastrService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
-            "extends": [],
-            "templateData": "<div class=\"view\">\r\n<app-auth-form\r\n  formType=\"register\"\r\n  (formSubmit)=\"handleRegister($event)\"\r\n></app-auth-form>\r\n    <app-loading-spinner  [visible]=\"isRegistering\" ></app-loading-spinner>\r\n</div>"
+            "templateData": "<mat-toolbar color=\"primary\">\r\n  <div class=\"navbar-container\">\r\n    <span class=\"screen\">ScreenPulse</span>\r\n    <mat-icon aria-hidden=\"true\" class=\"icon\">tv</mat-icon>\r\n    <span class=\"spacer\"></span>\r\n\r\n    <ng-container *ngIf=\"userData$ | async as data\">\r\n\r\n      <ng-container *ngIf=\"!data.isLoggedIn; else loggedInBlock\">\r\n        <a routerLink=\"/auth/register\" mat-icon-button class=\"register-container\">\r\n          <div class=\"login-container\">\r\n            <mat-icon fontIcon=\"person_add_alt\"></mat-icon>\r\n            <span class=\"join\">Join us!</span>\r\n          </div>\r\n        </a>\r\n        <a routerLink=\"/auth/login\" mat-icon-button class=\"login-container\">\r\n          <mat-icon fontIcon=\"login\"></mat-icon>\r\n        </a>\r\n      </ng-container>\r\n\r\n\r\n      <ng-template #loggedInBlock>\r\n        <div class=\"loggedin-navbar-container\">\r\n          <span class=\"logged\">\r\n            Welcome <span class=\"user-mail\">{{ data.email }}</span>\r\n          </span>\r\n          <button mat-icon-button (click)=\"logOut()\" class=\"logout-container\">\r\n            <mat-icon fontIcon=\"logout\"></mat-icon>\r\n          </button>\r\n        </div>\r\n      </ng-template>\r\n\r\n\r\n      <div class=\"button-links-container\">\r\n        <a routerLink=\"\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{exact:true}\">Search</a>\r\n        <a routerLink=\"/favorites\" routerLinkActive=\"active\">Favorites</a>\r\n      </div>\r\n\r\n      <button mat-icon-button class=\"toogle-menu-button\" (click)=\"toggleMenu()\">\r\n        <mat-icon>{{ expanded ? 'close' : 'menu' }}</mat-icon>\r\n      </button>\r\n    </ng-container>\r\n  </div>\r\n\r\n\r\n  <div class=\"expanded-menu-container\" *ngIf=\"expanded\">\r\n    <ng-container *ngIf=\"userData$ | async as data\">\r\n      <ng-container *ngIf=\"data.isLoggedIn; else mobileLoggedOut\">\r\n        <div class=\"loggedin-expanded-menu-container\">\r\n          <span class=\"logged\">Welcome, <span class=\"user-mail\">{{ data.email }}</span></span>\r\n          <button mat-icon-button (click)=\"logOut()\" class=\"logout-container\">\r\n            <mat-icon fontIcon=\"logout\"></mat-icon>\r\n          </button>\r\n        </div>\r\n      </ng-container>\r\n\r\n      <mat-list>\r\n        <mat-list-item (click)=\"toggleMenu()\"><a routerLink=\"\">Search</a></mat-list-item>\r\n        <mat-list-item (click)=\"toggleMenu()\"><a routerLink=\"/favorites\">Favorites</a></mat-list-item>\r\n      </mat-list>\r\n\r\n      <ng-template #mobileLoggedOut>\r\n        <mat-list>\r\n          <mat-list-item (click)=\"toggleMenu()\">\r\n            <a routerLink=\"/auth/register\"><mat-icon fontIcon=\"person_add_alt\"></mat-icon></a>\r\n          </mat-list-item>\r\n          <mat-list-item (click)=\"toggleMenu()\">\r\n            <a routerLink=\"/auth/login\"><mat-icon fontIcon=\"login\"></mat-icon></a>\r\n          </mat-list-item>\r\n        </mat-list>\r\n      </ng-template>\r\n    </ng-container>\r\n  </div>\r\n</mat-toolbar>\r\n"
         },
         {
             "name": "SearchBarComponent",
@@ -5308,7 +5232,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "form {\r\n  background-color: #000000;\r\n  width: 100%;\r\n  //max-width: 500px;\r\n  padding-top: 20px;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  border-radius: 10px;\r\n  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, inset 5px 5px 8px 12px rgba(0, 0, 0, 0);\r\n  border: 1px solid white;\r\n  display: flex;        \r\n  flex-direction: column;     \r\n}\r\n\r\n.mat-mdc-form-field.mat-accent {\r\n  --mdc-outlined-text-field-outline-color: var(--custom-amber);\r\n  --mdc-outlined-text-field-focus-outline-color: var(--custom-amber);\r\n  --mdc-outlined-text-field-hover-outline-color: var(--custom-amber);\r\n}\r\n\r\n.mat-mdc-form-field.mat-accent.mat-form-field-invalid {\r\n  --mdc-outlined-text-field-outline-color: var(--custom-error);\r\n}\r\n\r\n.mat-mdc-form-field {\r\n  color: var(--custom-amber);\r\n  padding: 10px;\r\n}\r\n\r\n.mdc-text-field {\r\n  color: var(--custom-amber) !important;\r\n}\r\n\r\nmat-label {\r\n  color: var(--custom-amber) !important;\r\n}\r\n\r\n.mdc-text-field__input {\r\n  color: var(--custom-amber) !important;\r\n}\r\n::ng-deep div.mat-mdc-select-panel {\r\n  background-color: rgb(0, 0, 0) !important;\r\n  border-left: 1px solid var(--custom-amber);\r\n  border-right: 1px solid var(--custom-amber);\r\n  border-bottom: 1px solid var(--custom-amber);\r\n}\r\n\r\n.mat-mdc-option {\r\n  color: white;\r\n}\r\n\r\n::ng-deep .mat-mdc-option:hover {\r\n  background-color: var(--custom-amber) !important;\r\n  color: black !important;\r\n}\r\n\r\n.mat-mdc-select {\r\n  color: var(--custom-amber);\r\n}\r\n\r\n#search-form .mat-mdc-select-arrow {\r\n  color: var(--custom-amber);\r\n}\r\n\r\n#search-form .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {\r\n  color: var(--custom-amber);\r\n}\r\n\r\n.button-container{\r\n  display: flex;\r\n  justify-content: center;\r\n}\r\n\r\nbutton {\r\n  margin: 10px;\r\n  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;\r\n}\r\n.button-container button[disabled] {\r\n  opacity: 1;\r\n  background-color: #683ab76e;\r\n}\r\n.button-icon-disabled{\r\n  color:#202020 !important;\r\n}\r\n.button-icon-enabled{\r\n  color:#ffffff !important;\r\n}\r\n\r\n@media only screen and (max-width: 601px) {\r\n  form {\r\n    width: 100%;\r\n  }\r\n}\r\n\r\n@media only screen and (min-width: 602px) and (max-width: 992px) {\r\n  form {\r\n    width: 70%;\r\n  }\r\n}",
+                    "data": "form {\r\n  background-color: #000000;\r\n  width: 100%;\r\n  padding-top: 20px;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  border-radius: 10px;\r\n  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, inset 5px 5px 8px 12px rgba(0, 0, 0, 0);\r\n  display: flex;        \r\n  flex-direction: column;     \r\n}\r\n\r\n.mat-mdc-form-field.mat-accent {\r\n  --mdc-outlined-text-field-outline-color: var(--custom-amber);\r\n  --mdc-outlined-text-field-focus-outline-color: var(--custom-amber);\r\n  --mdc-outlined-text-field-hover-outline-color: var(--custom-amber);\r\n}\r\n\r\n.mat-mdc-form-field.mat-accent.mat-form-field-invalid {\r\n  --mdc-outlined-text-field-outline-color: var(--custom-error);\r\n}\r\n\r\n.mat-mdc-form-field {\r\n  color: var(--custom-amber);\r\n  padding: 10px;\r\n}\r\n\r\n.mdc-text-field {\r\n  color: var(--custom-amber) !important;\r\n}\r\n\r\nmat-label {\r\n  color: var(--custom-amber) !important;\r\n}\r\n\r\n.mdc-text-field__input {\r\n  color: var(--custom-amber) !important;\r\n}\r\n::ng-deep div.mat-mdc-select-panel {\r\n  background-color: rgb(0, 0, 0) !important;\r\n  border-left: 1px solid var(--custom-amber);\r\n  border-right: 1px solid var(--custom-amber);\r\n  border-bottom: 1px solid var(--custom-amber);\r\n}\r\n\r\n.mat-mdc-option {\r\n  color: white;\r\n}\r\n\r\n::ng-deep .mat-mdc-option:hover {\r\n  background-color: var(--custom-amber) !important;\r\n  color: black !important;\r\n}\r\n\r\n.mat-mdc-select {\r\n  color: var(--custom-amber);\r\n}\r\n\r\n#search-form .mat-mdc-select-arrow {\r\n  color: var(--custom-amber);\r\n}\r\n\r\n#search-form .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {\r\n  color: var(--custom-amber);\r\n}\r\n\r\n.button-container{\r\n  display: flex;\r\n  justify-content: center;\r\n}\r\n\r\nbutton {\r\n  margin: 10px;\r\n  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;\r\n}\r\n.button-container button[disabled] {\r\n  opacity: 1;\r\n  background-color: #683ab76e;\r\n}\r\n.button-icon-disabled{\r\n  color:#202020 !important;\r\n}\r\n.button-icon-enabled{\r\n  color:#ffffff !important;\r\n}\r\n\r\n@media only screen and (max-width: 601px) {\r\n  form {\r\n    width: 100%;\r\n  }\r\n}\r\n\r\n@media only screen and (min-width: 602px) and (max-width: 992px) {\r\n  form {\r\n    width: 70%;\r\n  }\r\n}",
                     "styleUrl": "./search-bar.component.scss"
                 }
             ],
@@ -5344,7 +5268,7 @@
         },
         {
             "name": "SearchComponent",
-            "id": "component-SearchComponent-67bcea0883619448df55f0a239413dad8a9180ea84d69269de1949eda1fed998be4243f6a20007dbed7c0fcaafd8575bdff428c7c06d40bffd2ab035d33c1b42",
+            "id": "component-SearchComponent-50dd7e2acefa94dbe3d5f566e76ae11b73b645f6335af59fe28d3ad48b5ee09a70847db123baceed60148f7bbf98aa8fbb51975cfbd31917c64a06cb94848049",
             "file": "src/app/pages/search/page/search.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -5587,7 +5511,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ToastrService } from 'ngx-toastr';\r\nimport { OmdbService } from 'src/app/shared/services/omdb/omdb.service';\r\nimport { Component, ViewChild } from '@angular/core';\r\nimport { MediaItem } from 'src/app/shared/models/movie.model';\r\nimport { SearchState, SearchFilters } from 'src/app/shared/models/search.model';\r\nimport { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { Router } from '@angular/router';\r\nimport { DialogService } from 'src/app/shared/services/dialog/dialog.service';\r\nimport { FEATURED_MEDIA } from 'src/app/core/constants/featured-media.const';\r\nimport { EMPTY, finalize, switchMap, take } from 'rxjs';\r\nimport { SearchBarComponent } from '../components/search-bar/search-bar.component';\r\n\r\n\r\n@Component({\r\n  selector: 'app-search',\r\n  templateUrl: './search.component.html',\r\n  styleUrls: ['./search.component.scss']\r\n})\r\n\r\n\r\nexport class SearchComponent {\r\n  featuredMedia: MediaItem[] = FEATURED_MEDIA;\r\n  displayedColumns: string[] = ['title', 'year', 'type', 'poster', 'Add'];\r\n  searchState: SearchState = {\r\n    title: '',\r\n    type: 'all',\r\n    year: '',\r\n    currentPage: 1,\r\n    pageSize: 10,\r\n    collection: [],\r\n    collectionSize: 0,\r\n    searchOnProcess: false,\r\n  };\r\n  loadingCard = false;\r\n\r\n  @ViewChild(SearchBarComponent) SearchComponent!: SearchBarComponent | null;\r\n\r\n  constructor(\r\n    private omdbService: OmdbService,\r\n    private toastrService: ToastrService,\r\n    private favoritesService: FavoritesService,\r\n    private authService: AuthService,\r\n    private router: Router,\r\n    private dialogService: DialogService\r\n  ) { }\r\n\r\n\r\n  onSubmit(filters: SearchFilters): void {\r\n    this.searchState = {\r\n      ...this.searchState,\r\n      ...filters,\r\n      currentPage: 1,\r\n      searchOnProcess: true\r\n    };\r\n    this.fetchMediaItems();\r\n  }\r\n\r\n  loadPage(page: number): void {\r\n    this.searchState.currentPage = page;\r\n    this.fetchMediaItems();\r\n  }\r\n\r\naddToFavorites(mediaItem: MediaItem) {\r\n  this.authService.isLoggedInObservable().pipe(\r\n    take(1),\r\n    switchMap(loggedIn => {\r\n      if (!loggedIn) {\r\n        this.toastrService.error('You must be logged in to add movies to your list', 'Error');\r\n        this.router.navigate(['/login']);\r\n        return EMPTY; \r\n      }\r\n      return this.favoritesService.addToFavorites(mediaItem);\r\n    })\r\n  ).subscribe({\r\n    next: () => this.toastrService.success(mediaItem.title, 'Added to favorites'),\r\n    error: (error) => this.toastrService.warning(error.message)\r\n  });\r\n}\r\n\r\n\r\n  openMediaItem(mediaItem: MediaItem): void {\r\n    this.loadingCard = true;\r\n    this.dialogService\r\n      .openMediaItem(window.innerWidth, mediaItem, false)\r\n      .pipe(finalize(() => (this.loadingCard = false)))\r\n      .subscribe();\r\n  }\r\n\r\n  formSearchFocus(): void {\r\n    setTimeout(() => {\r\n      this.SearchComponent?.searchFormFocus?.nativeElement.focus();\r\n    });\r\n  }\r\n\r\n\r\n  private fetchMediaItems(): void {\r\n    this.omdbService.fetchMediaItems(\r\n      this.searchState.title,\r\n      this.searchState.type,\r\n      this.searchState.year,\r\n      this.searchState.currentPage)\r\n      .subscribe({\r\n        next: (response) => {\r\n          if (response.Response === \"True\") {\r\n            this.searchState.collection = response.Search || [];\r\n            this.searchState.collectionSize = Number(response.totalResults) || 0;\r\n            this.focusOnResultsTable()\r\n          } else {\r\n            this.toastrService.warning(response.Error, 'Try again!');\r\n            this.searchState.collection = [];\r\n          }\r\n          this.searchState.searchOnProcess = false;\r\n        },\r\n        error: (error) => {\r\n          this.toastrService.error(error.message);\r\n          this.searchState.searchOnProcess = false;\r\n        }\r\n      })\r\n  }\r\n\r\n  private focusOnResultsTable(): void {\r\n    setTimeout(() => {\r\n      document.getElementById('tableFocus')?.focus();\r\n    });\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ToastrService } from 'ngx-toastr';\r\nimport { OmdbService } from 'src/app/shared/services/omdb/omdb.service';\r\nimport { Component, ViewChild } from '@angular/core';\r\nimport { MediaItem } from 'src/app/shared/models/movie.model';\r\nimport { SearchState, SearchFilters } from 'src/app/shared/models/search.model';\r\nimport { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { Router } from '@angular/router';\r\nimport { DialogService } from 'src/app/shared/services/dialog/dialog.service';\r\nimport { FEATURED_MEDIA } from 'src/app/core/constants/featured-media.const';\r\nimport { EMPTY, finalize, switchMap, take } from 'rxjs';\r\nimport { SearchBarComponent } from '../components/search-bar/search-bar.component';\r\n\r\n\r\n@Component({\r\n  selector: 'app-search',\r\n  templateUrl: './search.component.html',\r\n  styleUrls: ['./search.component.scss']\r\n})\r\n\r\n\r\nexport class SearchComponent {\r\n  featuredMedia: MediaItem[] = FEATURED_MEDIA;\r\n  displayedColumns: string[] = ['title', 'year', 'type', 'poster', 'Add'];\r\n  searchState: SearchState = {\r\n    title: '',\r\n    type: 'all',\r\n    year: '',\r\n    currentPage: 1,\r\n    pageSize: 10,\r\n    collection: [],\r\n    collectionSize: 0,\r\n    searchOnProcess: false,\r\n  };\r\n  loadingCard = false;\r\n\r\n  @ViewChild(SearchBarComponent) SearchComponent!: SearchBarComponent | null;\r\n\r\n  constructor(\r\n    private omdbService: OmdbService,\r\n    private toastrService: ToastrService,\r\n    private favoritesService: FavoritesService,\r\n    private authService: AuthService,\r\n    private router: Router,\r\n    private dialogService: DialogService\r\n  ) { }\r\n\r\n\r\n  onSubmit(filters: SearchFilters): void {\r\n    this.searchState = {\r\n      ...this.searchState,\r\n      ...filters,\r\n      currentPage: 1,\r\n      searchOnProcess: true\r\n    };\r\n    this.fetchMediaItems();\r\n  }\r\n\r\n  loadPage(page: number): void {\r\n    this.searchState.currentPage = page;\r\n    this.fetchMediaItems();\r\n  }\r\n\r\naddToFavorites(mediaItem: MediaItem) {\r\n  this.authService.isLoggedInObservable().pipe(\r\n    take(1),\r\n    switchMap(loggedIn => {\r\n      if (!loggedIn) {\r\n        this.toastrService.warning('You must be logged in to add movies to your list', 'Error');\r\n        this.router.navigate(['/auth/login']);\r\n        return EMPTY; \r\n      }\r\n      return this.favoritesService.addToFavorites(mediaItem);\r\n    })\r\n  ).subscribe({\r\n    next: () => this.toastrService.success(mediaItem.title, 'Added to favorites'),\r\n    error: (error) => this.toastrService.warning(error.message)\r\n  });\r\n}\r\n\r\n\r\n  openMediaItem(mediaItem: MediaItem): void {\r\n    this.loadingCard = true;\r\n    this.dialogService\r\n      .openMediaItem(window.innerWidth, mediaItem, false)\r\n      .pipe(finalize(() => (this.loadingCard = false)))\r\n      .subscribe();\r\n  }\r\n\r\n  formSearchFocus(): void {\r\n    setTimeout(() => {\r\n      this.SearchComponent?.searchFormFocus?.nativeElement.focus();\r\n    });\r\n  }\r\n\r\n\r\n  private fetchMediaItems(): void {\r\n    this.omdbService.fetchMediaItems(\r\n      this.searchState.title,\r\n      this.searchState.type,\r\n      this.searchState.year,\r\n      this.searchState.currentPage)\r\n      .subscribe({\r\n        next: (response) => {\r\n          if (response.Response === \"True\") {\r\n            this.searchState.collection = response.Search || [];\r\n            this.searchState.collectionSize = Number(response.totalResults) || 0;\r\n            this.focusOnResultsTable()\r\n          } else {\r\n            this.toastrService.warning(response.Error, 'Try again!');\r\n            this.searchState.collection = [];\r\n          }\r\n          this.searchState.searchOnProcess = false;\r\n        },\r\n        error: (error) => {\r\n          this.toastrService.error(error.message);\r\n          this.searchState.searchOnProcess = false;\r\n        }\r\n      })\r\n  }\r\n\r\n  private focusOnResultsTable(): void {\r\n    setTimeout(() => {\r\n      document.getElementById('tableFocus')?.focus();\r\n    });\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -6162,13 +6086,96 @@
         },
         {
             "name": "AppRoutingModule",
-            "id": "module-AppRoutingModule-ee5961d10a4ea8932f0245d8cf5fd224513828a91fc49ccb913179edd714c6251ade33eba339191347d5f7a6c017c60bbdb465b3e24c8173ca4e29643286a853",
+            "id": "module-AppRoutingModule-d3c963308181d41dff45355120756637e0898a8d57ad14d2a7a42f6c4eb5946dc2905d22724be934004dffaf66666c8a6340b396b1741e718963859ce42b8de3",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app-routing.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\n\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { AuthGuard } from './core/guards/auth.guard';\r\n\r\n\r\nconst routes: Routes = [\r\n  { path: '', loadChildren: () => \"import('./pages/search/search.module').then(m => m.SearchModule)\" }, \r\n  { path: 'favorites',canActivate: [AuthGuard], loadChildren: () => \"import('./pages/favorites/favorites.module').then(m => m.FavoritesModule)\" },\r\n  { path: 'login', loadChildren: () => \"import('./pages/login/login.module').then(m => m.LoginModule)\" },\r\n  { path: 'register', loadChildren: () => \"import('./pages/register/register.module').then(m => m.RegisterModule)\" },\r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class AppRoutingModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { AuthGuard } from './core/guards/auth.guard';\r\n\r\nconst routes: Routes = [\r\n  { \r\n    path: '', \r\n    loadChildren: () => \"import('./pages/search/search.module').then(m => m.SearchModule)\" \r\n  },\r\n  \r\n  { \r\n    path: 'favorites',\r\n    canActivate: [AuthGuard], \r\n    loadChildren: () => \"import('./pages/favorites/favorites.module').then(m => m.FavoritesModule)\" \r\n  },\r\n  \r\n  { \r\n    path: 'auth', \r\n    loadChildren: () => \"import('./pages/auth/auth.module').then(m => m.AuthModule)\" \r\n  },\r\n  \r\n  { \r\n    path: '**', \r\n    redirectTo: '' \r\n  }\r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class AppRoutingModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AuthModule",
+            "id": "module-AuthModule-146f513db24ebcf098c4ee2da076fb6384907a44aa4ec84cbc75d72c618bab4906e428d5e88b6ee960d241478cde4c2e5bd7fac86b153c003c5a22099f789d12",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/pages/auth/auth.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { AuthRoutingModule } from './auth-routing.module';\nimport { SharedModule } from 'src/app/shared/shared.module';\nimport { FormsModule } from '@angular/forms';\nimport { AuthPageComponent } from './page/auth-page.component';\n\n\n\n\n\n@NgModule({\n  declarations: [\n    AuthPageComponent\n  ],\n  imports: [\n    CommonModule,\n    AuthRoutingModule,\n    SharedModule,\n    FormsModule\n        \n  ]\n})\nexport class AuthModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AuthPageComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AuthRoutingModule"
+                        },
+                        {
+                            "name": "SharedModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AuthRoutingModule",
+            "id": "module-AuthRoutingModule-68e1e53f0bff36f56b3cf726acf835a4ae7585ff906922912163afef2d19bf07fb4766c895d1a28adccb371fd929b49cf53c68ffe2a2e7d7507185da5a77caa5",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/pages/auth/auth-routing.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { AuthPageComponent } from './page/auth-page.component';\r\n\r\nconst routes: Routes = [\r\n  {\r\n    path: 'login',\r\n    component: AuthPageComponent,\r\n    data: { formType: 'login' }\r\n  },\r\n  {\r\n    path: 'register',\r\n    component: AuthPageComponent,\r\n    data: { formType: 'register' }\r\n  },\r\n  {\r\n    path: '',\r\n    redirectTo: 'login',\r\n    pathMatch: 'full'\r\n  }\r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forChild(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class AuthRoutingModule { }",
             "children": [
                 {
                     "type": "providers",
@@ -6354,172 +6361,6 @@
                             "name": "NavbarComponent"
                         }
                     ]
-                },
-                {
-                    "type": "bootstrap",
-                    "elements": []
-                },
-                {
-                    "type": "classes",
-                    "elements": []
-                }
-            ]
-        },
-        {
-            "name": "LoginModule",
-            "id": "module-LoginModule-45017866a5427b714db6561d7df08ebff8b9358834ab166acc9a9f846eb6848486ee3c9702048361987825b0d74a1397c7bdb74ef174831115c68bf7bd343f03",
-            "description": "",
-            "deprecationMessage": "",
-            "deprecated": false,
-            "file": "src/app/pages/login/login.module.ts",
-            "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\nimport { LoginRoutingModule } from './login-routing.module';\r\nimport { SharedModule } from 'src/app/shared/shared.module';\r\nimport { LoginComponent } from './page/login.component';\r\nimport { FormsModule } from '@angular/forms';\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n    LoginComponent\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    LoginRoutingModule,\r\n    SharedModule,\r\n    FormsModule\r\n    \r\n    \r\n  ]\r\n})\r\nexport class LoginModule { }\r\n",
-            "children": [
-                {
-                    "type": "providers",
-                    "elements": []
-                },
-                {
-                    "type": "declarations",
-                    "elements": [
-                        {
-                            "name": "LoginComponent"
-                        }
-                    ]
-                },
-                {
-                    "type": "imports",
-                    "elements": [
-                        {
-                            "name": "LoginRoutingModule"
-                        },
-                        {
-                            "name": "SharedModule"
-                        }
-                    ]
-                },
-                {
-                    "type": "exports",
-                    "elements": []
-                },
-                {
-                    "type": "bootstrap",
-                    "elements": []
-                },
-                {
-                    "type": "classes",
-                    "elements": []
-                }
-            ]
-        },
-        {
-            "name": "LoginRoutingModule",
-            "id": "module-LoginRoutingModule-2f6322da0ee484fe5f2b6111dd6a0a198292df27c797dbe7620e8a5bfff3ef932a1a0c536cf5e48139e8fa52a3d04378bf0fd1a33ca2e2d8e06dd5e80968cd0e",
-            "description": "",
-            "deprecationMessage": "",
-            "deprecated": false,
-            "file": "src/app/pages/login/login-routing.module.ts",
-            "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { LoginComponent } from './page/login.component';\r\n\r\nconst routes: Routes = [{\r\n  path: '', component: LoginComponent\r\n}];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forChild(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class LoginRoutingModule { }\r\n",
-            "children": [
-                {
-                    "type": "providers",
-                    "elements": []
-                },
-                {
-                    "type": "declarations",
-                    "elements": []
-                },
-                {
-                    "type": "imports",
-                    "elements": []
-                },
-                {
-                    "type": "exports",
-                    "elements": []
-                },
-                {
-                    "type": "bootstrap",
-                    "elements": []
-                },
-                {
-                    "type": "classes",
-                    "elements": []
-                }
-            ]
-        },
-        {
-            "name": "RegisterModule",
-            "id": "module-RegisterModule-93b6951315a79cf5c2d2732428a746f1d539c5e4b6dd6affe64dc80a6b3af088ea047d5726affb594b0da469da867dd70e016b04c0b1a49d7bfd844dc95bf9e3",
-            "description": "",
-            "deprecationMessage": "",
-            "deprecated": false,
-            "file": "src/app/pages/register/register.module.ts",
-            "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\nimport { RegisterRoutingModule } from './register-routing.module';\r\nimport { RegisterComponent } from './page/register.component';\r\nimport { SharedModule } from 'src/app/shared/shared.module';\r\n\r\n\r\n@NgModule({\r\n  declarations: [RegisterComponent],\r\n  imports: [\r\n    CommonModule,\r\n    RegisterRoutingModule,\r\n    SharedModule\r\n  ]\r\n})\r\nexport class RegisterModule { }\r\n",
-            "children": [
-                {
-                    "type": "providers",
-                    "elements": []
-                },
-                {
-                    "type": "declarations",
-                    "elements": [
-                        {
-                            "name": "RegisterComponent"
-                        }
-                    ]
-                },
-                {
-                    "type": "imports",
-                    "elements": [
-                        {
-                            "name": "RegisterRoutingModule"
-                        },
-                        {
-                            "name": "SharedModule"
-                        }
-                    ]
-                },
-                {
-                    "type": "exports",
-                    "elements": []
-                },
-                {
-                    "type": "bootstrap",
-                    "elements": []
-                },
-                {
-                    "type": "classes",
-                    "elements": []
-                }
-            ]
-        },
-        {
-            "name": "RegisterRoutingModule",
-            "id": "module-RegisterRoutingModule-959cd7a6d37561ee64660be402060b98a0685071beb8b30397db69d05bcbfb323d441a169505189eb3729db394b4a2df3a3e55c0af5c53dc74e5dc36aa34a6a1",
-            "description": "",
-            "deprecationMessage": "",
-            "deprecated": false,
-            "file": "src/app/pages/register/register-routing.module.ts",
-            "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { RegisterComponent } from './page/register.component';\r\n\r\nconst routes: Routes = [{ path: '', component: RegisterComponent}];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forChild(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class RegisterRoutingModule { }\r\n",
-            "children": [
-                {
-                    "type": "providers",
-                    "elements": []
-                },
-                {
-                    "type": "declarations",
-                    "elements": []
-                },
-                {
-                    "type": "imports",
-                    "elements": []
-                },
-                {
-                    "type": "exports",
-                    "elements": []
                 },
                 {
                     "type": "bootstrap",
@@ -6897,7 +6738,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<AuthFormComponent>",
-                "defaultValue": "{\r\n  title: 'Shared/AuthForm',\r\n  component: AuthFormComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        RouterTestingModule\r\n      ],\r\n      declarations: [AuthFormComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#000000d5' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['formSubmit'], \r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n  Reusable authentication form component supporting login and registration flows\r\n  \r\n  ## Features\r\n  \r\n  - 📋 Two form modes: login and register\r\n  - ✅ Reactive form validation with email and password patterns\r\n  - 🔐 Password visibility toggle\r\n  - 👤 Dynamic name field for registration\r\n  - 📱 Responsive Material Design layout\r\n  \r\n  ## Key Capabilities\r\n  \r\n  The component provides a simple authentication interface:\r\n  - **Two form modes** controlled by single formType input\r\n  - **Real-time validation** with email and password requirements\r\n  - **Accessible controls** with ARIA labels\r\n  - **Automatic configuration** based on form type\r\n  - **Type-safe form handling**\r\n\r\n## Usage Example\r\n\r\n### Login Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Registration Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"register\"\r\n  (formSubmit)=\"handleRegister($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class AuthPageComponent {\r\n  handleLogin(user: User): void {\r\n    this.authService.login(user).subscribe(\r\n      (response) => this.router.navigate(['/dashboard']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  handleRegister(user: User): void {\r\n    this.authService.register(user).subscribe(\r\n      (response) => this.router.navigate(['/email-verification']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Message |\r\n|-------|-------|---------------|\r\n| **Email** | Required, valid email format | \"Email is required\" or \"Incorrect email format\" |\r\n| **Password** | Required, min 6 chars, letters + numbers + special chars | \"Password is required\" or \"Min 6 char incl. letters, numbers and special characters\" |\r\n| **Name** | Required (register only) | \"Name is required\" |\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`formSubmit\\` | \\`User\\` | Emitted when form is submitted with valid values |\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields and buttons\r\n- ✅ Keyboard accessible password visibility toggle\r\n- ✅ Proper label associations with form inputs\r\n- ✅ Error messages linked to form fields\r\n- ✅ Focus management and visual indicators\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: 'radio',\r\n      options: ['login', 'register'],\r\n      description: 'Type of authentication form to display',\r\n    },\r\n    formSubmit: {\r\n      action: 'formSubmit',\r\n    },\r\n  },\r\n}"
+                "defaultValue": "{\r\n  title: 'Shared/AuthForm',\r\n  component: AuthFormComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        RouterTestingModule\r\n      ],\r\n      declarations: [AuthFormComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#000000d5' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['formSubmit', 'formType', 'disabled'], \r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n  Reusable authentication form component supporting login and registration flows\r\n  \r\n  ## Features\r\n  \r\n  - 📋 Two form modes: login and register\r\n  - ✅ Reactive form validation with email and password patterns\r\n  - 🔐 Password visibility toggle\r\n  - 👤 Dynamic name field for registration\r\n  - 📱 Responsive Material Design layout\r\n  \r\n  ## Key Capabilities\r\n  \r\n  The component provides a simple authentication interface:\r\n  - **Two form modes** controlled by single formType input\r\n  - **Real-time validation** with email and password requirements\r\n  - **Accessible controls** with ARIA labels\r\n  - **Automatic configuration** based on form type\r\n  - **Type-safe form handling**\r\n\r\n## Usage Example\r\n\r\n### Login Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Registration Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"register\"\r\n  (formSubmit)=\"handleRegister($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class AuthPageComponent {\r\n  handleLogin(user: User): void {\r\n    this.authService.login(user).subscribe(\r\n      (response) => this.router.navigate(['/dashboard']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  handleRegister(user: User): void {\r\n    this.authService.register(user).subscribe(\r\n      (response) => this.router.navigate(['/email-verification']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Message |\r\n|-------|-------|---------------|\r\n| **Email** | Required, valid email format | \"Email is required\" or \"Incorrect email format\" |\r\n| **Password** | Required, min 6 chars, letters + numbers + special chars | \"Password is required\" or \"Min 6 char incl. letters, numbers and special characters\" |\r\n| **Name** | Required (register only) | \"Name is required\" |\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`formSubmit\\` | \\`User\\` | Emitted when form is submitted with valid values |\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields and buttons\r\n- ✅ Keyboard accessible password visibility toggle\r\n- ✅ Proper label associations with form inputs\r\n- ✅ Error messages linked to form fields\r\n- ✅ Focus management and visual indicators\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: 'radio',\r\n      options: ['login', 'register'],\r\n      description: 'Type of authentication form to display',\r\n    },\r\n    formSubmit: {\r\n      action: 'formSubmit',\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "meta",
@@ -6947,7 +6788,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<SearchBarComponent>",
-                "defaultValue": "{\r\n  title: 'Pages/Search/Components/SearchBar',\r\n  component: SearchBarComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        MatSelectModule,\r\n        BrowserAnimationsModule\r\n      ],\r\n      declarations: [SearchBarComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#1a1a1a' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['searchSubmitted'],\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nSearch bar component for filtering movies, series, and games.\r\n\r\n## Features\r\n\r\n- 🔍 Search by title, type, and year\r\n- ✅ Reactive form validation with pattern matching\r\n- 📱 Responsive Material Design layout\r\n- 🎯 Multiple validation error messages\r\n- 🧹 Clear form functionality\r\n- 📍 External focus control via public method\r\n\r\n## Key Capabilities\r\n\r\nThe component provides a comprehensive search interface:\r\n- **Title validation** prevents leading spaces and empty inputs\r\n- **Year range validation** limits input between 1900 and current year\r\n- **Type filtering** supports movies, series, games, or all\r\n- **Flexible API** with public focusSearchInput() method\r\n- **Type-safe form handling** with SearchFormValue interface\r\n\r\n## Usage Example\r\n\r\n### Basic Implementation\r\n\r\n\\`\\`\\`html\r\n<app-search-bar\r\n  (searchSubmitted)=\"handleSearch($event)\">\r\n</app-search-bar>\r\n\\`\\`\\`\r\n\r\n### With External Focus Control\r\n\r\n\\`\\`\\`html\r\n<app-search-bar\r\n  #searchBar\r\n  (searchSubmitted)=\"handleSearch($event)\">\r\n</app-search-bar>\r\n\r\n<button (click)=\"searchBar.focusSearchInput()\">\r\n  Go to search\r\n</button>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class SearchComponent {\r\n  @ViewChild(SearchBarComponent) searchBar!: SearchBarComponent;\r\n\r\n  handleSearch(filters: SearchFilters): void {\r\n    this.searchService.searchMedia(filters).subscribe(\r\n      (results) => this.displayResults(results),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  scrollToSearch(): void {\r\n    this.searchBar.focusSearchInput();\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Messages |\r\n|-------|-------|----------------|\r\n| **Title** | Required, no leading spaces | \"Required field\" or \"Title cannot start with spaces or be only spaces\" |\r\n| **Type** | One of: movie, series, game, all | N/A (select dropdown) |\r\n| **Year** | Optional, min 1900, max current year | \"Must be between 1900-{currentYear}\" |\r\n\r\n## SearchFilters Interface\r\n\r\n\\`\\`\\`typescript\r\ninterface SearchFilters {\r\n  title: string;\r\n  type: MediaType; // 'movie' | 'series' | 'game' | 'all'\r\n  year: string; // Empty string if not provided\r\n}\r\n\\`\\`\\`\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`searchSubmitted\\` | \\`SearchFilters\\` | Emitted when form is submitted with valid values |\r\n\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields\r\n- ✅ Clear error messages for each validation rule\r\n- ✅ Keyboard accessible controls\r\n- ✅ Proper label associations with inputs\r\n- ✅ Smooth scroll behavior for focus control\r\n- ✅ Visual feedback for invalid states\r\n\r\n## Component Architecture\r\n\r\nThis component is designed to work within a responsive layout:\r\n\r\n- **Desktop (>992px)**: Takes ~1/3 of width (flex: 1), alongside gallery (flex: 2)\r\n- **Tablet (602px-992px)**: Vertical stack (column), below gallery\r\n- **Mobile (<602px)**: Vertical stack, 100% width with padding\r\n        `,\r\n      },\r\n    },\r\n  },\r\nargTypes: {\r\n    // ✅ SOLO mostrar searchSubmitted\r\n    searchSubmitted: {\r\n      action: 'searchSubmitted',\r\n      description: 'Emitted when search form is submitted with valid filters',\r\n    },\r\n    // ❌ Excluir todo lo demás\r\n    searchForm: {\r\n      table: { disable: true }\r\n    },\r\n    types: {\r\n      table: { disable: true }\r\n    },\r\n    currentYear: {\r\n      table: { disable: true }\r\n    },\r\n    searchFormFocus: {\r\n      table: { disable: true }\r\n    },\r\n    handleSubmit: {\r\n      table: { disable: true }\r\n    },\r\n    handleClear: {\r\n      table: { disable: true }\r\n    },\r\n  },\r\n}"
+                "defaultValue": "{\r\n  title: 'Pages/Search/Components/SearchBar',\r\n  component: SearchBarComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        MatSelectModule,\r\n        BrowserAnimationsModule\r\n      ],\r\n      declarations: [SearchBarComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#1a1a1a' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['searchSubmitted'],\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nSearch bar component for filtering movies, series, and games.\r\n\r\n## Features\r\n\r\n- 🔍 Search by title, type, and year\r\n- ✅ Reactive form validation with pattern matching\r\n- 📱 Responsive Material Design layout\r\n- 🎯 Multiple validation error messages\r\n- 🧹 Clear form functionality\r\n- 📍 External focus control via public method\r\n\r\n## Key Capabilities\r\n\r\nThe component provides a comprehensive search interface:\r\n- **Title validation** prevents leading spaces and empty inputs\r\n- **Year range validation** limits input between 1900 and current year\r\n- **Type filtering** supports movies, series, games, or all\r\n- **Flexible API** with public focusSearchInput() method\r\n- **Type-safe form handling** with SearchFormValue interface\r\n\r\n## Usage Example\r\n\r\n### Basic Implementation\r\n\r\n\\`\\`\\`html\r\n<app-search-bar\r\n  (searchSubmitted)=\"handleSearch($event)\">\r\n</app-search-bar>\r\n\\`\\`\\`\r\n\r\n### With External Focus Control\r\n\r\n\\`\\`\\`html\r\n<app-search-bar\r\n  #searchBar\r\n  (searchSubmitted)=\"handleSearch($event)\">\r\n</app-search-bar>\r\n\r\n<button (click)=\"searchBar.focusSearchInput()\">\r\n  Go to search\r\n</button>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class SearchComponent {\r\n  @ViewChild(SearchBarComponent) searchBar!: SearchBarComponent;\r\n\r\n  handleSearch(filters: SearchFilters): void {\r\n    this.searchService.searchMedia(filters).subscribe(\r\n      (results) => this.displayResults(results),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  scrollToSearch(): void {\r\n    this.searchBar.focusSearchInput();\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Messages |\r\n|-------|-------|----------------|\r\n| **Title** | Required, no leading spaces | \"Required field\" or \"Title cannot start with spaces or be only spaces\" |\r\n| **Type** | One of: movie, series, game, all | N/A (select dropdown) |\r\n| **Year** | Optional, min 1900, max current year | \"Must be between 1900-{currentYear}\" |\r\n\r\n## SearchFilters Interface\r\n\r\n\\`\\`\\`typescript\r\ninterface SearchFilters {\r\n  title: string;\r\n  type: MediaType; // 'movie' | 'series' | 'game' | 'all'\r\n  year: string; // Empty string if not provided\r\n}\r\n\\`\\`\\`\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`searchSubmitted\\` | \\`SearchFilters\\` | Emitted when form is submitted with valid values |\r\n\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields\r\n- ✅ Clear error messages for each validation rule\r\n- ✅ Keyboard accessible controls\r\n- ✅ Proper label associations with inputs\r\n- ✅ Smooth scroll behavior for focus control\r\n- ✅ Visual feedback for invalid states\r\n\r\n## Component Architecture\r\n\r\nThis component is designed to work within a responsive layout:\r\n\r\n- **Desktop (>992px)**: Takes ~1/3 of width (flex: 1), alongside gallery (flex: 2)\r\n- **Tablet (602px-992px)**: Vertical stack (column), below gallery\r\n- **Mobile (<602px)**: Vertical stack, 100% width with padding\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    // ✅ SOLO mostrar searchSubmitted\r\n    searchSubmitted: {\r\n      action: 'searchSubmitted',\r\n      description: 'Emitted when search form is submitted with valid filters',\r\n    },\r\n    // ❌ Excluir todo lo demás\r\n    searchForm: {\r\n      table: { disable: true }\r\n    },\r\n    types: {\r\n      table: { disable: true }\r\n    },\r\n    currentYear: {\r\n      table: { disable: true }\r\n    },\r\n    searchFormFocus: {\r\n      table: { disable: true }\r\n    },\r\n    handleSubmit: {\r\n      table: { disable: true }\r\n    },\r\n    handleClear: {\r\n      table: { disable: true }\r\n    }\r\n  },\r\n}"
             },
             {
                 "name": "meta",
@@ -7338,7 +7179,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<SearchBarComponent>",
-                    "defaultValue": "{\r\n  title: 'Pages/Search/Components/SearchBar',\r\n  component: SearchBarComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        MatSelectModule,\r\n        BrowserAnimationsModule\r\n      ],\r\n      declarations: [SearchBarComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#1a1a1a' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['searchSubmitted'],\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nSearch bar component for filtering movies, series, and games.\r\n\r\n## Features\r\n\r\n- 🔍 Search by title, type, and year\r\n- ✅ Reactive form validation with pattern matching\r\n- 📱 Responsive Material Design layout\r\n- 🎯 Multiple validation error messages\r\n- 🧹 Clear form functionality\r\n- 📍 External focus control via public method\r\n\r\n## Key Capabilities\r\n\r\nThe component provides a comprehensive search interface:\r\n- **Title validation** prevents leading spaces and empty inputs\r\n- **Year range validation** limits input between 1900 and current year\r\n- **Type filtering** supports movies, series, games, or all\r\n- **Flexible API** with public focusSearchInput() method\r\n- **Type-safe form handling** with SearchFormValue interface\r\n\r\n## Usage Example\r\n\r\n### Basic Implementation\r\n\r\n\\`\\`\\`html\r\n<app-search-bar\r\n  (searchSubmitted)=\"handleSearch($event)\">\r\n</app-search-bar>\r\n\\`\\`\\`\r\n\r\n### With External Focus Control\r\n\r\n\\`\\`\\`html\r\n<app-search-bar\r\n  #searchBar\r\n  (searchSubmitted)=\"handleSearch($event)\">\r\n</app-search-bar>\r\n\r\n<button (click)=\"searchBar.focusSearchInput()\">\r\n  Go to search\r\n</button>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class SearchComponent {\r\n  @ViewChild(SearchBarComponent) searchBar!: SearchBarComponent;\r\n\r\n  handleSearch(filters: SearchFilters): void {\r\n    this.searchService.searchMedia(filters).subscribe(\r\n      (results) => this.displayResults(results),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  scrollToSearch(): void {\r\n    this.searchBar.focusSearchInput();\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Messages |\r\n|-------|-------|----------------|\r\n| **Title** | Required, no leading spaces | \"Required field\" or \"Title cannot start with spaces or be only spaces\" |\r\n| **Type** | One of: movie, series, game, all | N/A (select dropdown) |\r\n| **Year** | Optional, min 1900, max current year | \"Must be between 1900-{currentYear}\" |\r\n\r\n## SearchFilters Interface\r\n\r\n\\`\\`\\`typescript\r\ninterface SearchFilters {\r\n  title: string;\r\n  type: MediaType; // 'movie' | 'series' | 'game' | 'all'\r\n  year: string; // Empty string if not provided\r\n}\r\n\\`\\`\\`\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`searchSubmitted\\` | \\`SearchFilters\\` | Emitted when form is submitted with valid values |\r\n\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields\r\n- ✅ Clear error messages for each validation rule\r\n- ✅ Keyboard accessible controls\r\n- ✅ Proper label associations with inputs\r\n- ✅ Smooth scroll behavior for focus control\r\n- ✅ Visual feedback for invalid states\r\n\r\n## Component Architecture\r\n\r\nThis component is designed to work within a responsive layout:\r\n\r\n- **Desktop (>992px)**: Takes ~1/3 of width (flex: 1), alongside gallery (flex: 2)\r\n- **Tablet (602px-992px)**: Vertical stack (column), below gallery\r\n- **Mobile (<602px)**: Vertical stack, 100% width with padding\r\n        `,\r\n      },\r\n    },\r\n  },\r\nargTypes: {\r\n    // ✅ SOLO mostrar searchSubmitted\r\n    searchSubmitted: {\r\n      action: 'searchSubmitted',\r\n      description: 'Emitted when search form is submitted with valid filters',\r\n    },\r\n    // ❌ Excluir todo lo demás\r\n    searchForm: {\r\n      table: { disable: true }\r\n    },\r\n    types: {\r\n      table: { disable: true }\r\n    },\r\n    currentYear: {\r\n      table: { disable: true }\r\n    },\r\n    searchFormFocus: {\r\n      table: { disable: true }\r\n    },\r\n    handleSubmit: {\r\n      table: { disable: true }\r\n    },\r\n    handleClear: {\r\n      table: { disable: true }\r\n    },\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  title: 'Pages/Search/Components/SearchBar',\r\n  component: SearchBarComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        MatSelectModule,\r\n        BrowserAnimationsModule\r\n      ],\r\n      declarations: [SearchBarComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#1a1a1a' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['searchSubmitted'],\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nSearch bar component for filtering movies, series, and games.\r\n\r\n## Features\r\n\r\n- 🔍 Search by title, type, and year\r\n- ✅ Reactive form validation with pattern matching\r\n- 📱 Responsive Material Design layout\r\n- 🎯 Multiple validation error messages\r\n- 🧹 Clear form functionality\r\n- 📍 External focus control via public method\r\n\r\n## Key Capabilities\r\n\r\nThe component provides a comprehensive search interface:\r\n- **Title validation** prevents leading spaces and empty inputs\r\n- **Year range validation** limits input between 1900 and current year\r\n- **Type filtering** supports movies, series, games, or all\r\n- **Flexible API** with public focusSearchInput() method\r\n- **Type-safe form handling** with SearchFormValue interface\r\n\r\n## Usage Example\r\n\r\n### Basic Implementation\r\n\r\n\\`\\`\\`html\r\n<app-search-bar\r\n  (searchSubmitted)=\"handleSearch($event)\">\r\n</app-search-bar>\r\n\\`\\`\\`\r\n\r\n### With External Focus Control\r\n\r\n\\`\\`\\`html\r\n<app-search-bar\r\n  #searchBar\r\n  (searchSubmitted)=\"handleSearch($event)\">\r\n</app-search-bar>\r\n\r\n<button (click)=\"searchBar.focusSearchInput()\">\r\n  Go to search\r\n</button>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class SearchComponent {\r\n  @ViewChild(SearchBarComponent) searchBar!: SearchBarComponent;\r\n\r\n  handleSearch(filters: SearchFilters): void {\r\n    this.searchService.searchMedia(filters).subscribe(\r\n      (results) => this.displayResults(results),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  scrollToSearch(): void {\r\n    this.searchBar.focusSearchInput();\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Messages |\r\n|-------|-------|----------------|\r\n| **Title** | Required, no leading spaces | \"Required field\" or \"Title cannot start with spaces or be only spaces\" |\r\n| **Type** | One of: movie, series, game, all | N/A (select dropdown) |\r\n| **Year** | Optional, min 1900, max current year | \"Must be between 1900-{currentYear}\" |\r\n\r\n## SearchFilters Interface\r\n\r\n\\`\\`\\`typescript\r\ninterface SearchFilters {\r\n  title: string;\r\n  type: MediaType; // 'movie' | 'series' | 'game' | 'all'\r\n  year: string; // Empty string if not provided\r\n}\r\n\\`\\`\\`\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`searchSubmitted\\` | \\`SearchFilters\\` | Emitted when form is submitted with valid values |\r\n\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields\r\n- ✅ Clear error messages for each validation rule\r\n- ✅ Keyboard accessible controls\r\n- ✅ Proper label associations with inputs\r\n- ✅ Smooth scroll behavior for focus control\r\n- ✅ Visual feedback for invalid states\r\n\r\n## Component Architecture\r\n\r\nThis component is designed to work within a responsive layout:\r\n\r\n- **Desktop (>992px)**: Takes ~1/3 of width (flex: 1), alongside gallery (flex: 2)\r\n- **Tablet (602px-992px)**: Vertical stack (column), below gallery\r\n- **Mobile (<602px)**: Vertical stack, 100% width with padding\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    // ✅ SOLO mostrar searchSubmitted\r\n    searchSubmitted: {\r\n      action: 'searchSubmitted',\r\n      description: 'Emitted when search form is submitted with valid filters',\r\n    },\r\n    // ❌ Excluir todo lo demás\r\n    searchForm: {\r\n      table: { disable: true }\r\n    },\r\n    types: {\r\n      table: { disable: true }\r\n    },\r\n    currentYear: {\r\n      table: { disable: true }\r\n    },\r\n    searchFormFocus: {\r\n      table: { disable: true }\r\n    },\r\n    handleSubmit: {\r\n      table: { disable: true }\r\n    },\r\n    handleClear: {\r\n      table: { disable: true }\r\n    }\r\n  },\r\n}"
                 },
                 {
                     "name": "Mobile",
@@ -7502,7 +7343,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<AuthFormComponent>",
-                    "defaultValue": "{\r\n  title: 'Shared/AuthForm',\r\n  component: AuthFormComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        RouterTestingModule\r\n      ],\r\n      declarations: [AuthFormComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#000000d5' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['formSubmit'], \r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n  Reusable authentication form component supporting login and registration flows\r\n  \r\n  ## Features\r\n  \r\n  - 📋 Two form modes: login and register\r\n  - ✅ Reactive form validation with email and password patterns\r\n  - 🔐 Password visibility toggle\r\n  - 👤 Dynamic name field for registration\r\n  - 📱 Responsive Material Design layout\r\n  \r\n  ## Key Capabilities\r\n  \r\n  The component provides a simple authentication interface:\r\n  - **Two form modes** controlled by single formType input\r\n  - **Real-time validation** with email and password requirements\r\n  - **Accessible controls** with ARIA labels\r\n  - **Automatic configuration** based on form type\r\n  - **Type-safe form handling**\r\n\r\n## Usage Example\r\n\r\n### Login Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Registration Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"register\"\r\n  (formSubmit)=\"handleRegister($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class AuthPageComponent {\r\n  handleLogin(user: User): void {\r\n    this.authService.login(user).subscribe(\r\n      (response) => this.router.navigate(['/dashboard']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  handleRegister(user: User): void {\r\n    this.authService.register(user).subscribe(\r\n      (response) => this.router.navigate(['/email-verification']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Message |\r\n|-------|-------|---------------|\r\n| **Email** | Required, valid email format | \"Email is required\" or \"Incorrect email format\" |\r\n| **Password** | Required, min 6 chars, letters + numbers + special chars | \"Password is required\" or \"Min 6 char incl. letters, numbers and special characters\" |\r\n| **Name** | Required (register only) | \"Name is required\" |\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`formSubmit\\` | \\`User\\` | Emitted when form is submitted with valid values |\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields and buttons\r\n- ✅ Keyboard accessible password visibility toggle\r\n- ✅ Proper label associations with form inputs\r\n- ✅ Error messages linked to form fields\r\n- ✅ Focus management and visual indicators\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: 'radio',\r\n      options: ['login', 'register'],\r\n      description: 'Type of authentication form to display',\r\n    },\r\n    formSubmit: {\r\n      action: 'formSubmit',\r\n    },\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  title: 'Shared/AuthForm',\r\n  component: AuthFormComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        RouterTestingModule\r\n      ],\r\n      declarations: [AuthFormComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#000000d5' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['formSubmit', 'formType', 'disabled'], \r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n  Reusable authentication form component supporting login and registration flows\r\n  \r\n  ## Features\r\n  \r\n  - 📋 Two form modes: login and register\r\n  - ✅ Reactive form validation with email and password patterns\r\n  - 🔐 Password visibility toggle\r\n  - 👤 Dynamic name field for registration\r\n  - 📱 Responsive Material Design layout\r\n  \r\n  ## Key Capabilities\r\n  \r\n  The component provides a simple authentication interface:\r\n  - **Two form modes** controlled by single formType input\r\n  - **Real-time validation** with email and password requirements\r\n  - **Accessible controls** with ARIA labels\r\n  - **Automatic configuration** based on form type\r\n  - **Type-safe form handling**\r\n\r\n## Usage Example\r\n\r\n### Login Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Registration Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"register\"\r\n  (formSubmit)=\"handleRegister($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class AuthPageComponent {\r\n  handleLogin(user: User): void {\r\n    this.authService.login(user).subscribe(\r\n      (response) => this.router.navigate(['/dashboard']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  handleRegister(user: User): void {\r\n    this.authService.register(user).subscribe(\r\n      (response) => this.router.navigate(['/email-verification']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Message |\r\n|-------|-------|---------------|\r\n| **Email** | Required, valid email format | \"Email is required\" or \"Incorrect email format\" |\r\n| **Password** | Required, min 6 chars, letters + numbers + special chars | \"Password is required\" or \"Min 6 char incl. letters, numbers and special characters\" |\r\n| **Name** | Required (register only) | \"Name is required\" |\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`formSubmit\\` | \\`User\\` | Emitted when form is submitted with valid values |\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields and buttons\r\n- ✅ Keyboard accessible password visibility toggle\r\n- ✅ Proper label associations with form inputs\r\n- ✅ Error messages linked to form fields\r\n- ✅ Focus management and visual indicators\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: 'radio',\r\n      options: ['login', 'register'],\r\n      description: 'Type of authentication form to display',\r\n    },\r\n    formSubmit: {\r\n      action: 'formSubmit',\r\n    },\r\n  },\r\n}"
                 },
                 {
                     "name": "RegisterForm",
@@ -7660,32 +7501,32 @@
                 "filename": "src/app/app-routing.module.ts"
             },
             {
-                "name": "login",
+                "name": "auth",
                 "kind": "route-path",
                 "filename": "src/app/app-routing.module.ts"
             },
             {
-                "name": "register",
+                "name": "**",
                 "kind": "route-path",
                 "filename": "src/app/app-routing.module.ts"
+            },
+            {
+                "name": "AuthPageComponent",
+                "kind": "component",
+                "path": "login",
+                "filename": "src/app/pages/auth/auth-routing.module.ts"
+            },
+            {
+                "name": "AuthPageComponent",
+                "kind": "component",
+                "path": "register",
+                "filename": "src/app/pages/auth/auth-routing.module.ts"
             },
             {
                 "name": "FavoritesComponent",
                 "kind": "component",
                 "path": "",
                 "filename": "src/app/pages/favorites/favorites-routing.module.ts"
-            },
-            {
-                "name": "LoginComponent",
-                "kind": "component",
-                "path": "",
-                "filename": "src/app/pages/login/login-routing.module.ts"
-            },
-            {
-                "name": "RegisterComponent",
-                "kind": "component",
-                "path": "",
-                "filename": "src/app/pages/register/register-routing.module.ts"
             },
             {
                 "name": "SearchComponent",
@@ -7699,6 +7540,11 @@
                 "filename": "src/app/app-routing.module.ts"
             },
             {
+                "name": "AuthRoutingModule",
+                "kind": "module",
+                "filename": "src/app/pages/auth/auth-routing.module.ts"
+            },
+            {
                 "name": "FavoritesRoutingModule",
                 "kind": "module",
                 "filename": "src/app/pages/favorites/favorites-routing.module.ts"
@@ -7707,16 +7553,6 @@
                 "name": "LayoutModule",
                 "kind": "module",
                 "filename": "src/app/layout/layout.module.ts"
-            },
-            {
-                "name": "LoginRoutingModule",
-                "kind": "module",
-                "filename": "src/app/pages/login/login-routing.module.ts"
-            },
-            {
-                "name": "RegisterRoutingModule",
-                "kind": "module",
-                "filename": "src/app/pages/register/register-routing.module.ts"
             },
             {
                 "name": "SearchRoutingModule",
@@ -7826,30 +7662,21 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/pages/auth/page/auth-page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AuthPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/pages/favorites/page/favorites.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "FavoritesComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/19",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/pages/login/page/login.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "LoginComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/4",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/pages/register/page/register.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "RegisterComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/4",
                 "status": "low"
             },
             {
@@ -8152,8 +7979,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "AuthFormComponent",
-                "coveragePercent": 17,
-                "coverageCount": "3/17",
+                "coveragePercent": 22,
+                "coverageCount": "4/18",
                 "status": "low"
             },
             {
