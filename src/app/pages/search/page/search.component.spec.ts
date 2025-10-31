@@ -8,10 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { SearchCoverComponent } from '../components/search-cover/search-cover.component';
-import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NavbarComponent } from 'src/app/layout/navbar/navbar.component';
 import { CarouselComponent } from '../components/carousel/carousel.component';
+import { SearchBarComponent } from '../components/search-bar/search-bar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 describe('SearchComponent', () => {
@@ -26,7 +27,8 @@ describe('SearchComponent', () => {
         HttpClientModule,
         ToastrModule.forRoot({}),
         SharedModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        ReactiveFormsModule 
         
          
       ],

@@ -16,6 +16,9 @@ export class AuthFormComponent implements OnInit {
   /** Form type: login or register */
   @Input() formType: 'login' | 'register' = 'login';
 
+  /** Disables de form when true */
+  @Input() disabled = false;
+
   /** Emits validated user data on form submission */
   @Output() formSubmit = new EventEmitter<User>();
 

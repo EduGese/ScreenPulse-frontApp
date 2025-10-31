@@ -1,34 +1,38 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginComponent } from './login.component';
+import { AuthPageComponent } from './auth-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ActivatedRoute } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('AuthPageComponent', () => {
+  let component: AuthPageComponent;
+  let fixture: ComponentFixture<AuthPageComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports:[HttpClientModule,  
+       imports:[HttpClientModule,  
         ToastrModule.forRoot(), 
         SharedModule,
         BrowserAnimationsModule
         ],
-      declarations: [LoginComponent],
-      providers:[
-        { provide: ActivatedRoute, useValue: {} } 
+      declarations: [AuthPageComponent],
+       providers:[
+        { provide: ActivatedRoute, useValue: {data: of({ formType: 'login' }) } } 
       ]
     });
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(AuthPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+   it('should set formType to "login" from route data', () => {
+    expect(component.formType).toBe('login');
   });
 });

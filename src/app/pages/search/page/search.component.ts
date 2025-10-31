@@ -66,8 +66,8 @@ addToFavorites(mediaItem: MediaItem) {
     take(1),
     switchMap(loggedIn => {
       if (!loggedIn) {
-        this.toastrService.error('You must be logged in to add movies to your list', 'Error');
-        this.router.navigate(['/login']);
+        this.toastrService.warning('You must be logged in to add movies to your list', 'Error');
+        this.router.navigate(['/auth/login']);
         return EMPTY; 
       }
       return this.favoritesService.addToFavorites(mediaItem);

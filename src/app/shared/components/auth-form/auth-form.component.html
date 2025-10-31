@@ -63,7 +63,7 @@
 
   <div *ngIf="showRegisterLink" class="register-link">
     <span class="not-register-text">Not registered yet?</span>
-    <a routerLink="/register">Sign up here</a>
+    <a routerLink="/auth/register">Sign up here</a>
   </div>
 
   <div class="button-container">
@@ -72,9 +72,9 @@
       class="button-submit" 
       color="primary" 
       type="submit" 
-      [disabled]="form.invalid"
+      [disabled]="form.invalid || disabled"
     >
-      <mat-icon *ngIf="formType === 'login'" [ngClass]="form.invalid ? 'button-icon-disabled' : 'button-icon-enabled'">
+      <mat-icon *ngIf="formType === 'login'" [ngClass]="form.invalid || disabled ? 'button-icon-disabled' : 'button-icon-enabled'">
         {{ formType }}
       </mat-icon>
       {{ submitButtonText }}
