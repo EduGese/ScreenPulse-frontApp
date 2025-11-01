@@ -94,7 +94,7 @@ export class FavoritesComponent implements OnInit {
   openFavorite(favoriteMediaItemToOpen: MediaItem): void {
  this.loadingCard = true;
   this.dialogService
-    .openMediaItem(window.innerWidth, favoriteMediaItemToOpen, false)
+    .openMediaItem(window.innerWidth, favoriteMediaItemToOpen, true)
     .pipe(finalize(() => (this.loadingCard = false)))
     .subscribe();
   }

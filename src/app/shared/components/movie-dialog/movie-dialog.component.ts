@@ -6,7 +6,7 @@ import { FavoritesService } from '../../services/favorites/favorites.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { MediaItemDialogData } from '../../models/movieDialogData.model';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { SafeResourceUrl } from '@angular/platform-browser';
 import { DialogService } from '../../services/dialog/dialog.service';
 import { EMPTY, switchMap, take } from 'rxjs';
 
@@ -18,6 +18,7 @@ import { EMPTY, switchMap, take } from 'rxjs';
 export class MediaItemDialogComponent {
   showPlayer = false;
   videoUrl!: SafeResourceUrl;
+  imdbLogoPath  = '/assets/images/imdb.png';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: MediaItemDialogData,
     private toastrService: ToastrService,
@@ -25,7 +26,6 @@ export class MediaItemDialogComponent {
     private authService: AuthService,
     private router: Router,
     private dialogRef: MatDialogRef<MediaItemDialogComponent>,
-    private sanitizer: DomSanitizer,
     private dialogService: DialogService
   ) { }
 
