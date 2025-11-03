@@ -15,13 +15,7 @@ import { TrailerDialogData } from '../../models/trailerDialogData.model';
  * 
  * Usage is typically via a dialog service that opens this component passing the necessary data.
  * 
- * @example
- * Opening the dialog from a parent component or service:
- * ```
- * this.dialog.open(TrailerDialogComponent, {
- *   data: { videoUrl: 'https://www.youtube.com/watch?v=VIDEO_ID' }
- * });
- * ```
+ * @internal
  */
 @Component({
   selector: 'app-trailer-dialog',
@@ -44,19 +38,15 @@ export class TrailerDialogComponent implements OnInit {
   }
 
   /**
-   * Extracts YouTube video ID from the provided URL.
-   * Supports different URL formats.
-   * Returns empty string if URL is invalid.
-   */
+   * @ignore
+   *    
+   * */
   private extractYouTubeId(url: string): string {
     const regExp = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([\w-]{11})/;
     const match = url.match(regExp);
     return match && match[1] ? match[1] : '';
   }
 
-  /**
-   * Closes the trailer dialog via MatDialogRef.
-   */
   close(): void {
     this.dialogRef.close();
   }

@@ -2402,8 +2402,8 @@
         },
         {
             "name": "AuthFormComponent",
-            "id": "component-AuthFormComponent-115419b90a03f68f6f0d84f958a678104268d2babe8ab0b0c69c12f83e2a3ea9870b8f2234d9b29ef60aaaef62990dd2767b3cfab0f23149f66a065d1835bf70",
-            "file": "src/app/shared/components/auth-form/auth-form.component.ts",
+            "id": "component-AuthFormComponent-ffcb522d6cef6806fa45bc1217573e4489a81ae43c00fabf50ac8258702d453c943017d81734a7fba31b449d82009c14c1fef287314b3addfe4d3973e6a1e583",
+            "file": "src/app/pages/auth/components/auth-form/auth-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -2425,9 +2425,9 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\nDisables de form when true",
-                    "description": "<p>Disables de form when true</p>\n",
-                    "line": 20,
+                    "rawdescription": "\n\nDisables form inputs and submit button when true\nTypically used during API calls to prevent duplicate submissions\n",
+                    "description": "<p>Disables form inputs and submit button when true\nTypically used during API calls to prevent duplicate submissions</p>\n",
+                    "line": 28,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -2436,9 +2436,9 @@
                     "defaultValue": "'login'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\nForm type: login or register",
-                    "description": "<p>Form type: login or register</p>\n",
-                    "line": 17,
+                    "rawdescription": "\n\nForm type determining fields and behavior\n- 'login': Email + Password only\n- 'register': Name + Email + Password\n",
+                    "description": "<p>Form type determining fields and behavior</p>\n<ul>\n<li>&#39;login&#39;: Email + Password only</li>\n<li>&#39;register&#39;: Name + Email + Password</li>\n</ul>\n",
+                    "line": 22,
                     "type": "\"login\" | \"register\"",
                     "decorators": []
                 }
@@ -2449,9 +2449,9 @@
                     "defaultValue": "new EventEmitter<User>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\nEmits validated user data on form submission",
-                    "description": "<p>Emits validated user data on form submission</p>\n",
-                    "line": 23,
+                    "rawdescription": "\n\nEmits validated user data when form is submitted\nOnly fires if form passes all validation rules\n",
+                    "description": "<p>Emits validated user data when form is submitted\nOnly fires if form passes all validation rules</p>\n",
+                    "line": 34,
                     "type": "EventEmitter"
                 }
             ],
@@ -2464,7 +2464,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 31
+                    "line": 42
                 },
                 {
                     "name": "hidePassword",
@@ -2475,7 +2475,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 32
+                    "line": 43
                 },
                 {
                     "name": "passwordPattern",
@@ -2486,7 +2486,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 33,
+                    "line": 44,
                     "modifierKind": [
                         123
                     ]
@@ -2499,7 +2499,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 27
+                    "line": 38
                 },
                 {
                     "name": "showPasswordHint",
@@ -2509,7 +2509,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 29
+                    "line": 40
                 },
                 {
                     "name": "showRegisterLink",
@@ -2519,7 +2519,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 28
+                    "line": 39
                 },
                 {
                     "name": "submitButtonText",
@@ -2529,7 +2529,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 26
+                    "line": 37
                 },
                 {
                     "name": "title",
@@ -2539,7 +2539,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 25
+                    "line": 36
                 }
             ],
             "methodsClass": [
@@ -2549,7 +2549,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 58,
+                    "line": 69,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -2562,7 +2562,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 42,
+                    "line": 53,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -2575,7 +2575,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 80,
+                    "line": 91,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -2585,7 +2585,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 74,
+                    "line": 85,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -2595,7 +2595,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 37,
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -2609,7 +2609,7 @@
             "description": "<p>Reusable authentication form component supporting login and registration flows</p>\n",
             "rawdescription": "\n\n\nReusable authentication form component supporting login and registration flows\n\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\nimport { User } from '../../models/user.model';\n\n/**\n * \n * Reusable authentication form component supporting login and registration flows\n * \n */\n@Component({\n  selector: 'app-auth-form',\n  templateUrl: './auth-form.component.html',\n  styleUrls: ['./auth-form.component.scss']\n})\nexport class AuthFormComponent implements OnInit {\n  /** Form type: login or register */\n  @Input() formType: 'login' | 'register' = 'login';\n\n  /** Disables de form when true */\n  @Input() disabled = false;\n\n  /** Emits validated user data on form submission */\n  @Output() formSubmit = new EventEmitter<User>();\n\n  title!: string;\n  submitButtonText!: string;\n  showNameField!: boolean;\n  showRegisterLink!: boolean;\n  showPasswordHint!: boolean;\n\n  form!: FormGroup;\n  hidePassword = true;\n  private passwordPattern = /^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\\W_]).{6,}$/;\n\n  constructor(private fb: FormBuilder) { }\n\n  ngOnInit(): void {\n    this.configureByFormType();\n    this.buildForm();\n  }\n  \n  private configureByFormType(): void {\n    if (this.formType === 'register') {\n      this.title = 'Join us!';\n      this.submitButtonText = 'Sign Up';\n      this.showNameField = true;\n      this.showRegisterLink = false;\n      this.showPasswordHint = true;\n    } else {\n      this.title = 'Open the door';\n      this.submitButtonText = 'Login';\n      this.showNameField = false;\n      this.showRegisterLink = true;\n      this.showPasswordHint = false;\n    }\n  }\n\n  private buildForm(): void {\n    const controls: Partial<Record<string, unknown>> = {\n      email: ['', [Validators.required, Validators.email]],\n      password: ['', [\n        Validators.required,\n        Validators.pattern(this.passwordPattern)\n      ]]\n    };\n\n    if (this.showNameField) {\n      controls['name'] = ['', Validators.required];\n    }\n\n    this.form = this.fb.group(controls);\n  }\n\n  handleSubmit(): void {\n    if (this.form.valid) {\n      this.formSubmit.emit(this.form.value);\n    }\n  }\n\n  handleClear(): void {\n    this.form.reset();\n  }\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\nimport { User } from 'src/app/shared/models/user.model';\n\n\n/**\n * \n * Reusable authentication form component supporting login and registration flows\n * \n */\n@Component({\n  selector: 'app-auth-form',\n  templateUrl: './auth-form.component.html',\n  styleUrls: ['./auth-form.component.scss']\n})\nexport class AuthFormComponent implements OnInit {\n  /**\n   * Form type determining fields and behavior\n   * - 'login': Email + Password only\n   * - 'register': Name + Email + Password\n   */\n  @Input() formType: 'login' | 'register' = 'login';\n\n    /**\n   * Disables form inputs and submit button when true\n   * Typically used during API calls to prevent duplicate submissions\n   */\n  @Input() disabled = false;\n\n    /**\n   * Emits validated user data when form is submitted\n   * Only fires if form passes all validation rules\n   */\n  @Output() formSubmit = new EventEmitter<User>();\n\n  title!: string;\n  submitButtonText!: string;\n  showNameField!: boolean;\n  showRegisterLink!: boolean;\n  showPasswordHint!: boolean;\n\n  form!: FormGroup;\n  hidePassword = true;\n  private passwordPattern = /^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\\W_]).{6,}$/;\n\n  constructor(private fb: FormBuilder) { }\n\n  ngOnInit(): void {\n    this.configureByFormType();\n    this.buildForm();\n  }\n  \n  private configureByFormType(): void {\n    if (this.formType === 'register') {\n      this.title = 'Join us!';\n      this.submitButtonText = 'Sign Up';\n      this.showNameField = true;\n      this.showRegisterLink = false;\n      this.showPasswordHint = true;\n    } else {\n      this.title = 'Open the door';\n      this.submitButtonText = 'Login';\n      this.showNameField = false;\n      this.showRegisterLink = true;\n      this.showPasswordHint = false;\n    }\n  }\n\n  private buildForm(): void {\n    const controls: Partial<Record<string, unknown>> = {\n      email: ['', [Validators.required, Validators.email]],\n      password: ['', [\n        Validators.required,\n        Validators.pattern(this.passwordPattern)\n      ]]\n    };\n\n    if (this.showNameField) {\n      controls['name'] = ['', Validators.required];\n    }\n\n    this.form = this.fb.group(controls);\n  }\n\n  handleSubmit(): void {\n    if (this.form.valid) {\n      this.formSubmit.emit(this.form.value);\n    }\n  }\n\n  handleClear(): void {\n    this.form.reset();\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2631,7 +2631,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 33,
+                "line": 44,
                 "jsdoctags": [
                     {
                         "name": "fb",
@@ -3777,7 +3777,7 @@
         },
         {
             "name": "FavoritesComponent",
-            "id": "component-FavoritesComponent-02838ccae3de4883a481b268fb16445b5a1e2afc4f0b551f352b9ecea2179d7b2130eafae0f35e68b8b1b2bd147fab032442fd0611cf272cd94a5d7a1f7d4cd1",
+            "id": "component-FavoritesComponent-4428583140567f3c20019ae2e546ff8604ee5008d24728fef8069dab32ab52c9d106165e2f3e0477baf5076268eb352e31e4957587cbb915738351f6233272f7",
             "file": "src/app/pages/favorites/page/favorites.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -4145,7 +4145,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component,OnInit } from '@angular/core';\r\nimport { MediaItem } from 'src/app/shared/models/movie.model';\r\nimport { ToastrService } from 'ngx-toastr';\r\nimport { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { DialogService } from 'src/app/shared/services/dialog/dialog.service';\r\nimport { PageEvent } from '@angular/material/paginator';\r\nimport { FavoritesSearchParams } from 'src/app/shared/models/favoritesSearchParams.model';\r\nimport { finalize } from 'rxjs';\r\n\r\n@Component({\r\n  selector: 'app-favorites',\r\n  templateUrl: './favorites.component.html',\r\n  styleUrls: ['./favorites.component.scss'],\r\n})\r\nexport class FavoritesComponent implements OnInit {\r\n  favorites: MediaItem[] | [] = [];\r\n  favoritesSize = 0;\r\n  isLoadingFavorites = false;\r\n  userName: string | null = '';\r\n\r\n  searchParams: FavoritesSearchParams = {\r\n    currentPage: 1,\r\n    pageSize: 10,\r\n    sortField: undefined,\r\n    mediaType: undefined,\r\n    sortOrder: undefined,\r\n    searchTerm: undefined,\r\n  };\r\n  isRevalidatingAfterDelete = false;\r\n  loadingCard = false;\r\n\r\n\r\n  constructor(\r\n    private toastrService: ToastrService,\r\n    private favoritesService: FavoritesService,\r\n    private authService: AuthService,\r\n    private dialogService: DialogService\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n    this.isLoadingFavorites = true;\r\n    this.loadAllFavorites();\r\n    this.userName = this.authService.getUserName();\r\n  }\r\n\r\n\r\n  onPageChanged(event: PageEvent): void {\r\n    this.searchParams.currentPage = event.pageIndex + 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  loadAllFavorites(): void {\r\n    this.favoritesService.getFavorites(\r\n      this.searchParams.currentPage,\r\n      this.searchParams.pageSize,\r\n      this.searchParams.sortField,\r\n      this.searchParams.sortOrder,\r\n      this.searchParams.searchTerm,\r\n      this.searchParams.mediaType\r\n    ).subscribe({\r\n      next: (response) => {\r\n        this.favorites = response.favorites;\r\n        this.favoritesSize = response.totalFavorites;\r\n        this.isLoadingFavorites = false;\r\n        this.isRevalidatingAfterDelete = false;\r\n      },\r\n      error: (error) => {\r\n        console.error(error);\r\n        this.toastrService.error(error.message);\r\n        this.isLoadingFavorites = false;\r\n      },\r\n    });\r\n  }\r\n  onMediaTypeChange(mediaType:string): void {\r\n    this.searchParams.mediaType = mediaType;\r\n    this.searchParams.currentPage = 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  onSort(event: { field: string, order: number }): void {\r\n    this.searchParams.sortField = event.field;\r\n    this.searchParams.sortOrder = event.order;\r\n    this.searchParams.currentPage = 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  onFilter(searchTerm: string): void {\r\n    this.searchParams.searchTerm = searchTerm;\r\n    this.searchParams.currentPage = 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  openFavorite(favoriteMediaItemToOpen: MediaItem): void {\r\n this.loadingCard = true;\r\n  this.dialogService\r\n    .openMediaItem(window.innerWidth, favoriteMediaItemToOpen, false)\r\n    .pipe(finalize(() => (this.loadingCard = false)))\r\n    .subscribe();\r\n  }\r\n\r\n  deleteFavorite(_id: string): void {\r\n    this.favoritesService.deleteMediaItem(_id).subscribe({\r\n      next: (response) => {\r\n        this.favorites = this.favorites.filter((movie) => movie._id != _id);\r\n         if (this.favorites.length === 0) {\r\n          this.isLoadingFavorites = true;\r\n          this.isRevalidatingAfterDelete = true;\r\n          this.searchParams.currentPage = 1;\r\n          this.loadAllFavorites();\r\n        }\r\n        this.toastrService.success(response.message);\r\n      },\r\n      error: () => {\r\n        this.toastrService.error('Cannot delete item, try again later');\r\n      },\r\n    });\r\n  }\r\n\r\n  updateFavorite(mediaItem: MediaItem): void {\r\n    this.favoritesService.updateFavorite(mediaItem)\r\n      .subscribe({\r\n        next: (updatedMediaItem) => {\r\n          this.favorites = this.favorites.map(movie =>\r\n            movie._id === updatedMediaItem._id ? { ...movie, description: updatedMediaItem.description } : movie\r\n          );\r\n          this.toastrService.success('Item updated');\r\n        },\r\n        error: () => {\r\n          this.toastrService.error('Cannot update item, try again later');\r\n        },\r\n      });\r\n  }\r\n\r\n  trackByFn(index: number, item: MediaItem): string {\r\n    return item.imdbID;\r\n  }\r\n}\r\n\r\n",
+            "sourceCode": "import { Component,OnInit } from '@angular/core';\r\nimport { MediaItem } from 'src/app/shared/models/movie.model';\r\nimport { ToastrService } from 'ngx-toastr';\r\nimport { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { DialogService } from 'src/app/shared/services/dialog/dialog.service';\r\nimport { PageEvent } from '@angular/material/paginator';\r\nimport { FavoritesSearchParams } from 'src/app/shared/models/favoritesSearchParams.model';\r\nimport { finalize } from 'rxjs';\r\n\r\n@Component({\r\n  selector: 'app-favorites',\r\n  templateUrl: './favorites.component.html',\r\n  styleUrls: ['./favorites.component.scss'],\r\n})\r\nexport class FavoritesComponent implements OnInit {\r\n  favorites: MediaItem[] | [] = [];\r\n  favoritesSize = 0;\r\n  isLoadingFavorites = false;\r\n  userName: string | null = '';\r\n\r\n  searchParams: FavoritesSearchParams = {\r\n    currentPage: 1,\r\n    pageSize: 10,\r\n    sortField: undefined,\r\n    mediaType: undefined,\r\n    sortOrder: undefined,\r\n    searchTerm: undefined,\r\n  };\r\n  isRevalidatingAfterDelete = false;\r\n  loadingCard = false;\r\n\r\n\r\n  constructor(\r\n    private toastrService: ToastrService,\r\n    private favoritesService: FavoritesService,\r\n    private authService: AuthService,\r\n    private dialogService: DialogService\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n    this.isLoadingFavorites = true;\r\n    this.loadAllFavorites();\r\n    this.userName = this.authService.getUserName();\r\n  }\r\n\r\n\r\n  onPageChanged(event: PageEvent): void {\r\n    this.searchParams.currentPage = event.pageIndex + 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  loadAllFavorites(): void {\r\n    this.favoritesService.getFavorites(\r\n      this.searchParams.currentPage,\r\n      this.searchParams.pageSize,\r\n      this.searchParams.sortField,\r\n      this.searchParams.sortOrder,\r\n      this.searchParams.searchTerm,\r\n      this.searchParams.mediaType\r\n    ).subscribe({\r\n      next: (response) => {\r\n        this.favorites = response.favorites;\r\n        this.favoritesSize = response.totalFavorites;\r\n        this.isLoadingFavorites = false;\r\n        this.isRevalidatingAfterDelete = false;\r\n      },\r\n      error: (error) => {\r\n        console.error(error);\r\n        this.toastrService.error(error.message);\r\n        this.isLoadingFavorites = false;\r\n      },\r\n    });\r\n  }\r\n  onMediaTypeChange(mediaType:string): void {\r\n    this.searchParams.mediaType = mediaType;\r\n    this.searchParams.currentPage = 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  onSort(event: { field: string, order: number }): void {\r\n    this.searchParams.sortField = event.field;\r\n    this.searchParams.sortOrder = event.order;\r\n    this.searchParams.currentPage = 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  onFilter(searchTerm: string): void {\r\n    this.searchParams.searchTerm = searchTerm;\r\n    this.searchParams.currentPage = 1;\r\n    this.loadAllFavorites();\r\n  }\r\n\r\n  openFavorite(favoriteMediaItemToOpen: MediaItem): void {\r\n this.loadingCard = true;\r\n  this.dialogService\r\n    .openMediaItem(window.innerWidth, favoriteMediaItemToOpen, true)\r\n    .pipe(finalize(() => (this.loadingCard = false)))\r\n    .subscribe();\r\n  }\r\n\r\n  deleteFavorite(_id: string): void {\r\n    this.favoritesService.deleteMediaItem(_id).subscribe({\r\n      next: (response) => {\r\n        this.favorites = this.favorites.filter((movie) => movie._id != _id);\r\n         if (this.favorites.length === 0) {\r\n          this.isLoadingFavorites = true;\r\n          this.isRevalidatingAfterDelete = true;\r\n          this.searchParams.currentPage = 1;\r\n          this.loadAllFavorites();\r\n        }\r\n        this.toastrService.success(response.message);\r\n      },\r\n      error: () => {\r\n        this.toastrService.error('Cannot delete item, try again later');\r\n      },\r\n    });\r\n  }\r\n\r\n  updateFavorite(mediaItem: MediaItem): void {\r\n    this.favoritesService.updateFavorite(mediaItem)\r\n      .subscribe({\r\n        next: (updatedMediaItem) => {\r\n          this.favorites = this.favorites.map(movie =>\r\n            movie._id === updatedMediaItem._id ? { ...movie, description: updatedMediaItem.description } : movie\r\n          );\r\n          this.toastrService.success('Item updated');\r\n        },\r\n        error: () => {\r\n          this.toastrService.error('Cannot update item, try again later');\r\n        },\r\n      });\r\n  }\r\n\r\n  trackByFn(index: number, item: MediaItem): string {\r\n    return item.imdbID;\r\n  }\r\n}\r\n\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -4353,7 +4353,7 @@
         },
         {
             "name": "MediaItemDialogComponent",
-            "id": "component-MediaItemDialogComponent-53e6cf065c4f31c2d455ed5ffbaa145cdead433812fc3a6e24d90b921a0f30cf339d3059474ead0e3af0af6532d2c687ce64c66d8d5ad227c1a17f668882652a",
+            "id": "component-MediaItemDialogComponent-d13d31d782e8b6236330912d709aff27b0cef52e6cf5e5c9dfa8532d1492fd234ee6ae5b6c5d8dd49309797cf5a9e35e8fb42d520a90c22a6ac50c296d5d80bd",
             "file": "src/app/shared/components/movie-dialog/movie-dialog.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -4381,7 +4381,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 22,
+                    "line": 23,
                     "decorators": [
                         {
                             "name": "Inject",
@@ -4392,6 +4392,17 @@
                         171,
                         125
                     ]
+                },
+                {
+                    "name": "imdbLogoPath",
+                    "defaultValue": "'/assets/images/imdb.png'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
                 },
                 {
                     "name": "showPlayer",
@@ -4492,11 +4503,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Inject } from '@angular/core';\r\nimport { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';\r\nimport { MediaItem } from '../../models/movie.model';\r\nimport { ToastrService } from 'ngx-toastr';\r\nimport { FavoritesService } from '../../services/favorites/favorites.service';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { Router } from '@angular/router';\r\nimport { MediaItemDialogData } from '../../models/movieDialogData.model';\r\nimport { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';\r\nimport { DialogService } from '../../services/dialog/dialog.service';\r\nimport { EMPTY, switchMap, take } from 'rxjs';\r\n\r\n@Component({\r\n  selector: 'app-movie-dialog',\r\n  templateUrl: './movie-dialog.component.html',\r\n  styleUrls: ['./movie-dialog.component.scss']\r\n})\r\nexport class MediaItemDialogComponent {\r\n  showPlayer = false;\r\n  videoUrl!: SafeResourceUrl;\r\n  constructor(\r\n    @Inject(MAT_DIALOG_DATA) public data: MediaItemDialogData,\r\n    private toastrService: ToastrService,\r\n    private favoritesService: FavoritesService,\r\n    private authService: AuthService,\r\n    private router: Router,\r\n    private dialogRef: MatDialogRef<MediaItemDialogComponent>,\r\n    private sanitizer: DomSanitizer,\r\n    private dialogService: DialogService\r\n  ) { }\r\n\r\naddToFavorites(mediaItem: MediaItem) {\r\n  this.authService.isLoggedInObservable().pipe(\r\n    take(1),\r\n    switchMap(loggedIn => {\r\n      if (!loggedIn) {\r\n        this.toastrService.error('You must be logged in to add movies to your list', 'Error');\r\n        this.dialogRef.close();\r\n        this.router.navigate(['/auth/login']);\r\n        return EMPTY; \r\n      }\r\n      return this.favoritesService.addToFavorites(mediaItem);\r\n    })\r\n  ).subscribe({\r\n    next: () => this.toastrService.success(mediaItem.title, 'Added to favorites'),\r\n    error: (error) => this.toastrService.warning(error.message)\r\n  });\r\n}\r\n\r\n  onImageError(event: Event) {\r\n    const target = event.target as HTMLImageElement;\r\n    target.src = 'assets/images/no_poster.jpg';\r\n  }\r\n\r\n  playTrailer(): void {\r\n    if (!this.data.response.youtubeURLTrailer) return;\r\n\r\n    this.dialogService.openTrailerDialog(\r\n      this.data.response.youtubeURLTrailer,\r\n    );\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Inject } from '@angular/core';\r\nimport { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';\r\nimport { MediaItem } from '../../models/movie.model';\r\nimport { ToastrService } from 'ngx-toastr';\r\nimport { FavoritesService } from '../../services/favorites/favorites.service';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { Router } from '@angular/router';\r\nimport { MediaItemDialogData } from '../../models/movieDialogData.model';\r\nimport { SafeResourceUrl } from '@angular/platform-browser';\r\nimport { DialogService } from '../../services/dialog/dialog.service';\r\nimport { EMPTY, switchMap, take } from 'rxjs';\r\n\r\n@Component({\r\n  selector: 'app-movie-dialog',\r\n  templateUrl: './movie-dialog.component.html',\r\n  styleUrls: ['./movie-dialog.component.scss']\r\n})\r\nexport class MediaItemDialogComponent {\r\n  showPlayer = false;\r\n  videoUrl!: SafeResourceUrl;\r\n  imdbLogoPath  = '/assets/images/imdb.png';\r\n  constructor(\r\n    @Inject(MAT_DIALOG_DATA) public data: MediaItemDialogData,\r\n    private toastrService: ToastrService,\r\n    private favoritesService: FavoritesService,\r\n    private authService: AuthService,\r\n    private router: Router,\r\n    private dialogRef: MatDialogRef<MediaItemDialogComponent>,\r\n    private dialogService: DialogService\r\n  ) { }\r\n\r\naddToFavorites(mediaItem: MediaItem) {\r\n  this.authService.isLoggedInObservable().pipe(\r\n    take(1),\r\n    switchMap(loggedIn => {\r\n      if (!loggedIn) {\r\n        this.toastrService.error('You must be logged in to add movies to your list', 'Error');\r\n        this.dialogRef.close();\r\n        this.router.navigate(['/auth/login']);\r\n        return EMPTY; \r\n      }\r\n      return this.favoritesService.addToFavorites(mediaItem);\r\n    })\r\n  ).subscribe({\r\n    next: () => this.toastrService.success(mediaItem.title, 'Added to favorites'),\r\n    error: (error) => this.toastrService.warning(error.message)\r\n  });\r\n}\r\n\r\n  onImageError(event: Event) {\r\n    const target = event.target as HTMLImageElement;\r\n    target.src = 'assets/images/no_poster.jpg';\r\n  }\r\n\r\n  playTrailer(): void {\r\n    if (!this.data.response.youtubeURLTrailer) return;\r\n\r\n    this.dialogService.openTrailerDialog(\r\n      this.data.response.youtubeURLTrailer,\r\n    );\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "  h1{\r\n    text-align: center;\r\n    background-color: black;\r\n    color: #E6B91E !important;\r\n    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;\r\n    border: 1px solid #ffffff44;\r\n    font-family: 'Glegoo' !important;\r\n  \r\n  }\r\n  .card-content {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-around;\r\n    height: 100%;\r\n  }\r\n  .card-button{\r\n    height: 10%;\r\n  }\r\n  \r\n  .poster-container {\r\n    width: 45%;\r\n    text-align: center;\r\n    margin-top: auto;\r\n    margin-bottom: auto;\r\n  }\r\n  \r\n  .poster-container img {\r\n    width: 53%;\r\n    border-radius: 10px;\r\n    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;\r\n\r\n  }\r\n  \r\n  .details-container {\r\n    width: 35%;\r\n    margin:auto;\r\n    padding: 0 10px 0 10px;\r\n    font-family: 'Glegoo' !important;\r\n\r\n\r\n  }\r\n  \r\n  .details-container h5 {\r\n    margin-top: 0;\r\n  }\r\n  .title {\r\n    font-weight: bold;\r\n    color: #6D42BA;\r\n  }\r\n  .details-container p {\r\n    margin-bottom: 10px;\r\n  }\r\n  \r\n  .details-container p:last-child {\r\n    margin-bottom: 0;\r\n  }\r\n  .rating-container{\r\n    width: 15%;\r\n    display:flex;\r\n    flex-direction: column;\r\n    justify-content:space-between;\r\n    align-items: center;\r\n    background-color: black;\r\n    color: white;\r\n    height: 43%;\r\n    margin: auto;\r\n    border-radius: 10px;\r\n    padding: 0 10px 10px 10px ;\r\n    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;\r\n\r\n  }\r\n  .rating{\r\n    font-size: 50px;\r\n    font-weight: bold;\r\n    \r\n  }\r\n  .star{\r\n    color: #E6B91E;\r\n  }\r\n  .card-button{\r\n    display: flex;\r\n    flex-direction: row;\r\n    align-items: center;\r\n    justify-content: center;\r\n    position: absolute;\r\n    bottom: 0;\r\n    width: 80%;\r\n    border: 1px solid #ffffff44;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n  }\r\n  mat-dialog-actions{\r\n    height: 40px;\r\n    justify-content: center;\r\n    margin: 0;\r\n  }\r\n  \r\n  button{\r\n    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;\r\n  }  \r\n\r\n  @media only screen and (max-width:600px) {\r\n    \r\n\r\n  }\r\n        @media only screen and (max-width: 1024px) {\r\n    \r\n          .card-content {\r\n            display: flex;\r\n            flex-direction: column;\r\n            align-items: center;\r\n            justify-content: center;\r\n            height: auto;\r\n    \r\n          }\r\n    \r\n          .mat-mdc-dialog-content {\r\n            max-height: 140vh;\r\n          }\r\n    \r\n          .poster-container {\r\n            width: 100%;\r\n            height: 100%;\r\n          }\r\n    \r\n          .poster-container img {\r\n            width: 50%;\r\n    \r\n          }\r\n    \r\n          .details {\r\n            width: 100%;\r\n          }\r\n    \r\n          .rating-container {\r\n            width: 50%;\r\n            height: 60%;\r\n          }\r\n    \r\n          .rating {\r\n            font-size: 40px;\r\n          }\r\n    \r\n          .details-container {\r\n            width: 100%;\r\n            padding: 0;\r\n            font-size: 14px;\r\n          }\r\n    \r\n          mat-dialog-actions {\r\n            height: 100px;\r\n            justify-content: center;\r\n          }\r\n        }\r\n  \r\n    @media only screen and (min-width: 1601px) {\r\n      .details-container p {\r\n        margin: 30px 0 30px 0;\r\n        font-size: 20px;\r\n      }\r\n      .poster-container img {\r\n        width: 60%;  \r\n      }\r\n      .rating{\r\n        font-size: 70px;\r\n      }\r\n      .rating-container img{\r\n        width: 128px;\r\n      }\r\n    }\r\n  \r\n    @media screen and (max-width: 950px) and (orientation: landscape) {\r\n      .rating-container {\r\n        justify-content: center;\r\n      }\r\n      .rating{\r\n        font-size: 40px;  \r\n      }\r\n    }",
+                    "data": "mat-dialog-content {\r\n  flex: 1;\r\n  overflow: auto;\r\n}\r\n\r\nmat-dialog-actions {\r\n  height: 40px;\r\n  justify-content: center;\r\n  margin: 0;\r\n  display: flex !important;\r\n  flex-direction: row !important;\r\n  align-items: center !important;\r\n  gap: 8px;\r\n  flex-wrap: wrap;\r\n  padding: 8px;\r\n}\r\n\r\nh1 {\r\n  text-align: center;\r\n  background-color: black;\r\n  color: #E6B91E !important;\r\n  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;\r\n  border: 1px solid #ffffff44;\r\n  font-family: 'Glegoo' !important;\r\n\r\n}\r\n\r\n.card-content {\r\n  display: flex;\r\n  flex-direction: row;\r\n  justify-content: space-around;\r\n  height: 100%;\r\n}\r\n\r\n.card-button {\r\n  height: 10%;\r\n}\r\n\r\n.poster-container {\r\n  width: 45%;\r\n  text-align: center;\r\n  margin-top: auto;\r\n  margin-bottom: auto;\r\n\r\n  img {\r\n    width: 53%;\r\n    border-radius: 10px;\r\n    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;\r\n\r\n  }\r\n}\r\n\r\n.details-container {\r\n  width: 35%;\r\n  margin: auto;\r\n  padding: 0 10px 0 10px;\r\n  font-family: 'Glegoo' !important;\r\n\r\n  h5 {\r\n    margin-top: 0;\r\n  }\r\n\r\n  p {\r\n    margin-bottom: 10px;\r\n  }\r\n\r\n  p:last-child {\r\n    margin-bottom: 0;\r\n  }\r\n}\r\n\r\n.title {\r\n  font-weight: bold;\r\n  color: #6D42BA;\r\n}\r\n\r\n.rating-container {\r\n  width: 15%;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  background-color: black;\r\n  color: white;\r\n  height: 43%;\r\n  margin: auto;\r\n  border-radius: 10px;\r\n  padding: 0 10px 10px 10px;\r\n  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;\r\n}\r\n\r\n.rating {\r\n  font-size: 50px;\r\n  font-weight: bold;\r\n\r\n}\r\n\r\n.star {\r\n  color: #E6B91E;\r\n}\r\n\r\n.card-button {\r\n  display: flex;\r\n  flex-direction: row;\r\n  align-items: center;\r\n  justify-content: center;\r\n  position: absolute;\r\n  bottom: 0;\r\n  width: 80%;\r\n  border: 1px solid #ffffff44;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n}\r\n\r\nbutton {\r\n  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;\r\n}\r\n\r\n@media only screen and (max-width:600px) {}\r\n\r\n@media only screen and (max-width: 1024px) {\r\n\r\n  .card-content {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n    height: auto;\r\n\r\n  }\r\n\r\n  .mat-mdc-dialog-content {\r\n    max-height: 140vh;\r\n  }\r\n\r\n  .poster-container {\r\n    width: 100%;\r\n    height: 100%;\r\n    img {\r\n    width: 50%;\r\n\r\n  }\r\n  }\r\n\r\n  .details {\r\n    width: 100%;\r\n  }\r\n\r\n  .rating-container {\r\n    width: 50%;\r\n    height: 60%;\r\n  }\r\n\r\n  .rating {\r\n    font-size: 40px;\r\n  }\r\n\r\n  .details-container {\r\n    width: 100%;\r\n    padding: 0;\r\n    font-size: 14px;\r\n  }\r\n\r\n  mat-dialog-actions {\r\n    height: 100px;\r\n    justify-content: center;\r\n  }\r\n}\r\n\r\n@media only screen and (min-width: 1601px) {\r\n  .details-container p {\r\n    margin: 30px 0 30px 0;\r\n    font-size: 20px;\r\n  }\r\n\r\n  .poster-container img {\r\n    width: 60%;\r\n  }\r\n\r\n  .rating {\r\n    font-size: 70px;\r\n  }\r\n\r\n  .rating-container img {\r\n    width: 128px;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 950px) and (orientation: landscape) {\r\n  .rating-container {\r\n    justify-content: center;\r\n  }\r\n\r\n  .rating {\r\n    font-size: 40px;\r\n  }\r\n}",
                     "styleUrl": "./movie-dialog.component.scss"
                 }
             ],
@@ -4544,19 +4555,13 @@
                         "deprecationMessage": ""
                     },
                     {
-                        "name": "sanitizer",
-                        "type": "DomSanitizer",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
                         "name": "dialogService",
                         "type": "DialogService",
                         "deprecated": false,
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 20,
+                "line": 21,
                 "jsdoctags": [
                     {
                         "name": "data",
@@ -4613,15 +4618,6 @@
                         }
                     },
                     {
-                        "name": "sanitizer",
-                        "type": "DomSanitizer",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
                         "name": "dialogService",
                         "type": "DialogService",
                         "deprecated": false,
@@ -4633,7 +4629,7 @@
                 ]
             },
             "extends": [],
-            "templateData": "<h1 mat-dialog-title>{{data.response.Title}} ({{data.response.Year}})</h1>\r\n\r\n<mat-dialog-content class=\"card-content mat-typography\">\r\n  <div class=\"poster-container\">\r\n    <ng-container *ngIf=\"data?.response?.Poster === 'N/A'; else poster\">\r\n      <img src=\"assets/images/no_poster.jpg\" alt=\"No/poster\">\r\n    </ng-container>\r\n    <ng-template #poster>\r\n      <img [src]=\"data.response.Poster\" [alt]=\"data.response.Title\" appFallback>\r\n    </ng-template>\r\n  </div>\r\n  <div class=\"details-container\">\r\n    <p><span class=\"title\">Director:</span> {{data.response.Director}}</p>\r\n    <p><span class=\"title\">Actors:</span> {{data.response.Actors}}</p>\r\n    <p><span class=\"title\">Plot:</span> {{data.response.Plot}}</p>\r\n    <p><span class=\"title\">Genre:</span> {{data.response.Genre}}</p>\r\n    <p><span class=\"title\">Language:</span> {{data.response.Language}}</p>\r\n    <p><span class=\"title\">Country:</span> {{data.response.Country}}</p>\r\n    <p><span class=\"title\">Runtime:</span> {{data.response.Runtime}}</p>\r\n  </div>\r\n\r\n  <div class=\"rating-container\">\r\n    <img src=\"assets/images/imdb.png\" alt=\"imdb logo\">\r\n    <span class=\"rating\"><mat-icon class=\"star\">star</mat-icon>{{data.response.imdbRating}}</span>\r\n    <span>({{data.response.imdbVotes}})</span>\r\n  </div>\r\n</mat-dialog-content>\r\n\r\n<mat-dialog-actions>\r\n\r\n  <button mat-raised-button mat-dialog-close color=\"primary\" aria-label=\"Close dialog\">\r\n    <mat-icon>close</mat-icon>\r\n    Close\r\n  </button>\r\n  <ng-container *ngIf=\"!data.fromFavoritesSection \">\r\n    <button mat-raised-button color=\"accent\" aria-label=\"Add to favorites\" (click)=\"addToFavorites(data.movie)\">\r\n      <mat-icon>favorite</mat-icon>\r\n      Add\r\n    </button>\r\n  </ng-container>\r\n  <ng-container *ngIf=\"data.response.youtubeURLTrailer && !showPlayer\">\r\n    <button mat-raised-button color=\"warn\" aria-label=\"Watch trailer\" (click)=\"playTrailer()\">\r\n      <mat-icon>ondemand_video</mat-icon>\r\n      Watch trailer\r\n    </button>\r\n\r\n  </ng-container>\r\n\r\n\r\n</mat-dialog-actions>"
+            "templateData": "<h1 mat-dialog-title>{{data.response.Title}} ({{data.response.Year}})</h1>\r\n\r\n<mat-dialog-content class=\"card-content mat-typography\">\r\n  <div class=\"poster-container\">\r\n    <ng-container *ngIf=\"data?.response?.Poster === 'N/A'; else poster\">\r\n      <img src=\"/assets/images/no_poster.jpg\" alt=\"No/poster\">\r\n    </ng-container>\r\n    <ng-template #poster>\r\n      <img [src]=\"data.response.Poster\" [alt]=\"data.response.Title\" appFallback>\r\n    </ng-template>\r\n  </div>\r\n  <div class=\"details-container\">\r\n    <p><span class=\"title\">Director:</span> {{data.response.Director}}</p>\r\n    <p><span class=\"title\">Actors:</span> {{data.response.Actors}}</p>\r\n    <p><span class=\"title\">Plot:</span> {{data.response.Plot}}</p>\r\n    <p><span class=\"title\">Genre:</span> {{data.response.Genre}}</p>\r\n    <p><span class=\"title\">Language:</span> {{data.response.Language}}</p>\r\n    <p><span class=\"title\">Country:</span> {{data.response.Country}}</p>\r\n    <p><span class=\"title\">Runtime:</span> {{data.response.Runtime}}</p>\r\n  </div>\r\n\r\n  <div class=\"rating-container\">\r\n    <img [src]= \"imdbLogoPath\" alt=\"imdb logo\">\r\n    <span class=\"rating\"><mat-icon class=\"star\">star</mat-icon>{{data.response.imdbRating}}</span>\r\n    <span>({{data.response.imdbVotes}})</span>\r\n  </div>\r\n</mat-dialog-content>\r\n\r\n<mat-dialog-actions align=\"center\">\r\n\r\n  <button mat-raised-button mat-dialog-close color=\"primary\" aria-label=\"Close dialog\">\r\n    <mat-icon>close</mat-icon>\r\n    Close\r\n  </button>\r\n  <ng-container *ngIf=\"!data.fromFavoritesSection \">\r\n    <button mat-raised-button color=\"accent\" aria-label=\"Add to favorites\" (click)=\"addToFavorites(data.movie)\">\r\n      <mat-icon>favorite</mat-icon>\r\n      Add\r\n    </button>\r\n  </ng-container>\r\n  <ng-container *ngIf=\"data.response.youtubeURLTrailer && !showPlayer\">\r\n    <button mat-raised-button color=\"warn\" aria-label=\"Watch trailer\" (click)=\"playTrailer()\">\r\n      <mat-icon>ondemand_video</mat-icon>\r\n      Watch trailer\r\n    </button>\r\n\r\n  </ng-container>\r\n\r\n\r\n</mat-dialog-actions>"
         },
         {
             "name": "MediaItemResultsTableComponent",
@@ -5833,7 +5829,7 @@
         },
         {
             "name": "TrailerDialogComponent",
-            "id": "component-TrailerDialogComponent-89c57f7ac5246b1a3ebfe258633a4211dfe1f61812c3500ff6ae1357d4a7fc3274f200a74521e04152dd90a3c30c19c3b9841847459b5b39ec2777d811ed01ce",
+            "id": "component-TrailerDialogComponent-ad24d4a47be0ef2e063113c3c145463eadae20fb4d023cd1b7ce11fcb69466476e6de8b84daf33f22cae9343aa25f77cec0dcb57d41dd371eac432cd48ea0e3b",
             "file": "src/app/shared/components/trailer-dialog/trailer-dialog.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -5861,7 +5857,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 35,
+                    "line": 29,
                     "decorators": [
                         {
                             "name": "Inject",
@@ -5881,7 +5877,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 32
+                    "line": 26
                 }
             ],
             "methodsClass": [
@@ -5891,44 +5887,9 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 60,
+                    "line": 50,
                     "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nCloses the trailer dialog via MatDialogRef.\n",
-                    "description": "<p>Closes the trailer dialog via MatDialogRef.</p>\n"
-                },
-                {
-                    "name": "extractYouTubeId",
-                    "args": [
-                        {
-                            "name": "url",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "string",
-                    "typeParameters": [],
-                    "line": 51,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nExtracts YouTube video ID from the provided URL.\nSupports different URL formats.\nReturns empty string if URL is invalid.\n",
-                    "description": "<p>Extracts YouTube video ID from the provided URL.\nSupports different URL formats.\nReturns empty string if URL is invalid.</p>\n",
-                    "modifierKind": [
-                        123
-                    ],
-                    "jsdoctags": [
-                        {
-                            "name": "url",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
+                    "deprecationMessage": ""
                 },
                 {
                     "name": "ngOnInit",
@@ -5936,7 +5897,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 40,
+                    "line": 34,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -5947,14 +5908,14 @@
             "hostListeners": [],
             "standalone": false,
             "imports": [],
-            "description": "<p>Dialog component to display a YouTube trailer video embedded in an Angular Material dialog.</p>\n<p>The video URL is sanitized and safely embedded using iframe to prevent security risks.\nThe dialog includes a close button that triggers closing the dialog through MatDialogRef.</p>\n<p>This component expects to receive the video URL via MAT_DIALOG_DATA injection token.</p>\n<p>No inputs or outputs are used because data is handled through DI and closing is handled internally.</p>\n<p>Usage is typically via a dialog service that opens this component passing the necessary data.</p>\n<b>Example :</b><div><pre class=\"line-numbers\"><code class=\"language-html\">Opening the dialog from a parent component or service:</code></pre></div><p>this.dialog.open(TrailerDialogComponent, {\n  data: { videoUrl: &#39;<a href=\"https://www.youtube.com/watch?v=VIDEO_ID\">https://www.youtube.com/watch?v=VIDEO_ID</a>&#39; }\n});\n```</p>\n",
-            "rawdescription": "\n\nDialog component to display a YouTube trailer video embedded in an Angular Material dialog.\n\nThe video URL is sanitized and safely embedded using iframe to prevent security risks.\nThe dialog includes a close button that triggers closing the dialog through MatDialogRef.\n\nThis component expects to receive the video URL via MAT_DIALOG_DATA injection token.\n\nNo inputs or outputs are used because data is handled through DI and closing is handled internally.\n\nUsage is typically via a dialog service that opens this component passing the necessary data.\n\n```html\nOpening the dialog from a parent component or service:\n```\nthis.dialog.open(TrailerDialogComponent, {\n  data: { videoUrl: 'https://www.youtube.com/watch?v=VIDEO_ID' }\n});\n```",
+            "description": "<p>Dialog component to display a YouTube trailer video embedded in an Angular Material dialog.</p>\n<p>The video URL is sanitized and safely embedded using iframe to prevent security risks.\nThe dialog includes a close button that triggers closing the dialog through MatDialogRef.</p>\n<p>This component expects to receive the video URL via MAT_DIALOG_DATA injection token.</p>\n<p>No inputs or outputs are used because data is handled through DI and closing is handled internally.</p>\n<p>Usage is typically via a dialog service that opens this component passing the necessary data.</p>\n",
+            "rawdescription": "\n\nDialog component to display a YouTube trailer video embedded in an Angular Material dialog.\n\nThe video URL is sanitized and safely embedded using iframe to prevent security risks.\nThe dialog includes a close button that triggers closing the dialog through MatDialogRef.\n\nThis component expects to receive the video URL via MAT_DIALOG_DATA injection token.\n\nNo inputs or outputs are used because data is handled through DI and closing is handled internally.\n\nUsage is typically via a dialog service that opens this component passing the necessary data.\n\n",
             "type": "component",
-            "sourceCode": "import { Component, Inject, OnInit } from '@angular/core';\r\nimport { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';\r\nimport { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';\r\nimport { TrailerDialogData } from '../../models/trailerDialogData.model';\r\n\r\n/**\r\n * Dialog component to display a YouTube trailer video embedded in an Angular Material dialog.\r\n * \r\n * The video URL is sanitized and safely embedded using iframe to prevent security risks.\r\n * The dialog includes a close button that triggers closing the dialog through MatDialogRef.\r\n * \r\n * This component expects to receive the video URL via MAT_DIALOG_DATA injection token.\r\n * \r\n * No inputs or outputs are used because data is handled through DI and closing is handled internally.\r\n * \r\n * Usage is typically via a dialog service that opens this component passing the necessary data.\r\n * \r\n * @example\r\n * Opening the dialog from a parent component or service:\r\n * ```\r\n * this.dialog.open(TrailerDialogComponent, {\r\n *   data: { videoUrl: 'https://www.youtube.com/watch?v=VIDEO_ID' }\r\n * });\r\n * ```\r\n */\r\n@Component({\r\n  selector: 'app-trailer-dialog',\r\n  templateUrl: './trailer-dialog.component.html',\r\n  styleUrls: ['./trailer-dialog.component.scss']\r\n})\r\nexport class TrailerDialogComponent implements OnInit {\r\n  safeVideoUrl!: SafeResourceUrl;\r\n\r\n  constructor(\r\n    @Inject(MAT_DIALOG_DATA) public data: TrailerDialogData,\r\n    private dialogRef: MatDialogRef<TrailerDialogComponent>,\r\n    private sanitizer: DomSanitizer\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n    const videoId = this.extractYouTubeId(this.data.videoUrl);\r\n    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&rel=0`;\r\n    this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);\r\n  }\r\n\r\n  /**\r\n   * Extracts YouTube video ID from the provided URL.\r\n   * Supports different URL formats.\r\n   * Returns empty string if URL is invalid.\r\n   */\r\n  private extractYouTubeId(url: string): string {\r\n    const regExp = /(?:youtu\\.be\\/|youtube\\.com\\/(?:watch\\?v=|embed\\/))([\\w-]{11})/;\r\n    const match = url.match(regExp);\r\n    return match && match[1] ? match[1] : '';\r\n  }\r\n\r\n  /**\r\n   * Closes the trailer dialog via MatDialogRef.\r\n   */\r\n  close(): void {\r\n    this.dialogRef.close();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Inject, OnInit } from '@angular/core';\r\nimport { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';\r\nimport { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';\r\nimport { TrailerDialogData } from '../../models/trailerDialogData.model';\r\n\r\n/**\r\n * Dialog component to display a YouTube trailer video embedded in an Angular Material dialog.\r\n * \r\n * The video URL is sanitized and safely embedded using iframe to prevent security risks.\r\n * The dialog includes a close button that triggers closing the dialog through MatDialogRef.\r\n * \r\n * This component expects to receive the video URL via MAT_DIALOG_DATA injection token.\r\n * \r\n * No inputs or outputs are used because data is handled through DI and closing is handled internally.\r\n * \r\n * Usage is typically via a dialog service that opens this component passing the necessary data.\r\n * \r\n * @internal\r\n */\r\n@Component({\r\n  selector: 'app-trailer-dialog',\r\n  templateUrl: './trailer-dialog.component.html',\r\n  styleUrls: ['./trailer-dialog.component.scss']\r\n})\r\nexport class TrailerDialogComponent implements OnInit {\r\n  safeVideoUrl!: SafeResourceUrl;\r\n\r\n  constructor(\r\n    @Inject(MAT_DIALOG_DATA) public data: TrailerDialogData,\r\n    private dialogRef: MatDialogRef<TrailerDialogComponent>,\r\n    private sanitizer: DomSanitizer\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n    const videoId = this.extractYouTubeId(this.data.videoUrl);\r\n    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&rel=0`;\r\n    this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);\r\n  }\r\n\r\n  /**\r\n   * @ignore\r\n   *    \r\n   * */\r\n  private extractYouTubeId(url: string): string {\r\n    const regExp = /(?:youtu\\.be\\/|youtube\\.com\\/(?:watch\\?v=|embed\\/))([\\w-]{11})/;\r\n    const match = url.match(regExp);\r\n    return match && match[1] ? match[1] : '';\r\n  }\r\n\r\n  close(): void {\r\n    this.dialogRef.close();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".trailer-container {\r\n  position: relative;\r\n  width: 100%;\r\n  height: 100%;\r\n  background: #000;\r\n  display: flex;\r\n  flex-direction: column;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.close-button {\r\n    margin-left: auto;\r\n    margin-right: 0.5rem;\r\n  z-index: 1000;\r\n  background: rgba(0, 0, 0, 0.8);\r\n  color: white;\r\n  transition: background 0.3s ease;\r\n\r\n  &:hover {\r\n    background: rgba(109, 66, 186, 0.8);\r\n  }\r\n}\r\n\r\n.video-wrapper {\r\n  flex: 1;\r\n  width: 100%;\r\n  position: relative;\r\n  overflow: hidden;\r\n\r\n  iframe {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    border: none;\r\n  }\r\n}\r\n",
+                    "data": ".trailer-container {\r\n  position: relative;\r\n  width: 100%;\r\n  height: 100%;\r\n  background: #000;\r\n  display: flex;\r\n  flex-direction: column;\r\n  box-sizing: border-box;\r\n  min-height: 500px;  \r\n}\r\n\r\n.close-button {\r\n  margin-left: auto;\r\n  margin-right: 0.5rem;\r\n  margin-top: 0.5rem;  \r\n  z-index: 1000;\r\n  background: rgba(0, 0, 0, 0.8);\r\n  color: white;\r\n  transition: background 0.3s ease;\r\n  flex-shrink: 0;  \r\n\r\n  &:hover {\r\n    background: rgba(109, 66, 186, 0.8);\r\n  }\r\n}\r\n\r\n.video-wrapper {\r\n  flex: 1;\r\n  width: 100%;\r\n  position: relative;\r\n  overflow: hidden;\r\n  min-height: 0; \r\n\r\n  iframe {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    border: none;\r\n  }\r\n}\r\n",
                     "styleUrl": "./trailer-dialog.component.scss"
                 }
             ],
@@ -5984,7 +5945,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 32,
+                "line": 26,
                 "jsdoctags": [
                     {
                         "name": "data",
@@ -6019,7 +5980,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"trailer-container\">\r\n  <button class=\"close-button\" mat-icon-button (click)=\"close()\" aria-label=\"Close trailer\">\r\n    <mat-icon>close</mat-icon>\r\n  </button>\r\n\r\n  <div class=\"video-wrapper\">\r\n    <iframe [src]=\"safeVideoUrl\" frameborder=\"0\" allow=\"autoplay; encrypted-media; fullscreen\">\r\n    </iframe>\r\n  </div>\r\n</div>"
+            "templateData": "<div class=\"trailer-container\">\r\n  <button class=\"close-button\" mat-icon-button (click)=\"close()\" aria-label=\"Close trailer\">\r\n    <mat-icon>close</mat-icon>\r\n  </button>\r\n\r\n  <div class=\"video-wrapper\">\r\n    <iframe [src]=\"safeVideoUrl\" frameborder=\"0\" allow=\"encrypted-media; fullscreen\">\r\n    </iframe>\r\n  </div>\r\n</div>"
         }
     ],
     "modules": [
@@ -6122,13 +6083,13 @@
         },
         {
             "name": "AuthModule",
-            "id": "module-AuthModule-146f513db24ebcf098c4ee2da076fb6384907a44aa4ec84cbc75d72c618bab4906e428d5e88b6ee960d241478cde4c2e5bd7fac86b153c003c5a22099f789d12",
+            "id": "module-AuthModule-3e049cf784c596fcef9aa710dda83b3646a3374e6761a2e1970306331ffb970009378a85540c1b206f85dd918734e6d56b8db0a59eb4626507f28b372d7052bf",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/pages/auth/auth.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { AuthRoutingModule } from './auth-routing.module';\nimport { SharedModule } from 'src/app/shared/shared.module';\nimport { FormsModule } from '@angular/forms';\nimport { AuthPageComponent } from './page/auth-page.component';\n\n\n\n\n\n@NgModule({\n  declarations: [\n    AuthPageComponent\n  ],\n  imports: [\n    CommonModule,\n    AuthRoutingModule,\n    SharedModule,\n    FormsModule\n        \n  ]\n})\nexport class AuthModule { }\n",
+            "sourceCode": "import { SharedModule } from 'src/app/shared/shared.module';\nimport { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { AuthRoutingModule } from './auth-routing.module';\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\nimport { AuthPageComponent } from './page/auth-page.component';\nimport { AuthFormComponent } from './components/auth-form/auth-form.component';\n\n\n\n\n\n@NgModule({\n  declarations: [\n    AuthPageComponent,\n    AuthFormComponent,\n  ],\n  imports: [\n    CommonModule,\n    AuthRoutingModule,\n    FormsModule,\n    ReactiveFormsModule,\n    SharedModule\n        \n  ]\n})\nexport class AuthModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -6137,6 +6098,9 @@
                 {
                     "type": "declarations",
                     "elements": [
+                        {
+                            "name": "AuthFormComponent"
+                        },
                         {
                             "name": "AuthPageComponent"
                         }
@@ -6469,13 +6433,13 @@
         },
         {
             "name": "SharedModule",
-            "id": "module-SharedModule-118fd3feb478047d5bbfd1cf78ae19a151ce2b3e530b47b4f41de8fecc9b72e4be7401e933b0791af4342cce22397520dbdd164013ad708e2af4590a725a143d",
+            "id": "module-SharedModule-cb4699792754aa1f7799ad2de1802725374fcb167d8cb5cc20c87c3dd0b4c7f35e796dd5e9f31d8d70e15feda1df06edff6db93a493d052375b7baa81a608b02",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/shared/shared.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { RouterModule } from '@angular/router';\r\n\r\n// Angular Material Modules\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { MatTableModule } from '@angular/material/table';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatCardModule } from '@angular/material/card';\r\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\r\nimport { MatInputModule } from '@angular/material/input';\r\nimport { MatSelectModule } from '@angular/material/select';\r\nimport { MatGridListModule } from '@angular/material/grid-list';\r\nimport { MatListModule } from '@angular/material/list';\r\nimport { MatDividerModule } from '@angular/material/divider';\r\nimport { MatFormFieldModule } from '@angular/material/form-field';\r\nimport { MatExpansionModule } from '@angular/material/expansion';\r\nimport { MatChipsModule } from '@angular/material/chips';\r\nimport { MatTooltipModule } from '@angular/material/tooltip';\r\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\r\nimport { MatDialogModule } from '@angular/material/dialog';\r\nimport { MatSortModule } from '@angular/material/sort';\r\nimport { MatPaginatorModule } from '@angular/material/paginator';\r\n\r\nimport { NgbModule } from '@ng-bootstrap/ng-bootstrap';\r\n\r\nimport { OmdbService } from './services/omdb/omdb.service';\r\n\r\nimport { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';\r\nimport { MediaItemDialogComponent } from './components/movie-dialog/movie-dialog.component';\r\nimport { SortingControlsComponent } from './components/sorting-controls/sorting-controls.component';\r\nimport { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';\r\nimport { EmptyStateComponent } from './components/empty-state/empty-state.component';\r\nimport { TrailerDialogComponent } from './components/trailer-dialog/trailer-dialog.component';\r\n\r\nimport { FallbackImagesDirective } from './directives/fallback-images.directive';\r\nimport { AuthFormComponent } from './components/auth-form/auth-form.component';\r\n\r\nconst MATERIAL_MODULES = [\r\n  MatToolbarModule,\r\n  MatTableModule,\r\n  MatIconModule,\r\n  MatButtonModule,\r\n  MatCardModule,\r\n  MatButtonToggleModule,\r\n  MatInputModule,\r\n  MatSelectModule,\r\n  MatGridListModule,\r\n  MatListModule,\r\n  MatDividerModule,\r\n  MatFormFieldModule,\r\n  MatExpansionModule,\r\n  MatChipsModule,\r\n  MatTooltipModule,\r\n  MatProgressBarModule,\r\n  MatDialogModule,\r\n  MatSortModule,\r\n  MatPaginatorModule \r\n];\r\n\r\n@NgModule({\r\n  declarations: [\r\n    FavoritesCardComponent,\r\n    MediaItemDialogComponent,\r\n    SortingControlsComponent,\r\n    LoadingSpinnerComponent,\r\n    EmptyStateComponent,\r\n    TrailerDialogComponent,\r\n    FallbackImagesDirective,\r\n    AuthFormComponent\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    RouterModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgbModule,\r\n    ...MATERIAL_MODULES \r\n  ],\r\n  providers: [\r\n    OmdbService  \r\n  ],\r\n  exports: [\r\n    ...MATERIAL_MODULES,\r\n    NgbModule,\r\n    FavoritesCardComponent,\r\n    MediaItemDialogComponent,\r\n    SortingControlsComponent,\r\n    LoadingSpinnerComponent,\r\n    EmptyStateComponent,\r\n    TrailerDialogComponent,\r\n    FallbackImagesDirective,\r\n    AuthFormComponent\r\n  ]\r\n})\r\nexport class SharedModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { RouterModule } from '@angular/router';\r\n\r\n// Angular Material Modules\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { MatTableModule } from '@angular/material/table';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatCardModule } from '@angular/material/card';\r\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\r\nimport { MatInputModule } from '@angular/material/input';\r\nimport { MatSelectModule } from '@angular/material/select';\r\nimport { MatGridListModule } from '@angular/material/grid-list';\r\nimport { MatListModule } from '@angular/material/list';\r\nimport { MatDividerModule } from '@angular/material/divider';\r\nimport { MatFormFieldModule } from '@angular/material/form-field';\r\nimport { MatExpansionModule } from '@angular/material/expansion';\r\nimport { MatChipsModule } from '@angular/material/chips';\r\nimport { MatTooltipModule } from '@angular/material/tooltip';\r\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\r\nimport { MatDialogModule } from '@angular/material/dialog';\r\nimport { MatSortModule } from '@angular/material/sort';\r\nimport { MatPaginatorModule } from '@angular/material/paginator';\r\n\r\nimport { NgbModule } from '@ng-bootstrap/ng-bootstrap';\r\n\r\nimport { OmdbService } from './services/omdb/omdb.service';\r\n\r\nimport { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';\r\nimport { MediaItemDialogComponent } from './components/movie-dialog/movie-dialog.component';\r\nimport { SortingControlsComponent } from './components/sorting-controls/sorting-controls.component';\r\nimport { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';\r\nimport { EmptyStateComponent } from './components/empty-state/empty-state.component';\r\nimport { TrailerDialogComponent } from './components/trailer-dialog/trailer-dialog.component';\r\n\r\nimport { FallbackImagesDirective } from './directives/fallback-images.directive';\r\n\r\nconst MATERIAL_MODULES = [\r\n  MatToolbarModule,\r\n  MatTableModule,\r\n  MatIconModule,\r\n  MatButtonModule,\r\n  MatCardModule,\r\n  MatButtonToggleModule,\r\n  MatInputModule,\r\n  MatSelectModule,\r\n  MatGridListModule,\r\n  MatListModule,\r\n  MatDividerModule,\r\n  MatFormFieldModule,\r\n  MatExpansionModule,\r\n  MatChipsModule,\r\n  MatTooltipModule,\r\n  MatProgressBarModule,\r\n  MatDialogModule,\r\n  MatSortModule,\r\n  MatPaginatorModule \r\n];\r\n\r\n@NgModule({\r\n  declarations: [\r\n    FavoritesCardComponent,\r\n    MediaItemDialogComponent,\r\n    SortingControlsComponent,\r\n    LoadingSpinnerComponent,\r\n    EmptyStateComponent,\r\n    TrailerDialogComponent,\r\n    FallbackImagesDirective,\r\n\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    RouterModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgbModule,\r\n    ...MATERIAL_MODULES \r\n  ],\r\n  providers: [\r\n    OmdbService  \r\n  ],\r\n  exports: [\r\n    ...MATERIAL_MODULES,\r\n    NgbModule,\r\n    FavoritesCardComponent,\r\n    MediaItemDialogComponent,\r\n    SortingControlsComponent,\r\n    LoadingSpinnerComponent,\r\n    EmptyStateComponent,\r\n    TrailerDialogComponent,\r\n    FallbackImagesDirective,\r\n\r\n  ]\r\n})\r\nexport class SharedModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -6488,9 +6452,6 @@
                 {
                     "type": "declarations",
                     "elements": [
-                        {
-                            "name": "AuthFormComponent"
-                        },
                         {
                             "name": "EmptyStateComponent"
                         },
@@ -6521,9 +6482,6 @@
                 {
                     "type": "exports",
                     "elements": [
-                        {
-                            "name": "AuthFormComponent"
-                        },
                         {
                             "name": "EmptyStateComponent"
                         },
@@ -6631,6 +6589,16 @@
                 "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        align-items: center;\r\n        gap: 20px;\r\n        background-color: #1a1a1a;\r\n        padding: 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <!-- Gallery/Results Container (2/3 width) -->\r\n        <div style=\"\r\n          flex: 4;\r\n          background-color: #000000;\r\n          border: 1px solid #444;\r\n          border-radius: 8px;\r\n          padding: 20px;\r\n          display: flex;\r\n          align-items: center;\r\n          justify-content: center;\r\n          min-height: 400px;\r\n        \">\r\n          <p style=\"\r\n            color: #888;\r\n            text-align: center;\r\n            font-size: 14px;\r\n            margin: 0;\r\n          \">\r\n            📹 Gallery / Search Results Content\r\n            <br>\r\n            <span style=\"font-size: 12px; color: #666;\">(2/3 of width)</span>\r\n          </p>\r\n        </div>\r\n\r\n        <!-- SearchBar: 1/3 width -->\r\n        <div style=\"flex: 1; min-width: 300px;\">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nDesktop layout (1920px+): SearchBar takes ~1/3 width, gallery takes ~2/3.\r\n\r\nThis is the primary layout and most realistic view of how it works in production.\r\n        `,\r\n      },\r\n    },\r\n    viewport: {\r\n      defaultViewport: 'iphone12',\r\n    },\r\n  },\r\n}"
             },
             {
+                "name": "DisabledForm",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    formType: 'login',\r\n    disabled: true\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true }\r\n    },\r\n    disabled: {\r\n      control: { disable: true }\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nLogin form in disabled state during authentication process.\r\n\r\n\r\n**Visual State**:\r\n- All input fields are disabled (grayed out)\r\n- Submit button is disabled\r\n- User cannot interact with the form\r\n\r\n**Use Case**: Displayed while API authentication request is in progress to prevent:\r\n- Duplicate form submissions\r\n- User editing data during processing\r\n- Multiple simultaneous login attempts\r\n\r\n**Parent Component Pattern**:\r\n\r\n\\`\\`\\`typescript\r\nisAuthenticating = false;\r\n\r\nhandleLogin(user: User): void {\r\n  this.isAuthenticating = true; // Disables form\r\n  this.authService.login(user).subscribe({\r\n    next: () => this.router.navigate(['/']),\r\n    error: () => this.showError(),\r\n    complete: () => this.isAuthenticating = false // Re-enables form\r\n  });\r\n}\r\n\\`\\`\\`\r\n\r\n**Typical Duration**: 500ms - 2s (API round-trip time).\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+            },
+            {
                 "name": "EmptyTable",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -6681,6 +6649,16 @@
                 "defaultValue": "[ {\r\n    title: \"Killers of the Flower Moon\",\r\n    year: \"2023\",\r\n    imdbID: \"tt5537002\",\r\n    type: \"movie\",\r\n    poster: \"https://m.media-amazon.com/images/M/MV5BMjE4ZTZlNDAtM2Q3YS00YjFhLThjN2UtODg2ZGNlN2E2MWU2XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Napoleon\",\r\n  year: \"2023\",\r\n  imdbID: \"tt13287846\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZWIzNDAxMTktMDMzZS00ZjJmLTlhNjYtOGUxYmZlYzVmOGE4XkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Barbie\",\r\n  year: \"2023\",\r\n  imdbID: \"tt1517268\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Interstellar\",\r\n  year: \"2014\",\r\n  imdbID: \"tt0816692\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"True Detective\",\r\n  year: \"2014–\",\r\n  imdbID: \"tt2356777\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BYjgwYzA1NWMtNDYyZi00ZGQyLWI5NTktMDYwZjE2OTIwZWEwXkEyXkFqcGc@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"House of the Dragon\",\r\n  year: \"2022–\",\r\n  imdbID: \"tt11198330\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BM2QzMGVkNjUtN2Y4Yi00ODMwLTg3YzktYzUxYjJlNjFjNDY1XkEyXkFqcGc@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Better Call Saul\",\r\n  year: \"2015–2022\",\r\n  imdbID: \"tt3032476\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZDA4YmE0OTYtMmRmNS00Mzk2LTlhM2MtNjk4NzBjZGE1MmIyXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Breaking Bad\",\r\n  year: \"2008–2013\",\r\n  imdbID: \"tt0903747\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"The Wire\",\r\n  year:  \"2002–2008\",\r\n  imdbID: \"tt0306414\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZWYyNmRhYjktNjBhNC00M2NhLWEzYmMtZDYwNmIyZTRiZWMzXkEyXkFqcGc@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"MobLand\",\r\n  year:  \"2025–\",\r\n  imdbID: \"tt31510819\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZDVmMzJkOWUtMjdjMi00NzA4LTgxMTItYjA4NjVjZDI0ZWU1XkEyXkFqcGc@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"REC\",\r\n  year:  \"2007\",\r\n  imdbID: \"tt1038988\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZTI1ODM2ZWEtYmM5NS00ZDYzLWI1YzktYWYwZTdmOWMwZTBmXkEyXkFqcGdeQXVyMTU3NDU4MDg2._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Dune\",\r\n  year:  \"2021\",\r\n  imdbID: \"tt1160419\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BMDQ0NjgyN2YtNWViNS00YjA3LTkxNDktYzFkZTExZGMxZDkxXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg\"\r\n}]"
             },
             {
+                "name": "FromFavorites",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        {\r\n          provide: MAT_DIALOG_DATA,\r\n          useValue: {\r\n            movie: mockMediaItem,\r\n            response: mockOmdbResponse,\r\n            fromFavoritesSection: true\r\n          } as MediaItemDialogData\r\n        }\r\n      ]\r\n    })\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nMovie details dialog opened from favorites section.\r\n\r\n**Key Differences**:\r\n- ❌ **\"Add to Favorites\" button is HIDDEN** (already in favorites)\r\n- ✅ Close button available\r\n- ✅ Watch Trailer button available (if trailer exists)\r\n\r\n**Visible Buttons**:\r\n- ✅ Close\r\n- ✅ Watch Trailer\r\n\r\n**Flag**: \\`fromFavoritesSection: true\\`\r\n\r\n**Use Case**: User is browsing their favorites list and wants to view details or watch trailer again.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+            },
+            {
                 "name": "Hidden",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -6704,11 +6682,11 @@
                 "name": "LoginForm",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
+                "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    formType: 'login',\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true },     \r\n    },\r\n    formSubmit: {\r\n      control: { disable: true },\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Standard login form with email, password, and link to registration page. This matches the production implementation.',\r\n      },\r\n    },\r\n  },\r\n}"
+                "defaultValue": "{\r\n  args: {\r\n    formType: 'login',\r\n    disabled: false\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true }\r\n    },\r\n    disabled: {\r\n      control: { disable: true }\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nStandard login form with email and password fields.\r\n\r\n\r\n**Visual Configuration**:\r\n- **Title**: \"Open the door\"\r\n- **Fields**: Email, Password\r\n- **Submit Button**: \"Login\"\r\n- **Additional UI**: Link to register page\r\n- **Password Hint**: Hidden\r\n\r\n**Use Case**: Default authentication entry point for returning users.\r\n\r\n**Interaction**: Fill the form and click Submit to see the \\`formSubmit\\` action logged with form data.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
             },
             {
                 "name": "MATERIAL_MODULES",
@@ -6734,16 +6712,6 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<AuthFormComponent>",
-                "defaultValue": "{\r\n  title: 'Shared/AuthForm',\r\n  component: AuthFormComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        RouterTestingModule\r\n      ],\r\n      declarations: [AuthFormComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#000000d5' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['formSubmit', 'formType', 'disabled'], \r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n  Reusable authentication form component supporting login and registration flows\r\n  \r\n  ## Features\r\n  \r\n  - 📋 Two form modes: login and register\r\n  - ✅ Reactive form validation with email and password patterns\r\n  - 🔐 Password visibility toggle\r\n  - 👤 Dynamic name field for registration\r\n  - 📱 Responsive Material Design layout\r\n  \r\n  ## Key Capabilities\r\n  \r\n  The component provides a simple authentication interface:\r\n  - **Two form modes** controlled by single formType input\r\n  - **Real-time validation** with email and password requirements\r\n  - **Accessible controls** with ARIA labels\r\n  - **Automatic configuration** based on form type\r\n  - **Type-safe form handling**\r\n\r\n## Usage Example\r\n\r\n### Login Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Registration Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"register\"\r\n  (formSubmit)=\"handleRegister($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class AuthPageComponent {\r\n  handleLogin(user: User): void {\r\n    this.authService.login(user).subscribe(\r\n      (response) => this.router.navigate(['/dashboard']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  handleRegister(user: User): void {\r\n    this.authService.register(user).subscribe(\r\n      (response) => this.router.navigate(['/email-verification']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Message |\r\n|-------|-------|---------------|\r\n| **Email** | Required, valid email format | \"Email is required\" or \"Incorrect email format\" |\r\n| **Password** | Required, min 6 chars, letters + numbers + special chars | \"Password is required\" or \"Min 6 char incl. letters, numbers and special characters\" |\r\n| **Name** | Required (register only) | \"Name is required\" |\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`formSubmit\\` | \\`User\\` | Emitted when form is submitted with valid values |\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields and buttons\r\n- ✅ Keyboard accessible password visibility toggle\r\n- ✅ Proper label associations with form inputs\r\n- ✅ Error messages linked to form fields\r\n- ✅ Focus management and visual indicators\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: 'radio',\r\n      options: ['login', 'register'],\r\n      description: 'Type of authentication form to display',\r\n    },\r\n    formSubmit: {\r\n      action: 'formSubmit',\r\n    },\r\n  },\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/shared/components/empty-state/empty-state.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -6759,6 +6727,36 @@
                 "deprecationMessage": "",
                 "type": "Meta<LoadingSpinnerComponent>",
                 "defaultValue": "{\r\n  title: 'Shared/LoadingSpinner',\r\n  component: LoadingSpinnerComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [LoadingSpinnerComponent],\r\n      imports: [CommonModule, MatProgressBarModule, MatIconModule],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [{ name: 'app background', value: '#000000' }],\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nDisplays a loading spinner with an indeterminate progress bar and an inline icon.\r\n\r\n## Features\r\n- Shows/hides spinner based on 'visible' input\r\n- Uses Angular Material progress bar and icon with accent color\r\n- Centered text and spinner over black background\r\n\r\n## Usage Example\r\n\\`\\`\\`html\r\n<app-loading-spinner [visible]=\"true\"></app-loading-spinner>\r\n\\`\\`\\`\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    visible: {\r\n      control: 'boolean',\r\n      description: 'Controls the visibility of the spinner',\r\n      table: {\r\n        category: 'Inputs',\r\n        defaultValue: { summary: 'false' },\r\n      },\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<MediaItemDialogComponent>",
+                "defaultValue": "{\r\n  title: 'Shared/MediaItemDialog',\r\n  component: MediaItemDialogComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        BrowserAnimationsModule,\r\n        MatDialogModule,\r\n        MatButtonModule,\r\n        MatIconModule\r\n      ],\r\n      declarations: [MediaItemDialogComponent],\r\n      providers: [\r\n        {\r\n          provide: ToastrService,\r\n          useValue: {\r\n            success: (title: string, message: string) => console.log('✅ Toast Success:', message, title),\r\n            error: (message: string, title: string) => console.log('❌ Toast Error:', title, message),\r\n            warning: (message: string) => console.log('⚠️ Toast Warning:', message)\r\n          }\r\n        },\r\n        {\r\n          provide: FavoritesService,\r\n          useValue: {\r\n            addToFavorites: () => {\r\n              return of({ success: true });\r\n            }\r\n          }\r\n        },\r\n        {\r\n          provide: AuthService,\r\n          useValue: {\r\n            isLoggedInObservable: () => of(true)\r\n          }\r\n        },\r\n        {\r\n          provide: Router,\r\n          useValue: {\r\n            navigate: () => Promise.resolve(true)\r\n          }\r\n        },\r\n        {\r\n          provide: DialogService,\r\n          useValue: {\r\n            openTrailerDialog: () => {\r\n              return of({ success: true });\r\n            }\r\n          }\r\n        },\r\n        {\r\n          provide: MatDialogRef,\r\n          useValue: {\r\n            close: () => { /* empty */ }\r\n          }\r\n        }\r\n      ]\r\n    })\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    backgrounds: {\r\n      default: 'light background',\r\n      values: [\r\n        { name: 'light background', value: '#FFFFFF' }\r\n      ]\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nMaterial Dialog component displaying comprehensive media item (movie/series/game) details from OMDB API.\r\n\r\n## Purpose\r\n\r\nPresents detailed information about a media item in a modal dialog, allowing users to:\r\n- View poster, title, and comprehensive details\r\n- Add items to favorites (if not already in favorites section)\r\n- Watch trailer videos (if available)\r\n- Close dialog\r\n\r\n## Data Flow\r\n\r\n**Opening the Dialog**:\r\n1. User clicks on media item in search results\r\n2. Component calls \\`DialogService.openMediaItem()\\`\r\n3. DialogService calls \\`OmdbService.getMediaItemInfo()\\`\r\n4. On success, opens \\`MediaItemDialogComponent\\` with OMDB data\r\n5. Dialog displays via \\`MAT_DIALOG_DATA\\` injection\r\n\r\n**Data Structure** (\\`MediaItemDialogData\\`):\r\n\\`\\`\\`typescript\r\n{\r\n  movie: MediaItem,              // Source media item\r\n  response: OmdbDetails,         // OMDB API response\r\n  fromFavoritesSection: boolean  // Context flag\r\n}\r\n\\`\\`\\`\r\n\r\n## Display Information\r\n\r\n| Field | Source | Example |\r\n|-------|--------|---------|\r\n| Title & Year | response.Title, response.Year | \"Inception (2010)\" |\r\n| Poster Image | response.Poster | Image or no_poster.jpg fallback |\r\n| Director | response.Director | \"Christopher Nolan\" |\r\n| Actors | response.Actors | Comma-separated list |\r\n| Plot | response.Plot | Full movie synopsis |\r\n| Genre | response.Genre | \"Action, Sci-Fi, Thriller\" |\r\n| Language | response.Language | \"English, Japanese, French\" |\r\n| Country | response.Country | \"United States, United Kingdom\" |\r\n| Runtime | response.Runtime | \"148 min\" |\r\n| Rating | response.imdbRating + imdbVotes | \"8.8/10 (2,645,513 votes)\" |\r\n\r\n## Button Behavior\r\n\r\n| Button | Visibility | Action |\r\n|--------|-----------|--------|\r\n| **Close** | Always visible | Closes dialog |\r\n| **Add** | Only if \\`!fromFavoritesSection\\` | Adds to favorites (requires auth) |\r\n| **Trailer** | Only if \\`youtubeURLTrailer\\` exists | Opens TrailerDialogComponent |\r\n\r\n## Dialog Configuration\r\n\r\n- **Size**: Responsive (70-85% width, 85-90% height based on screen)\r\n- **Animation**: 500ms enter/exit\r\n- **Backdrop**: Click to close (Material default)\r\n- **Styling Class**: 'movie-details-dialog'\r\n- **Auto Focus**: Disabled (prevents auto-focus on elements)\r\n\r\n## Error Handling\r\n\r\n| Scenario | Behavior |\r\n|----------|----------|\r\n| No poster image | Shows \\`assets/images/no_poster.jpg\\` fallback |\r\n| Image load fails | Shows \\`assets/images/no_poster.jpg\\` fallback |\r\n| Add to favorites (not logged in) | Shows error toast → closes dialog → redirects to /auth/login |\r\n| Add to favorites (error) | Shows warning toast |\r\n\r\n## Responsive Dialog Sizing\r\n\r\nDialog size determined by \\`DialogService.openMediaItem()\\` based on window width:\r\n\r\n| Window Width | Dialog Width | Dialog Height |\r\n|--------------|--------------|---------------|\r\n| < 600px | 80% | 90% |\r\n| 600-800px | 70% | 85% |\r\n| > 800px | 85% | 85% |\r\n        `\r\n      }\r\n    }\r\n  },\r\n  argTypes: {\r\n    data: {\r\n      table: { disable: true }\r\n    },\r\n    videoUrl: {\r\n      table: { disable: true }\r\n    },\r\n    playTrailer: {\r\n      table: { disable: true }\r\n    },\r\n    showPlayer: {\r\n      table: { disable: true }\r\n    },\r\n    onImageError: {\r\n      table: { disable: true }\r\n    },\r\n    addToFavorites: {\r\n      action: 'addToFavorites',\r\n      description: 'Triggered when user clicks \"Add to Favorites\" button. Adds the media item to the user\\'s favorites list.',\r\n      table: {\r\n        category: 'Actions',\r\n        type: { summary: '(mediaItem: MediaItem) => void' }\r\n      }\r\n    },\r\n  }\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<TrailerDialogComponent>",
+                "defaultValue": "{\r\n  title: 'Shared/TrailerDialog',\r\n  component: TrailerDialogComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        BrowserAnimationsModule,\r\n        MatDialogModule,\r\n        MatButtonModule,\r\n        MatIconModule\r\n      ],\r\n      declarations: [TrailerDialogComponent],\r\n      providers: [\r\n        {\r\n          provide: MatDialogRef,\r\n          useValue: {\r\n            close: () => console.log('✅ Dialog closed')\r\n          }\r\n        }\r\n      ]\r\n    })\r\n  ],\r\n  parameters: {\r\n    backgrounds: {\r\n      default: 'dark background',\r\n      values: [\r\n        { name: 'dark background', value: '#fffdfdff' }\r\n      ]\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nDialog component for displaying YouTube trailer videos embedded in an Angular Material dialog.\r\n\r\n## Purpose\r\n\r\nDisplays a YouTube video in a secure, responsive iframe with fullscreen and autoplay capabilities.\r\n\r\n## How It Works\r\n\r\n1. **Data Injection**: Receives video URL via \\`MAT_DIALOG_DATA\\`\r\n2. **URL Parsing**: Extracts YouTube video ID from multiple URL formats\r\n3. **Sanitization**: Uses Angular's \\`DomSanitizer\\` to safely embed the iframe\r\n\r\n## Supported URL Formats\r\n\r\n| Format | Example |\r\n|--------|---------|\r\n| Standard watch URL | \\`https://www.youtube.com/watch?v=YoHD_XwrzKw\\` |\r\n| Short URL | \\`https://youtu.be/YoHD_XwrzKw\\` |\r\n| Embed URL | \\`https://www.youtube.com/embed/YoHD_XwrzKw\\` |\r\n\r\n## Data Structure (TrailerDialogData)\r\n\r\n\\`\\`\\`typescript\r\n{\r\n  videoUrl: string  // YouTube URL (any format supported)\r\n}\r\n\\`\\`\\`\r\n\r\n## Button Behavior\r\n\r\n| Button | Action |\r\n|--------|--------|\r\n| **Close** | Closes the dialog via MatDialogRef |\r\n\r\n## Features\r\n\r\n- **Controls**: YouTube player controls (play, pause, timeline, volume)\r\n- **Responsive**: Fills entire dialog container\r\n- **Full-screen**: Allows YouTube fullscreen expansion\r\n- **Secure**: All URLs sanitized to prevent XSS attacks\r\n\r\n## Security\r\n\r\n- Uses \\`DomSanitizer.bypassSecurityTrustResourceUrl()\\` \r\n- Whitelisted \\`encrypted-media\\`, and \\`fullscreen\\` permissions\r\n- Video ID extracted via regex to ensure only valid YouTube IDs are embedded\r\n\r\n## Usage\r\n\r\nTypically opened via \\`DialogService.openTrailerDialog()\\` from \\`MediaItemDialogComponent\\`:\r\n\r\n\\`\\`\\`typescript\r\nthis.dialogService.openTrailerDialog('https://www.youtube.com/watch?v=VIDEO_ID');\r\n\\`\\`\\`\r\n\r\n## Dialog Configuration\r\n\r\n- **Size**: Full-screen dialog (Material default)\r\n- **Close**: Click button or ESC key\r\n- **Animation**: Standard Material enter/exit\r\n- **Backdrop**: Click to close (Material default)\r\n        `\r\n      }\r\n    }\r\n  },\r\nargTypes: {\r\n  data: {\r\n    table: { disable: true }\r\n  },\r\n  safeVideoUrl: {\r\n    table: { disable: true }\r\n  },\r\n  close: {\r\n    table: { disable: true }\r\n  },\r\n  ngOnInit: {\r\n    table: { disable: true }\r\n  }\r\n}\r\n\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<AuthFormComponent>",
+                "defaultValue": "{\r\n  title: 'Pages/Auth/Components/AuthForm',\r\n  component: AuthFormComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        BrowserAnimationsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        RouterTestingModule\r\n      ],\r\n      declarations: [AuthFormComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#000000d5' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['formSubmit', 'formType', 'disabled'], \r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nReusable authentication form component supporting login and registration flows.\r\n\r\n## Features\r\n\r\n- 📋 Two form modes: login and register\r\n- ✅ Reactive form validation with email and password patterns\r\n- 🔐 Password visibility toggle\r\n- 👤 Dynamic name field for registration\r\n- 📱 Responsive Material Design layout\r\n\r\n## Key Capabilities\r\n\r\nThe component provides a simple authentication interface:\r\n- **Two form modes** controlled by single formType input\r\n- **Real-time validation** with email and password requirements\r\n- **Accessible controls** with ARIA labels\r\n- **Automatic configuration** based on form type\r\n- **Type-safe form handling**\r\n\r\n## Usage Example\r\n\r\n### Login Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Registration Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"register\"\r\n  (formSubmit)=\"handleRegister($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Disabled Form (During API Call)\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  [disabled]=\"isAuthenticating\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class AuthPageComponent {\r\n  isAuthenticating = false;\r\n\r\n  handleLogin(user: User): void {\r\n    this.isAuthenticating = true;\r\n    this.authService.login(user).subscribe({\r\n      next: (response) => {\r\n        this.router.navigate(['/dashboard']);\r\n        this.isAuthenticating = false;\r\n      },\r\n      error: (error) => {\r\n        this.showError(error);\r\n        this.isAuthenticating = false;\r\n      }\r\n    });\r\n  }\r\n\r\n  handleRegister(user: User): void {\r\n    this.isAuthenticating = true;\r\n    this.authService.register(user).subscribe({\r\n      next: (response) => {\r\n        this.router.navigate(['/login']);\r\n        this.isAuthenticating = false;\r\n      },\r\n      error: (error) => {\r\n        this.showError(error);\r\n        this.isAuthenticating = false;\r\n      }\r\n    });\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Message |\r\n|-------|-------|---------------|\r\n| **Email** | Required, valid email format | \"Email is required\" or \"Incorrect email format\" |\r\n| **Password** | Required, min 6 chars, letters + numbers + special chars | \"Password is required\" or \"Min 6 char incl. letters, numbers and special characters\" |\r\n| **Name** | Required (register only) | \"Name is required\" |\r\n\r\n## Inputs\r\n\r\n| Property | Type | Default | Description |\r\n|----------|------|---------|-------------|\r\n| \\`formType\\` | \\`'login' \\\\| 'register'\\` | \\`'login'\\` | Form mode: login (email+password) or register (name+email+password) |\r\n| \\`disabled\\` | \\`boolean\\` | \\`false\\` | Disables form during API calls |\r\n\r\n## Outputs\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`formSubmit\\` | \\`User\\` | Emitted when form is submitted with valid values |\r\n\r\n## Form Configuration by Type\r\n\r\n| Aspect | Login | Register |\r\n|--------|-------|----------|\r\n| **Title** | \"Open the door\" | \"Join us!\" |\r\n| **Fields** | Email, Password | Name, Email, Password |\r\n| **Submit Button** | \"Login\" | \"Sign Up\" |\r\n| **Register Link** | Yes | No |\r\n| **Password Hint** | No | Yes |\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields and buttons\r\n- ✅ Keyboard accessible password visibility toggle\r\n- ✅ Proper label associations with form inputs\r\n- ✅ Error messages linked to form fields\r\n- ✅ Focus management and visual indicators\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: 'radio',\r\n      options: ['login', 'register'],\r\n      description: 'Type of authentication form to display',\r\n    },\r\n    formSubmit: {\r\n      action: 'formSubmit',\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "meta",
@@ -6811,6 +6809,76 @@
                 "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        background-color: #1a1a1a;\r\n        padding: 40px 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <div style=\"width: 100%; max-width: 250px; max-higth;\">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nMobile layout (375px - 601px): SearchBar takes 100% width.\r\n\r\nOn small mobile devices, SearchBar is the primary visible element.\r\nResults/gallery render below (below the fold).\r\n        `,\r\n      },\r\n    },\r\n    viewport: {\r\n      defaultViewport: 'iphone12',\r\n    },\r\n  },\r\n}"
             },
             {
+                "name": "mockMediaItem",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "MediaItem",
+                "defaultValue": "{\r\n  _id: '1',\r\n  title: 'Inception',\r\n  year: '2010',\r\n  imdbID: 'tt1375666',\r\n  type: 'movie',\r\n  poster: 'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg',\r\n  description: 'A skilled thief who steals corporate secrets through the use of dream-sharing technology...',\r\n  user: 'user123',\r\n  createdAt: '2024-01-15T10:30:00Z',\r\n  updatedAt: '2024-01-15T10:30:00Z'\r\n}"
+            },
+            {
+                "name": "mockOmdbResponse",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "OmdbDetails",
+                "defaultValue": "{\r\n  Title: 'Inception',\r\n  Year: '2010',\r\n  Rated: 'PG-13',\r\n  Released: '16 Jul 2010',\r\n  Runtime: '148 min',\r\n  Genre: 'Action, Sci-Fi, Thriller',\r\n  Director: 'Christopher Nolan',\r\n  Writer: 'Christopher Nolan, Jonathan Nolan',\r\n  Actors: 'Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Marion Cotillard',\r\n  Plot: 'A skilled thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.',\r\n  Language: 'English, Japanese, French',\r\n  Country: 'United States, United Kingdom',\r\n  Awards: 'Won 4 Oscars. 159 wins & 218 nominations total',\r\n  Poster: 'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg',\r\n  Ratings: [\r\n    { Source: 'Internet Movie Database', Value: '8.8/10' },\r\n    { Source: 'Rotten Tomatoes', Value: '87%' },\r\n    { Source: 'Metacritic', Value: '74/100' }\r\n  ],\r\n  Metascore: '74',\r\n  imdbRating: '8.8',\r\n  imdbVotes: '2,645,513',\r\n  imdbID: 'tt1375666',\r\n  Type: 'movie',\r\n  Response: 'True',\r\n  youtubeURLTrailer: 'https://www.youtube.com/embed/YoHD_XwrzKw'\r\n}"
+            },
+            {
+                "name": "mockOmdbResponseNoPoster",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "OmdbDetails",
+                "defaultValue": "{\r\n  ...mockOmdbResponse,\r\n  Poster: 'N/A'\r\n}"
+            },
+            {
+                "name": "mockOmdbResponseNoTrailer",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "OmdbDetails",
+                "defaultValue": "{\r\n  ...mockOmdbResponse,\r\n  youtubeURLTrailer: ''\r\n}"
+            },
+            {
+                "name": "mockTrailerData",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "TrailerDialogData",
+                "defaultValue": "{\r\n  videoUrl: mockTrailerUrl\r\n}"
+            },
+            {
+                "name": "mockTrailerUrl",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'https://www.youtube.com/watch?v=fVQUcaO4AvE'"
+            },
+            {
+                "name": "MovieDetails",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        {\r\n          provide: MAT_DIALOG_DATA,\r\n          useValue: {\r\n            movie: mockMediaItem,\r\n            response: mockOmdbResponse,\r\n            fromFavoritesSection: false\r\n          } as MediaItemDialogData\r\n        }\r\n      ]\r\n    })\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nStandard movie details dialog showing complete information with all buttons available.\r\n\r\n**Media**: Inception (2010) - Movie\r\n- **Poster**: Available\r\n- **Trailer**: Available (YouTube)\r\n- **Context**: From search results (not favorites)\r\n\r\n**Visible Buttons**:\r\n- ✅ **Close** - Closes dialog\r\n- ✅ **Add to Favorites** - Adds movie to favorites\r\n- ✅ **Watch Trailer** - Opens trailer in separate dialog\r\n\r\n**Information Displayed**:\r\n- Director: Christopher Nolan\r\n- Actors: Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Marion Cotillard\r\n- Genre: Action, Sci-Fi, Thriller\r\n- Runtime: 148 min\r\n- Rating: 8.8/10 (2,645,513 votes)\r\n- Plot, Language, Country, Awards, etc.\r\n\r\n**Use Case**: User found movie in search and wants to view details before adding to favorites.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+            },
+            {
                 "name": "NoPagination",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -6821,14 +6889,34 @@
                 "defaultValue": "{\r\n  name: 'Few Items (Pagination Disabled)',\r\n  args: {\r\n    collection: sampleData.slice(0, 3), \r\n    collectionSize: 3,\r\n    currentPage: 1,\r\n    pageSize: 10,  \r\n    displayedColumns: ['title', 'year', 'type', 'poster', 'Add'],\r\n    favoriteAdded: action('favoriteAdded'),\r\n    detailsOpened: action('detailsOpened'),\r\n    pageChanged: action('pageChanged'),\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Table with few items. Paginator is automatically hidden when all items fit in one page (collection size ≤ page size).',\r\n      },\r\n    },\r\n  },\r\n}"
             },
             {
-                "name": "RegisterForm",
+                "name": "NoPoster",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
+                "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    formType: 'register',\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true },  \r\n      table: { disable: false }\r\n    },\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Complete registration form with name, email, password fields, and password requirements hint. This matches the production implementation.',\r\n      },\r\n    },\r\n  },\r\n}"
+                "defaultValue": "{\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        {\r\n          provide: MAT_DIALOG_DATA,\r\n          useValue: {\r\n            movie: mockMediaItem,\r\n            response: mockOmdbResponseNoPoster,\r\n            fromFavoritesSection: false\r\n          } as MediaItemDialogData\r\n        }\r\n      ]\r\n    })\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nMovie details when poster image is not available.\r\n\r\n**Image Handling**:\r\n- OMDB returns \\`Poster: 'N/A'\\` when no image available\r\n- Template detects this and shows fallback: \\`assets/images/no_poster.jpg\\`\r\n- All other information displayed normally\r\n\r\n**Fallback Triggers**:\r\n1. \\`response.Poster === 'N/A'\\` (OMDB returned no image)\r\n2. Image URL fails to load (404 error) - handled by \\`onImageError()\\` handler\r\n\r\nBoth scenarios show the same placeholder image.\r\n\r\n**Use Case**: Some older movies, rare items, or games may not have poster images in OMDB database.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+            },
+            {
+                "name": "NoTrailer",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        {\r\n          provide: MAT_DIALOG_DATA,\r\n          useValue: {\r\n            movie: mockMediaItem,\r\n            response: mockOmdbResponseNoTrailer,\r\n            fromFavoritesSection: false\r\n          } as MediaItemDialogData\r\n        }\r\n      ]\r\n    })\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nMovie details when YouTube trailer is not available.\r\n\r\n**Key Differences**:\r\n- ❌ **\"Watch Trailer\" button is HIDDEN** (\\`youtubeURLTrailer\\` is empty/null)\r\n- ✅ Close button available\r\n- ✅ Add to Favorites button available\r\n\r\n**Condition**: \\`response.youtubeURLTrailer === '' or null\\`\r\n\r\n**Use Case**: Older movies, indie films, or items without trailer on OMDB may not have \\`youtubeURLTrailer\\` populated.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+            },
+            {
+                "name": "RegisterForm",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    formType: 'register',\r\n    disabled: false\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true }\r\n    },\r\n    disabled: {\r\n      control: { disable: true }\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nComplete registration form with name, email, and password fields.\r\n\r\n\r\n**Visual Configuration**:\r\n- **Title**: \"Join us!\"\r\n- **Fields**: **Name** (additional field), Email, Password\r\n- **Submit Button**: \"Sign Up\"\r\n- **Additional UI**: Password requirements hint visible\r\n- **Register Link**: Hidden (already on registration)\r\n\r\n**Use Case**: New user account creation flow.\r\n\r\n**Key Difference from Login**: Includes name field and shows password complexity requirements to help users create valid passwords.\r\n\r\n**Interaction**: Fill all fields and submit to see the complete User object (including name) in the action log.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
             },
             {
                 "name": "sampleData",
@@ -6859,6 +6947,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n    args: {\r\n        collection: sampleData.slice(0, 3),\r\n        sendItemCarousel: action('sendItemCarousel'),\r\n    },\r\n    argTypes: {\r\n        collection: { control: false },\r\n    },\r\n    parameters: {\r\n        docs: {\r\n            description: {\r\n                story: 'Carousel with only 3 items (single slide).',\r\n            },\r\n        },\r\n    },\r\n}"
+            },
+            {
+                "name": "StandardURL",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        {\r\n          provide: MAT_DIALOG_DATA,\r\n          useValue: mockTrailerData as TrailerDialogData\r\n        }\r\n      ]\r\n    })\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nYouTube trailer with standard watch URL format.\r\n\r\n**URL Format**: \\`https://www.youtube.com/watch?v=YoHD_XwrzKw\\`\r\n\r\nThe component extracts the video ID \\`YoHD_XwrzKw\\` and converts it to embed format automatically.\r\n\r\n**Features**:\r\n- ✅ Autoplay enabled\r\n- ✅ Full controls visible\r\n- ✅ Fullscreen allowed\r\n- ✅ Related videos disabled (\\`rel=0\\`)\r\n\r\n**Use Case**: Video URL from OMDB API or user input.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
             },
             {
                 "name": "Tablet",
@@ -6901,6 +6999,26 @@
                 "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        background-color: #1a1a1a;\r\n        padding: 40px 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <div style=\"width: 100%; max-width: 500px;\">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  play: async ({ canvasElement }) => {\r\n    const titleInput = canvasElement.querySelector(\r\n      'input[formcontrolname=\"title\"]'\r\n    ) as HTMLInputElement;\r\n\r\n    if (titleInput) {\r\n      titleInput.value = '   '; // Only spaces - invalid\r\n      titleInput.dispatchEvent(new Event('input', { bubbles: true }));\r\n      titleInput.dispatchEvent(new Event('blur', { bubbles: true }));\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nValidation error example: title field has only spaces (invalid).\r\n\r\nShows how component validates and displays specific error messages.\r\n        `,\r\n      },\r\n    },\r\n  },\r\n}"
             },
             {
+                "name": "WithValidationErrors",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    formType: 'login',\r\n    disabled: false\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true }\r\n    },\r\n    disabled: {\r\n      control: { disable: true }\r\n    }\r\n  },\r\n  play: async ({ canvasElement }) => {\r\n    const emailInput = canvasElement.querySelector('input[type=\"email\"]') as HTMLInputElement;\r\n    const passwordInput = canvasElement.querySelector('input[type=\"password\"]') as HTMLInputElement;\r\n\r\n    if (emailInput && passwordInput) {\r\n      emailInput.value = 'invalid-email';\r\n      passwordInput.value = '123';\r\n      \r\n      emailInput.dispatchEvent(new Event('input', { bubbles: true }));\r\n      passwordInput.dispatchEvent(new Event('input', { bubbles: true }));\r\n      emailInput.dispatchEvent(new Event('blur', { bubbles: true }));\r\n      passwordInput.dispatchEvent(new Event('blur', { bubbles: true }));\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nLogin form displaying validation errors for invalid input.\r\n\r\n**⚠️ Interactive Feature**: This story uses \\`play()\\` to auto-fill the form. \r\n**Switch to Canvas tab** to see it in action.\r\n\r\n**Invalid Data**:\r\n- **Email**: \"invalid-email\" (missing @ and domain)\r\n- **Password**: \"123\" (too short, missing letters and special chars)\r\n\r\n**Visual Error State**:\r\n- Email field shows error: \"Incorrect email format\"\r\n- Password field shows error: \"Min 6 char incl. letters, numbers and special characters\"\r\n- Input fields highlighted in red (Material Design error styling)\r\n- Submit button is **disabled** until errors are corrected\r\n\r\n**Validation Rules Tested**:\r\n\r\n| Field | Rule Violated | Error Message |\r\n|-------|---------------|---------------|\r\n| Email | Must match email pattern | \"Incorrect email format\" |\r\n| Password | Min 6 chars + letters + numbers + special | \"Min 6 char incl...\" |\r\n\r\n**Use Case**:\r\n- Demonstrating form validation feedback\r\n- Testing error message display\r\n- UX testing for invalid input handling\r\n\r\n**User Recovery**: User must correct both fields before submit button becomes enabled.\r\n\r\n**Try It**: Correct the email to \"user@example.com\" and password to \"Password123!\" to see errors disappear and button enable.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+            },
+            {
+                "name": "WithValidData",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    formType: 'login',\r\n    disabled: false\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true }\r\n    },\r\n    disabled: {\r\n      control: { disable: true }\r\n    }\r\n  },\r\n  play: async ({ canvasElement }) => {\r\n    const emailInput = canvasElement.querySelector('input[type=\"email\"]') as HTMLInputElement;\r\n    const passwordInput = canvasElement.querySelector('input[type=\"password\"]') as HTMLInputElement;\r\n\r\n    if (emailInput && passwordInput) {\r\n      emailInput.value = 'user@example.com';\r\n      passwordInput.value = 'Password123!';\r\n      \r\n      emailInput.dispatchEvent(new Event('input', { bubbles: true }));\r\n      passwordInput.dispatchEvent(new Event('input', { bubbles: true }));\r\n      emailInput.dispatchEvent(new Event('blur', { bubbles: true }));\r\n      passwordInput.dispatchEvent(new Event('blur', { bubbles: true }));\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nLogin form pre-filled with valid credentials ready for submission.\r\n\r\n**⚠️ Interactive Feature**: This story uses \\`play()\\` to auto-fill the form. \r\n**Switch to Canvas tab** to see it in action.\r\n\r\n**Form State**:\r\n- **Email**: user@example.com (valid format)\r\n- **Password**: Password123! (meets all requirements)\r\n- **Validation**: All fields pass validation ✅\r\n- **Submit Button**: Enabled and ready\r\n\r\n**Visual Indicators**:\r\n- No error messages displayed\r\n- Input fields show valid state (Material Design success styling)\r\n- Submit button is clickable\r\n\r\n**Use Case**: \r\n- Testing successful form submission flow\r\n- Demonstrating valid form state\r\n- Password manager auto-fill scenario\r\n\r\n**Interaction**: Click Submit button to see the validated User object logged in Actions panel.\r\n\r\n**Expected Payload**:\r\n\\`\\`\\`json\r\n{\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"Password123!\"\r\n}\r\n\\`\\`\\`\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+            },
+            {
                 "name": "WithValidInput",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -6928,17 +7046,6 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<AuthFormComponent>",
-                "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 184
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
                 "rawtype": "StoryObj<EmptyStateComponent>",
                 "file": "src/app/shared/components/empty-state/empty-state.stories.ts",
                 "deprecated": false,
@@ -6952,6 +7059,39 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<LoadingSpinnerComponent>",
                 "file": "src/app/shared/components/loading-spinner/loading-spinner.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<MediaItemDialogComponent>",
+                "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<TrailerDialogComponent>",
+                "file": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<AuthFormComponent>",
+                "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -7244,6 +7384,68 @@
                     "defaultValue": "{\r\n  title: 'Pages/Search/Components/SearchCover',\r\n  component: SearchCoverComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [SearchCoverComponent],\r\n      imports: [CommonModule, MatIconModule],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [{ name: 'app background', value: '#000000' }]\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nDisplays the prominent cover area for the search page, highlighting three main categories (MediaItems, TV Shows, Videogames) with their respective icons and descriptions.\r\n\r\nThe content is static and visually styled, designed as a \"dumb\" presentational component without inputs or outputs.\r\n\r\n## Features\r\n\r\n- 📱 Responsive layout adapts on mobile and tablet devices\r\n- 🎨 Uses Angular Material icons for visual identification\r\n- ✨ Strong UX emphasis on clarity and design\r\n- 🚫 No dynamic behavior; purely for display purposes\r\n\r\n## Usage Example\r\n\r\n### Template (HTML)\r\n\r\n\\`\\`\\`html\r\n<app-search-cover></app-search-cover>\r\n\\`\\`\\`\r\n`\r\n      }\r\n    }\r\n  }\r\n}"
                 }
             ],
+            "src/app/pages/auth/components/auth-form/auth-form.stories.ts": [
+                {
+                    "name": "DisabledForm",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    formType: 'login',\r\n    disabled: true\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true }\r\n    },\r\n    disabled: {\r\n      control: { disable: true }\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nLogin form in disabled state during authentication process.\r\n\r\n\r\n**Visual State**:\r\n- All input fields are disabled (grayed out)\r\n- Submit button is disabled\r\n- User cannot interact with the form\r\n\r\n**Use Case**: Displayed while API authentication request is in progress to prevent:\r\n- Duplicate form submissions\r\n- User editing data during processing\r\n- Multiple simultaneous login attempts\r\n\r\n**Parent Component Pattern**:\r\n\r\n\\`\\`\\`typescript\r\nisAuthenticating = false;\r\n\r\nhandleLogin(user: User): void {\r\n  this.isAuthenticating = true; // Disables form\r\n  this.authService.login(user).subscribe({\r\n    next: () => this.router.navigate(['/']),\r\n    error: () => this.showError(),\r\n    complete: () => this.isAuthenticating = false // Re-enables form\r\n  });\r\n}\r\n\\`\\`\\`\r\n\r\n**Typical Duration**: 500ms - 2s (API round-trip time).\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+                },
+                {
+                    "name": "LoginForm",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    formType: 'login',\r\n    disabled: false\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true }\r\n    },\r\n    disabled: {\r\n      control: { disable: true }\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nStandard login form with email and password fields.\r\n\r\n\r\n**Visual Configuration**:\r\n- **Title**: \"Open the door\"\r\n- **Fields**: Email, Password\r\n- **Submit Button**: \"Login\"\r\n- **Additional UI**: Link to register page\r\n- **Password Hint**: Hidden\r\n\r\n**Use Case**: Default authentication entry point for returning users.\r\n\r\n**Interaction**: Fill the form and click Submit to see the \\`formSubmit\\` action logged with form data.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<AuthFormComponent>",
+                    "defaultValue": "{\r\n  title: 'Pages/Auth/Components/AuthForm',\r\n  component: AuthFormComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        BrowserAnimationsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        RouterTestingModule\r\n      ],\r\n      declarations: [AuthFormComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#000000d5' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['formSubmit', 'formType', 'disabled'], \r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nReusable authentication form component supporting login and registration flows.\r\n\r\n## Features\r\n\r\n- 📋 Two form modes: login and register\r\n- ✅ Reactive form validation with email and password patterns\r\n- 🔐 Password visibility toggle\r\n- 👤 Dynamic name field for registration\r\n- 📱 Responsive Material Design layout\r\n\r\n## Key Capabilities\r\n\r\nThe component provides a simple authentication interface:\r\n- **Two form modes** controlled by single formType input\r\n- **Real-time validation** with email and password requirements\r\n- **Accessible controls** with ARIA labels\r\n- **Automatic configuration** based on form type\r\n- **Type-safe form handling**\r\n\r\n## Usage Example\r\n\r\n### Login Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Registration Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"register\"\r\n  (formSubmit)=\"handleRegister($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Disabled Form (During API Call)\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  [disabled]=\"isAuthenticating\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class AuthPageComponent {\r\n  isAuthenticating = false;\r\n\r\n  handleLogin(user: User): void {\r\n    this.isAuthenticating = true;\r\n    this.authService.login(user).subscribe({\r\n      next: (response) => {\r\n        this.router.navigate(['/dashboard']);\r\n        this.isAuthenticating = false;\r\n      },\r\n      error: (error) => {\r\n        this.showError(error);\r\n        this.isAuthenticating = false;\r\n      }\r\n    });\r\n  }\r\n\r\n  handleRegister(user: User): void {\r\n    this.isAuthenticating = true;\r\n    this.authService.register(user).subscribe({\r\n      next: (response) => {\r\n        this.router.navigate(['/login']);\r\n        this.isAuthenticating = false;\r\n      },\r\n      error: (error) => {\r\n        this.showError(error);\r\n        this.isAuthenticating = false;\r\n      }\r\n    });\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Message |\r\n|-------|-------|---------------|\r\n| **Email** | Required, valid email format | \"Email is required\" or \"Incorrect email format\" |\r\n| **Password** | Required, min 6 chars, letters + numbers + special chars | \"Password is required\" or \"Min 6 char incl. letters, numbers and special characters\" |\r\n| **Name** | Required (register only) | \"Name is required\" |\r\n\r\n## Inputs\r\n\r\n| Property | Type | Default | Description |\r\n|----------|------|---------|-------------|\r\n| \\`formType\\` | \\`'login' \\\\| 'register'\\` | \\`'login'\\` | Form mode: login (email+password) or register (name+email+password) |\r\n| \\`disabled\\` | \\`boolean\\` | \\`false\\` | Disables form during API calls |\r\n\r\n## Outputs\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`formSubmit\\` | \\`User\\` | Emitted when form is submitted with valid values |\r\n\r\n## Form Configuration by Type\r\n\r\n| Aspect | Login | Register |\r\n|--------|-------|----------|\r\n| **Title** | \"Open the door\" | \"Join us!\" |\r\n| **Fields** | Email, Password | Name, Email, Password |\r\n| **Submit Button** | \"Login\" | \"Sign Up\" |\r\n| **Register Link** | Yes | No |\r\n| **Password Hint** | No | Yes |\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields and buttons\r\n- ✅ Keyboard accessible password visibility toggle\r\n- ✅ Proper label associations with form inputs\r\n- ✅ Error messages linked to form fields\r\n- ✅ Focus management and visual indicators\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: 'radio',\r\n      options: ['login', 'register'],\r\n      description: 'Type of authentication form to display',\r\n    },\r\n    formSubmit: {\r\n      action: 'formSubmit',\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "RegisterForm",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    formType: 'register',\r\n    disabled: false\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true }\r\n    },\r\n    disabled: {\r\n      control: { disable: true }\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nComplete registration form with name, email, and password fields.\r\n\r\n\r\n**Visual Configuration**:\r\n- **Title**: \"Join us!\"\r\n- **Fields**: **Name** (additional field), Email, Password\r\n- **Submit Button**: \"Sign Up\"\r\n- **Additional UI**: Password requirements hint visible\r\n- **Register Link**: Hidden (already on registration)\r\n\r\n**Use Case**: New user account creation flow.\r\n\r\n**Key Difference from Login**: Includes name field and shows password complexity requirements to help users create valid passwords.\r\n\r\n**Interaction**: Fill all fields and submit to see the complete User object (including name) in the action log.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+                },
+                {
+                    "name": "WithValidationErrors",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    formType: 'login',\r\n    disabled: false\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true }\r\n    },\r\n    disabled: {\r\n      control: { disable: true }\r\n    }\r\n  },\r\n  play: async ({ canvasElement }) => {\r\n    const emailInput = canvasElement.querySelector('input[type=\"email\"]') as HTMLInputElement;\r\n    const passwordInput = canvasElement.querySelector('input[type=\"password\"]') as HTMLInputElement;\r\n\r\n    if (emailInput && passwordInput) {\r\n      emailInput.value = 'invalid-email';\r\n      passwordInput.value = '123';\r\n      \r\n      emailInput.dispatchEvent(new Event('input', { bubbles: true }));\r\n      passwordInput.dispatchEvent(new Event('input', { bubbles: true }));\r\n      emailInput.dispatchEvent(new Event('blur', { bubbles: true }));\r\n      passwordInput.dispatchEvent(new Event('blur', { bubbles: true }));\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nLogin form displaying validation errors for invalid input.\r\n\r\n**⚠️ Interactive Feature**: This story uses \\`play()\\` to auto-fill the form. \r\n**Switch to Canvas tab** to see it in action.\r\n\r\n**Invalid Data**:\r\n- **Email**: \"invalid-email\" (missing @ and domain)\r\n- **Password**: \"123\" (too short, missing letters and special chars)\r\n\r\n**Visual Error State**:\r\n- Email field shows error: \"Incorrect email format\"\r\n- Password field shows error: \"Min 6 char incl. letters, numbers and special characters\"\r\n- Input fields highlighted in red (Material Design error styling)\r\n- Submit button is **disabled** until errors are corrected\r\n\r\n**Validation Rules Tested**:\r\n\r\n| Field | Rule Violated | Error Message |\r\n|-------|---------------|---------------|\r\n| Email | Must match email pattern | \"Incorrect email format\" |\r\n| Password | Min 6 chars + letters + numbers + special | \"Min 6 char incl...\" |\r\n\r\n**Use Case**:\r\n- Demonstrating form validation feedback\r\n- Testing error message display\r\n- UX testing for invalid input handling\r\n\r\n**User Recovery**: User must correct both fields before submit button becomes enabled.\r\n\r\n**Try It**: Correct the email to \"user@example.com\" and password to \"Password123!\" to see errors disappear and button enable.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+                },
+                {
+                    "name": "WithValidData",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    formType: 'login',\r\n    disabled: false\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true }\r\n    },\r\n    disabled: {\r\n      control: { disable: true }\r\n    }\r\n  },\r\n  play: async ({ canvasElement }) => {\r\n    const emailInput = canvasElement.querySelector('input[type=\"email\"]') as HTMLInputElement;\r\n    const passwordInput = canvasElement.querySelector('input[type=\"password\"]') as HTMLInputElement;\r\n\r\n    if (emailInput && passwordInput) {\r\n      emailInput.value = 'user@example.com';\r\n      passwordInput.value = 'Password123!';\r\n      \r\n      emailInput.dispatchEvent(new Event('input', { bubbles: true }));\r\n      passwordInput.dispatchEvent(new Event('input', { bubbles: true }));\r\n      emailInput.dispatchEvent(new Event('blur', { bubbles: true }));\r\n      passwordInput.dispatchEvent(new Event('blur', { bubbles: true }));\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nLogin form pre-filled with valid credentials ready for submission.\r\n\r\n**⚠️ Interactive Feature**: This story uses \\`play()\\` to auto-fill the form. \r\n**Switch to Canvas tab** to see it in action.\r\n\r\n**Form State**:\r\n- **Email**: user@example.com (valid format)\r\n- **Password**: Password123! (meets all requirements)\r\n- **Validation**: All fields pass validation ✅\r\n- **Submit Button**: Enabled and ready\r\n\r\n**Visual Indicators**:\r\n- No error messages displayed\r\n- Input fields show valid state (Material Design success styling)\r\n- Submit button is clickable\r\n\r\n**Use Case**: \r\n- Testing successful form submission flow\r\n- Demonstrating valid form state\r\n- Password manager auto-fill scenario\r\n\r\n**Interaction**: Click Submit button to see the validated User object logged in Actions panel.\r\n\r\n**Expected Payload**:\r\n\\`\\`\\`json\r\n{\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"Password123!\"\r\n}\r\n\\`\\`\\`\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+                }
+            ],
             "src/environments/environment.development.ts": [
                 {
                     "name": "environment",
@@ -7292,6 +7494,98 @@
                     "defaultValue": "[ {\r\n    title: \"Killers of the Flower Moon\",\r\n    year: \"2023\",\r\n    imdbID: \"tt5537002\",\r\n    type: \"movie\",\r\n    poster: \"https://m.media-amazon.com/images/M/MV5BMjE4ZTZlNDAtM2Q3YS00YjFhLThjN2UtODg2ZGNlN2E2MWU2XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Napoleon\",\r\n  year: \"2023\",\r\n  imdbID: \"tt13287846\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZWIzNDAxMTktMDMzZS00ZjJmLTlhNjYtOGUxYmZlYzVmOGE4XkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Barbie\",\r\n  year: \"2023\",\r\n  imdbID: \"tt1517268\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Interstellar\",\r\n  year: \"2014\",\r\n  imdbID: \"tt0816692\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"True Detective\",\r\n  year: \"2014–\",\r\n  imdbID: \"tt2356777\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BYjgwYzA1NWMtNDYyZi00ZGQyLWI5NTktMDYwZjE2OTIwZWEwXkEyXkFqcGc@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"House of the Dragon\",\r\n  year: \"2022–\",\r\n  imdbID: \"tt11198330\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BM2QzMGVkNjUtN2Y4Yi00ODMwLTg3YzktYzUxYjJlNjFjNDY1XkEyXkFqcGc@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Better Call Saul\",\r\n  year: \"2015–2022\",\r\n  imdbID: \"tt3032476\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZDA4YmE0OTYtMmRmNS00Mzk2LTlhM2MtNjk4NzBjZGE1MmIyXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Breaking Bad\",\r\n  year: \"2008–2013\",\r\n  imdbID: \"tt0903747\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"The Wire\",\r\n  year:  \"2002–2008\",\r\n  imdbID: \"tt0306414\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZWYyNmRhYjktNjBhNC00M2NhLWEzYmMtZDYwNmIyZTRiZWMzXkEyXkFqcGc@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"MobLand\",\r\n  year:  \"2025–\",\r\n  imdbID: \"tt31510819\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZDVmMzJkOWUtMjdjMi00NzA4LTgxMTItYjA4NjVjZDI0ZWU1XkEyXkFqcGc@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"REC\",\r\n  year:  \"2007\",\r\n  imdbID: \"tt1038988\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZTI1ODM2ZWEtYmM5NS00ZDYzLWI1YzktYWYwZTdmOWMwZTBmXkEyXkFqcGdeQXVyMTU3NDU4MDg2._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Dune\",\r\n  year:  \"2021\",\r\n  imdbID: \"tt1160419\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BMDQ0NjgyN2YtNWViNS00YjA3LTkxNDktYzFkZTExZGMxZDkxXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg\"\r\n}]"
                 }
             ],
+            "src/app/shared/components/movie-dialog/movie-dialog.stories.ts": [
+                {
+                    "name": "FromFavorites",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        {\r\n          provide: MAT_DIALOG_DATA,\r\n          useValue: {\r\n            movie: mockMediaItem,\r\n            response: mockOmdbResponse,\r\n            fromFavoritesSection: true\r\n          } as MediaItemDialogData\r\n        }\r\n      ]\r\n    })\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nMovie details dialog opened from favorites section.\r\n\r\n**Key Differences**:\r\n- ❌ **\"Add to Favorites\" button is HIDDEN** (already in favorites)\r\n- ✅ Close button available\r\n- ✅ Watch Trailer button available (if trailer exists)\r\n\r\n**Visible Buttons**:\r\n- ✅ Close\r\n- ✅ Watch Trailer\r\n\r\n**Flag**: \\`fromFavoritesSection: true\\`\r\n\r\n**Use Case**: User is browsing their favorites list and wants to view details or watch trailer again.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<MediaItemDialogComponent>",
+                    "defaultValue": "{\r\n  title: 'Shared/MediaItemDialog',\r\n  component: MediaItemDialogComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        BrowserAnimationsModule,\r\n        MatDialogModule,\r\n        MatButtonModule,\r\n        MatIconModule\r\n      ],\r\n      declarations: [MediaItemDialogComponent],\r\n      providers: [\r\n        {\r\n          provide: ToastrService,\r\n          useValue: {\r\n            success: (title: string, message: string) => console.log('✅ Toast Success:', message, title),\r\n            error: (message: string, title: string) => console.log('❌ Toast Error:', title, message),\r\n            warning: (message: string) => console.log('⚠️ Toast Warning:', message)\r\n          }\r\n        },\r\n        {\r\n          provide: FavoritesService,\r\n          useValue: {\r\n            addToFavorites: () => {\r\n              return of({ success: true });\r\n            }\r\n          }\r\n        },\r\n        {\r\n          provide: AuthService,\r\n          useValue: {\r\n            isLoggedInObservable: () => of(true)\r\n          }\r\n        },\r\n        {\r\n          provide: Router,\r\n          useValue: {\r\n            navigate: () => Promise.resolve(true)\r\n          }\r\n        },\r\n        {\r\n          provide: DialogService,\r\n          useValue: {\r\n            openTrailerDialog: () => {\r\n              return of({ success: true });\r\n            }\r\n          }\r\n        },\r\n        {\r\n          provide: MatDialogRef,\r\n          useValue: {\r\n            close: () => { /* empty */ }\r\n          }\r\n        }\r\n      ]\r\n    })\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    backgrounds: {\r\n      default: 'light background',\r\n      values: [\r\n        { name: 'light background', value: '#FFFFFF' }\r\n      ]\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nMaterial Dialog component displaying comprehensive media item (movie/series/game) details from OMDB API.\r\n\r\n## Purpose\r\n\r\nPresents detailed information about a media item in a modal dialog, allowing users to:\r\n- View poster, title, and comprehensive details\r\n- Add items to favorites (if not already in favorites section)\r\n- Watch trailer videos (if available)\r\n- Close dialog\r\n\r\n## Data Flow\r\n\r\n**Opening the Dialog**:\r\n1. User clicks on media item in search results\r\n2. Component calls \\`DialogService.openMediaItem()\\`\r\n3. DialogService calls \\`OmdbService.getMediaItemInfo()\\`\r\n4. On success, opens \\`MediaItemDialogComponent\\` with OMDB data\r\n5. Dialog displays via \\`MAT_DIALOG_DATA\\` injection\r\n\r\n**Data Structure** (\\`MediaItemDialogData\\`):\r\n\\`\\`\\`typescript\r\n{\r\n  movie: MediaItem,              // Source media item\r\n  response: OmdbDetails,         // OMDB API response\r\n  fromFavoritesSection: boolean  // Context flag\r\n}\r\n\\`\\`\\`\r\n\r\n## Display Information\r\n\r\n| Field | Source | Example |\r\n|-------|--------|---------|\r\n| Title & Year | response.Title, response.Year | \"Inception (2010)\" |\r\n| Poster Image | response.Poster | Image or no_poster.jpg fallback |\r\n| Director | response.Director | \"Christopher Nolan\" |\r\n| Actors | response.Actors | Comma-separated list |\r\n| Plot | response.Plot | Full movie synopsis |\r\n| Genre | response.Genre | \"Action, Sci-Fi, Thriller\" |\r\n| Language | response.Language | \"English, Japanese, French\" |\r\n| Country | response.Country | \"United States, United Kingdom\" |\r\n| Runtime | response.Runtime | \"148 min\" |\r\n| Rating | response.imdbRating + imdbVotes | \"8.8/10 (2,645,513 votes)\" |\r\n\r\n## Button Behavior\r\n\r\n| Button | Visibility | Action |\r\n|--------|-----------|--------|\r\n| **Close** | Always visible | Closes dialog |\r\n| **Add** | Only if \\`!fromFavoritesSection\\` | Adds to favorites (requires auth) |\r\n| **Trailer** | Only if \\`youtubeURLTrailer\\` exists | Opens TrailerDialogComponent |\r\n\r\n## Dialog Configuration\r\n\r\n- **Size**: Responsive (70-85% width, 85-90% height based on screen)\r\n- **Animation**: 500ms enter/exit\r\n- **Backdrop**: Click to close (Material default)\r\n- **Styling Class**: 'movie-details-dialog'\r\n- **Auto Focus**: Disabled (prevents auto-focus on elements)\r\n\r\n## Error Handling\r\n\r\n| Scenario | Behavior |\r\n|----------|----------|\r\n| No poster image | Shows \\`assets/images/no_poster.jpg\\` fallback |\r\n| Image load fails | Shows \\`assets/images/no_poster.jpg\\` fallback |\r\n| Add to favorites (not logged in) | Shows error toast → closes dialog → redirects to /auth/login |\r\n| Add to favorites (error) | Shows warning toast |\r\n\r\n## Responsive Dialog Sizing\r\n\r\nDialog size determined by \\`DialogService.openMediaItem()\\` based on window width:\r\n\r\n| Window Width | Dialog Width | Dialog Height |\r\n|--------------|--------------|---------------|\r\n| < 600px | 80% | 90% |\r\n| 600-800px | 70% | 85% |\r\n| > 800px | 85% | 85% |\r\n        `\r\n      }\r\n    }\r\n  },\r\n  argTypes: {\r\n    data: {\r\n      table: { disable: true }\r\n    },\r\n    videoUrl: {\r\n      table: { disable: true }\r\n    },\r\n    playTrailer: {\r\n      table: { disable: true }\r\n    },\r\n    showPlayer: {\r\n      table: { disable: true }\r\n    },\r\n    onImageError: {\r\n      table: { disable: true }\r\n    },\r\n    addToFavorites: {\r\n      action: 'addToFavorites',\r\n      description: 'Triggered when user clicks \"Add to Favorites\" button. Adds the media item to the user\\'s favorites list.',\r\n      table: {\r\n        category: 'Actions',\r\n        type: { summary: '(mediaItem: MediaItem) => void' }\r\n      }\r\n    },\r\n  }\r\n}"
+                },
+                {
+                    "name": "mockMediaItem",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "MediaItem",
+                    "defaultValue": "{\r\n  _id: '1',\r\n  title: 'Inception',\r\n  year: '2010',\r\n  imdbID: 'tt1375666',\r\n  type: 'movie',\r\n  poster: 'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg',\r\n  description: 'A skilled thief who steals corporate secrets through the use of dream-sharing technology...',\r\n  user: 'user123',\r\n  createdAt: '2024-01-15T10:30:00Z',\r\n  updatedAt: '2024-01-15T10:30:00Z'\r\n}"
+                },
+                {
+                    "name": "mockOmdbResponse",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "OmdbDetails",
+                    "defaultValue": "{\r\n  Title: 'Inception',\r\n  Year: '2010',\r\n  Rated: 'PG-13',\r\n  Released: '16 Jul 2010',\r\n  Runtime: '148 min',\r\n  Genre: 'Action, Sci-Fi, Thriller',\r\n  Director: 'Christopher Nolan',\r\n  Writer: 'Christopher Nolan, Jonathan Nolan',\r\n  Actors: 'Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Marion Cotillard',\r\n  Plot: 'A skilled thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.',\r\n  Language: 'English, Japanese, French',\r\n  Country: 'United States, United Kingdom',\r\n  Awards: 'Won 4 Oscars. 159 wins & 218 nominations total',\r\n  Poster: 'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg',\r\n  Ratings: [\r\n    { Source: 'Internet Movie Database', Value: '8.8/10' },\r\n    { Source: 'Rotten Tomatoes', Value: '87%' },\r\n    { Source: 'Metacritic', Value: '74/100' }\r\n  ],\r\n  Metascore: '74',\r\n  imdbRating: '8.8',\r\n  imdbVotes: '2,645,513',\r\n  imdbID: 'tt1375666',\r\n  Type: 'movie',\r\n  Response: 'True',\r\n  youtubeURLTrailer: 'https://www.youtube.com/embed/YoHD_XwrzKw'\r\n}"
+                },
+                {
+                    "name": "mockOmdbResponseNoPoster",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "OmdbDetails",
+                    "defaultValue": "{\r\n  ...mockOmdbResponse,\r\n  Poster: 'N/A'\r\n}"
+                },
+                {
+                    "name": "mockOmdbResponseNoTrailer",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "OmdbDetails",
+                    "defaultValue": "{\r\n  ...mockOmdbResponse,\r\n  youtubeURLTrailer: ''\r\n}"
+                },
+                {
+                    "name": "MovieDetails",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        {\r\n          provide: MAT_DIALOG_DATA,\r\n          useValue: {\r\n            movie: mockMediaItem,\r\n            response: mockOmdbResponse,\r\n            fromFavoritesSection: false\r\n          } as MediaItemDialogData\r\n        }\r\n      ]\r\n    })\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nStandard movie details dialog showing complete information with all buttons available.\r\n\r\n**Media**: Inception (2010) - Movie\r\n- **Poster**: Available\r\n- **Trailer**: Available (YouTube)\r\n- **Context**: From search results (not favorites)\r\n\r\n**Visible Buttons**:\r\n- ✅ **Close** - Closes dialog\r\n- ✅ **Add to Favorites** - Adds movie to favorites\r\n- ✅ **Watch Trailer** - Opens trailer in separate dialog\r\n\r\n**Information Displayed**:\r\n- Director: Christopher Nolan\r\n- Actors: Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Marion Cotillard\r\n- Genre: Action, Sci-Fi, Thriller\r\n- Runtime: 148 min\r\n- Rating: 8.8/10 (2,645,513 votes)\r\n- Plot, Language, Country, Awards, etc.\r\n\r\n**Use Case**: User found movie in search and wants to view details before adding to favorites.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+                },
+                {
+                    "name": "NoPoster",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        {\r\n          provide: MAT_DIALOG_DATA,\r\n          useValue: {\r\n            movie: mockMediaItem,\r\n            response: mockOmdbResponseNoPoster,\r\n            fromFavoritesSection: false\r\n          } as MediaItemDialogData\r\n        }\r\n      ]\r\n    })\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nMovie details when poster image is not available.\r\n\r\n**Image Handling**:\r\n- OMDB returns \\`Poster: 'N/A'\\` when no image available\r\n- Template detects this and shows fallback: \\`assets/images/no_poster.jpg\\`\r\n- All other information displayed normally\r\n\r\n**Fallback Triggers**:\r\n1. \\`response.Poster === 'N/A'\\` (OMDB returned no image)\r\n2. Image URL fails to load (404 error) - handled by \\`onImageError()\\` handler\r\n\r\nBoth scenarios show the same placeholder image.\r\n\r\n**Use Case**: Some older movies, rare items, or games may not have poster images in OMDB database.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+                },
+                {
+                    "name": "NoTrailer",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        {\r\n          provide: MAT_DIALOG_DATA,\r\n          useValue: {\r\n            movie: mockMediaItem,\r\n            response: mockOmdbResponseNoTrailer,\r\n            fromFavoritesSection: false\r\n          } as MediaItemDialogData\r\n        }\r\n      ]\r\n    })\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nMovie details when YouTube trailer is not available.\r\n\r\n**Key Differences**:\r\n- ❌ **\"Watch Trailer\" button is HIDDEN** (\\`youtubeURLTrailer\\` is empty/null)\r\n- ✅ Close button available\r\n- ✅ Add to Favorites button available\r\n\r\n**Condition**: \\`response.youtubeURLTrailer === '' or null\\`\r\n\r\n**Use Case**: Older movies, indie films, or items without trailer on OMDB may not have \\`youtubeURLTrailer\\` populated.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+                }
+            ],
             "src/app/shared/components/loading-spinner/loading-spinner.stories.ts": [
                 {
                     "name": "Hidden",
@@ -7324,38 +7618,6 @@
                     "defaultValue": "{\r\n  args: {\r\n    visible: true,\r\n  },\r\n}"
                 }
             ],
-            "src/app/shared/components/auth-form/auth-form.stories.ts": [
-                {
-                    "name": "LoginForm",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    formType: 'login',\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true },     \r\n    },\r\n    formSubmit: {\r\n      control: { disable: true },\r\n    }\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Standard login form with email, password, and link to registration page. This matches the production implementation.',\r\n      },\r\n    },\r\n  },\r\n}"
-                },
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<AuthFormComponent>",
-                    "defaultValue": "{\r\n  title: 'Shared/AuthForm',\r\n  component: AuthFormComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        RouterTestingModule\r\n      ],\r\n      declarations: [AuthFormComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#000000d5' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['formSubmit', 'formType', 'disabled'], \r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n  Reusable authentication form component supporting login and registration flows\r\n  \r\n  ## Features\r\n  \r\n  - 📋 Two form modes: login and register\r\n  - ✅ Reactive form validation with email and password patterns\r\n  - 🔐 Password visibility toggle\r\n  - 👤 Dynamic name field for registration\r\n  - 📱 Responsive Material Design layout\r\n  \r\n  ## Key Capabilities\r\n  \r\n  The component provides a simple authentication interface:\r\n  - **Two form modes** controlled by single formType input\r\n  - **Real-time validation** with email and password requirements\r\n  - **Accessible controls** with ARIA labels\r\n  - **Automatic configuration** based on form type\r\n  - **Type-safe form handling**\r\n\r\n## Usage Example\r\n\r\n### Login Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Registration Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"register\"\r\n  (formSubmit)=\"handleRegister($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class AuthPageComponent {\r\n  handleLogin(user: User): void {\r\n    this.authService.login(user).subscribe(\r\n      (response) => this.router.navigate(['/dashboard']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n\r\n  handleRegister(user: User): void {\r\n    this.authService.register(user).subscribe(\r\n      (response) => this.router.navigate(['/email-verification']),\r\n      (error) => this.showError(error)\r\n    );\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Message |\r\n|-------|-------|---------------|\r\n| **Email** | Required, valid email format | \"Email is required\" or \"Incorrect email format\" |\r\n| **Password** | Required, min 6 chars, letters + numbers + special chars | \"Password is required\" or \"Min 6 char incl. letters, numbers and special characters\" |\r\n| **Name** | Required (register only) | \"Name is required\" |\r\n\r\n## Events\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`formSubmit\\` | \\`User\\` | Emitted when form is submitted with valid values |\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields and buttons\r\n- ✅ Keyboard accessible password visibility toggle\r\n- ✅ Proper label associations with form inputs\r\n- ✅ Error messages linked to form fields\r\n- ✅ Focus management and visual indicators\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: 'radio',\r\n      options: ['login', 'register'],\r\n      description: 'Type of authentication form to display',\r\n    },\r\n    formSubmit: {\r\n      action: 'formSubmit',\r\n    },\r\n  },\r\n}"
-                },
-                {
-                    "name": "RegisterForm",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    formType: 'register',\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: { disable: true },  \r\n      table: { disable: false }\r\n    },\r\n  },\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: 'Complete registration form with name, email, password fields, and password requirements hint. This matches the production implementation.',\r\n      },\r\n    },\r\n  },\r\n}"
-                }
-            ],
             "src/app/shared/shared.module.ts": [
                 {
                     "name": "MATERIAL_MODULES",
@@ -7379,6 +7641,48 @@
                     "type": "[]",
                     "defaultValue": "[\r\n  MatIconModule,\r\n  MatTableModule,\r\n  MatSortModule,\r\n  MatPaginatorModule,\r\n  MatButtonModule\r\n]"
                 }
+            ],
+            "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts": [
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<TrailerDialogComponent>",
+                    "defaultValue": "{\r\n  title: 'Shared/TrailerDialog',\r\n  component: TrailerDialogComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        BrowserAnimationsModule,\r\n        MatDialogModule,\r\n        MatButtonModule,\r\n        MatIconModule\r\n      ],\r\n      declarations: [TrailerDialogComponent],\r\n      providers: [\r\n        {\r\n          provide: MatDialogRef,\r\n          useValue: {\r\n            close: () => console.log('✅ Dialog closed')\r\n          }\r\n        }\r\n      ]\r\n    })\r\n  ],\r\n  parameters: {\r\n    backgrounds: {\r\n      default: 'dark background',\r\n      values: [\r\n        { name: 'dark background', value: '#fffdfdff' }\r\n      ]\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nDialog component for displaying YouTube trailer videos embedded in an Angular Material dialog.\r\n\r\n## Purpose\r\n\r\nDisplays a YouTube video in a secure, responsive iframe with fullscreen and autoplay capabilities.\r\n\r\n## How It Works\r\n\r\n1. **Data Injection**: Receives video URL via \\`MAT_DIALOG_DATA\\`\r\n2. **URL Parsing**: Extracts YouTube video ID from multiple URL formats\r\n3. **Sanitization**: Uses Angular's \\`DomSanitizer\\` to safely embed the iframe\r\n\r\n## Supported URL Formats\r\n\r\n| Format | Example |\r\n|--------|---------|\r\n| Standard watch URL | \\`https://www.youtube.com/watch?v=YoHD_XwrzKw\\` |\r\n| Short URL | \\`https://youtu.be/YoHD_XwrzKw\\` |\r\n| Embed URL | \\`https://www.youtube.com/embed/YoHD_XwrzKw\\` |\r\n\r\n## Data Structure (TrailerDialogData)\r\n\r\n\\`\\`\\`typescript\r\n{\r\n  videoUrl: string  // YouTube URL (any format supported)\r\n}\r\n\\`\\`\\`\r\n\r\n## Button Behavior\r\n\r\n| Button | Action |\r\n|--------|--------|\r\n| **Close** | Closes the dialog via MatDialogRef |\r\n\r\n## Features\r\n\r\n- **Controls**: YouTube player controls (play, pause, timeline, volume)\r\n- **Responsive**: Fills entire dialog container\r\n- **Full-screen**: Allows YouTube fullscreen expansion\r\n- **Secure**: All URLs sanitized to prevent XSS attacks\r\n\r\n## Security\r\n\r\n- Uses \\`DomSanitizer.bypassSecurityTrustResourceUrl()\\` \r\n- Whitelisted \\`encrypted-media\\`, and \\`fullscreen\\` permissions\r\n- Video ID extracted via regex to ensure only valid YouTube IDs are embedded\r\n\r\n## Usage\r\n\r\nTypically opened via \\`DialogService.openTrailerDialog()\\` from \\`MediaItemDialogComponent\\`:\r\n\r\n\\`\\`\\`typescript\r\nthis.dialogService.openTrailerDialog('https://www.youtube.com/watch?v=VIDEO_ID');\r\n\\`\\`\\`\r\n\r\n## Dialog Configuration\r\n\r\n- **Size**: Full-screen dialog (Material default)\r\n- **Close**: Click button or ESC key\r\n- **Animation**: Standard Material enter/exit\r\n- **Backdrop**: Click to close (Material default)\r\n        `\r\n      }\r\n    }\r\n  },\r\nargTypes: {\r\n  data: {\r\n    table: { disable: true }\r\n  },\r\n  safeVideoUrl: {\r\n    table: { disable: true }\r\n  },\r\n  close: {\r\n    table: { disable: true }\r\n  },\r\n  ngOnInit: {\r\n    table: { disable: true }\r\n  }\r\n}\r\n\r\n}"
+                },
+                {
+                    "name": "mockTrailerData",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TrailerDialogData",
+                    "defaultValue": "{\r\n  videoUrl: mockTrailerUrl\r\n}"
+                },
+                {
+                    "name": "mockTrailerUrl",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'https://www.youtube.com/watch?v=fVQUcaO4AvE'"
+                },
+                {
+                    "name": "StandardURL",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        {\r\n          provide: MAT_DIALOG_DATA,\r\n          useValue: mockTrailerData as TrailerDialogData\r\n        }\r\n      ]\r\n    })\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nYouTube trailer with standard watch URL format.\r\n\r\n**URL Format**: \\`https://www.youtube.com/watch?v=YoHD_XwrzKw\\`\r\n\r\nThe component extracts the video ID \\`YoHD_XwrzKw\\` and converts it to embed format automatically.\r\n\r\n**Features**:\r\n- ✅ Autoplay enabled\r\n- ✅ Full controls visible\r\n- ✅ Fullscreen allowed\r\n- ✅ Related videos disabled (\\`rel=0\\`)\r\n\r\n**Use Case**: Video URL from OMDB API or user input.\r\n        `\r\n      }\r\n    }\r\n  }\r\n}"
+                }
             ]
         },
         "groupedFunctions": {},
@@ -7395,19 +7699,6 @@
                     "deprecationMessage": "",
                     "description": "",
                     "kind": 193
-                }
-            ],
-            "src/app/shared/components/auth-form/auth-form.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<AuthFormComponent>",
-                    "file": "src/app/shared/components/auth-form/auth-form.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 184
                 }
             ],
             "src/app/shared/components/empty-state/empty-state.stories.ts": [
@@ -7430,6 +7721,45 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<LoadingSpinnerComponent>",
                     "file": "src/app/shared/components/loading-spinner/loading-spinner.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/app/shared/components/movie-dialog/movie-dialog.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<MediaItemDialogComponent>",
+                    "file": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<TrailerDialogComponent>",
+                    "file": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/app/pages/auth/components/auth-form/auth-form.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<AuthFormComponent>",
+                    "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -7567,7 +7897,7 @@
         ]
     },
     "coverage": {
-        "count": 6,
+        "count": 5,
         "status": "low",
         "files": [
             {
@@ -7659,6 +7989,85 @@
                 "name": "NavbarComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/components/auth-form/auth-form.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AuthFormComponent",
+                "coveragePercent": 22,
+                "coverageCount": "4/18",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "DisabledForm",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoginForm",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "RegisterForm",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithValidationErrors",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithValidData",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -7975,55 +8384,6 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/shared/components/auth-form/auth-form.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "AuthFormComponent",
-                "coveragePercent": 22,
-                "coverageCount": "4/18",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/shared/components/auth-form/auth-form.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "LoginForm",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/shared/components/auth-form/auth-form.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "meta",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/shared/components/auth-form/auth-form.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "RegisterForm",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/shared/components/auth-form/auth-form.stories.ts",
-                "type": "type alias",
-                "linktype": "miscellaneous",
-                "linksubtype": "typealias",
-                "name": "Story",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
                 "filePath": "src/app/shared/components/empty-state/empty-state.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -8136,7 +8496,107 @@
                 "linktype": "component",
                 "name": "MediaItemDialogComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "FromFavorites",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockMediaItem",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockOmdbResponse",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockOmdbResponseNoPoster",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockOmdbResponseNoTrailer",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "MovieDetails",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NoPoster",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NoTrailer",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -8153,9 +8613,59 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "TrailerDialogComponent",
-                "coveragePercent": 42,
-                "coverageCount": "3/7",
-                "status": "medium"
+                "coveragePercent": 16,
+                "coverageCount": "1/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockTrailerData",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockTrailerUrl",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "StandardURL",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
             },
             {
                 "filePath": "src/app/shared/directives/fallback-images.directive.ts",

@@ -54,14 +54,16 @@ Displays a loading spinner with an indeterminate progress bar and an inline icon
 export default meta;
 type Story = StoryObj<LoadingSpinnerComponent>;
 
+export const Visible: Story = {
+  args: {
+    visible: true,
+  },
+};
+
 export const Hidden: Story = {
   args: {
     visible: false,
   },
 };
 
-export const Visible: Story = {
-  args: {
-    visible: true,
-  },
-};
+

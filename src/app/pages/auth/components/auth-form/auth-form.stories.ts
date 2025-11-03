@@ -11,7 +11,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const meta: Meta<AuthFormComponent> = {
-  title: 'Shared/AuthForm',
+  title: 'Pages/Auth/Components/AuthForm',
   component: AuthFormComponent,
   tags: ['autodocs'],
   decorators: [
