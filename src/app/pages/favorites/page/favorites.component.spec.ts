@@ -19,6 +19,7 @@ import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
 import { OmdbService } from 'src/app/shared/services/omdb/omdb.service';
 import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
 import { NavbarComponent } from 'src/app/layout/navbar/navbar.component';
+import { SortingControlsComponent } from '../components/sorting-controls/sorting-controls.component';
 
 
 
@@ -49,7 +50,8 @@ describe('FavoritesComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         FavoritesComponent,
-        NavbarComponent
+        NavbarComponent,
+        SortingControlsComponent
       ],
       imports: [
         FormsModule,
@@ -64,7 +66,8 @@ describe('FavoritesComponent', () => {
         MatDialogModule,
         MatProgressBarModule,
         SharedModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        
       ],
       providers: [
         ToastrService,

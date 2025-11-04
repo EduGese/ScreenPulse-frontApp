@@ -30,7 +30,6 @@ import { OmdbService } from './services/omdb/omdb.service';
 
 import { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';
 import { MediaItemDialogComponent } from './components/movie-dialog/movie-dialog.component';
-import { SortingControlsComponent } from './components/sorting-controls/sorting-controls.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { TrailerDialogComponent } from './components/trailer-dialog/trailer-dialog.component';
@@ -63,7 +62,6 @@ const MATERIAL_MODULES = [
   declarations: [
     FavoritesCardComponent,
     MediaItemDialogComponent,
-    SortingControlsComponent,
     LoadingSpinnerComponent,
     EmptyStateComponent,
     TrailerDialogComponent,
@@ -86,7 +84,6 @@ const MATERIAL_MODULES = [
     NgbModule,
     FavoritesCardComponent,
     MediaItemDialogComponent,
-    SortingControlsComponent,
     LoadingSpinnerComponent,
     EmptyStateComponent,
     TrailerDialogComponent,

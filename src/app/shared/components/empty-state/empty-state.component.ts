@@ -24,7 +24,7 @@ export class EmptyStateComponent {
    * URL of the image to display.
    * @default "assets/images/monkey3.jpg"
    */
-  @Input() imageUrl = "assets/images/monkey3.jpg";
+  @Input() imageUrl = "/assets/images/monkey3.jpg";
 
   /**
    * Alt text for the image.

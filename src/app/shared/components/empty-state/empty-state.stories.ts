@@ -76,7 +76,7 @@ type Story = StoryObj<EmptyStateComponent>;
 export const Default: Story = {
   args: {
     message: `Upps... We didn't find anything...`,
-    imageUrl: '/images/monkey3.jpg',
+    imageUrl: 'assets/images/monkey3.jpg',
     alt: 'empty state image'
   }
 };
@@ -84,7 +84,7 @@ export const Default: Story = {
 export const CustomContent: Story = {
   args: {
     message: `No favorites yet — start exploring!`,
-    imageUrl: '/images/monkey3.jpg',
+    imageUrl: 'assets/images/monkey2.jpg',
     alt: 'empty state image'
   }
 };

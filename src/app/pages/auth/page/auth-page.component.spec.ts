@@ -7,6 +7,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthFormComponent } from '../components/auth-form/auth-form.component';
 
 describe('AuthPageComponent', () => {
   let component: AuthPageComponent;
@@ -17,9 +19,11 @@ describe('AuthPageComponent', () => {
        imports:[HttpClientModule,  
         ToastrModule.forRoot(), 
         SharedModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule 
         ],
-      declarations: [AuthPageComponent],
+      declarations: [AuthPageComponent, AuthFormComponent],
        providers:[
         { provide: ActivatedRoute, useValue: {data: of({ formType: 'login' }) } } 
       ]
