@@ -3,13 +3,17 @@
     background-color:#000000 ;
     width: 100%;
     text-align: center;
-    color: #F5CF3D;
+    display: flex; 
+    flex-direction: row;
+    align-items: center;  
+    justify-content: center;
 }
 .text-container {
     display: flex; 
     flex-direction: row;
     align-items: center;  
     justify-content: center;
+    color: var(--custom-amber);
   }
 .text{
     font-size: 16px;
