@@ -1,5 +1,7 @@
 # ScreenPulse 🎬🎮
 
+[![Storybook](https://img.shields.io/badge/📖_Storybook-Components-FF69B4?logo=storybook&logoColor=white&labelColor=1a1a1a)](https://edugese.github.io/ScreenPulse-frontApp/)
+
 
 ScreenPulse is the frontend part of a full stack application built with Angular, integrating with a custom [backend API](https://github.com/EduGese/ScreenPulse-backend-Api) built with Node.js and Express, and MongoDB Atlas for database storage. The frontend allows users to search for movies, series, or video games in the OMDB API, view detailed information, and save favorites to collections after registering and logging in.
 
