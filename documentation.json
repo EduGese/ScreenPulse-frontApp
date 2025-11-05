@@ -2239,7 +2239,141 @@
             "type": "interceptor"
         }
     ],
-    "classes": [],
+    "classes": [
+        {
+            "name": "AuthServiceMock",
+            "id": "class-AuthServiceMock-a586ff182551ff47c751f2e64cd438fc5044578217e2fe9155cf0e8b399ae622d8bbe24d64a9c5444d3a73cf6955622df66ccb280013dcbb029651f7672b13cd",
+            "file": "src/app/layout/navbar/navbar.stories.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "import type { Meta, StoryObj } from '@storybook/angular';\r\nimport { moduleMetadata } from '@storybook/angular';\r\nimport { NavbarComponent } from './navbar.component';\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatListModule } from '@angular/material/list';\r\nimport { RouterTestingModule } from '@angular/router/testing';\r\nimport { CommonModule } from '@angular/common';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { BehaviorSubject, Observable } from 'rxjs';\r\n\r\n\r\nclass AuthServiceMock {\r\n  private userMailSubject = new BehaviorSubject<string | null>('test@example.com');\r\n  private userLoggedInSubject = new BehaviorSubject<boolean>(true);\r\n\r\n  getUserMailObservable(): Observable<string | null> {\r\n    console.log('Mock: getUserMailObservable called');\r\n    return this.userMailSubject.asObservable();\r\n  }\r\n\r\n  isLoggedInObservable(): Observable<boolean> {\r\n    console.log('Mock: isLoggedInObservable called');\r\n    return this.userLoggedInSubject.asObservable();\r\n  }\r\n\r\n  logOut(): void {\r\n    console.log('Mock: logOut called');\r\n    this.userMailSubject.next(null);\r\n    this.userLoggedInSubject.next(false);\r\n  }\r\n\r\n  setUserMail(mail: string | null): void {\r\n    this.userMailSubject.next(mail);\r\n  }\r\n\r\n  setLoggedIn(isLoggedIn: boolean): void {\r\n    this.userLoggedInSubject.next(isLoggedIn);\r\n  }\r\n}\r\n\r\nconst meta: Meta<NavbarComponent> = {\r\n  title: 'Layout/Global/Navbar',\r\n  component: NavbarComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        MatToolbarModule,\r\n        MatIconModule,\r\n        MatButtonModule,\r\n        MatListModule,\r\n        RouterTestingModule,\r\n      ],\r\n      providers: [\r\n        { provide: AuthService, useValue: new AuthServiceMock() },\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    backgrounds: {\r\n      default: 'light background',\r\n      values: [\r\n        { name: 'dark background', value: '#000000' },\r\n        { name: 'light background', value: '#ffffffff' }\r\n      ],\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n# Navbar Component\r\n\r\n**Component Type:** Smart Component (Container Component)\r\n\r\nGlobal navigation bar with authentication state management and responsive mobile menu.\r\n\r\n## Features\r\n\r\n- 🔐 **Auth state management**: Displays login/logout options via AuthService observables\r\n- 📱 **Mobile responsive**: Collapses to hamburger menu on screens ≤600px\r\n- 🎯 **Navigation links**: Home (Search), Favorites with active route highlighting\r\n- 🎨 **Custom amber theme**: Dynamic hover animations and transitions\r\n- 📊 **User session display**: Shows user email when logged in\r\n\r\n## Architecture Pattern\r\n\r\nThis component follows the **Observable Data Service** pattern for reactive state management.\r\n\r\n### Data Flow\r\n\r\n\\`\\`\\`\r\nAuthService (Singleton)\r\n    ↓\r\nBehaviorSubjects (email, isLoggedIn)\r\n    ↓\r\nObservable Streams\r\n    ↓\r\ncombineLatest (userData$)\r\n    ↓\r\nasync pipe (template)\r\n    ↓\r\nUI Rendering\r\n\\`\\`\\`\r\n\r\n## Service Integration\r\n\r\n### AuthService\r\n\r\nThis component subscribes to two observables from \\`AuthService\\`:\r\n\r\n| Observable | Type | Purpose |\r\n|------------|------|---------|\r\n| \\`getUserMailObservable()\\` | \\`Observable<string \\\\| null>\\` | User email stream |\r\n| \\`isLoggedInObservable()\\` | \\`Observable<boolean>\\` | Login status stream |\r\n\r\n**Pattern:** BehaviorSubject + async pipe for reactive updates.\r\n\r\n### Router\r\n\r\nUsed for navigation after logout: \\`router.navigate([''])\\`\r\n\r\n## State Management\r\n\r\n### Reactive State (Observables)\r\n\r\n\\`\\`\\`typescript\r\nreadonly userData$ = combineLatest({\r\n  email: this.authService.getUserMailObservable(),\r\n  isLoggedIn: this.authService.isLoggedInObservable()\r\n});\r\n\\`\\`\\`\r\n\r\n- **Subscription:** Handled automatically via \\`async\\` pipe\r\n- **Change Detection:** OnPush strategy for performance\r\n- **Updates:** Reactive - UI updates when observables emit\r\n\r\n### Local State\r\n\r\n- \\`expanded: boolean\\` - Mobile menu toggle (component-only state)\r\n\r\n## Why No @Input/@Output?\r\n\r\nThis is a **global smart component** that:\r\n\r\n- ✅ Lives at the app root level (\\`app.component.html\\`)\r\n- ✅ Manages its own data via service injection\r\n- ✅ Does NOT need parent-child communication\r\n- ✅ Follows the Observable Data Service pattern\r\n\r\n**This is the correct approach for global layout components.**\r\n\r\n## Usage Example\r\n\r\n### App Layout Structure\r\n\r\n\\`\\`\\`html\r\n<!-- app.component.html -->\r\n\r\n<app-navbar></app-navbar>\r\n\r\n<div class=\"site-content\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n\r\n<app-footer></app-footer>\r\n\\`\\`\\`\r\n\r\n### Template Pattern (async pipe)\r\n\r\n\\`\\`\\`html\r\n<ng-container *ngIf=\"userData$ | async as data\">\r\n  <!-- Logged Out State -->\r\n  <ng-container *ngIf=\"!data.isLoggedIn\">\r\n    <a routerLink=\"/auth/register\">Join us!</a>\r\n    <a routerLink=\"/auth/login\">Login</a>\r\n  </ng-container>\r\n\r\n  <!-- Logged In State -->\r\n  <ng-container *ngIf=\"data.isLoggedIn\">\r\n    <span>Welcome {{ data.email }}</span>\r\n    <button (click)=\"logOut()\">Logout</button>\r\n  </ng-container>\r\n</ng-container>\r\n\\`\\`\\`\r\n\r\n## Responsive Breakpoints\r\n\r\n- **Mobile** (≤600px): Hamburger menu, hidden auth buttons\r\n- **Desktop** (≥601px): Full navigation, inline auth status\r\n\r\n## Component Methods\r\n\r\n### logOut()\r\n\r\nTriggers logout in \\`AuthService\\` and navigates to home.\r\n\r\n\\`\\`\\`typescript\r\nlogOut(): void {\r\n  this.authService.logOut();\r\n  this.router.navigate(['']);\r\n}\r\n\\`\\`\\`\r\n\r\n### toggleMenu()\r\n\r\nToggles mobile menu visibility (local state only).\r\n\r\n\\`\\`\\`typescript\r\ntoggleMenu(): void {\r\n  this.expanded = !this.expanded;\r\n}\r\n\\`\\`\\`\r\n\r\n## Testing Strategy\r\n\r\n### Unit Tests\r\n\r\nMock \\`AuthService\\` with jasmine spies:\r\n\r\n\\`\\`\\`typescript\r\nconst authServiceMock = jasmine.createSpyObj('AuthService', [\r\n  'getUserMailObservable',\r\n  'isLoggedInObservable',\r\n  'logOut'\r\n]);\r\n\r\nauthServiceMock.getUserMailObservable.and.returnValue(of('test@example.com'));\r\nauthServiceMock.isLoggedInObservable.and.returnValue(of(true));\r\n\\`\\`\\`\r\n\r\n### Storybook (Visual Testing)\r\n\r\nUse custom mock with BehaviorSubjects:\r\n\r\n\\`\\`\\`typescript\r\nclass AuthServiceMock {\r\n  private userMailSubject = new BehaviorSubject<string | null>('test@example.com');\r\n  private userLoggedInSubject = new BehaviorSubject<boolean>(true);\r\n\r\n  getUserMailObservable() {\r\n    return this.userMailSubject.asObservable();\r\n  }\r\n\r\n  isLoggedInObservable() {\r\n    return this.userLoggedInSubject.asObservable();\r\n  }\r\n}\r\n\\`\\`\\`\r\n        `,\r\n      },\r\n    },\r\n  },\r\n};\r\n\r\nexport default meta;\r\ntype Story = StoryObj<NavbarComponent>;\r\n\r\n\r\n/**\r\n * Default: Usuario logueado\r\n */\r\nexport const Default: Story = {};\r\n\r\n/**\r\n * Usuario NO logueado\r\n */\r\nexport const LoggedOut: Story = {\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        {\r\n          provide: AuthService,\r\n          useFactory: () => {\r\n            const mock = new AuthServiceMock();\r\n            mock.setLoggedIn(false);\r\n            mock.setUserMail(null);\r\n            return mock;\r\n          }\r\n        }\r\n      ]\r\n    })\r\n  ]\r\n};\r\n\r\n/**\r\n * Menú móvil expandido\r\n */\r\nexport const MobileExpanded: Story = {\r\n  args: {\r\n    expanded: true,\r\n  },\r\n  parameters: {\r\n    viewport: {\r\n      defaultViewport: 'mobile1',\r\n    },\r\n  },\r\n};",
+            "inputsClass": [],
+            "outputsClass": [],
+            "properties": [
+                {
+                    "name": "userLoggedInSubject",
+                    "defaultValue": "new BehaviorSubject<boolean>(true)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "userMailSubject",
+                    "defaultValue": "new BehaviorSubject<string | null>('test@example.com')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "getUserMailObservable",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<string | null>",
+                    "typeParameters": [],
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "isLoggedInObservable",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<boolean>",
+                    "typeParameters": [],
+                    "line": 23,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "logOut",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 28,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "setLoggedIn",
+                    "args": [
+                        {
+                            "name": "isLoggedIn",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "isLoggedIn",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setUserMail",
+                    "args": [
+                        {
+                            "name": "mail",
+                            "type": "string | null",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 34,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "mail",
+                            "type": "string | null",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "indexSignatures": [],
+            "extends": [],
+            "hostBindings": [],
+            "hostListeners": []
+        }
+    ],
     "directives": [
         {
             "name": "FallbackImagesDirective",
@@ -4233,7 +4367,7 @@
         },
         {
             "name": "FooterComponent",
-            "id": "component-FooterComponent-549077ab1e4a48ecc3efb74debfb0d685b2f6750ac64b59bf19eb6c619f034de9145775c4344dec24e6c26552960a52083e066484fad3afa7f793aa9509473a7",
+            "id": "component-FooterComponent-bce4ea7bc7431a6d04de3fde81e460ae8e9a43e97171e208598bc0b290490256954a41437c4253a5d754f07b4bfc0540ee06005ab81dd22dcba2b9f47a4eba34",
             "file": "src/app/layout/footer/footer.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -4260,14 +4394,14 @@
             "hostListeners": [],
             "standalone": false,
             "imports": [],
-            "description": "",
-            "rawdescription": "\n",
+            "description": "<p>Application footer component displaying copyright information.</p>\n",
+            "rawdescription": "\n\n\nApplication footer component displaying copyright information.\n\n\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-footer',\r\n  templateUrl: './footer.component.html',\r\n  styleUrls: ['./footer.component.scss']\r\n})\r\nexport class FooterComponent {\r\n\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n/**\r\n * \r\n * Application footer component displaying copyright information.\r\n * \r\n * \r\n */\r\n@Component({\r\n  selector: 'app-footer',\r\n  templateUrl: './footer.component.html',\r\n  styleUrls: ['./footer.component.scss']\r\n})\r\nexport class FooterComponent {\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".footer{\r\n    height: 40px;\r\n    background-color:#000000 ;\r\n    width: 100%;\r\n    text-align: center;\r\n    color: #F5CF3D;\r\n}\r\n.text-container {\r\n    display: flex; \r\n    flex-direction: row;\r\n    align-items: center;  \r\n    justify-content: center;\r\n  }\r\n.text{\r\n    font-size: 16px;\r\n    font-weight:500;\r\n    margin-right: 8px;\r\n    font-family: 'Glegoo';\r\n}\r\nmat-icon{\r\n    font-size: 16px;\r\n}\r\n",
+                    "data": ".footer{\r\n    height: 40px;\r\n    background-color:#000000 ;\r\n    width: 100%;\r\n    text-align: center;\r\n    display: flex; \r\n    flex-direction: row;\r\n    align-items: center;  \r\n    justify-content: center;\r\n}\r\n.text-container {\r\n    display: flex; \r\n    flex-direction: row;\r\n    align-items: center;  \r\n    justify-content: center;\r\n    color: var(--custom-amber);\r\n  }\r\n.text{\r\n    font-size: 16px;\r\n    font-weight:500;\r\n    margin-right: 8px;\r\n    font-family: 'Glegoo';\r\n}\r\nmat-icon{\r\n    font-size: 16px;\r\n}\r\n",
                     "styleUrl": "./footer.component.scss"
                 }
             ],
@@ -4950,7 +5084,7 @@
         },
         {
             "name": "NavbarComponent",
-            "id": "component-NavbarComponent-555b6b409bddbb4e071e61c7aa960fcda4d5482ea1e477c651199f682b3f7c02f0b864a3ae12021b44f8f91b4225f1f2fdce161cedc9a209e5e5cfd3cadb5c66",
+            "id": "component-NavbarComponent-25b50dc789e7fb73a749cdfe1d35cda957fddc6b39ad8d9c3fed63b916e64ec08a80ec41d47a2f78888cedc1a72e490e16cf3c64ac9e979d00e47c49e4522127",
             "file": "src/app/layout/navbar/navbar.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -4980,7 +5114,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 15
+                    "line": 21
                 },
                 {
                     "name": "userData$",
@@ -4991,7 +5125,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 16,
+                    "line": 22,
                     "modifierKind": [
                         148
                     ]
@@ -5004,7 +5138,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 23,
+                    "line": 29,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -5014,7 +5148,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 27,
+                    "line": 33,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -5025,14 +5159,14 @@
             "hostListeners": [],
             "standalone": false,
             "imports": [],
-            "description": "",
-            "rawdescription": "\n",
+            "description": "<p>Navigation bar with responsive design, authentication state, and mobile menu.</p>\n",
+            "rawdescription": "\n\n\nNavigation bar with responsive design, authentication state, and mobile menu.\n\n\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\r\nimport { Router } from '@angular/router';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { combineLatest, Observable } from 'rxjs';\r\nimport { UserSessionData } from 'src/app/shared/models/user-session.model';\r\n\r\n@Component({\r\n  selector: 'app-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush\r\n})\r\nexport class NavbarComponent {\r\n\r\n  expanded = false;\r\n  readonly userData$ : Observable<UserSessionData> = combineLatest({\r\n  email: this.authService.getUserMailObservable(),\r\n  isLoggedIn: this.authService.isLoggedInObservable() \r\n});\r\n\r\n  constructor(private authService: AuthService, private router: Router) { }\r\n\r\n  logOut() {\r\n    this.authService.logOut();\r\n    this.router.navigate(['']);\r\n  }\r\n  toggleMenu() {\r\n    this.expanded = !this.expanded;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\r\nimport { Router } from '@angular/router';\r\nimport { AuthService } from 'src/app/core/services/auth.service';\r\nimport { combineLatest, Observable } from 'rxjs';\r\nimport { UserSessionData } from 'src/app/shared/models/user-session.model';\r\n\r\n/**\r\n * \r\n * Navigation bar with responsive design, authentication state, and mobile menu.\r\n * \r\n * \r\n */\r\n@Component({\r\n  selector: 'app-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush\r\n})\r\nexport class NavbarComponent {\r\n\r\n  expanded = false;\r\n  readonly userData$ : Observable<UserSessionData> = combineLatest({\r\n  email: this.authService.getUserMailObservable(),\r\n  isLoggedIn: this.authService.isLoggedInObservable() \r\n});\r\n\r\n  constructor(private authService: AuthService, private router: Router) { }\r\n\r\n  logOut() {\r\n    this.authService.logOut();\r\n    this.router.navigate(['']);\r\n  }\r\n  toggleMenu() {\r\n    this.expanded = !this.expanded;\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "mat-toolbar {\r\n    height: 80px;\r\n    display: flex;\r\n    flex-direction: column;\r\n    background: #000000;\r\n    color: rgb(255, 255, 255);\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    font-family: 'Glegoo';\r\n}\r\n.screen{\r\n    color: #F5CF3D;\r\n    font-weight: bold;\r\n}\r\n.icon{\r\n    color: #ffffff;\r\n}\r\n.spacer{\r\n    flex: 1 1 auto;\r\n}\r\na{\r\n    margin: 10px;\r\n}\r\n.logged{\r\n    font-size: 10px;\r\n}\r\n.user-mail{\r\n    color: #F5CF3D;\r\n    font-size: 14px;\r\n}\r\nmat-hint{\r\n    font-size: 10px;\r\n}\r\n.login-container{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content:stretch;\r\n    align-items:center;\r\n\r\n}\r\n.join{\r\n    padding-top: -10px;\r\n    font-size: 12px;\r\n}\r\n.register-container:hover{\r\n    color: #F5CF3D;\r\n}\r\n.login-container:hover{\r\n    color: #F5CF3D;\r\n}\r\n.logout-container:hover{\r\n    color: #F5CF3D;\r\n}\r\n.expanded-menu{\r\nwidth: 100%;\r\n\r\n}\r\n.navbar-container{\r\n    display: flex;\r\n    flex-direction: row;\r\n    align-items: center;\r\n    justify-content: space-around;\r\n    width: 100%;\r\n}\r\n.loggedin-navbar-container{\r\n    display: flex;\r\n    flex-direction: row;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.expanded-menu-container{\r\n   background-color: #000000; \r\n    width: 110%;\r\n    text-align: end;\r\n    font-size: 'Glegoo';\r\n}\r\n.expanded-menu-container mat-list{\r\n    list-style: none;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items:center;\r\n    width: 100%;\r\n    padding: 0;\r\n}\r\n.expanded-menu-container a{\r\n     text-decoration: none; \r\n     color: white;\r\n     font-family: 'Glegoo';\r\n}\r\n\r\n.loggedin-expanded-menu-container {\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.button-links-container a{\r\n    text-decoration: none;\r\n    position: relative;\r\n    color:white;\r\n}\r\n.button-links-container a::before{\r\n    content: '';\r\n    position: absolute;\r\n    width: 100%;\r\n    height: 2px;\r\n    border-radius: 4px;\r\n    background-color: white;\r\n    bottom: -4px;\r\n    left: 0;\r\n    transform-origin: right;\r\n    transform: scaleX(0);\r\n    transition: transform .3s ease-in-out;\r\n}\r\n.button-links-container a:hover::before {\r\n    transform-origin: left;\r\n    transform: scaleX(1);\r\n}\r\n\r\nmat-list {\r\n    text-align: center;\r\n}\r\n\r\n@media only screen and (max-width: 600px) {\r\n    .button-links-container{\r\n        display: none;\r\n    }\r\n    .loggedin-navbar-container{\r\n        display: none;\r\n    }\r\n    .register-container{\r\n        display: none;\r\n    }\r\n    .login-container{\r\n        display: none;\r\n    }\r\n    mat-list{\r\n        margin: 0;\r\n        \r\n    }\r\n}\r\n@media only screen and (min-width: 601px){\r\n    .toogle-menu-button{\r\n        display: none;\r\n    }\r\n    .expanded-menu-container{\r\n        display: none;\r\n    }\r\n}",
+                    "data": "mat-toolbar {\r\n    height: 80px;\r\n    display: flex;\r\n    flex-direction: column;\r\n    background: #000000;\r\n    color: rgb(255, 255, 255);\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    font-family: 'Glegoo';\r\n}\r\n.screen{\r\n    color: #F5CF3D;\r\n    font-weight: bold;\r\n}\r\n.icon{\r\n    color: #ffffff;\r\n}\r\n.spacer{\r\n    flex: 1 1 auto;\r\n}\r\na{\r\n    margin: 10px;\r\n}\r\n.logged{\r\n    font-size: 10px;\r\n}\r\n.user-mail{\r\n    color: #F5CF3D;\r\n    font-size: 14px;\r\n}\r\nmat-hint{\r\n    font-size: 10px;\r\n}\r\n.login-container{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content:stretch;\r\n    align-items:center;\r\n\r\n}\r\n.join{\r\n    padding-top: -10px;\r\n    font-size: 12px;\r\n}\r\n.register-container:hover{\r\n    color: #F5CF3D;\r\n}\r\n.login-container:hover{\r\n    color: #F5CF3D;\r\n}\r\n.logout-container:hover{\r\n    color: #F5CF3D;\r\n}\r\n.expanded-menu{\r\nwidth: 100%;\r\n\r\n}\r\n.navbar-container{\r\n    display: flex;\r\n    flex-direction: row;\r\n    align-items: center;\r\n    justify-content: space-around;\r\n    width: 100%;\r\n}\r\n.loggedin-navbar-container{\r\n    display: flex;\r\n    flex-direction: row;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.expanded-menu-container{\r\n   background-color: #000000; \r\n    width: 110%;\r\n    text-align: end;\r\n    font-size: 'Glegoo';\r\n    border: 1px solid red;\r\n}\r\n.expanded-menu-container mat-list{\r\n    list-style: none;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items:center;\r\n    width: 100%;\r\n    padding: 0;\r\n}\r\n.expanded-menu-container a{\r\n     text-decoration: none; \r\n     color: white;\r\n     font-family: 'Glegoo';\r\n}\r\n\r\n.loggedin-expanded-menu-container {\r\n    width: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.button-links-container a{\r\n    text-decoration: none;\r\n    position: relative;\r\n    color:white;\r\n}\r\n.button-links-container a::before{\r\n    content: '';\r\n    position: absolute;\r\n    width: 100%;\r\n    height: 2px;\r\n    border-radius: 4px;\r\n    background-color: white;\r\n    bottom: -4px;\r\n    left: 0;\r\n    transform-origin: right;\r\n    transform: scaleX(0);\r\n    transition: transform .3s ease-in-out;\r\n}\r\n.button-links-container a:hover::before {\r\n    transform-origin: left;\r\n    transform: scaleX(1);\r\n}\r\n\r\nmat-list {\r\n    text-align: center;\r\n}\r\n\r\n@media only screen and (max-width: 600px) {\r\n    .button-links-container{\r\n        display: none;\r\n    }\r\n    .loggedin-navbar-container{\r\n        display: none;\r\n    }\r\n    .register-container{\r\n        display: none;\r\n    }\r\n    .login-container{\r\n        display: none;\r\n    }\r\n    mat-list{\r\n        margin: 0;\r\n        \r\n    }\r\n}\r\n@media only screen and (min-width: 601px){\r\n    .toogle-menu-button{\r\n        display: none;\r\n    }\r\n    .expanded-menu-container{\r\n        display: none;\r\n    }\r\n}",
                     "styleUrl": "./navbar.component.scss"
                 }
             ],
@@ -5056,7 +5190,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 19,
+                "line": 25,
                 "jsdoctags": [
                     {
                         "name": "authService",
@@ -5666,8 +5800,8 @@
         },
         {
             "name": "SortingControlsComponent",
-            "id": "component-SortingControlsComponent-d17d31b829048627321dea1acbea5745065875e5c613821716e881a11603939c9565e68576ffbe33ff9499effe5992d2cfa326f19ab591ee79f6a71cb99388d1",
-            "file": "src/app/shared/components/sorting-controls/sorting-controls.component.ts",
+            "id": "component-SortingControlsComponent-99cd68f8ced9a5267bd0fd96f3b04697615526b3f538c686b496a3f4c2e58a846de7c062d51a1436a27f1088b429e55322fd07fd0c73664c0c2710a7b768fd87",
+            "file": "src/app/pages/favorites/components/sorting-controls/sorting-controls.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -5690,16 +5824,16 @@
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "pos": 607,
-                            "end": 643,
+                            "pos": 616,
+                            "end": 652,
                             "kind": 345,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 608,
-                                "end": 612,
+                                "pos": 617,
+                                "end": 621,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -5708,24 +5842,24 @@
                             },
                             "comment": "",
                             "typeExpression": {
-                                "pos": 613,
-                                "end": 636,
+                                "pos": 622,
+                                "end": 645,
                                 "kind": 310,
                                 "id": 0,
                                 "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
                                 "type": {
-                                    "pos": 614,
-                                    "end": 635,
+                                    "pos": 623,
+                                    "end": 644,
                                     "kind": 184,
                                     "id": 0,
                                     "flags": 16777216,
                                     "modifierFlagsCache": 0,
                                     "transformFlags": 1,
                                     "typeName": {
-                                        "pos": 614,
-                                        "end": 635,
+                                        "pos": 623,
+                                        "end": 644,
                                         "kind": 80,
                                         "id": 0,
                                         "flags": 16777216,
@@ -5736,16 +5870,16 @@
                             }
                         },
                         {
-                            "pos": 643,
-                            "end": 698,
+                            "pos": 652,
+                            "end": 707,
                             "kind": 348,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 644,
-                                "end": 647,
+                                "pos": 653,
+                                "end": 656,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -5754,16 +5888,16 @@
                             },
                             "comment": "<p>interface for structure</p>\n",
                             "name": {
-                                "pos": 648,
-                                "end": 669,
+                                "pos": 657,
+                                "end": 678,
                                 "kind": 311,
                                 "id": 0,
                                 "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
                                 "name": {
-                                    "pos": 648,
-                                    "end": 669,
+                                    "pos": 657,
+                                    "end": 678,
                                     "kind": 80,
                                     "id": 0,
                                     "flags": 16842752,
@@ -5790,16 +5924,16 @@
                     "description": "<p>Emits when user types in the filter input</p>\n<p>Payload: User input string (raw value from input.value)</p>\n",
                     "jsdoctags": [
                         {
-                            "pos": 1327,
-                            "end": 1394,
+                            "pos": 1336,
+                            "end": 1403,
                             "kind": 328,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 1328,
-                                "end": 1342,
+                                "pos": 1337,
+                                "end": 1351,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -5809,16 +5943,16 @@
                             "comment": "<p>Parent should implement debounce (300-500ms)</p>\n"
                         },
                         {
-                            "pos": 1394,
-                            "end": 1420,
+                            "pos": 1403,
+                            "end": 1429,
                             "kind": 328,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 1395,
-                                "end": 1400,
+                                "pos": 1404,
+                                "end": 1409,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -5828,16 +5962,16 @@
                             "comment": "<p>filterChange</p>\n"
                         },
                         {
-                            "pos": 1420,
-                            "end": 1453,
+                            "pos": 1429,
+                            "end": 1462,
                             "kind": 345,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 1421,
-                                "end": 1425,
+                                "pos": 1430,
+                                "end": 1434,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -5846,24 +5980,24 @@
                             },
                             "comment": "",
                             "typeExpression": {
-                                "pos": 1426,
-                                "end": 1448,
+                                "pos": 1435,
+                                "end": 1457,
                                 "kind": 310,
                                 "id": 0,
                                 "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
                                 "type": {
-                                    "pos": 1427,
-                                    "end": 1447,
+                                    "pos": 1436,
+                                    "end": 1456,
                                     "kind": 184,
                                     "id": 0,
                                     "flags": 16777216,
                                     "modifierFlagsCache": 0,
                                     "transformFlags": 1,
                                     "typeName": {
-                                        "pos": 1427,
-                                        "end": 1439,
+                                        "pos": 1436,
+                                        "end": 1448,
                                         "kind": 80,
                                         "id": 0,
                                         "flags": 16777216,
@@ -5872,8 +6006,8 @@
                                     },
                                     "typeArguments": [
                                         {
-                                            "pos": 1440,
-                                            "end": 1446,
+                                            "pos": 1449,
+                                            "end": 1455,
                                             "kind": 154,
                                             "id": 0,
                                             "flags": 16777216,
@@ -5896,16 +6030,16 @@
                     "description": "<p>Emits when user toggles media type buttons</p>\n<p>Payload: &#39;movie&#39; | &#39;series&#39; | &#39;game&#39; | &#39;all&#39;</p>\n",
                     "jsdoctags": [
                         {
-                            "pos": 1665,
-                            "end": 1694,
+                            "pos": 1674,
+                            "end": 1703,
                             "kind": 328,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 1666,
-                                "end": 1671,
+                                "pos": 1675,
+                                "end": 1680,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -5915,16 +6049,16 @@
                             "comment": "<p>mediaTypeChange</p>\n"
                         },
                         {
-                            "pos": 1694,
-                            "end": 1727,
+                            "pos": 1703,
+                            "end": 1736,
                             "kind": 345,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 1695,
-                                "end": 1699,
+                                "pos": 1704,
+                                "end": 1708,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -5933,24 +6067,24 @@
                             },
                             "comment": "",
                             "typeExpression": {
-                                "pos": 1700,
-                                "end": 1722,
+                                "pos": 1709,
+                                "end": 1731,
                                 "kind": 310,
                                 "id": 0,
                                 "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
                                 "type": {
-                                    "pos": 1701,
-                                    "end": 1721,
+                                    "pos": 1710,
+                                    "end": 1730,
                                     "kind": 184,
                                     "id": 0,
                                     "flags": 16777216,
                                     "modifierFlagsCache": 0,
                                     "transformFlags": 1,
                                     "typeName": {
-                                        "pos": 1701,
-                                        "end": 1713,
+                                        "pos": 1710,
+                                        "end": 1722,
                                         "kind": 80,
                                         "id": 0,
                                         "flags": 16777216,
@@ -5959,8 +6093,8 @@
                                     },
                                     "typeArguments": [
                                         {
-                                            "pos": 1714,
-                                            "end": 1720,
+                                            "pos": 1723,
+                                            "end": 1729,
                                             "kind": 154,
                                             "id": 0,
                                             "flags": 16777216,
@@ -5983,16 +6117,16 @@
                     "description": "<p>Emits when user clicks sort icons</p>\n<p>Payload: <code>{ field: &#39;title&#39; | &#39;year&#39;, order: 1 | -1 }</code></p>\n<ul>\n<li><code>order: 1</code> = ascending (expand_more ↓)</li>\n<li><code>order: -1</code> = descending (expand_less ↑)</li>\n</ul>\n",
                     "jsdoctags": [
                         {
-                            "pos": 977,
-                            "end": 1001,
+                            "pos": 986,
+                            "end": 1010,
                             "kind": 328,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 978,
-                                "end": 983,
+                                "pos": 987,
+                                "end": 992,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -6002,16 +6136,16 @@
                             "comment": "<p>sortChange</p>\n"
                         },
                         {
-                            "pos": 1001,
-                            "end": 1058,
+                            "pos": 1010,
+                            "end": 1067,
                             "kind": 345,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 1002,
-                                "end": 1006,
+                                "pos": 1011,
+                                "end": 1015,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -6020,24 +6154,24 @@
                             },
                             "comment": "",
                             "typeExpression": {
-                                "pos": 1007,
-                                "end": 1053,
+                                "pos": 1016,
+                                "end": 1062,
                                 "kind": 310,
                                 "id": 0,
                                 "flags": 16842752,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
                                 "type": {
-                                    "pos": 1008,
-                                    "end": 1052,
+                                    "pos": 1017,
+                                    "end": 1061,
                                     "kind": 184,
                                     "id": 0,
                                     "flags": 16777216,
                                     "modifierFlagsCache": 0,
                                     "transformFlags": 1,
                                     "typeName": {
-                                        "pos": 1008,
-                                        "end": 1020,
+                                        "pos": 1017,
+                                        "end": 1029,
                                         "kind": 80,
                                         "id": 0,
                                         "flags": 16777216,
@@ -6046,8 +6180,8 @@
                                     },
                                     "typeArguments": [
                                         {
-                                            "pos": 1021,
-                                            "end": 1051,
+                                            "pos": 1030,
+                                            "end": 1060,
                                             "kind": 188,
                                             "id": 0,
                                             "flags": 16777216,
@@ -6055,16 +6189,16 @@
                                             "transformFlags": 1,
                                             "members": [
                                                 {
-                                                    "pos": 1022,
-                                                    "end": 1036,
+                                                    "pos": 1031,
+                                                    "end": 1045,
                                                     "kind": 172,
                                                     "id": 0,
                                                     "flags": 16777216,
                                                     "modifierFlagsCache": 0,
                                                     "transformFlags": 1,
                                                     "name": {
-                                                        "pos": 1022,
-                                                        "end": 1027,
+                                                        "pos": 1031,
+                                                        "end": 1036,
                                                         "kind": 80,
                                                         "id": 0,
                                                         "flags": 16777216,
@@ -6072,8 +6206,8 @@
                                                         "escapedText": "field"
                                                     },
                                                     "type": {
-                                                        "pos": 1028,
-                                                        "end": 1035,
+                                                        "pos": 1037,
+                                                        "end": 1044,
                                                         "kind": 154,
                                                         "id": 0,
                                                         "flags": 16777216,
@@ -6081,16 +6215,16 @@
                                                     }
                                                 },
                                                 {
-                                                    "pos": 1036,
-                                                    "end": 1050,
+                                                    "pos": 1045,
+                                                    "end": 1059,
                                                     "kind": 172,
                                                     "id": 0,
                                                     "flags": 16777216,
                                                     "modifierFlagsCache": 0,
                                                     "transformFlags": 1,
                                                     "name": {
-                                                        "pos": 1036,
-                                                        "end": 1042,
+                                                        "pos": 1045,
+                                                        "end": 1051,
                                                         "kind": 80,
                                                         "id": 0,
                                                         "flags": 16777216,
@@ -6098,8 +6232,8 @@
                                                         "escapedText": "order"
                                                     },
                                                     "type": {
-                                                        "pos": 1043,
-                                                        "end": 1050,
+                                                        "pos": 1052,
+                                                        "end": 1059,
                                                         "kind": 150,
                                                         "id": 0,
                                                         "flags": 16777216,
@@ -6120,7 +6254,7 @@
             "propertiesClass": [],
             "methodsClass": [
                 {
-                    "name": "onFilter",
+                    "name": "handleFilter",
                     "args": [
                         {
                             "name": "event",
@@ -6148,7 +6282,7 @@
                     ]
                 },
                 {
-                    "name": "onMediaTypeChange",
+                    "name": "handleMediaTypeChange",
                     "args": [
                         {
                             "name": "event",
@@ -6176,7 +6310,7 @@
                     ]
                 },
                 {
-                    "name": "onSort",
+                    "name": "handleSort",
                     "args": [
                         {
                             "name": "field",
@@ -6213,17 +6347,17 @@
             "description": "<p>Sorting, filtering, and media-type selection controls for the favorites collection.</p>\n",
             "rawdescription": "\n\n\nSorting, filtering, and media-type selection controls for the favorites collection.\n\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { MatButtonToggleChange } from '@angular/material/button-toggle';\r\nimport { FavoritesSearchParams } from '../../models/favoritesSearchParams.model';\r\n\r\n/**\r\n * \r\n * Sorting, filtering, and media-type selection controls for the favorites collection.\r\n * \r\n */\r\n@Component({\r\n  selector: 'app-sorting-controls',\r\n  templateUrl: './sorting-controls.component.html',\r\n  styleUrls: ['./sorting-controls.component.scss']\r\n})\r\nexport class SortingControlsComponent {\r\n  /**\r\n   * Current sort state from parent component\r\n   * \r\n   * @type {FavoritesSearchParams}\r\n   * @see FavoritesSearchParams interface for structure\r\n   */\r\n  @Input() currentSort!: FavoritesSearchParams;\r\n\r\n    /**\r\n   * Emits when user clicks sort icons\r\n   * \r\n   * Payload: `{ field: 'title' | 'year', order: 1 | -1 }`\r\n   * - `order: 1` = ascending (expand_more ↓)\r\n   * - `order: -1` = descending (expand_less ↑)\r\n   * \r\n   * @event sortChange\r\n   * @type {EventEmitter<{field: string, order: number}>}\r\n   */\r\n  @Output() sortChange: EventEmitter<{ field: string; order: number; }> = new EventEmitter<{field: string, order: number}>();\r\n\r\n  /**\r\n   * Emits when user types in the filter input\r\n   * \r\n   * Payload: User input string (raw value from input.value)\r\n   * \r\n   * @recommendation Parent should implement debounce (300-500ms)\r\n   * @event filterChange\r\n   * @type {EventEmitter<string>}\r\n   */\r\n  @Output() filterChange: EventEmitter<string> = new EventEmitter<string>();\r\n\r\n    /**\r\n   * Emits when user toggles media type buttons\r\n   * \r\n   * Payload: 'movie' | 'series' | 'game' | 'all'\r\n   * \r\n   * @event mediaTypeChange\r\n   * @type {EventEmitter<string>}\r\n   */\r\n  @Output() mediaTypeChange: EventEmitter<string> = new EventEmitter<string>();\r\n\r\n  onSort(field: 'title' | 'year'): void {\r\n    this.sortChange.emit({\r\n      field,\r\n      order: this.currentSort.sortField === field ? \r\n             (this.currentSort.sortOrder === 1 ? -1 : 1) : 1\r\n    });\r\n  }\r\n\r\n  onFilter(event: Event): void {\r\n    const value = (event.target as HTMLInputElement).value;\r\n    this.filterChange.emit(value);\r\n  }\r\n\r\n  onMediaTypeChange(event: MatButtonToggleChange): void {\r\n    this.mediaTypeChange.emit(event.value);\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { MatButtonToggleChange } from '@angular/material/button-toggle';\r\nimport { FavoritesSearchParams } from 'src/app/shared/models/favoritesSearchParams.model';\r\n\r\n/**\r\n * \r\n * Sorting, filtering, and media-type selection controls for the favorites collection.\r\n * \r\n */\r\n@Component({\r\n  selector: 'app-sorting-controls',\r\n  templateUrl: './sorting-controls.component.html',\r\n  styleUrls: ['./sorting-controls.component.scss']\r\n})\r\nexport class SortingControlsComponent {\r\n  /**\r\n   * Current sort state from parent component\r\n   * \r\n   * @type {FavoritesSearchParams}\r\n   * @see FavoritesSearchParams interface for structure\r\n   */\r\n  @Input() currentSort!: FavoritesSearchParams;\r\n\r\n    /**\r\n   * Emits when user clicks sort icons\r\n   * \r\n   * Payload: `{ field: 'title' | 'year', order: 1 | -1 }`\r\n   * - `order: 1` = ascending (expand_more ↓)\r\n   * - `order: -1` = descending (expand_less ↑)\r\n   * \r\n   * @event sortChange\r\n   * @type {EventEmitter<{field: string, order: number}>}\r\n   */\r\n  @Output() sortChange: EventEmitter<{ field: string; order: number; }> = new EventEmitter<{field: string, order: number}>();\r\n\r\n  /**\r\n   * Emits when user types in the filter input\r\n   * \r\n   * Payload: User input string (raw value from input.value)\r\n   * \r\n   * @recommendation Parent should implement debounce (300-500ms)\r\n   * @event filterChange\r\n   * @type {EventEmitter<string>}\r\n   */\r\n  @Output() filterChange: EventEmitter<string> = new EventEmitter<string>();\r\n\r\n    /**\r\n   * Emits when user toggles media type buttons\r\n   * \r\n   * Payload: 'movie' | 'series' | 'game' | 'all'\r\n   * \r\n   * @event mediaTypeChange\r\n   * @type {EventEmitter<string>}\r\n   */\r\n  @Output() mediaTypeChange: EventEmitter<string> = new EventEmitter<string>();\r\n\r\n  handleSort(field: 'title' | 'year'): void {\r\n    this.sortChange.emit({\r\n      field,\r\n      order: this.currentSort.sortField === field ? \r\n             (this.currentSort.sortOrder === 1 ? -1 : 1) : 1\r\n    });\r\n  }\r\n\r\n  handleFilter(event: Event): void {\r\n    const value = (event.target as HTMLInputElement).value;\r\n    this.filterChange.emit(value);\r\n  }\r\n\r\n  handleMediaTypeChange(event: MatButtonToggleChange): void {\r\n    this.mediaTypeChange.emit(event.value);\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".sorting-filter-container {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    flex-wrap: wrap;\r\n    margin-bottom: 20px;\r\n    width: 100%;\r\n    gap: 20px;\r\n  }\r\n  \r\n  .sorting-container {\r\n    display: flex;\r\n    flex-direction: row;\r\n    width: 200px;\r\n    gap: 10px;\r\n  \r\n    .sorting-item {\r\n      display: flex;\r\n      align-items: center;\r\n      justify-content: center;\r\n  \r\n      mat-icon {\r\n        cursor: pointer;\r\n        color: var(--custom-amber);\r\n      }\r\n  \r\n      .sortByName {\r\n        cursor: pointer;\r\n        color: #ffffff;\r\n        margin: 0 4px;\r\n      }\r\n    }\r\n  }\r\n  \r\n  .filter-container input {\r\n    background-color: transparent;\r\n    border: 1px solid var(--custom-amber);\r\n    border-radius: 10px;\r\n    color: white;\r\n    font-family: 'Glegoo';\r\n    padding: 4px 10px;\r\n  }\r\n  \r\n  .media-type-container {\r\n    mat-button-toggle-group {\r\n      background-color: black;\r\n      border-radius: 10px;\r\n      overflow: hidden;\r\n      border-color: var(--custom-amber);\r\n    }\r\n  \r\n    mat-button-toggle {\r\n      color: var(--custom-amber);\r\n      background-color: black;\r\n      font-family: 'Glegoo';\r\n      border-color: var(--custom-amber);\r\n  \r\n      &:hover {\r\n        background-color: #333;\r\n      }\r\n  \r\n      &.mat-button-toggle-checked {\r\n        background-color: var(--custom-amber);\r\n        color: black;\r\n      }\r\n    }\r\n  }\r\n  @media (max-width: 768px) {\r\n    .sorting-filter-container {\r\n      flex-direction: column;\r\n      align-items: center;\r\n    }\r\n  \r\n    .sorting-container {\r\n      width: 50%;\r\n    }\r\n  \r\n    .filter-container input {\r\n      width: 100%;\r\n    }\r\n  }\r\n  ",
+                    "data": ".sorting-filter-container {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    flex-wrap: wrap;\r\n    margin-bottom: 20px;\r\n    width: 100%;\r\n    gap: 20px;\r\n    background-color: #000000;\r\n    padding: 5px;\r\n    border-radius: 10px;\r\n  }\r\n  \r\n  .sorting-container {\r\n    display: flex;\r\n    flex-direction: row;\r\n    width: 200px;\r\n    gap: 10px;\r\n  \r\n    .sorting-item {\r\n      display: flex;\r\n      align-items: center;\r\n      justify-content: center;\r\n  \r\n      mat-icon {\r\n        cursor: pointer;\r\n        color: var(--custom-amber);\r\n      }\r\n  \r\n      .sortByName {\r\n        cursor: pointer;\r\n        color: #ffffff;\r\n        margin: 0 4px;\r\n      }\r\n    }\r\n  }\r\n  \r\n  .filter-container input {\r\n    background-color: transparent;\r\n    border: 1px solid var(--custom-amber);\r\n    border-radius: 10px;\r\n    color: white;\r\n    font-family: 'Glegoo';\r\n    padding: 4px 10px;\r\n  }\r\n  \r\n  .media-type-container {\r\n    mat-button-toggle-group {\r\n      background-color: black;\r\n      border-radius: 10px;\r\n      overflow: hidden;\r\n      border-color: var(--custom-amber);\r\n    }\r\n  \r\n    mat-button-toggle {\r\n      color: var(--custom-amber);\r\n      background-color: black;\r\n      font-family: 'Glegoo';\r\n      border-color: var(--custom-amber);\r\n  \r\n      &:hover {\r\n        background-color: #333;\r\n      }\r\n  \r\n      &.mat-button-toggle-checked {\r\n        background-color: var(--custom-amber);\r\n        color: black;\r\n      }\r\n    }\r\n  }\r\n  @media (max-width: 768px) {\r\n    .sorting-filter-container {\r\n      flex-direction: column;\r\n      align-items: center;\r\n    }\r\n  \r\n    .sorting-container {\r\n      width: 50%;\r\n    }\r\n  \r\n    .filter-container input {\r\n      width: 100%;\r\n    }\r\n  }\r\n  ",
                     "styleUrl": "./sorting-controls.component.scss"
                 }
             ],
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"sorting-filter-container\">\r\n    <div class=\"sorting-container\">\r\n      <div class=\"sorting-item\">\r\n        <mat-icon (click)=\"onSort('year')\">\r\n          <span>{{ currentSort.sortField === 'year' && currentSort.sortOrder === -1 ? 'expand_less' : 'expand_more'\r\n            }}</span>\r\n        </mat-icon>\r\n        <span class=\"sortByName\">Year</span>\r\n        <mat-icon (click)=\"onSort('year')\">\r\n          <span>{{ currentSort.sortField === 'year' && currentSort.sortOrder === 1 ? 'expand_more' : 'expand_less'\r\n            }}</span>\r\n        </mat-icon>\r\n      </div>\r\n\r\n      <div class=\"sorting-item\">\r\n        <mat-icon (click)=\"onSort('title')\">\r\n          <span>{{ currentSort.sortField === 'title' && currentSort.sortOrder === -1 ? 'expand_less' : 'expand_more'\r\n            }}</span>\r\n        </mat-icon>\r\n        <span class=\"sortByName\">Title</span>\r\n        <mat-icon (click)=\"onSort('title')\">\r\n          <span>{{ currentSort.sortField === 'title' && currentSort.sortOrder === 1 ? 'expand_more' : 'expand_less'\r\n            }}</span>\r\n        </mat-icon>\r\n      </div>\r\n    </div>\r\n    <div class=\"filter-container\">\r\n      <input type=\"text\" placeholder=\"Filter by title\" (keyup)=\"onFilter($event)\">\r\n    </div>\r\n    <div class=\"media-type-container\">\r\n        <mat-button-toggle-group\r\n        name=\"mediaType\"\r\n        aria-label=\"MediaTypes\"\r\n        (change)=\"onMediaTypeChange($event)\"\r\n      >\r\n        <mat-button-toggle value=\"movie\">Movies</mat-button-toggle>\r\n        <mat-button-toggle value=\"series\">Series</mat-button-toggle>\r\n        <mat-button-toggle value=\"game\">Games</mat-button-toggle>\r\n        <mat-button-toggle value=\"all\" checked>All</mat-button-toggle>\r\n      </mat-button-toggle-group>\r\n      </div>\r\n  </div>\r\n"
+            "templateData": "<div class=\"sorting-filter-container\">\r\n    <div class=\"sorting-container\">\r\n      <div class=\"sorting-item\">\r\n        <mat-icon (click)=\"handleSort('year')\">\r\n          <span>{{ currentSort.sortField === 'year' && currentSort.sortOrder === -1 ? 'expand_less' : 'expand_more'\r\n            }}</span>\r\n        </mat-icon>\r\n        <span class=\"sortByName\">Year</span>\r\n        <mat-icon (click)=\"handleSort('year')\">\r\n          <span>{{ currentSort.sortField === 'year' && currentSort.sortOrder === 1 ? 'expand_more' : 'expand_less'\r\n            }}</span>\r\n        </mat-icon>\r\n      </div>\r\n\r\n      <div class=\"sorting-item\">\r\n        <mat-icon (click)=\"handleSort('title')\">\r\n          <span>{{ currentSort.sortField === 'title' && currentSort.sortOrder === -1 ? 'expand_less' : 'expand_more'\r\n            }}</span>\r\n        </mat-icon>\r\n        <span class=\"sortByName\">Title</span>\r\n        <mat-icon (click)=\"handleSort('title')\">\r\n          <span>{{ currentSort.sortField === 'title' && currentSort.sortOrder === 1 ? 'expand_more' : 'expand_less'\r\n            }}</span>\r\n        </mat-icon>\r\n      </div>\r\n    </div>\r\n    <div class=\"filter-container\">\r\n      <input type=\"text\" placeholder=\"Filter by title\" maxlength=\"20\" (keyup)=\"handleFilter($event)\">\r\n    </div>\r\n    <div class=\"media-type-container\">\r\n        <mat-button-toggle-group\r\n        name=\"mediaType\"\r\n        aria-label=\"MediaTypes\"\r\n        (change)=\"handleMediaTypeChange($event)\"\r\n      >\r\n        <mat-button-toggle value=\"movie\">Movies</mat-button-toggle>\r\n        <mat-button-toggle value=\"series\">Series</mat-button-toggle>\r\n        <mat-button-toggle value=\"game\">Games</mat-button-toggle>\r\n        <mat-button-toggle value=\"all\" checked>All</mat-button-toggle>\r\n      </mat-button-toggle-group>\r\n      </div>\r\n  </div>\r\n"
         },
         {
             "name": "TrailerDialogComponent",
@@ -6603,13 +6737,13 @@
         },
         {
             "name": "FavoritesModule",
-            "id": "module-FavoritesModule-3d26bffe264802bc0b13876f1bb4d15aa4b399fdbfd624ce8c2adf883017cd0a790bb56279d438ec0db4bcad094dc5b2ac6f22faf56a3c3ba00991bcae8f3f48",
+            "id": "module-FavoritesModule-6fb664babcaa3a2062065350c2d49823c90e9a6e6700f735ceed6889989c065894335edab0521f4cecb977dad34ef32ab10523105e89aa4c16b6b83f9f193d37",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/pages/favorites/favorites.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\nimport { SharedModule } from 'src/app/shared/shared.module';\r\n\r\nimport { FavoritesRoutingModule } from './favorites-routing.module';\r\n\r\nimport { FavoritesComponent } from './page/favorites.component';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\r\nimport { MatPaginatorModule } from '@angular/material/paginator';\r\nimport { MatDialogModule } from '@angular/material/dialog';\r\n\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n    FavoritesComponent\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    FavoritesRoutingModule,\r\n    MatProgressBarModule,\r\n    SharedModule,\r\n    FormsModule,\r\n    MatPaginatorModule,\r\n    MatDialogModule  \r\n  ]\r\n})\r\nexport class FavoritesModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n\r\nimport { FavoritesRoutingModule } from './favorites-routing.module';\r\n\r\nimport { FavoritesComponent } from './page/favorites.component';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\r\nimport { MatPaginatorModule } from '@angular/material/paginator';\r\nimport { MatDialogModule } from '@angular/material/dialog';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatChipsModule } from '@angular/material/chips';\r\nimport { MatSortModule } from '@angular/material/sort';\r\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\r\nimport { SharedModule } from 'src/app/shared/shared.module';\r\nimport { SortingControlsComponent } from './components/sorting-controls/sorting-controls.component';\r\n\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n    FavoritesComponent,\r\n    SortingControlsComponent\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    FavoritesRoutingModule,\r\n    MatProgressBarModule,\r\n    SharedModule,\r\n    FormsModule,\r\n    MatPaginatorModule,\r\n    MatDialogModule,\r\n    MatIconModule,\r\n    MatButtonModule,\r\n    MatChipsModule,\r\n    MatSortModule,\r\n    MatButtonToggleModule\r\n  ]\r\n})\r\nexport class FavoritesModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -6620,6 +6754,9 @@
                     "elements": [
                         {
                             "name": "FavoritesComponent"
+                        },
+                        {
+                            "name": "SortingControlsComponent"
                         }
                     ]
                 },
@@ -6831,13 +6968,13 @@
         },
         {
             "name": "SharedModule",
-            "id": "module-SharedModule-cb4699792754aa1f7799ad2de1802725374fcb167d8cb5cc20c87c3dd0b4c7f35e796dd5e9f31d8d70e15feda1df06edff6db93a493d052375b7baa81a608b02",
+            "id": "module-SharedModule-8eb00a7df72c98fa26a2b87445dbc4ca438987c77181f907b38e74b6ff5939cda5c8e8d865a6f9f29f004623b6e3e4d65c8b13f11726941eedb1e2dc2dc9ac1b",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/shared/shared.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { RouterModule } from '@angular/router';\r\n\r\n// Angular Material Modules\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { MatTableModule } from '@angular/material/table';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatCardModule } from '@angular/material/card';\r\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\r\nimport { MatInputModule } from '@angular/material/input';\r\nimport { MatSelectModule } from '@angular/material/select';\r\nimport { MatGridListModule } from '@angular/material/grid-list';\r\nimport { MatListModule } from '@angular/material/list';\r\nimport { MatDividerModule } from '@angular/material/divider';\r\nimport { MatFormFieldModule } from '@angular/material/form-field';\r\nimport { MatExpansionModule } from '@angular/material/expansion';\r\nimport { MatChipsModule } from '@angular/material/chips';\r\nimport { MatTooltipModule } from '@angular/material/tooltip';\r\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\r\nimport { MatDialogModule } from '@angular/material/dialog';\r\nimport { MatSortModule } from '@angular/material/sort';\r\nimport { MatPaginatorModule } from '@angular/material/paginator';\r\n\r\nimport { NgbModule } from '@ng-bootstrap/ng-bootstrap';\r\n\r\nimport { OmdbService } from './services/omdb/omdb.service';\r\n\r\nimport { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';\r\nimport { MediaItemDialogComponent } from './components/movie-dialog/movie-dialog.component';\r\nimport { SortingControlsComponent } from './components/sorting-controls/sorting-controls.component';\r\nimport { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';\r\nimport { EmptyStateComponent } from './components/empty-state/empty-state.component';\r\nimport { TrailerDialogComponent } from './components/trailer-dialog/trailer-dialog.component';\r\n\r\nimport { FallbackImagesDirective } from './directives/fallback-images.directive';\r\n\r\nconst MATERIAL_MODULES = [\r\n  MatToolbarModule,\r\n  MatTableModule,\r\n  MatIconModule,\r\n  MatButtonModule,\r\n  MatCardModule,\r\n  MatButtonToggleModule,\r\n  MatInputModule,\r\n  MatSelectModule,\r\n  MatGridListModule,\r\n  MatListModule,\r\n  MatDividerModule,\r\n  MatFormFieldModule,\r\n  MatExpansionModule,\r\n  MatChipsModule,\r\n  MatTooltipModule,\r\n  MatProgressBarModule,\r\n  MatDialogModule,\r\n  MatSortModule,\r\n  MatPaginatorModule \r\n];\r\n\r\n@NgModule({\r\n  declarations: [\r\n    FavoritesCardComponent,\r\n    MediaItemDialogComponent,\r\n    SortingControlsComponent,\r\n    LoadingSpinnerComponent,\r\n    EmptyStateComponent,\r\n    TrailerDialogComponent,\r\n    FallbackImagesDirective,\r\n\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    RouterModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgbModule,\r\n    ...MATERIAL_MODULES \r\n  ],\r\n  providers: [\r\n    OmdbService  \r\n  ],\r\n  exports: [\r\n    ...MATERIAL_MODULES,\r\n    NgbModule,\r\n    FavoritesCardComponent,\r\n    MediaItemDialogComponent,\r\n    SortingControlsComponent,\r\n    LoadingSpinnerComponent,\r\n    EmptyStateComponent,\r\n    TrailerDialogComponent,\r\n    FallbackImagesDirective,\r\n\r\n  ]\r\n})\r\nexport class SharedModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { RouterModule } from '@angular/router';\r\n\r\n// Angular Material Modules\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { MatTableModule } from '@angular/material/table';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatCardModule } from '@angular/material/card';\r\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\r\nimport { MatInputModule } from '@angular/material/input';\r\nimport { MatSelectModule } from '@angular/material/select';\r\nimport { MatGridListModule } from '@angular/material/grid-list';\r\nimport { MatListModule } from '@angular/material/list';\r\nimport { MatDividerModule } from '@angular/material/divider';\r\nimport { MatFormFieldModule } from '@angular/material/form-field';\r\nimport { MatExpansionModule } from '@angular/material/expansion';\r\nimport { MatChipsModule } from '@angular/material/chips';\r\nimport { MatTooltipModule } from '@angular/material/tooltip';\r\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\r\nimport { MatDialogModule } from '@angular/material/dialog';\r\nimport { MatSortModule } from '@angular/material/sort';\r\nimport { MatPaginatorModule } from '@angular/material/paginator';\r\n\r\nimport { NgbModule } from '@ng-bootstrap/ng-bootstrap';\r\n\r\nimport { OmdbService } from './services/omdb/omdb.service';\r\n\r\nimport { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';\r\nimport { MediaItemDialogComponent } from './components/movie-dialog/movie-dialog.component';\r\nimport { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';\r\nimport { EmptyStateComponent } from './components/empty-state/empty-state.component';\r\nimport { TrailerDialogComponent } from './components/trailer-dialog/trailer-dialog.component';\r\n\r\nimport { FallbackImagesDirective } from './directives/fallback-images.directive';\r\n\r\nconst MATERIAL_MODULES = [\r\n  MatToolbarModule,\r\n  MatTableModule,\r\n  MatIconModule,\r\n  MatButtonModule,\r\n  MatCardModule,\r\n  MatButtonToggleModule,\r\n  MatInputModule,\r\n  MatSelectModule,\r\n  MatGridListModule,\r\n  MatListModule,\r\n  MatDividerModule,\r\n  MatFormFieldModule,\r\n  MatExpansionModule,\r\n  MatChipsModule,\r\n  MatTooltipModule,\r\n  MatProgressBarModule,\r\n  MatDialogModule,\r\n  MatSortModule,\r\n  MatPaginatorModule \r\n];\r\n\r\n@NgModule({\r\n  declarations: [\r\n    FavoritesCardComponent,\r\n    MediaItemDialogComponent,\r\n    LoadingSpinnerComponent,\r\n    EmptyStateComponent,\r\n    TrailerDialogComponent,\r\n    FallbackImagesDirective,\r\n\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    RouterModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgbModule,\r\n    ...MATERIAL_MODULES \r\n  ],\r\n  providers: [\r\n    OmdbService  \r\n  ],\r\n  exports: [\r\n    ...MATERIAL_MODULES,\r\n    NgbModule,\r\n    FavoritesCardComponent,\r\n    MediaItemDialogComponent,\r\n    LoadingSpinnerComponent,\r\n    EmptyStateComponent,\r\n    TrailerDialogComponent,\r\n    FallbackImagesDirective,\r\n\r\n  ]\r\n})\r\nexport class SharedModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -6866,9 +7003,6 @@
                             "name": "MediaItemDialogComponent"
                         },
                         {
-                            "name": "SortingControlsComponent"
-                        },
-                        {
                             "name": "TrailerDialogComponent"
                         }
                     ]
@@ -6894,9 +7028,6 @@
                         },
                         {
                             "name": "MediaItemDialogComponent"
-                        },
-                        {
-                            "name": "SortingControlsComponent"
                         },
                         {
                             "name": "TrailerDialogComponent"
@@ -6930,6 +7061,28 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/layout/footer/footer.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/layout/navbar/navbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}",
+                "rawdescription": "Default: Usuario logueado",
+                "description": "<p>Default: Usuario logueado</p>\n"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/shared/components/empty-state/empty-state.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -6940,13 +7093,11 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
+                "file": "src/app/pages/favorites/components/sorting-controls/sorting-controls.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    currentSort: {\r\n      currentPage: 1,\r\n      pageSize: 10,\r\n      sortField: undefined,\r\n      sortOrder: undefined,\r\n      mediaType: undefined,\r\n      searchTerm: undefined,\r\n    },\r\n  },\r\n}",
-                "rawdescription": "Default state: no sorting applied, \"All\" media types selected, empty filter",
-                "description": "<p>Default state: no sorting applied, &quot;All&quot; media types selected, empty filter</p>\n"
+                "defaultValue": "{\r\n  args: {\r\n    currentSort: {\r\n      currentPage: 1,\r\n      pageSize: 10,\r\n      sortField: undefined,\r\n      sortOrder: undefined,\r\n      mediaType: undefined,\r\n      searchTerm: undefined,\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "Default",
@@ -7059,18 +7210,6 @@
                 "defaultValue": "[ {\r\n    title: \"Killers of the Flower Moon\",\r\n    year: \"2023\",\r\n    imdbID: \"tt5537002\",\r\n    type: \"movie\",\r\n    poster: \"https://m.media-amazon.com/images/M/MV5BMjE4ZTZlNDAtM2Q3YS00YjFhLThjN2UtODg2ZGNlN2E2MWU2XkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Napoleon\",\r\n  year: \"2023\",\r\n  imdbID: \"tt13287846\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZWIzNDAxMTktMDMzZS00ZjJmLTlhNjYtOGUxYmZlYzVmOGE4XkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Barbie\",\r\n  year: \"2023\",\r\n  imdbID: \"tt1517268\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Interstellar\",\r\n  year: \"2014\",\r\n  imdbID: \"tt0816692\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"True Detective\",\r\n  year: \"2014–\",\r\n  imdbID: \"tt2356777\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BYjgwYzA1NWMtNDYyZi00ZGQyLWI5NTktMDYwZjE2OTIwZWEwXkEyXkFqcGc@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"House of the Dragon\",\r\n  year: \"2022–\",\r\n  imdbID: \"tt11198330\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BM2QzMGVkNjUtN2Y4Yi00ODMwLTg3YzktYzUxYjJlNjFjNDY1XkEyXkFqcGc@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Better Call Saul\",\r\n  year: \"2015–2022\",\r\n  imdbID: \"tt3032476\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZDA4YmE0OTYtMmRmNS00Mzk2LTlhM2MtNjk4NzBjZGE1MmIyXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Breaking Bad\",\r\n  year: \"2008–2013\",\r\n  imdbID: \"tt0903747\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"The Wire\",\r\n  year:  \"2002–2008\",\r\n  imdbID: \"tt0306414\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZWYyNmRhYjktNjBhNC00M2NhLWEzYmMtZDYwNmIyZTRiZWMzXkEyXkFqcGc@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"MobLand\",\r\n  year:  \"2025–\",\r\n  imdbID: \"tt31510819\",\r\n  type: \"series\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZDVmMzJkOWUtMjdjMi00NzA4LTgxMTItYjA4NjVjZDI0ZWU1XkEyXkFqcGc@._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"REC\",\r\n  year:  \"2007\",\r\n  imdbID: \"tt1038988\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BZTI1ODM2ZWEtYmM5NS00ZDYzLWI1YzktYWYwZTdmOWMwZTBmXkEyXkFqcGdeQXVyMTU3NDU4MDg2._V1_SX300.jpg\"\r\n},\r\n{\r\n  title: \"Dune\",\r\n  year:  \"2021\",\r\n  imdbID: \"tt1160419\",\r\n  type: \"movie\",\r\n  poster: \"https://m.media-amazon.com/images/M/MV5BMDQ0NjgyN2YtNWViNS00YjA3LTkxNDktYzFkZTExZGMxZDkxXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg\"\r\n}]"
             },
             {
-                "name": "FilteredByTypeAndTitle",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    currentSort: {\r\n      currentPage: 1,\r\n      pageSize: 10,\r\n      sortField: 'title',\r\n      sortOrder: 1,\r\n      mediaType: 'series',\r\n      searchTerm: 'breaking',\r\n    },\r\n  },\r\n}",
-                "rawdescription": "Filtered by media type \"series\" and active search term",
-                "description": "<p>Filtered by media type &quot;series&quot; and active search term</p>\n"
-            },
-            {
                 "name": "FromFavorites",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -7099,6 +7238,18 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n    args: {\r\n        collection: [...sampleData, ...sampleData],\r\n        sendItemCarousel: action('sendItemCarousel'),\r\n    },\r\n    argTypes: {\r\n        collection: { control: false },\r\n    },\r\n    parameters: {\r\n        docs: {\r\n            description: {\r\n                story: 'Carousel with 16 items (4 slides of 4 items each).',\r\n            },\r\n        },\r\n    },\r\n}"
+            },
+            {
+                "name": "LoggedOut",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/layout/navbar/navbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        {\r\n          provide: AuthService,\r\n          useFactory: () => {\r\n            const mock = new AuthServiceMock();\r\n            mock.setLoggedIn(false);\r\n            mock.setUserMail(null);\r\n            return mock;\r\n          }\r\n        }\r\n      ]\r\n    })\r\n  ]\r\n}",
+                "rawdescription": "Usuario NO logueado",
+                "description": "<p>Usuario NO logueado</p>\n"
             },
             {
                 "name": "LoginForm",
@@ -7134,6 +7285,26 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/layout/footer/footer.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<FooterComponent>",
+                "defaultValue": "{\r\n  title: 'Layout/Global/Footer',\r\n  component: FooterComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MatIconModule],\r\n      declarations: [FooterComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    backgrounds: {\r\n      default: 'light background',\r\n      values: [\r\n        { name: 'dark background', value: '#1A1A1A' },\r\n        { name: 'light background', value: '#FFFFFF' }\r\n      ],\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n# Footer Component\r\n\r\nApplication-wide footer displaying copyright information.\r\n\r\n## Features\r\n\r\n- 🏷️ **Branding**: Displays ScreenPulse brand name\r\n- 📄 **Copyright notice**: Includes Material copyright icon\r\n- 🌐 **Global placement**: Used throughout entire application via app.component.html\r\n\r\n## Architecture\r\n\r\n- **Component type**: Global layout component\r\n- **Placement**: Bottom of the viewport in app.component\r\n- **Dependencies**: Material Icons only\r\n\r\n## Usage Example\r\n\r\n### App Layout Structure\r\n\r\n### app.component.html:\r\n\r\n\\`\\`\\`html\r\n\r\n<app-navbar></app-navbar>\r\n\r\n<div class=\"site-content\">\r\n    <router-outlet></router-outlet>\r\n</div>\r\n\r\n<app-footer class=\"footer\"></app-footer>\r\n\\`\\`\\`\r\n\r\n### Styling Notes\r\n\r\n- Apply footer-specific styles in app.component.scss using \\`.footer\\` class\r\n- Keep positioning at bottom of viewport with \\`position: sticky\\`\r\n- Works with both light and dark backgrounds\r\n        `,\r\n      },\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/layout/navbar/navbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<NavbarComponent>",
+                "defaultValue": "{\r\n  title: 'Layout/Global/Navbar',\r\n  component: NavbarComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        MatToolbarModule,\r\n        MatIconModule,\r\n        MatButtonModule,\r\n        MatListModule,\r\n        RouterTestingModule,\r\n      ],\r\n      providers: [\r\n        { provide: AuthService, useValue: new AuthServiceMock() },\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    backgrounds: {\r\n      default: 'light background',\r\n      values: [\r\n        { name: 'dark background', value: '#000000' },\r\n        { name: 'light background', value: '#ffffffff' }\r\n      ],\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n# Navbar Component\r\n\r\n**Component Type:** Smart Component (Container Component)\r\n\r\nGlobal navigation bar with authentication state management and responsive mobile menu.\r\n\r\n## Features\r\n\r\n- 🔐 **Auth state management**: Displays login/logout options via AuthService observables\r\n- 📱 **Mobile responsive**: Collapses to hamburger menu on screens ≤600px\r\n- 🎯 **Navigation links**: Home (Search), Favorites with active route highlighting\r\n- 🎨 **Custom amber theme**: Dynamic hover animations and transitions\r\n- 📊 **User session display**: Shows user email when logged in\r\n\r\n## Architecture Pattern\r\n\r\nThis component follows the **Observable Data Service** pattern for reactive state management.\r\n\r\n### Data Flow\r\n\r\n\\`\\`\\`\r\nAuthService (Singleton)\r\n    ↓\r\nBehaviorSubjects (email, isLoggedIn)\r\n    ↓\r\nObservable Streams\r\n    ↓\r\ncombineLatest (userData$)\r\n    ↓\r\nasync pipe (template)\r\n    ↓\r\nUI Rendering\r\n\\`\\`\\`\r\n\r\n## Service Integration\r\n\r\n### AuthService\r\n\r\nThis component subscribes to two observables from \\`AuthService\\`:\r\n\r\n| Observable | Type | Purpose |\r\n|------------|------|---------|\r\n| \\`getUserMailObservable()\\` | \\`Observable<string \\\\| null>\\` | User email stream |\r\n| \\`isLoggedInObservable()\\` | \\`Observable<boolean>\\` | Login status stream |\r\n\r\n**Pattern:** BehaviorSubject + async pipe for reactive updates.\r\n\r\n### Router\r\n\r\nUsed for navigation after logout: \\`router.navigate([''])\\`\r\n\r\n## State Management\r\n\r\n### Reactive State (Observables)\r\n\r\n\\`\\`\\`typescript\r\nreadonly userData$ = combineLatest({\r\n  email: this.authService.getUserMailObservable(),\r\n  isLoggedIn: this.authService.isLoggedInObservable()\r\n});\r\n\\`\\`\\`\r\n\r\n- **Subscription:** Handled automatically via \\`async\\` pipe\r\n- **Change Detection:** OnPush strategy for performance\r\n- **Updates:** Reactive - UI updates when observables emit\r\n\r\n### Local State\r\n\r\n- \\`expanded: boolean\\` - Mobile menu toggle (component-only state)\r\n\r\n## Why No @Input/@Output?\r\n\r\nThis is a **global smart component** that:\r\n\r\n- ✅ Lives at the app root level (\\`app.component.html\\`)\r\n- ✅ Manages its own data via service injection\r\n- ✅ Does NOT need parent-child communication\r\n- ✅ Follows the Observable Data Service pattern\r\n\r\n**This is the correct approach for global layout components.**\r\n\r\n## Usage Example\r\n\r\n### App Layout Structure\r\n\r\n\\`\\`\\`html\r\n<!-- app.component.html -->\r\n\r\n<app-navbar></app-navbar>\r\n\r\n<div class=\"site-content\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n\r\n<app-footer></app-footer>\r\n\\`\\`\\`\r\n\r\n### Template Pattern (async pipe)\r\n\r\n\\`\\`\\`html\r\n<ng-container *ngIf=\"userData$ | async as data\">\r\n  <!-- Logged Out State -->\r\n  <ng-container *ngIf=\"!data.isLoggedIn\">\r\n    <a routerLink=\"/auth/register\">Join us!</a>\r\n    <a routerLink=\"/auth/login\">Login</a>\r\n  </ng-container>\r\n\r\n  <!-- Logged In State -->\r\n  <ng-container *ngIf=\"data.isLoggedIn\">\r\n    <span>Welcome {{ data.email }}</span>\r\n    <button (click)=\"logOut()\">Logout</button>\r\n  </ng-container>\r\n</ng-container>\r\n\\`\\`\\`\r\n\r\n## Responsive Breakpoints\r\n\r\n- **Mobile** (≤600px): Hamburger menu, hidden auth buttons\r\n- **Desktop** (≥601px): Full navigation, inline auth status\r\n\r\n## Component Methods\r\n\r\n### logOut()\r\n\r\nTriggers logout in \\`AuthService\\` and navigates to home.\r\n\r\n\\`\\`\\`typescript\r\nlogOut(): void {\r\n  this.authService.logOut();\r\n  this.router.navigate(['']);\r\n}\r\n\\`\\`\\`\r\n\r\n### toggleMenu()\r\n\r\nToggles mobile menu visibility (local state only).\r\n\r\n\\`\\`\\`typescript\r\ntoggleMenu(): void {\r\n  this.expanded = !this.expanded;\r\n}\r\n\\`\\`\\`\r\n\r\n## Testing Strategy\r\n\r\n### Unit Tests\r\n\r\nMock \\`AuthService\\` with jasmine spies:\r\n\r\n\\`\\`\\`typescript\r\nconst authServiceMock = jasmine.createSpyObj('AuthService', [\r\n  'getUserMailObservable',\r\n  'isLoggedInObservable',\r\n  'logOut'\r\n]);\r\n\r\nauthServiceMock.getUserMailObservable.and.returnValue(of('test@example.com'));\r\nauthServiceMock.isLoggedInObservable.and.returnValue(of(true));\r\n\\`\\`\\`\r\n\r\n### Storybook (Visual Testing)\r\n\r\nUse custom mock with BehaviorSubjects:\r\n\r\n\\`\\`\\`typescript\r\nclass AuthServiceMock {\r\n  private userMailSubject = new BehaviorSubject<string | null>('test@example.com');\r\n  private userLoggedInSubject = new BehaviorSubject<boolean>(true);\r\n\r\n  getUserMailObservable() {\r\n    return this.userMailSubject.asObservable();\r\n  }\r\n\r\n  isLoggedInObservable() {\r\n    return this.userLoggedInSubject.asObservable();\r\n  }\r\n}\r\n\\`\\`\\`\r\n        `,\r\n      },\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/shared/components/empty-state/empty-state.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -7164,16 +7335,6 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<SortingControlsComponent>",
-                "defaultValue": "{\r\n  title: 'Pages/Favorites/SortingControls',\r\n  component: SortingControlsComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        MatIconModule,\r\n        MatButtonToggleModule,\r\n      ],\r\n      declarations: [SortingControlsComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component: `\r\n# Sorting Controls Component\r\n\r\nMulti-functional filter and sort bar for the favorites collection management.\r\n\r\n## Features\r\n\r\n- 🔀 **Dual-field sorting**: Toggle between title and year with ascending/descending order\r\n- 📝 **Live filtering**: Real-time search input for title-based filtering\r\n- 🎬 **Media type selection**: Radio-button style toggles for Movies, Series, Games, or All\r\n- 🎨 **Custom Material theme**: Amber highlights with dark background\r\n- 📱 **Mobile responsive**: Stacks vertically on tablets and phones\r\n\r\n## Architecture\r\n\r\nThis is a **presentation component** (dumb component) that:\r\n- Receives current filter state via \\`@Input()\\`\r\n- Emits user actions via \\`@Output()\\` events\r\n- Does NOT perform data filtering itself\r\n- Delegates business logic to parent component\r\n\r\nParent component responsibilities:\r\n- Subscribe to \\`sortChange\\`, \\`filterChange\\`, \\`mediaTypeChange\\` outputs\r\n- Update \\`searchParams\\` model\r\n- Re-query data based on new filters\r\n- Pass updated \\`currentSort\\` back to this component\r\n\r\n## Usage Example\r\n\r\n### Parent Template\r\n\r\n\\`\\`\\`html\r\n<app-sorting-controls\r\n  [currentSort]=\"searchParams\"\r\n  (sortChange)=\"onSort($event)\"\r\n  (filterChange)=\"onFilter($event)\"\r\n  (mediaTypeChange)=\"onMediaTypeChange($event)\">\r\n</app-sorting-controls>\r\n\r\n<app-favorites-list [items]=\"filteredFavorites\"></app-favorites-list>\r\n\\`\\`\\`\r\n\r\n### Parent Component\r\n\r\n\\`\\`\\`typescript\r\nexport class FavoritesComponent implements OnInit {\r\n  \r\n  searchParams: FavoritesSearchParams = {\r\n    currentPage: 1,\r\n    pageSize: 10,\r\n    sortField: undefined,\r\n    sortOrder: undefined,\r\n    mediaType: 'all',\r\n    searchTerm: undefined,\r\n  };\r\n\r\n  filteredFavorites: MediaItem[] = [];\r\n\r\n  constructor(private favoritesService: FavoritesService) {}\r\n\r\n  ngOnInit(): void {\r\n    this.refreshFavorites();\r\n  }\r\n\r\n  onSort(event: { field: string; order: number }): void {\r\n    this.searchParams = {\r\n      ...this.searchParams,\r\n      sortField: event.field,\r\n      sortOrder: event.order,\r\n      currentPage: 1, // Reset to first page\r\n    };\r\n    this.refreshFavorites();\r\n  }\r\n\r\n  onFilter(searchTerm: string): void {\r\n    this.searchParams = {\r\n      ...this.searchParams,\r\n      searchTerm: searchTerm.trim() || undefined,\r\n      currentPage: 1,\r\n    };\r\n    this.refreshFavorites();\r\n  }\r\n\r\n  onMediaTypeChange(mediaType: string): void {\r\n    this.searchParams = {\r\n      ...this.searchParams,\r\n      mediaType: mediaType === 'all' ? undefined : mediaType,\r\n      currentPage: 1,\r\n    };\r\n    this.refreshFavorites();\r\n  }\r\n\r\n  private refreshFavorites(): void {\r\n    this.favoritesService.getFavorites(this.searchParams)\r\n      .subscribe(data => {\r\n        this.filteredFavorites = data;\r\n      });\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Events Reference\r\n\r\n| Event | Payload | Emitted When |\r\n|-------|---------|--------------|\r\n| \\`sortChange\\` | \\`{ field: 'title' | 'year', order: 1 | -1 }\\` | Click sort icons |\r\n| \\`filterChange\\` | \\`string\\` | Type in search input |\r\n| \\`mediaTypeChange\\` | \\`'movie' | 'series' | 'game' | 'all'\\` | Toggle media type |\r\n\r\n## Design Notes\r\n\r\n- **Sort order toggle**: Clicking the same field twice reverses direction\r\n- **Initial state**: \\`All\\` media type is checked by default\r\n- **Filter timing**: Emits on every keystroke (parent should debounce)\r\n- **Visual feedback**: Icons change based on current sort state\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    currentSort: {\r\n      description: 'Current filter/sort state from parent',\r\n      control: { type: 'object' },\r\n      table: {\r\n        type: { summary: 'FavoritesSearchParams' },\r\n        defaultValue: { summary: '{ sortField: undefined, sortOrder: undefined, ... }' },\r\n      },\r\n    },\r\n    sortChange: {\r\n      description: 'Emitted when user clicks sort icons',\r\n      action: 'sortChange',\r\n      table: {\r\n        type: { summary: 'EventEmitter<{field: string, order: number}>' },\r\n      },\r\n    },\r\n    filterChange: {\r\n      description: 'Emitted when user types in filter input',\r\n      action: 'filterChange',\r\n      table: {\r\n        type: { summary: 'EventEmitter<string>' },\r\n      },\r\n    },\r\n    mediaTypeChange: {\r\n      description: 'Emitted when user toggles media type',\r\n      action: 'mediaTypeChange',\r\n      table: {\r\n        type: { summary: 'EventEmitter<string>' },\r\n      },\r\n    },\r\n  },\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -7189,6 +7350,16 @@
                 "deprecationMessage": "",
                 "type": "Meta<AuthFormComponent>",
                 "defaultValue": "{\r\n  title: 'Pages/Auth/Components/AuthForm',\r\n  component: AuthFormComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        ReactiveFormsModule,\r\n        BrowserAnimationsModule,\r\n        MatFormFieldModule,\r\n        MatInputModule,\r\n        MatButtonModule,\r\n        MatIconModule,\r\n        RouterTestingModule\r\n      ],\r\n      declarations: [AuthFormComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [\r\n        { name: 'app background', value: '#000000d5' }\r\n      ],\r\n    },\r\n    controls: {\r\n      include: ['formSubmit', 'formType', 'disabled'], \r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nReusable authentication form component supporting login and registration flows.\r\n\r\n## Features\r\n\r\n- 📋 Two form modes: login and register\r\n- ✅ Reactive form validation with email and password patterns\r\n- 🔐 Password visibility toggle\r\n- 👤 Dynamic name field for registration\r\n- 📱 Responsive Material Design layout\r\n\r\n## Key Capabilities\r\n\r\nThe component provides a simple authentication interface:\r\n- **Two form modes** controlled by single formType input\r\n- **Real-time validation** with email and password requirements\r\n- **Accessible controls** with ARIA labels\r\n- **Automatic configuration** based on form type\r\n- **Type-safe form handling**\r\n\r\n## Usage Example\r\n\r\n### Login Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Registration Form\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"register\"\r\n  (formSubmit)=\"handleRegister($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Disabled Form (During API Call)\r\n\r\n\\`\\`\\`html\r\n<app-auth-form\r\n  formType=\"login\"\r\n  [disabled]=\"isAuthenticating\"\r\n  (formSubmit)=\"handleLogin($event)\">\r\n</app-auth-form>\r\n\\`\\`\\`\r\n\r\n### Component (TypeScript)\r\n\r\n\\`\\`\\`typescript\r\nexport class AuthPageComponent {\r\n  isAuthenticating = false;\r\n\r\n  handleLogin(user: User): void {\r\n    this.isAuthenticating = true;\r\n    this.authService.login(user).subscribe({\r\n      next: (response) => {\r\n        this.router.navigate(['/dashboard']);\r\n        this.isAuthenticating = false;\r\n      },\r\n      error: (error) => {\r\n        this.showError(error);\r\n        this.isAuthenticating = false;\r\n      }\r\n    });\r\n  }\r\n\r\n  handleRegister(user: User): void {\r\n    this.isAuthenticating = true;\r\n    this.authService.register(user).subscribe({\r\n      next: (response) => {\r\n        this.router.navigate(['/login']);\r\n        this.isAuthenticating = false;\r\n      },\r\n      error: (error) => {\r\n        this.showError(error);\r\n        this.isAuthenticating = false;\r\n      }\r\n    });\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Form Validation\r\n\r\n| Field | Rules | Error Message |\r\n|-------|-------|---------------|\r\n| **Email** | Required, valid email format | \"Email is required\" or \"Incorrect email format\" |\r\n| **Password** | Required, min 6 chars, letters + numbers + special chars | \"Password is required\" or \"Min 6 char incl. letters, numbers and special characters\" |\r\n| **Name** | Required (register only) | \"Name is required\" |\r\n\r\n## Inputs\r\n\r\n| Property | Type | Default | Description |\r\n|----------|------|---------|-------------|\r\n| \\`formType\\` | \\`'login' \\\\| 'register'\\` | \\`'login'\\` | Form mode: login (email+password) or register (name+email+password) |\r\n| \\`disabled\\` | \\`boolean\\` | \\`false\\` | Disables form during API calls |\r\n\r\n## Outputs\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`formSubmit\\` | \\`User\\` | Emitted when form is submitted with valid values |\r\n\r\n## Form Configuration by Type\r\n\r\n| Aspect | Login | Register |\r\n|--------|-------|----------|\r\n| **Title** | \"Open the door\" | \"Join us!\" |\r\n| **Fields** | Email, Password | Name, Email, Password |\r\n| **Submit Button** | \"Login\" | \"Sign Up\" |\r\n| **Register Link** | Yes | No |\r\n| **Password Hint** | No | Yes |\r\n\r\n## Accessibility\r\n\r\n- ✅ ARIA labels on all form fields and buttons\r\n- ✅ Keyboard accessible password visibility toggle\r\n- ✅ Proper label associations with form inputs\r\n- ✅ Error messages linked to form fields\r\n- ✅ Focus management and visual indicators\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    formType: {\r\n      control: 'radio',\r\n      options: ['login', 'register'],\r\n      description: 'Type of authentication form to display',\r\n    },\r\n    formSubmit: {\r\n      action: 'formSubmit',\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/pages/favorites/components/sorting-controls/sorting-controls.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<SortingControlsComponent>",
+                "defaultValue": "{\r\n  title: 'Pages/Favorites/Components/SortingControls',\r\n  component: SortingControlsComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MatIconModule, MatButtonToggleModule],\r\n      declarations: [SortingControlsComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    backgrounds: {\r\n      default: 'light background',\r\n      values: [{ name: 'light background', value: '#FFFFFF' }],\r\n    },\r\n    controls: {\r\n      include: ['currentSort', 'sortChange', 'filterChange', 'mediaTypeChange'], \r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n# Sorting Controls Component\r\n\r\nMulti-functional filter and sort bar for the favorites collection management.\r\n\r\n## Features\r\n\r\n- 🔀 **Dual-field sorting**: Toggle between title and year with ascending/descending order\r\n- 📝 **Live filtering**: Real-time search input for title-based filtering\r\n- 🎬 **Media type selection**: Radio-button style toggles for Movies, Series, Games, or All\r\n- 🎨 **Custom Material theme**: Amber highlights with dark background\r\n- 📱 **Mobile responsive**: Stacks vertically on tablets and phones\r\n\r\n## Architecture\r\n\r\nThis is a **presentation component** that:\r\n- Receives current filter state via \\`@Input()\\`\r\n- Emits user actions via \\`@Output()\\` events\r\n- Does NOT perform data filtering itself\r\n- Delegates business logic to parent component\r\n\r\n## Usage Example\r\n\r\n### Parent Template\r\n\r\n\\`\\`\\`html\r\n<app-sorting-controls\r\n  [currentSort]=\"searchParams\"\r\n  (sortChange)=\"onSort($event)\"\r\n  (filterChange)=\"onFilter($event)\"\r\n  (mediaTypeChange)=\"onMediaTypeChange($event)\">\r\n</app-sorting-controls>\r\n\\`\\`\\`\r\n\r\n### Parent TypeScript\r\n\r\n\\`\\`\\`typescript\r\nhandleSort(event: { field: string; order: number }): void {\r\n  this.searchParams = {\r\n    ...this.searchParams,\r\n    sortField: event.field,\r\n    sortOrder: event.order,\r\n    currentPage: 1,\r\n  };\r\n  this.refreshFavorites();\r\n}\r\n\r\nhandleFilter(searchTerm: string): void {\r\n  this.searchParams = {\r\n    ...this.searchParams,\r\n    searchTerm: searchTerm.trim() || undefined,\r\n    currentPage: 1,\r\n  };\r\n  this.refreshFavorites();\r\n}\r\n\r\nhandleMediaTypeChange(mediaType: string): void {\r\n  this.searchParams = {\r\n    ...this.searchParams,\r\n    mediaType: mediaType === 'all' ? undefined : mediaType,\r\n    currentPage: 1,\r\n  };\r\n  this.refreshFavorites();\r\n}\r\n\\`\\`\\`\r\n\r\n## Events Reference\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`sortChange\\` | \\`{ field: 'title' | 'year', order: 1 | -1 }\\` | Emitted when clicking sort icons. Order: 1=ascending, -1=descending |\r\n| \\`filterChange\\` | \\`string\\` | Emitted on each keystroke in filter input (parent should debounce) |\r\n| \\`mediaTypeChange\\` | \\`'movie' | 'series' | 'game' | 'all'\\` | Emitted when toggling media type buttons |\r\n\r\n## Testing Tips\r\n\r\nUse the **Controls** panel to test different states:\r\n\r\n1. **Test sorting**: Change \\`currentSort.sortField\\` to 'title' or 'year', and toggle \\`sortOrder\\` between 1 and -1\r\n2. **Test filtering**: Set \\`currentSort.searchTerm\\` to any value\r\n3. **Test media type**: Set \\`currentSort.mediaType\\` to 'movie', 'series', 'game', or leave undefined for 'all'\r\n\r\nWatch the icons and buttons update in real-time as you modify the Controls!\r\n\r\n## Design Notes\r\n\r\n- **Sort toggle**: Clicking the same field twice reverses direction (1 ↔ -1)\r\n- **Initial state**: \\`All\\` media type is checked by default\r\n- **Filter timing**: Emits on every keystroke (parent should implement debounce ~300ms)\r\n- **Icon feedback**: Changes based on current sort state\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    currentSort: {\r\n      description:\r\n        'Current filter/sort state from parent. Controls visible state of icons and buttons.',\r\n      control: { type: 'object' },\r\n      table: {\r\n        type: { summary: 'FavoritesSearchParams' },\r\n      },\r\n    },\r\n    sortChange: {\r\n      description: 'Emitted when user clicks sort field icons',\r\n      action: 'sortChange',\r\n      table: {\r\n        type: { summary: 'EventEmitter<{field: string, order: number}>' },\r\n      },\r\n    },\r\n    filterChange: {\r\n      description: 'Emitted when user types in filter input',\r\n      action: 'filterChange',\r\n      table: {\r\n        type: { summary: 'EventEmitter<string>' },\r\n      },\r\n    },\r\n    mediaTypeChange: {\r\n      description: 'Emitted when user toggles media type buttons',\r\n      action: 'mediaTypeChange',\r\n      table: {\r\n        type: { summary: 'EventEmitter<string>' },\r\n      },\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "meta",
@@ -7239,6 +7410,18 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  render: () => ({\r\n    props: {\r\n      onSearchSubmitted: action('searchSubmitted')\r\n    },\r\n    template: `\r\n      <div style=\"\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        background-color: #1a1a1a;\r\n        padding: 40px 20px;\r\n        min-height: 100vh;\r\n        font-family: Roboto, Arial, sans-serif;\r\n      \">\r\n        <div style=\"width: 100%; max-width: 250px; max-higth;\">\r\n          <app-search-bar\r\n            (searchSubmitted)=\"onSearchSubmitted($event)\">\r\n          </app-search-bar>\r\n        </div>\r\n      </div>\r\n    `,\r\n  }),\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        story: `\r\nMobile layout (375px - 601px): SearchBar takes 100% width.\r\n\r\nOn small mobile devices, SearchBar is the primary visible element.\r\nResults/gallery render below (below the fold).\r\n        `,\r\n      },\r\n    },\r\n    viewport: {\r\n      defaultViewport: 'iphone12',\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "MobileExpanded",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/layout/navbar/navbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    expanded: true,\r\n  },\r\n  parameters: {\r\n    viewport: {\r\n      defaultViewport: 'mobile1',\r\n    },\r\n  },\r\n}",
+                "rawdescription": "Menú móvil expandido",
+                "description": "<p>Menú móvil expandido</p>\n"
             },
             {
                 "name": "mockMediaItem",
@@ -7381,30 +7564,6 @@
                 "defaultValue": "{\r\n    args: {\r\n        collection: sampleData.slice(0, 3),\r\n        sendItemCarousel: action('sendItemCarousel'),\r\n    },\r\n    argTypes: {\r\n        collection: { control: false },\r\n    },\r\n    parameters: {\r\n        docs: {\r\n            description: {\r\n                story: 'Carousel with only 3 items (single slide).',\r\n            },\r\n        },\r\n    },\r\n}"
             },
             {
-                "name": "SortedByTitleAscending",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    currentSort: {\r\n      currentPage: 1,\r\n      pageSize: 10,\r\n      sortField: 'title',\r\n      sortOrder: 1,\r\n      mediaType: undefined,\r\n      searchTerm: undefined,\r\n    },\r\n  },\r\n}",
-                "rawdescription": "Sorting by title in ascending order (expand_more icon visible)",
-                "description": "<p>Sorting by title in ascending order (expand_more icon visible)</p>\n"
-            },
-            {
-                "name": "SortedByYearDescending",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    currentSort: {\r\n      currentPage: 1,\r\n      pageSize: 10,\r\n      sortField: 'year',\r\n      sortOrder: -1,\r\n      mediaType: 'movie',\r\n      searchTerm: undefined,\r\n    },\r\n  },\r\n}",
-                "rawdescription": "Sorting by year in descending order (expand_less icon visible)",
-                "description": "<p>Sorting by year in descending order (expand_less icon visible)</p>\n"
-            },
-            {
                 "name": "StandardURL",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -7433,18 +7592,6 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\r\n  args: {\r\n    visible: true,\r\n  },\r\n}"
-            },
-            {
-                "name": "WithInteraction",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    currentSort: {\r\n      currentPage: 1,\r\n      pageSize: 10,\r\n      sortField: undefined,\r\n      sortOrder: undefined,\r\n      mediaType: 'all',\r\n      searchTerm: undefined,\r\n    },\r\n  },\r\n  play: async ({ canvasElement, step }) => {\r\n    const { userEvent, within } = await import('@storybook/test');\r\n\r\n    const canvas = within(canvasElement);\r\n\r\n    // Step 1: Type in filter input\r\n    await step('User types search term', async () => {\r\n      const filterInput = canvas.getByPlaceholderText('Filter by title');\r\n      await userEvent.type(filterInput, 'Inception', { delay: 50 });\r\n    });\r\n\r\n    // Step 2: Click sort by title\r\n    await step('User clicks sort by title', async () => {\r\n      const titleSortButtons = canvas.getAllByText('Title');\r\n      // Get the mat-icon parent (first one is the descending icon)\r\n      await userEvent.click(titleSortButtons[0].parentElement!);\r\n    });\r\n\r\n    // Step 3: Toggle media type to \"games\"\r\n    await step('User selects Games media type', async () => {\r\n      const gamesButton = canvas.getByRole('button', { name: /games/i });\r\n      await userEvent.click(gamesButton);\r\n    });\r\n  },\r\n}",
-                "rawdescription": "Demonstrating user interaction: sorting toggle and filtering",
-                "description": "<p>Demonstrating user interaction: sorting toggle and filtering</p>\n"
             },
             {
                 "name": "WithManyItems",
@@ -7514,6 +7661,28 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<FooterComponent>",
+                "file": "src/app/layout/footer/footer.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<NavbarComponent>",
+                "file": "src/app/layout/navbar/navbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<EmptyStateComponent>",
                 "file": "src/app/shared/components/empty-state/empty-state.stories.ts",
                 "deprecated": false,
@@ -7547,17 +7716,6 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<SortingControlsComponent>",
-                "file": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 184
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
                 "rawtype": "StoryObj<TrailerDialogComponent>",
                 "file": "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts",
                 "deprecated": false,
@@ -7571,6 +7729,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<AuthFormComponent>",
                 "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 184
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<SortingControlsComponent>",
+                "file": "src/app/pages/favorites/components/sorting-controls/sorting-controls.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -7655,76 +7824,96 @@
                     "defaultValue": "{\r\n  title: 'Shared/EmptyState',\r\n  component: EmptyStateComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      declarations: [EmptyStateComponent],\r\n      imports: [CommonModule],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'centered',\r\n    backgrounds: {\r\n      default: 'app background',\r\n      values: [{ name: 'app background', value: '#000000' }]\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\nDisplays a message and image when there is no data to show.\r\n\r\n## Features\r\n- Customizable through 'message', 'imageUrl', and 'alt' inputs\r\n- Responsive image scaling\r\n- Default black background for centered layout\r\n\r\n## Usage Example\r\n\\`\\`\\`html\r\n<app-empty-state></app-empty-state>\r\n<app-empty-state\r\n  message=\"No results found.\"\r\n  imageUrl=\"/images/monkey3.jpg\"\r\n  alt=\"empty state image\">\r\n</app-empty-state>\r\n\\`\\`\\`\r\n        `\r\n      }\r\n    }\r\n  },\r\n  argTypes: {\r\n    message: {\r\n      control: 'text',\r\n      description: 'Displayed text message',\r\n      table: {\r\n        category: 'Inputs',\r\n        defaultValue: { summary: `Upps... We didn't find anything...` }\r\n      }\r\n    },\r\n    imageUrl: {\r\n      control: 'text',\r\n      description: 'URL of image displayed',\r\n      table: {\r\n        category: 'Inputs',\r\n        defaultValue: { summary: '/images/monkey3.jpg' }\r\n      }\r\n    },\r\n    alt: {\r\n      control: 'text',\r\n      description: 'Alternative text for the image',\r\n      table: {\r\n        category: 'Accessibility',\r\n        defaultValue: { summary: 'empty state image' }\r\n      }\r\n    }\r\n  }\r\n}"
                 }
             ],
-            "src/app/shared/components/sorting-controls/sorting-controls.stories.ts": [
+            "src/app/layout/footer/footer.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
+                    "file": "src/app/layout/footer/footer.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    currentSort: {\r\n      currentPage: 1,\r\n      pageSize: 10,\r\n      sortField: undefined,\r\n      sortOrder: undefined,\r\n      mediaType: undefined,\r\n      searchTerm: undefined,\r\n    },\r\n  },\r\n}",
-                    "rawdescription": "Default state: no sorting applied, \"All\" media types selected, empty filter",
-                    "description": "<p>Default state: no sorting applied, &quot;All&quot; media types selected, empty filter</p>\n"
-                },
-                {
-                    "name": "FilteredByTypeAndTitle",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    currentSort: {\r\n      currentPage: 1,\r\n      pageSize: 10,\r\n      sortField: 'title',\r\n      sortOrder: 1,\r\n      mediaType: 'series',\r\n      searchTerm: 'breaking',\r\n    },\r\n  },\r\n}",
-                    "rawdescription": "Filtered by media type \"series\" and active search term",
-                    "description": "<p>Filtered by media type &quot;series&quot; and active search term</p>\n"
+                    "defaultValue": "{}"
                 },
                 {
                     "name": "meta",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
+                    "file": "src/app/layout/footer/footer.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<FooterComponent>",
+                    "defaultValue": "{\r\n  title: 'Layout/Global/Footer',\r\n  component: FooterComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MatIconModule],\r\n      declarations: [FooterComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    backgrounds: {\r\n      default: 'light background',\r\n      values: [\r\n        { name: 'dark background', value: '#1A1A1A' },\r\n        { name: 'light background', value: '#FFFFFF' }\r\n      ],\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n# Footer Component\r\n\r\nApplication-wide footer displaying copyright information.\r\n\r\n## Features\r\n\r\n- 🏷️ **Branding**: Displays ScreenPulse brand name\r\n- 📄 **Copyright notice**: Includes Material copyright icon\r\n- 🌐 **Global placement**: Used throughout entire application via app.component.html\r\n\r\n## Architecture\r\n\r\n- **Component type**: Global layout component\r\n- **Placement**: Bottom of the viewport in app.component\r\n- **Dependencies**: Material Icons only\r\n\r\n## Usage Example\r\n\r\n### App Layout Structure\r\n\r\n### app.component.html:\r\n\r\n\\`\\`\\`html\r\n\r\n<app-navbar></app-navbar>\r\n\r\n<div class=\"site-content\">\r\n    <router-outlet></router-outlet>\r\n</div>\r\n\r\n<app-footer class=\"footer\"></app-footer>\r\n\\`\\`\\`\r\n\r\n### Styling Notes\r\n\r\n- Apply footer-specific styles in app.component.scss using \\`.footer\\` class\r\n- Keep positioning at bottom of viewport with \\`position: sticky\\`\r\n- Works with both light and dark backgrounds\r\n        `,\r\n      },\r\n    },\r\n  },\r\n}"
+                }
+            ],
+            "src/app/layout/navbar/navbar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/layout/navbar/navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}",
+                    "rawdescription": "Default: Usuario logueado",
+                    "description": "<p>Default: Usuario logueado</p>\n"
+                },
+                {
+                    "name": "LoggedOut",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/layout/navbar/navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  decorators: [\r\n    moduleMetadata({\r\n      providers: [\r\n        {\r\n          provide: AuthService,\r\n          useFactory: () => {\r\n            const mock = new AuthServiceMock();\r\n            mock.setLoggedIn(false);\r\n            mock.setUserMail(null);\r\n            return mock;\r\n          }\r\n        }\r\n      ]\r\n    })\r\n  ]\r\n}",
+                    "rawdescription": "Usuario NO logueado",
+                    "description": "<p>Usuario NO logueado</p>\n"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/layout/navbar/navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<NavbarComponent>",
+                    "defaultValue": "{\r\n  title: 'Layout/Global/Navbar',\r\n  component: NavbarComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        CommonModule,\r\n        MatToolbarModule,\r\n        MatIconModule,\r\n        MatButtonModule,\r\n        MatListModule,\r\n        RouterTestingModule,\r\n      ],\r\n      providers: [\r\n        { provide: AuthService, useValue: new AuthServiceMock() },\r\n      ],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'fullscreen',\r\n    backgrounds: {\r\n      default: 'light background',\r\n      values: [\r\n        { name: 'dark background', value: '#000000' },\r\n        { name: 'light background', value: '#ffffffff' }\r\n      ],\r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n# Navbar Component\r\n\r\n**Component Type:** Smart Component (Container Component)\r\n\r\nGlobal navigation bar with authentication state management and responsive mobile menu.\r\n\r\n## Features\r\n\r\n- 🔐 **Auth state management**: Displays login/logout options via AuthService observables\r\n- 📱 **Mobile responsive**: Collapses to hamburger menu on screens ≤600px\r\n- 🎯 **Navigation links**: Home (Search), Favorites with active route highlighting\r\n- 🎨 **Custom amber theme**: Dynamic hover animations and transitions\r\n- 📊 **User session display**: Shows user email when logged in\r\n\r\n## Architecture Pattern\r\n\r\nThis component follows the **Observable Data Service** pattern for reactive state management.\r\n\r\n### Data Flow\r\n\r\n\\`\\`\\`\r\nAuthService (Singleton)\r\n    ↓\r\nBehaviorSubjects (email, isLoggedIn)\r\n    ↓\r\nObservable Streams\r\n    ↓\r\ncombineLatest (userData$)\r\n    ↓\r\nasync pipe (template)\r\n    ↓\r\nUI Rendering\r\n\\`\\`\\`\r\n\r\n## Service Integration\r\n\r\n### AuthService\r\n\r\nThis component subscribes to two observables from \\`AuthService\\`:\r\n\r\n| Observable | Type | Purpose |\r\n|------------|------|---------|\r\n| \\`getUserMailObservable()\\` | \\`Observable<string \\\\| null>\\` | User email stream |\r\n| \\`isLoggedInObservable()\\` | \\`Observable<boolean>\\` | Login status stream |\r\n\r\n**Pattern:** BehaviorSubject + async pipe for reactive updates.\r\n\r\n### Router\r\n\r\nUsed for navigation after logout: \\`router.navigate([''])\\`\r\n\r\n## State Management\r\n\r\n### Reactive State (Observables)\r\n\r\n\\`\\`\\`typescript\r\nreadonly userData$ = combineLatest({\r\n  email: this.authService.getUserMailObservable(),\r\n  isLoggedIn: this.authService.isLoggedInObservable()\r\n});\r\n\\`\\`\\`\r\n\r\n- **Subscription:** Handled automatically via \\`async\\` pipe\r\n- **Change Detection:** OnPush strategy for performance\r\n- **Updates:** Reactive - UI updates when observables emit\r\n\r\n### Local State\r\n\r\n- \\`expanded: boolean\\` - Mobile menu toggle (component-only state)\r\n\r\n## Why No @Input/@Output?\r\n\r\nThis is a **global smart component** that:\r\n\r\n- ✅ Lives at the app root level (\\`app.component.html\\`)\r\n- ✅ Manages its own data via service injection\r\n- ✅ Does NOT need parent-child communication\r\n- ✅ Follows the Observable Data Service pattern\r\n\r\n**This is the correct approach for global layout components.**\r\n\r\n## Usage Example\r\n\r\n### App Layout Structure\r\n\r\n\\`\\`\\`html\r\n<!-- app.component.html -->\r\n\r\n<app-navbar></app-navbar>\r\n\r\n<div class=\"site-content\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n\r\n<app-footer></app-footer>\r\n\\`\\`\\`\r\n\r\n### Template Pattern (async pipe)\r\n\r\n\\`\\`\\`html\r\n<ng-container *ngIf=\"userData$ | async as data\">\r\n  <!-- Logged Out State -->\r\n  <ng-container *ngIf=\"!data.isLoggedIn\">\r\n    <a routerLink=\"/auth/register\">Join us!</a>\r\n    <a routerLink=\"/auth/login\">Login</a>\r\n  </ng-container>\r\n\r\n  <!-- Logged In State -->\r\n  <ng-container *ngIf=\"data.isLoggedIn\">\r\n    <span>Welcome {{ data.email }}</span>\r\n    <button (click)=\"logOut()\">Logout</button>\r\n  </ng-container>\r\n</ng-container>\r\n\\`\\`\\`\r\n\r\n## Responsive Breakpoints\r\n\r\n- **Mobile** (≤600px): Hamburger menu, hidden auth buttons\r\n- **Desktop** (≥601px): Full navigation, inline auth status\r\n\r\n## Component Methods\r\n\r\n### logOut()\r\n\r\nTriggers logout in \\`AuthService\\` and navigates to home.\r\n\r\n\\`\\`\\`typescript\r\nlogOut(): void {\r\n  this.authService.logOut();\r\n  this.router.navigate(['']);\r\n}\r\n\\`\\`\\`\r\n\r\n### toggleMenu()\r\n\r\nToggles mobile menu visibility (local state only).\r\n\r\n\\`\\`\\`typescript\r\ntoggleMenu(): void {\r\n  this.expanded = !this.expanded;\r\n}\r\n\\`\\`\\`\r\n\r\n## Testing Strategy\r\n\r\n### Unit Tests\r\n\r\nMock \\`AuthService\\` with jasmine spies:\r\n\r\n\\`\\`\\`typescript\r\nconst authServiceMock = jasmine.createSpyObj('AuthService', [\r\n  'getUserMailObservable',\r\n  'isLoggedInObservable',\r\n  'logOut'\r\n]);\r\n\r\nauthServiceMock.getUserMailObservable.and.returnValue(of('test@example.com'));\r\nauthServiceMock.isLoggedInObservable.and.returnValue(of(true));\r\n\\`\\`\\`\r\n\r\n### Storybook (Visual Testing)\r\n\r\nUse custom mock with BehaviorSubjects:\r\n\r\n\\`\\`\\`typescript\r\nclass AuthServiceMock {\r\n  private userMailSubject = new BehaviorSubject<string | null>('test@example.com');\r\n  private userLoggedInSubject = new BehaviorSubject<boolean>(true);\r\n\r\n  getUserMailObservable() {\r\n    return this.userMailSubject.asObservable();\r\n  }\r\n\r\n  isLoggedInObservable() {\r\n    return this.userLoggedInSubject.asObservable();\r\n  }\r\n}\r\n\\`\\`\\`\r\n        `,\r\n      },\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "MobileExpanded",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/layout/navbar/navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    expanded: true,\r\n  },\r\n  parameters: {\r\n    viewport: {\r\n      defaultViewport: 'mobile1',\r\n    },\r\n  },\r\n}",
+                    "rawdescription": "Menú móvil expandido",
+                    "description": "<p>Menú móvil expandido</p>\n"
+                }
+            ],
+            "src/app/pages/favorites/components/sorting-controls/sorting-controls.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/favorites/components/sorting-controls/sorting-controls.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    currentSort: {\r\n      currentPage: 1,\r\n      pageSize: 10,\r\n      sortField: undefined,\r\n      sortOrder: undefined,\r\n      mediaType: undefined,\r\n      searchTerm: undefined,\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/pages/favorites/components/sorting-controls/sorting-controls.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<SortingControlsComponent>",
-                    "defaultValue": "{\r\n  title: 'Pages/Favorites/SortingControls',\r\n  component: SortingControlsComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        MatIconModule,\r\n        MatButtonToggleModule,\r\n      ],\r\n      declarations: [SortingControlsComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    docs: {\r\n      description: {\r\n        component: `\r\n# Sorting Controls Component\r\n\r\nMulti-functional filter and sort bar for the favorites collection management.\r\n\r\n## Features\r\n\r\n- 🔀 **Dual-field sorting**: Toggle between title and year with ascending/descending order\r\n- 📝 **Live filtering**: Real-time search input for title-based filtering\r\n- 🎬 **Media type selection**: Radio-button style toggles for Movies, Series, Games, or All\r\n- 🎨 **Custom Material theme**: Amber highlights with dark background\r\n- 📱 **Mobile responsive**: Stacks vertically on tablets and phones\r\n\r\n## Architecture\r\n\r\nThis is a **presentation component** (dumb component) that:\r\n- Receives current filter state via \\`@Input()\\`\r\n- Emits user actions via \\`@Output()\\` events\r\n- Does NOT perform data filtering itself\r\n- Delegates business logic to parent component\r\n\r\nParent component responsibilities:\r\n- Subscribe to \\`sortChange\\`, \\`filterChange\\`, \\`mediaTypeChange\\` outputs\r\n- Update \\`searchParams\\` model\r\n- Re-query data based on new filters\r\n- Pass updated \\`currentSort\\` back to this component\r\n\r\n## Usage Example\r\n\r\n### Parent Template\r\n\r\n\\`\\`\\`html\r\n<app-sorting-controls\r\n  [currentSort]=\"searchParams\"\r\n  (sortChange)=\"onSort($event)\"\r\n  (filterChange)=\"onFilter($event)\"\r\n  (mediaTypeChange)=\"onMediaTypeChange($event)\">\r\n</app-sorting-controls>\r\n\r\n<app-favorites-list [items]=\"filteredFavorites\"></app-favorites-list>\r\n\\`\\`\\`\r\n\r\n### Parent Component\r\n\r\n\\`\\`\\`typescript\r\nexport class FavoritesComponent implements OnInit {\r\n  \r\n  searchParams: FavoritesSearchParams = {\r\n    currentPage: 1,\r\n    pageSize: 10,\r\n    sortField: undefined,\r\n    sortOrder: undefined,\r\n    mediaType: 'all',\r\n    searchTerm: undefined,\r\n  };\r\n\r\n  filteredFavorites: MediaItem[] = [];\r\n\r\n  constructor(private favoritesService: FavoritesService) {}\r\n\r\n  ngOnInit(): void {\r\n    this.refreshFavorites();\r\n  }\r\n\r\n  onSort(event: { field: string; order: number }): void {\r\n    this.searchParams = {\r\n      ...this.searchParams,\r\n      sortField: event.field,\r\n      sortOrder: event.order,\r\n      currentPage: 1, // Reset to first page\r\n    };\r\n    this.refreshFavorites();\r\n  }\r\n\r\n  onFilter(searchTerm: string): void {\r\n    this.searchParams = {\r\n      ...this.searchParams,\r\n      searchTerm: searchTerm.trim() || undefined,\r\n      currentPage: 1,\r\n    };\r\n    this.refreshFavorites();\r\n  }\r\n\r\n  onMediaTypeChange(mediaType: string): void {\r\n    this.searchParams = {\r\n      ...this.searchParams,\r\n      mediaType: mediaType === 'all' ? undefined : mediaType,\r\n      currentPage: 1,\r\n    };\r\n    this.refreshFavorites();\r\n  }\r\n\r\n  private refreshFavorites(): void {\r\n    this.favoritesService.getFavorites(this.searchParams)\r\n      .subscribe(data => {\r\n        this.filteredFavorites = data;\r\n      });\r\n  }\r\n}\r\n\\`\\`\\`\r\n\r\n## Events Reference\r\n\r\n| Event | Payload | Emitted When |\r\n|-------|---------|--------------|\r\n| \\`sortChange\\` | \\`{ field: 'title' | 'year', order: 1 | -1 }\\` | Click sort icons |\r\n| \\`filterChange\\` | \\`string\\` | Type in search input |\r\n| \\`mediaTypeChange\\` | \\`'movie' | 'series' | 'game' | 'all'\\` | Toggle media type |\r\n\r\n## Design Notes\r\n\r\n- **Sort order toggle**: Clicking the same field twice reverses direction\r\n- **Initial state**: \\`All\\` media type is checked by default\r\n- **Filter timing**: Emits on every keystroke (parent should debounce)\r\n- **Visual feedback**: Icons change based on current sort state\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    currentSort: {\r\n      description: 'Current filter/sort state from parent',\r\n      control: { type: 'object' },\r\n      table: {\r\n        type: { summary: 'FavoritesSearchParams' },\r\n        defaultValue: { summary: '{ sortField: undefined, sortOrder: undefined, ... }' },\r\n      },\r\n    },\r\n    sortChange: {\r\n      description: 'Emitted when user clicks sort icons',\r\n      action: 'sortChange',\r\n      table: {\r\n        type: { summary: 'EventEmitter<{field: string, order: number}>' },\r\n      },\r\n    },\r\n    filterChange: {\r\n      description: 'Emitted when user types in filter input',\r\n      action: 'filterChange',\r\n      table: {\r\n        type: { summary: 'EventEmitter<string>' },\r\n      },\r\n    },\r\n    mediaTypeChange: {\r\n      description: 'Emitted when user toggles media type',\r\n      action: 'mediaTypeChange',\r\n      table: {\r\n        type: { summary: 'EventEmitter<string>' },\r\n      },\r\n    },\r\n  },\r\n}"
-                },
-                {
-                    "name": "SortedByTitleAscending",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    currentSort: {\r\n      currentPage: 1,\r\n      pageSize: 10,\r\n      sortField: 'title',\r\n      sortOrder: 1,\r\n      mediaType: undefined,\r\n      searchTerm: undefined,\r\n    },\r\n  },\r\n}",
-                    "rawdescription": "Sorting by title in ascending order (expand_more icon visible)",
-                    "description": "<p>Sorting by title in ascending order (expand_more icon visible)</p>\n"
-                },
-                {
-                    "name": "SortedByYearDescending",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    currentSort: {\r\n      currentPage: 1,\r\n      pageSize: 10,\r\n      sortField: 'year',\r\n      sortOrder: -1,\r\n      mediaType: 'movie',\r\n      searchTerm: undefined,\r\n    },\r\n  },\r\n}",
-                    "rawdescription": "Sorting by year in descending order (expand_less icon visible)",
-                    "description": "<p>Sorting by year in descending order (expand_less icon visible)</p>\n"
-                },
-                {
-                    "name": "WithInteraction",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    currentSort: {\r\n      currentPage: 1,\r\n      pageSize: 10,\r\n      sortField: undefined,\r\n      sortOrder: undefined,\r\n      mediaType: 'all',\r\n      searchTerm: undefined,\r\n    },\r\n  },\r\n  play: async ({ canvasElement, step }) => {\r\n    const { userEvent, within } = await import('@storybook/test');\r\n\r\n    const canvas = within(canvasElement);\r\n\r\n    // Step 1: Type in filter input\r\n    await step('User types search term', async () => {\r\n      const filterInput = canvas.getByPlaceholderText('Filter by title');\r\n      await userEvent.type(filterInput, 'Inception', { delay: 50 });\r\n    });\r\n\r\n    // Step 2: Click sort by title\r\n    await step('User clicks sort by title', async () => {\r\n      const titleSortButtons = canvas.getAllByText('Title');\r\n      // Get the mat-icon parent (first one is the descending icon)\r\n      await userEvent.click(titleSortButtons[0].parentElement!);\r\n    });\r\n\r\n    // Step 3: Toggle media type to \"games\"\r\n    await step('User selects Games media type', async () => {\r\n      const gamesButton = canvas.getByRole('button', { name: /games/i });\r\n      await userEvent.click(gamesButton);\r\n    });\r\n  },\r\n}",
-                    "rawdescription": "Demonstrating user interaction: sorting toggle and filtering",
-                    "description": "<p>Demonstrating user interaction: sorting toggle and filtering</p>\n"
+                    "defaultValue": "{\r\n  title: 'Pages/Favorites/Components/SortingControls',\r\n  component: SortingControlsComponent,\r\n  tags: ['autodocs'],\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MatIconModule, MatButtonToggleModule],\r\n      declarations: [SortingControlsComponent],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    layout: 'padded',\r\n    backgrounds: {\r\n      default: 'light background',\r\n      values: [{ name: 'light background', value: '#FFFFFF' }],\r\n    },\r\n    controls: {\r\n      include: ['currentSort', 'sortChange', 'filterChange', 'mediaTypeChange'], \r\n    },\r\n    docs: {\r\n      description: {\r\n        component: `\r\n# Sorting Controls Component\r\n\r\nMulti-functional filter and sort bar for the favorites collection management.\r\n\r\n## Features\r\n\r\n- 🔀 **Dual-field sorting**: Toggle between title and year with ascending/descending order\r\n- 📝 **Live filtering**: Real-time search input for title-based filtering\r\n- 🎬 **Media type selection**: Radio-button style toggles for Movies, Series, Games, or All\r\n- 🎨 **Custom Material theme**: Amber highlights with dark background\r\n- 📱 **Mobile responsive**: Stacks vertically on tablets and phones\r\n\r\n## Architecture\r\n\r\nThis is a **presentation component** that:\r\n- Receives current filter state via \\`@Input()\\`\r\n- Emits user actions via \\`@Output()\\` events\r\n- Does NOT perform data filtering itself\r\n- Delegates business logic to parent component\r\n\r\n## Usage Example\r\n\r\n### Parent Template\r\n\r\n\\`\\`\\`html\r\n<app-sorting-controls\r\n  [currentSort]=\"searchParams\"\r\n  (sortChange)=\"onSort($event)\"\r\n  (filterChange)=\"onFilter($event)\"\r\n  (mediaTypeChange)=\"onMediaTypeChange($event)\">\r\n</app-sorting-controls>\r\n\\`\\`\\`\r\n\r\n### Parent TypeScript\r\n\r\n\\`\\`\\`typescript\r\nhandleSort(event: { field: string; order: number }): void {\r\n  this.searchParams = {\r\n    ...this.searchParams,\r\n    sortField: event.field,\r\n    sortOrder: event.order,\r\n    currentPage: 1,\r\n  };\r\n  this.refreshFavorites();\r\n}\r\n\r\nhandleFilter(searchTerm: string): void {\r\n  this.searchParams = {\r\n    ...this.searchParams,\r\n    searchTerm: searchTerm.trim() || undefined,\r\n    currentPage: 1,\r\n  };\r\n  this.refreshFavorites();\r\n}\r\n\r\nhandleMediaTypeChange(mediaType: string): void {\r\n  this.searchParams = {\r\n    ...this.searchParams,\r\n    mediaType: mediaType === 'all' ? undefined : mediaType,\r\n    currentPage: 1,\r\n  };\r\n  this.refreshFavorites();\r\n}\r\n\\`\\`\\`\r\n\r\n## Events Reference\r\n\r\n| Event | Payload | Description |\r\n|-------|---------|-------------|\r\n| \\`sortChange\\` | \\`{ field: 'title' | 'year', order: 1 | -1 }\\` | Emitted when clicking sort icons. Order: 1=ascending, -1=descending |\r\n| \\`filterChange\\` | \\`string\\` | Emitted on each keystroke in filter input (parent should debounce) |\r\n| \\`mediaTypeChange\\` | \\`'movie' | 'series' | 'game' | 'all'\\` | Emitted when toggling media type buttons |\r\n\r\n## Testing Tips\r\n\r\nUse the **Controls** panel to test different states:\r\n\r\n1. **Test sorting**: Change \\`currentSort.sortField\\` to 'title' or 'year', and toggle \\`sortOrder\\` between 1 and -1\r\n2. **Test filtering**: Set \\`currentSort.searchTerm\\` to any value\r\n3. **Test media type**: Set \\`currentSort.mediaType\\` to 'movie', 'series', 'game', or leave undefined for 'all'\r\n\r\nWatch the icons and buttons update in real-time as you modify the Controls!\r\n\r\n## Design Notes\r\n\r\n- **Sort toggle**: Clicking the same field twice reverses direction (1 ↔ -1)\r\n- **Initial state**: \\`All\\` media type is checked by default\r\n- **Filter timing**: Emits on every keystroke (parent should implement debounce ~300ms)\r\n- **Icon feedback**: Changes based on current sort state\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    currentSort: {\r\n      description:\r\n        'Current filter/sort state from parent. Controls visible state of icons and buttons.',\r\n      control: { type: 'object' },\r\n      table: {\r\n        type: { summary: 'FavoritesSearchParams' },\r\n      },\r\n    },\r\n    sortChange: {\r\n      description: 'Emitted when user clicks sort field icons',\r\n      action: 'sortChange',\r\n      table: {\r\n        type: { summary: 'EventEmitter<{field: string, order: number}>' },\r\n      },\r\n    },\r\n    filterChange: {\r\n      description: 'Emitted when user types in filter input',\r\n      action: 'filterChange',\r\n      table: {\r\n        type: { summary: 'EventEmitter<string>' },\r\n      },\r\n    },\r\n    mediaTypeChange: {\r\n      description: 'Emitted when user toggles media type buttons',\r\n      action: 'mediaTypeChange',\r\n      table: {\r\n        type: { summary: 'EventEmitter<string>' },\r\n      },\r\n    },\r\n  },\r\n}"
                 }
             ],
             "src/app/pages/search/components/carousel/carousel.component.stories.ts": [
@@ -8252,6 +8441,32 @@
                     "kind": 193
                 }
             ],
+            "src/app/layout/footer/footer.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<FooterComponent>",
+                    "file": "src/app/layout/footer/footer.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/app/layout/navbar/navbar.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<NavbarComponent>",
+                    "file": "src/app/layout/navbar/navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
             "src/app/shared/components/empty-state/empty-state.stories.ts": [
                 {
                     "name": "Story",
@@ -8291,19 +8506,6 @@
                     "kind": 184
                 }
             ],
-            "src/app/shared/components/sorting-controls/sorting-controls.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<SortingControlsComponent>",
-                    "file": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 184
-                }
-            ],
             "src/app/shared/components/trailer-dialog/trailer-dialog.stories.ts": [
                 {
                     "name": "Story",
@@ -8324,6 +8526,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<AuthFormComponent>",
                     "file": "src/app/pages/auth/components/auth-form/auth-form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "src/app/pages/favorites/components/sorting-controls/sorting-controls.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<SortingControlsComponent>",
+                    "file": "src/app/pages/favorites/components/sorting-controls/sorting-controls.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -8461,7 +8676,7 @@
         ]
     },
     "coverage": {
-        "count": 10,
+        "count": 9,
         "status": "low",
         "files": [
             {
@@ -8542,6 +8757,36 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "FooterComponent",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/layout/footer/footer.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/layout/footer/footer.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/layout/footer/footer.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -8551,8 +8796,67 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "NavbarComponent",
+                "coveragePercent": 16,
+                "coverageCount": "1/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/layout/navbar/navbar.stories.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "AuthServiceMock",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/layout/navbar/navbar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/layout/navbar/navbar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedOut",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/layout/navbar/navbar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/layout/navbar/navbar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "MobileExpanded",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/layout/navbar/navbar.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -8641,6 +8945,45 @@
                 "name": "AuthPageComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/favorites/components/sorting-controls/sorting-controls.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SortingControlsComponent",
+                "coveragePercent": 62,
+                "coverageCount": "5/8",
+                "status": "good"
+            },
+            {
+                "filePath": "src/app/pages/favorites/components/sorting-controls/sorting-controls.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/favorites/components/sorting-controls/sorting-controls.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/favorites/components/sorting-controls/sorting-controls.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -9155,85 +9498,6 @@
             },
             {
                 "filePath": "src/app/shared/components/movie-dialog/movie-dialog.stories.ts",
-                "type": "type alias",
-                "linktype": "miscellaneous",
-                "linksubtype": "typealias",
-                "name": "Story",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/shared/components/sorting-controls/sorting-controls.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "SortingControlsComponent",
-                "coveragePercent": 62,
-                "coverageCount": "5/8",
-                "status": "good"
-            },
-            {
-                "filePath": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Default",
-                "coveragePercent": 100,
-                "coverageCount": "1/1",
-                "status": "very-good"
-            },
-            {
-                "filePath": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "FilteredByTypeAndTitle",
-                "coveragePercent": 100,
-                "coverageCount": "1/1",
-                "status": "very-good"
-            },
-            {
-                "filePath": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "meta",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "SortedByTitleAscending",
-                "coveragePercent": 100,
-                "coverageCount": "1/1",
-                "status": "very-good"
-            },
-            {
-                "filePath": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "SortedByYearDescending",
-                "coveragePercent": 100,
-                "coverageCount": "1/1",
-                "status": "very-good"
-            },
-            {
-                "filePath": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "WithInteraction",
-                "coveragePercent": 100,
-                "coverageCount": "1/1",
-                "status": "very-good"
-            },
-            {
-                "filePath": "src/app/shared/components/sorting-controls/sorting-controls.stories.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
