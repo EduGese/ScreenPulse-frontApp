@@ -1,12 +1,12 @@
 <mat-card class="favorite-card">
   <mat-card-content class="img-container" matTooltip="{{item.title}}" matTooltipPosition="above">
-    <div class="img-container2" [style.background-image]="'url(' + backgroundUrl + ')'" (mouseenter)="onMouseEnter()"
-      (mouseleave)="onMouseLeave()" (click)="openitemToOpen(item)" (keydown.enter)="openitemToOpen(item)"
+    <div class="img-container2" [style.background-image]="'url(' + backgroundUrl + ')'" (mouseenter)="handleMouseEnter()"
+      (mouseleave)="handleMouseLeave()" (click)="openitemToOpen(item)" (keydown.enter)="openitemToOpen(item)"
       (keydown.space)="openitemToOpen(item)" tabindex="0" role="button">
         <img [src]="item.poster" [alt]="item.poster" (error)="setDefaultBackground()" style="display:none" />
       <ng-container *ngIf="areButtonsVisible()">
         <button mat-mini-fab color="warn" aria-label="delete item" class='delete-button'
-          (click)="onItemToDelete($event)">
+          (click)="handleItemToDelete($event)">
           <mat-icon matTooltip="Delete" matTooltipPosition="below">delete</mat-icon>
         </button>
         <button mat-mini-fab color="primary" class='review-button' (click)="toggleMode( $event)"
@@ -38,15 +38,15 @@
 
     <mat-card-content *ngIf="mode === 'edition'" class="edition">
       <div class="edition-buttons">
-        <button mat-mini-fab aria-label="Add review" (click)="onDescriptionToAdd()">
+        <button mat-mini-fab aria-label="Add review" (click)="handleDescriptionToAdd()">
           <mat-icon>add</mat-icon>
         </button>
-        <button *ngIf="item.description" mat-mini-fab aria-label="Add review" (click)="onDescriptionToDelete()">
+        <button *ngIf="item.description" mat-mini-fab aria-label="Add review" (click)="handleDescriptionToDelete()">
           <mat-icon>delete</mat-icon>
         </button>
       </div>
  
-      <textarea [value]="item.description ? item.description : inputDescription" (input)="onValueChange($event)"
+      <textarea [value]="item.description ? item.description : inputDescription" (input)="handleValueChange($event)"
         maxlength="200" placeholder="Add your own review" id="textTarea"></textarea>
     </mat-card-content>
   </mat-card-content>

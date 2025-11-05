@@ -1,18 +1,49 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { MediaItem } from '../../models/movie.model';
 
+/**
+ * 
+ * Card component for displaying media items (movies, series, games) with dual view/edit modes.
+ * 
+ * 
+ */
 @Component({
   selector: 'app-favorites-card',
   templateUrl: './favorites-card.component.html',
   styleUrls: ['./favorites-card.component.scss'],
 })
-export class FavoritesCardComponent implements OnInit{
+export class FavoritesCardComponent implements OnInit, OnChanges{
+  /**
+ * Media item to display in the card
+ * @type {MediaItem}
+ */
   @Input() item: MediaItem = {} as MediaItem;
 
-  @Output() itemToDelete = new EventEmitter<string>();
-  @Output() itemToOpen = new EventEmitter<MediaItem>();
-  @Output() descriptionToDelete = new EventEmitter<MediaItem>();
-  @Output() descriptionToAdd = new EventEmitter<MediaItem>();
+  @Input() initialHoverstate = false; 
+
+/**
+ * Emitted when delete button is clicked
+ * @event {string} itemId
+ */
+@Output() itemToDelete = new EventEmitter<string>();
+
+/**
+ * Emitted when poster is clicked to open item details
+ * @event {MediaItem} item
+ */
+@Output() itemToOpen = new EventEmitter<MediaItem>();
+
+/**
+ * Emitted when user saves a review/note
+ * @event {MediaItem} item - with description populated
+ */
+@Output() descriptionToAdd = new EventEmitter<MediaItem>();
+
+/**
+ * Emitted when user deletes a review/note
+ * @event {MediaItem} item - with description cleared
+ */
+@Output() descriptionToDelete = new EventEmitter<MediaItem>();
 
   backgroundUrl = '';
 
@@ -20,14 +51,20 @@ export class FavoritesCardComponent implements OnInit{
   inputDescription = '';
   hoverState = false;
 
-  viewportWidth: number = window.innerWidth;
+  viewportWidth!: number;
 
   ngOnInit() {
     this.backgroundUrl = this.item.poster;
+    this.hoverState = this.initialHoverstate; 
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['initialHoverstate']) {
+      this.hoverState = changes['initialHoverstate'].currentValue;
+    }
+  }
 
-  onDescriptionToAdd() {
+  handleDescriptionToAdd() {
     const mediaItemWithDescription = {
       ...this.item,
       description: this.inputDescription,
@@ -35,7 +72,7 @@ export class FavoritesCardComponent implements OnInit{
     this.descriptionToAdd.emit(mediaItemWithDescription);
     this.mode = 'view';
   }
-  onDescriptionToDelete() {
+  handleDescriptionToDelete() {
     const itemWithoutDescription = {
       ...this.item,
       description: '',
@@ -44,10 +81,10 @@ export class FavoritesCardComponent implements OnInit{
     this.inputDescription = '';
     this.mode = 'view';
   }
-  onValueChange(event: Event): void {
+  handleValueChange(event: Event): void {
     this.inputDescription = (event.target as HTMLTextAreaElement).value;
   }
-  onItemToDelete(event: MouseEvent) {
+  handleItemToDelete(event: MouseEvent) {
     event.stopPropagation();
     this.itemToDelete.emit(this.item._id);
   }
@@ -56,10 +93,10 @@ export class FavoritesCardComponent implements OnInit{
     event.stopPropagation();
     this.mode = this.mode === 'view' ? 'edition' : 'view';
   }
-  onMouseEnter() {
+  handleMouseEnter() {
     this.hoverState = true;
   }
-  onMouseLeave() {
+  handleMouseLeave() {
     this.hoverState = false;
   }
   areButtonsVisible(): boolean {
