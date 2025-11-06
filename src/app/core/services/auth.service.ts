@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from 'src/app/shared/models/user.model';
+import { AuthUser } from 'src/app/shared/models/auth.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +19,10 @@ export class AuthService {
     this.userMailSubject.next(sessionStorage.getItem(this.userMailKey));
     this.userLoggedInSubject.next(sessionStorage.getItem(this.authTokenKey) !== null);
   }
-  setUserSession(user: User, token: string) {
+  setUserSession(user: AuthUser, token: string) {
     this.setAuthToken(token);
     this.setUserMail(user.email);
-    this.setUserName(user.name ? user.name : '');
+    this.setUserName(user.name);
   }
 
   setAuthToken(token: string) {

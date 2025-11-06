@@ -1,16 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable,  } from 'rxjs';
-import { User } from 'src/app/shared/models/user.model';
+import { LoginResponse, User } from 'src/app/shared/models/auth.model';
 import { environment } from 'src/environments/environment.development';
-interface LoginResponse {
-  token: string;
-  user: {
-    _id: string;
-    email: string;
-    name: string;
-  };
-}
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +12,16 @@ export class UserService {
   private baseUrl = environment.serverUserURL;
 
   constructor(private http: HttpClient) { }
+
+    login(formData: User): Observable<LoginResponse> {
+    const body = formData;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http.post<LoginResponse>(`${this.baseUrl}/login`, body, httpOptions)
+  }
 
   register(formData: User): Observable<User> {
     const body = formData;
@@ -33,14 +35,5 @@ export class UserService {
   }
 
 
-  login(formData: User): Observable<LoginResponse> {
-    const body = formData;
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
-    return this.http.post<LoginResponse>(`${this.baseUrl}/login`, body, httpOptions)
 
-  }
 }
