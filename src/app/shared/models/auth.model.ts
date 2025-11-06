@@ -28,3 +28,11 @@ export interface LoginResponse {
   token: string;
   user: AuthUser; 
 }
+
+/**
+ * Response from register endpoint
+ * Semantic alias for AuthUser (same structure, no token)
+ * 
+ * Used in: UserService.register() return type
+ */
+export type RegisterResponse = AuthUser

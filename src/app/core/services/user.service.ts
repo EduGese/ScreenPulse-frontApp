@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable,  } from 'rxjs';
-import { LoginResponse, User } from 'src/app/shared/models/auth.model';
+import { LoginResponse, RegisterResponse, User } from 'src/app/shared/models/auth.model';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -31,9 +31,6 @@ export class UserService {
       }),
     };
 
-    return this.http.post<User>(`${this.baseUrl}/register`, body, httpOptions)
+    return this.http.post<RegisterResponse>(`${this.baseUrl}/register`, body, httpOptions)
   }
-
-
-
 }
