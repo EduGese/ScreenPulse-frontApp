@@ -19,7 +19,17 @@ import { User } from 'src/app/shared/models/auth.model';
  * Handles form submission and navigation based on authentication result.
  */
 export class AuthPageComponent implements OnInit {
+  /**
+   * Determines which form to display (login or register)
+   * @type {'login' | 'register'}
+   */
   formType: 'login' | 'register' = 'login';
+
+   /**
+   * Loading state during authentication process
+   * Disables form to prevent duplicate submissions
+   * @type {boolean}
+   */
   isAuthenticating = false;
 
 
@@ -31,12 +41,21 @@ export class AuthPageComponent implements OnInit {
     private toastrService: ToastrService
   ) { }
 
+/**
+ * Reads formType from route data to set login/register mode.
+ * @see app-routing.module.ts for route configuration
+ * @ignore
+ */
   ngOnInit(): void {
     this.route.data.subscribe(data => {
       this.formType = data['formType'] || 'login';
     });
   }
 
+/**
+ * Handles form submission by delegating to login or register handler.
+ * @param user - User data from AuthFormComponent
+ */
   handleFormSubmit(user: User): void {
     if (this.formType === 'login') {
       this.handleLogin(user);
