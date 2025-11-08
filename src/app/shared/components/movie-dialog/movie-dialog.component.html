@@ -2,7 +2,7 @@
 
 <mat-dialog-content class="card-content mat-typography">
   <div class="poster-container">
-    <ng-container *ngIf="data?.response?.Poster === 'N/A'; else poster">
+    <ng-container *ngIf="data.response.Poster === 'N/A'; else poster">
       <img src="/assets/images/no_poster.jpg" alt="No/poster">
     </ng-container>
     <ng-template #poster>
