@@ -11,6 +11,16 @@ import { FEATURED_MEDIA } from 'src/app/core/constants/featured-media.const';
 import { EMPTY, finalize, switchMap, take } from 'rxjs';
 import { SearchBarComponent } from '../components/search-bar/search-bar.component';
 
+/**
+ * Search page component allowing users to search for media items.
+ * 
+ * @description
+ * Displays search bar, results table, and featured media.
+ * Handles search submissions, pagination, and adding items to favorites.
+ * Utilizes OmdbService for fetching media data.
+ * Integrates with AuthService to restrict certain actions to logged-in users.
+ * 
+ */
 
 @Component({
   selector: 'app-search',
@@ -20,8 +30,20 @@ import { SearchBarComponent } from '../components/search-bar/search-bar.componen
 
 
 export class SearchComponent {
+  /*
+  * Featured media items to display on the search page
+  * 
+  */ 
   featuredMedia: MediaItem[] = FEATURED_MEDIA;
+
+  /**
+   * Columns displayed in the search results table
+   */
   displayedColumns: string[] = ['title', 'year', 'type', 'poster', 'Add'];
+
+  /**
+   * Current search state (filters, results, pagination)
+   */
   searchState: SearchState = {
     title: '',
     type: 'all',
@@ -32,6 +54,10 @@ export class SearchComponent {
     collectionSize: 0,
     searchOnProcess: false,
   };
+
+  /**
+   * Loading state for media item dialog
+   */
   loadingCard = false;
 
   @ViewChild(SearchBarComponent) SearchComponent!: SearchBarComponent | null;
@@ -46,7 +72,7 @@ export class SearchComponent {
   ) { }
 
 
-  onSubmit(filters: SearchFilters): void {
+  handleSubmit(filters: SearchFilters): void {
     this.searchState = {
       ...this.searchState,
       ...filters,
@@ -93,7 +119,10 @@ addToFavorites(mediaItem: MediaItem) {
     });
   }
 
-
+   /**
+   * @private
+   * @ignore
+   */
   private fetchMediaItems(): void {
     this.omdbService.fetchMediaItems(
       this.searchState.title,
@@ -119,6 +148,10 @@ addToFavorites(mediaItem: MediaItem) {
       })
   }
 
+   /**
+   * @private
+   * @ignore
+   */
   private focusOnResultsTable(): void {
     setTimeout(() => {
       document.getElementById('tableFocus')?.focus();

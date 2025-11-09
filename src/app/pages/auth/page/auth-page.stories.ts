@@ -120,7 +120,7 @@ class AuthServiceMock {
 const meta: Meta<AuthPageComponent> = {
     title: 'Pages/Auth/Page/AuthPage',
     component: AuthPageComponent,
-    subcomponents: { AuthFormComponent, },
+    //subcomponents: { AuthFormComponent, },
     tags: ['autodocs'],
     decorators: [
         applicationConfig({
@@ -154,7 +154,6 @@ const meta: Meta<AuthPageComponent> = {
         docs: {
             description: {
                 component: `
-# Auth Page (Smart Component)
 
 Container component handling login and registration flows with full service integration.
 

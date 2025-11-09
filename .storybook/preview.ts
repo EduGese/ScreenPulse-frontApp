@@ -26,9 +26,9 @@ const preview: Preview = {
       viewports: {
         ...MINIMAL_VIEWPORTS,
         laptop: {
-          name: 'Laptop (1024px)',
+          name: 'Laptop (1366px)',
           styles: {
-            width: '1024px',
+            width: '1366px',
             height: '768px',
           },
         },
