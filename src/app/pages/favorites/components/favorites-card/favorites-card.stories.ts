@@ -7,7 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-import { MediaItem } from '../../models/movie.model';
+import { MediaItem } from 'src/app/shared/models/movie.model';
+
 
 const mockMediaItem: MediaItem = {
     _id: '68f60ea3476a3d94a82c6bbd',

@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { MediaItem } from '../../models/movie.model';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges, HostListener } from '@angular/core';
+import { MediaItem } from 'src/app/shared/models/movie.model';
 
 /**
  * 
@@ -51,7 +51,7 @@ export class FavoritesCardComponent implements OnInit, OnChanges{
   inputDescription = '';
   hoverState = false;
 
-  viewportWidth!: number;
+  viewportWidth: number = window.innerWidth;
 
   ngOnInit() {
     this.backgroundUrl = this.item.poster;
@@ -62,6 +62,10 @@ export class FavoritesCardComponent implements OnInit, OnChanges{
     if (changes['initialHoverstate']) {
       this.hoverState = changes['initialHoverstate'].currentValue;
     }
+  }
+  @HostListener('window:resize')
+  onResize() {
+    this.viewportWidth = window.innerWidth;
   }
 
   handleDescriptionToAdd() {

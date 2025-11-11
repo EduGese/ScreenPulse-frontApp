@@ -27,8 +27,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { OmdbService } from './services/omdb/omdb.service';
-
-import { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';
 import { MediaItemDialogComponent } from './components/movie-dialog/movie-dialog.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { EmptyStateComponent } from './components/empty-state/empty-state.component';
@@ -60,7 +58,6 @@ const MATERIAL_MODULES = [
 
 @NgModule({
   declarations: [
-    FavoritesCardComponent,
     MediaItemDialogComponent,
     LoadingSpinnerComponent,
     EmptyStateComponent,
@@ -82,7 +79,6 @@ const MATERIAL_MODULES = [
   exports: [
     ...MATERIAL_MODULES,
     NgbModule,
-    FavoritesCardComponent,
     MediaItemDialogComponent,
     LoadingSpinnerComponent,
     EmptyStateComponent,

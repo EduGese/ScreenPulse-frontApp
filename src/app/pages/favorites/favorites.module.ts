@@ -16,13 +16,16 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SortingControlsComponent } from './components/sorting-controls/sorting-controls.component';
+import { FavoritesCardComponent } from './components/favorites-card/favorites-card.component';
 
 
 
 @NgModule({
   declarations: [
     FavoritesComponent,
-    SortingControlsComponent
+    SortingControlsComponent,
+    FavoritesCardComponent
+    
   ],
   imports: [
     CommonModule,
