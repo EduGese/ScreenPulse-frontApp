@@ -30,10 +30,16 @@ jobs:
       - name: 🔨 Build Storybook
         run: npm run build-storybook
 
-      - name: 🔧 Fix base path for GitHub Pages
+      - name: 🔧 Fix paths for GitHub Pages subdirectory
         run: |
+          # 1. Add base href
           sed -i 's|<head>|<head><base href="/ScreenPulse-frontApp/">|' storybook-static/index.html
-          echo "✅ Base path configured for subdirectory deployment"
+          
+          # 2. Fix asset paths (reemplaza /assets con assets relativos)
+          find storybook-static -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" \) -exec sed -i 's|"/assets/|"assets/|g' {} +
+          find storybook-static -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" \) -exec sed -i "s|'/assets/|'assets/|g" {} +
+          
+          echo "✅ Paths fixed for subdirectory deployment"
 
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
