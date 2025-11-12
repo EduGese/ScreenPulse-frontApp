@@ -28,15 +28,13 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 
-// Mock Services (simplificados)
+
 class MockOmdbService {
     fetchMediaItems() { return of({ Response: "False" }); }
     getMediaItemInfo() { return of({}); }
 }
 class MockOmdbServiceWithResults {
   fetchMediaItems() {
-    
-    // Simula respuesta exitosa de OMDB API
     return of({
       Response: "True",
       Search: [
@@ -191,13 +189,9 @@ const meta: Meta<SearchComponent> = {
         viewport: {
             defaultViewport: 'laptop'
         },
-
-        // ✅ Deshabilita TODOS los controles
         controls: {
             disable: true
         },
-
-        // ✅ También puedes ocultar la pestaña Actions
         actions: {
             disable: true
         },

@@ -30,6 +30,11 @@ jobs:
       - name: 🔨 Build Storybook
         run: npm run build-storybook
 
+      - name: 🔧 Fix base path for GitHub Pages
+        run: |
+          sed -i 's|<head>|<head><base href="/ScreenPulse-frontApp/">|' storybook-static/index.html
+          echo "✅ Base path configured for subdirectory deployment"
+
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -40,5 +45,3 @@ jobs:
         run: |
           echo "✅ Storybook deployed!"
           echo "📍 URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
-
-
