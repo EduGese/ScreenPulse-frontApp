@@ -29,91 +29,92 @@ import { Router } from '@angular/router';
 import { of } from 'rxjs';
 
 
+
 class MockOmdbService {
     fetchMediaItems() { return of({ Response: "False" }); }
     getMediaItemInfo() { return of({}); }
 }
 class MockOmdbServiceWithResults {
-  fetchMediaItems() {
-    return of({
-      Response: "True",
-      Search: [
-        {
-            title: "The Matrix",
-            year: "1999",
-            imdbID: "tt0133093",
-            type: "movie",
-            poster: "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_SX300.jpg"
-        },
-        {
-            title: "The Matrix Reloaded",
-            year: "2003",
-            imdbID: "tt0234215",
-            type: "movie",
-            poster: "https://m.media-amazon.com/images/M/MV5BNjAxYjkxNjktYTU0YS00NjFhLWIyMDEtMzEzMTJjMzRkMzQ1XkEyXkFqcGc@._V1_SX300.jpg"
-        },
-        {
-            title: "The Matrix Revolutions",
-            year: "2003",
-            imdbID: "tt0242653",
-            type: "movie",
-            poster: "https://m.media-amazon.com/images/M/MV5BMmNmMTEzODQtNmExMS00OGUxLWFkNTItMTM3NzBlNDk0YWU5XkEyXkFqcGc@._V1_SX300.jpg"
-        },
-        {
-            title: "The Matrix Resurrections",
-            year: "2021",
-            imdbID: "tt10838180",
-            type: "movie",
-            poster: "https://m.media-amazon.com/images/M/MV5BMDMyNDIzYzMtZTMyMy00NjUyLWI3Y2MtYzYzOGE1NzQ1MTBiXkEyXkFqcGc@._V1_SX300.jpg"
-        },
-        {
-            title: "Making 'The Matrix'",
-            year: "1999",
-            imdbID: "tt0365467",
-            type: "movie",
-            poster: "https://m.media-amazon.com/images/M/MV5BOTZjYThlYjktMzI1Ny00ZTQ1LWEzYTYtMTQ2NzU5ZDc1MGIwXkEyXkFqcGc@._V1_SX300.jpg"
-        },
-        {
-            title: "The Matrix Revisited",
-            year: "2001",
-            imdbID: "tt0295432",
-            type: "movie",
-            poster: "https://m.media-amazon.com/images/M/MV5BMTkzNjg3NjE4N15BMl5BanBnXkFtZTgwNTc3NTAwNzE@._V1_SX300.jpg"
-        },
-        {
-            title: "Enter the Matrix",
-            year: "2003",
-            imdbID: "tt0277828",
-            type: "game",
-            poster: "https://m.media-amazon.com/images/M/MV5BNWM3MDU2MWQtYjdlNC00NDBlLTkyNGMtNjdhYjdlNTdiNTFlXkEyXkFqcGdeQXVyNTEwNDY2MjU@._V1_SX300.jpg"
-        },
-        {
-            title: "A Glitch in the Matrix",
-            year: "2021",
-            imdbID: "tt9847360",
-            type: "movie",
-            poster: "https://m.media-amazon.com/images/M/MV5BYmU0NzFhYmEtMmUzNC00MjQ1LTg3NTctZDdlZmVlY2MzMDQzXkEyXkFqcGc@._V1_SX300.jpg"
-        },
-        {
-            title: "The Matrix: Path of Neo",
-            year: "2005",
-            imdbID: "tt0451118",
-            type: "game",
-            poster: "https://m.media-amazon.com/images/M/MV5BZGFiNGU4MjEtODM2ZC00OTg0LThkNmEtZTBlN2FkMmFjOWYzXkEyXkFqcGdeQXVyNTEwNDY2MjU@._V1_SX300.jpg"
-        },
-        {
-            title: "Armitage III: Dual Matrix",
-            year: "2002",
-            imdbID: "tt0303678",
-            type: "movie",
-            poster: "https://m.media-amazon.com/images/M/MV5BOTUwOTY3Mjg1MF5BMl5BanBnXkFtZTcwODI2MTAyMQ@@._V1_SX300.jpg"
-        }
-      ],
-      totalResults: "10"
-    });
-  }
+    fetchMediaItems() {
+        return of({
+            Response: "True",
+            Search: [
+                {
+                    title: "The Matrix",
+                    year: "1999",
+                    imdbID: "tt0133093",
+                    type: "movie",
+                    poster: "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_SX300.jpg"
+                },
+                {
+                    title: "The Matrix Reloaded",
+                    year: "2003",
+                    imdbID: "tt0234215",
+                    type: "movie",
+                    poster: "https://m.media-amazon.com/images/M/MV5BNjAxYjkxNjktYTU0YS00NjFhLWIyMDEtMzEzMTJjMzRkMzQ1XkEyXkFqcGc@._V1_SX300.jpg"
+                },
+                {
+                    title: "The Matrix Revolutions",
+                    year: "2003",
+                    imdbID: "tt0242653",
+                    type: "movie",
+                    poster: "https://m.media-amazon.com/images/M/MV5BMmNmMTEzODQtNmExMS00OGUxLWFkNTItMTM3NzBlNDk0YWU5XkEyXkFqcGc@._V1_SX300.jpg"
+                },
+                {
+                    title: "The Matrix Resurrections",
+                    year: "2021",
+                    imdbID: "tt10838180",
+                    type: "movie",
+                    poster: "https://m.media-amazon.com/images/M/MV5BMDMyNDIzYzMtZTMyMy00NjUyLWI3Y2MtYzYzOGE1NzQ1MTBiXkEyXkFqcGc@._V1_SX300.jpg"
+                },
+                {
+                    title: "Making 'The Matrix'",
+                    year: "1999",
+                    imdbID: "tt0365467",
+                    type: "movie",
+                    poster: "https://m.media-amazon.com/images/M/MV5BOTZjYThlYjktMzI1Ny00ZTQ1LWEzYTYtMTQ2NzU5ZDc1MGIwXkEyXkFqcGc@._V1_SX300.jpg"
+                },
+                {
+                    title: "The Matrix Revisited",
+                    year: "2001",
+                    imdbID: "tt0295432",
+                    type: "movie",
+                    poster: "https://m.media-amazon.com/images/M/MV5BMTkzNjg3NjE4N15BMl5BanBnXkFtZTgwNTc3NTAwNzE@._V1_SX300.jpg"
+                },
+                {
+                    title: "Enter the Matrix",
+                    year: "2003",
+                    imdbID: "tt0277828",
+                    type: "game",
+                    poster: "https://m.media-amazon.com/images/M/MV5BNWM3MDU2MWQtYjdlNC00NDBlLTkyNGMtNjdhYjdlNTdiNTFlXkEyXkFqcGdeQXVyNTEwNDY2MjU@._V1_SX300.jpg"
+                },
+                {
+                    title: "A Glitch in the Matrix",
+                    year: "2021",
+                    imdbID: "tt9847360",
+                    type: "movie",
+                    poster: "https://m.media-amazon.com/images/M/MV5BYmU0NzFhYmEtMmUzNC00MjQ1LTg3NTctZDdlZmVlY2MzMDQzXkEyXkFqcGc@._V1_SX300.jpg"
+                },
+                {
+                    title: "The Matrix: Path of Neo",
+                    year: "2005",
+                    imdbID: "tt0451118",
+                    type: "game",
+                    poster: "https://m.media-amazon.com/images/M/MV5BZGFiNGU4MjEtODM2ZC00OTg0LThkNmEtZTBlN2FkMmFjOWYzXkEyXkFqcGdeQXVyNTEwNDY2MjU@._V1_SX300.jpg"
+                },
+                {
+                    title: "Armitage III: Dual Matrix",
+                    year: "2002",
+                    imdbID: "tt0303678",
+                    type: "movie",
+                    poster: "https://m.media-amazon.com/images/M/MV5BOTUwOTY3Mjg1MF5BMl5BanBnXkFtZTcwODI2MTAyMQ@@._V1_SX300.jpg"
+                }
+            ],
+            totalResults: "10"
+        });
+    }
 
-  getMediaItemInfo() { /* empty */ }
+    getMediaItemInfo() { /* empty */ }
 }
 
 class MockFavoritesService {
@@ -566,62 +567,46 @@ export const Default: Story = {
         }
     }
 };
-/**
- * Search Results - Populated Table
- * 
- * Shows the search page with mock results displayed in the table.
- * Demonstrates the results state after a successful search.
- */
+
 export const SearchWithResults: Story = {
     parameters: {
         layout: 'fullscreen',
         viewport: {
-            defaultViewport: 'laptop' 
+            defaultViewport: 'laptop'
         },
-         docs: {
-      description: {
-        story: `
-### Search With Results
+        docs: {
+            description: {
+                story: `
 
-Shows SearchComponent after successful search with populated results table.
+Demonstrates SearchComponent's search and results table display with mock data.
 
-**Mock Scenario**:
-- User searched for "The Matrix"
-- OmdbService returns 5 movies
-- Results table displays all 5 items
-- Pagination shows "1-5 of 5"
+**🎯 How to Use:**
+1. Enter "Matrix" in the search field
+2. Select "movie" from the type dropdown
+3. Click Submit button
+4. Results table will appear below
 
-**Interactions Available**:
-- Click "Submit" on search form → triggers mock API call → results update
-- Click heart icon → "Add to Favorites" (requires auth)
-- Click row → Opens details dialog (lazy loaded)
+**What You'll See:**
+- Search form with filters (title, type, year)
+- Results table with 10 mock items from The Matrix franchise
+- Material table with pagination footer
 
-**Mock Data**: The Matrix franchise (5 movies)
+**Mock Data:**
+OmdbService returns predefined Matrix movies and games for any search query.
+
+**Note**: This story shows the page layout and search flow only. Dialog interactions are mocked and not displayed.
 
 **Viewport**: Laptop (1024px)
         `
-      }
-    }
-  },
-  decorators: [
-    applicationConfig({
-      providers: [
-        { provide: OmdbService, useClass: MockOmdbServiceWithResults },
-      ]
-    }),
-  ],
-  play: async ({ canvasElement }) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const component = (window as any).ng?.getComponent(
-      canvasElement.querySelector('app-search')
-    );
-
-    if (component) {
-      component.handleSubmit({
-        title: 'The Matrix',
-        type: 'movie',
-        year: ''
-      });
-    }
-  }
+            }
+        }
+    },
+    decorators: [
+        applicationConfig({
+            providers: [
+                { provide: OmdbService, useClass: MockOmdbServiceWithResults },
+            ]
+        }),
+    ]
 };
+
