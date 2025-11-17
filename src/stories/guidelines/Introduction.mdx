@@ -1,0 +1,186 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# ScreenPulse - Component Documentation
+
+Welcome to the ScreenPulse component library documentation.
+
+## What is ScreenPulse?
+
+ScreenPulse is a modern web application for discovering and managing movies, series, and games. Built with Angular and powered by the OMDB API, it provides a seamless experience for searching media content, managing favorites, and exploring entertainment collections.
+
+## 🎯 Key Features
+
+- **Smart Search**: Search movies, series, and games by title, type, and year
+- **Favorites Management**: Save and organize your favorite media items
+- **Detailed Information**: View comprehensive details including ratings, cast, and trailers
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Material Design**: Built with Angular Material components
+
+## 📚 Documentation Structure
+
+Browse components by category in the sidebar:
+
+### **Guidelines**
+Design system principles and development standards
+- [Material Components Usage](/docs/guidelines-material-components-usage--docs) - Best practices for Angular Material
+
+### **Layout**
+Global components used across the entire application
+- **Navbar** - Top navigation bar with logo, links, and user menu
+- **Footer** - Site footer with copyright and links
+
+### **Pages**
+Complete page layouts with feature-specific components
+
+#### Search Page
+Main search interface and results display
+- **SearchPage** (Smart) - Container component managing search flow
+- **SearchBar** - Search form with title, type, and year filters
+- **SearchCover** - Hero section with page title
+- **Carousel** - Featured media showcase
+- **MediaItemResultsTable** - Results display with pagination
+
+#### Favorites Page
+User's saved media collection
+- **FavoritesPage** (Smart) - Container component managing favorites
+- **FavoritesCard** - Individual favorite item card
+- **SortingControls** - Search and filter controls for favorites list
+
+#### Auth Page
+User authentication flow
+- **AuthPage** (Smart) - Container component switching between login/register
+- **AuthForm** - Reusable form for login and register modes
+
+### **Shared**
+Reusable components used across multiple features
+- **EmptyState** - Empty state placeholder with icon and message
+- **LoadingSpinner** - Visual loading feedback indicator
+- **MediaItemDialog** - Detailed media view modal with ratings and trailer
+- **TrailerDialog** - YouTube trailer player modal
+
+
+## 🚀 Getting Started
+
+### Running Storybook Locally
+
+```bash
+# Install dependencies
+npm install
+
+# Start Storybook development server
+npm run storybook
+
+# Build static Storybook
+npm run build-storybook
+```
+
+### Running the Application
+
+```bash
+# Development server
+npm start
+
+# Production build
+npm run build
+```
+
+## 🛠️ Tech Stack
+
+- **Framework**: Angular 16.x
+- **UI Library**: Angular Material
+- **State Management**: RxJS
+- **HTTP Client**: Angular HttpClient
+- **API**: OMDB API (Open Movie Database)
+- **Documentation**: Storybook 8.3.x
+- **Build Tool**: Angular CLI + Vite
+
+## 📖 Component Architecture
+
+### Smart Components (Containers)
+Manage state, API calls, and business logic. Located in feature modules:
+
+- **SearchPage** (`/features/search`)
+  - Orchestrates search flow with OmdbService
+  - Manages search state (filters, results, pagination)
+  - Handles user interactions (submit, pagination, favorites)
+
+- **FavoritesPage** (`/features/favorites`)
+  - Manages user's favorites collection
+  - CRUD operations via FavoritesService
+  - Sorting and filtering logic
+
+- **AuthPage** (`/features/auth`)
+  - Switches between login and register modes
+  - Authentication flow with AuthService
+  - Route navigation after successful auth
+
+### Presentational Components (Dumb)
+Receive data via `@Input()`, emit events via `@Output()`. No direct service dependencies.
+
+#### Shared Components
+Reusable across multiple features:
+- **EmptyState** - Generic empty state display
+- **LoadingSpinner** - Loading feedback indicator
+- **MediaItemDialog** - Media details modal
+- **TrailerDialog** - YouTube trailer player
+
+#### Feature-Specific Components
+Used within a single feature module:
+
+**Search Page Components:**
+- **SearchBar** - Form inputs for search filters
+- **SearchCover** - Hero section banner
+- **Carousel** - Featured media slider
+- **MediaItemResultsTable** - Results table with pagination
+
+**Favorites Page Components:**
+- **FavoritesCard** - Individual favorite card display
+- **SortingControls** - Search input and sort dropdown
+
+**Auth Page Components:**
+- **AuthForm** - Login/register form (mode-switched)
+
+### Layout Components
+Global components rendered in AppComponent:
+- **Navbar** - Top navigation (app-wide)
+- **Footer** - Site footer (app-wide)
+
+## 🔧 Key Services
+
+### OmdbService
+External API integration for fetching movie, series, and game data from OMDB API.
+
+### FavoritesService
+Backend API integration for managing user favorites (add, delete, update, list).
+
+### DialogService
+Lazy-loaded dialog management for media details and YouTube trailers.
+
+### AuthService
+Authentication state management using sessionStorage tokens.
+
+## 🎨 Design Principles
+
+- **Mobile-First**: Responsive design starting from 320px
+- **Accessibility**: WCAG 2.1 AA compliance with keyboard navigation
+- **Performance**: Lazy loading, optimized builds, efficient state management
+- **Consistency**: Angular Material design language throughout
+
+## 🌐 Live Application
+
+- **Production**: [ScreenPulse App](https://screenpulse.netlify.app)
+- **Storybook**: [Component Documentation](https://edugese.github.io/ScreenPulse-frontApp/)
+- **Repository**: [GitHub](https://github.com/edugese/ScreenPulse-frontApp)
+
+## 📞 Contact
+
+Developed by **Eduardo Gese**
+- GitHub: [@edugese](https://github.com/edugese)
+
+---
+
+**Version**: 1.0.0  
+**Last Updated**: November 2025
+"""
