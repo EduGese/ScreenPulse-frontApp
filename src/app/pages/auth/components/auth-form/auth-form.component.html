@@ -1,0 +1,94 @@
+<div class="head-icon">
+  <h1>{{ title }}</h1>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="handleSubmit()">
+  
+  <mat-form-field *ngIf="showNameField" appearance="outline" color="accent">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" formControlName="name" aria-label="Name" required />
+    <button mat-icon-button matSuffix type="button" aria-label="Name icon">
+      <mat-icon>person</mat-icon>
+    </button>
+    <mat-error *ngIf="form.get('name')?.hasError('required')">
+      Name is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" aria-label="Email" required />
+    <button mat-icon-button matSuffix type="button" aria-label="Email icon">
+      <mat-icon>mail</mat-icon>
+    </button>
+    <mat-error *ngIf="form.get('email')?.hasError('required')">
+      Email is required
+    </mat-error>
+    <mat-error *ngIf="form.get('email')?.hasError('email')">
+      Incorrect email format
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>Password</mat-label>
+    <input 
+      matInput 
+      [type]="hidePassword ? 'password' : 'text'" 
+      formControlName="password"
+      aria-label="Password" 
+      required 
+    />
+    <button 
+      mat-icon-button 
+      matSuffix 
+      (click)="hidePassword = !hidePassword" 
+      [attr.aria-label]="'Toggle password visibility'"
+      [attr.aria-pressed]="!hidePassword" 
+      type="button"
+    >
+      <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+    
+    <mat-hint *ngIf="showPasswordHint">
+      Min 6 char incl. letters, numbers and special characters (!#..)
+    </mat-hint>
+    
+    <mat-error *ngIf="form.get('password')?.hasError('required')">
+      Password is required
+    </mat-error>
+    <mat-error *ngIf="form.get('password')?.hasError('pattern')">
+      Min 6 char incl. letters, numbers and special characters (!#..)
+    </mat-error>
+  </mat-form-field>
+
+  <div *ngIf="showRegisterLink" class="register-link">
+    <span class="not-register-text">Not registered yet?</span>
+    <a routerLink="/auth/register">Sign up here</a>
+  </div>
+
+  <div class="button-container">
+    <button 
+      mat-raised-button 
+      class="button-submit" 
+      color="primary" 
+      type="submit" 
+      [disabled]="form.invalid || disabled"
+    >
+      <mat-icon *ngIf="formType === 'login'" [ngClass]="form.invalid || disabled ? 'button-icon-disabled' : 'button-icon-enabled'">
+        {{ formType }}
+      </mat-icon>
+      {{ submitButtonText }}
+    </button>
+    
+    <button 
+      mat-raised-button 
+      class="button-clear" 
+      color="accent" 
+      type="button" 
+      (click)="handleClear()"
+    >
+      <mat-icon>clear</mat-icon>
+      Clear
+    </button>
+  </div>
+</form>

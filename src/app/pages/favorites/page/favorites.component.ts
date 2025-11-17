@@ -1,10 +1,10 @@
-import { Component,OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MediaItem } from 'src/app/shared/models/movie.model';
 import { ToastrService } from 'ngx-toastr';
 import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { PageEvent } from '@angular/material/paginator';
 import { FavoritesSearchParams } from 'src/app/shared/models/favoritesSearchParams.model';
 import { finalize } from 'rxjs';
 
@@ -14,11 +14,15 @@ import { finalize } from 'rxjs';
   styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent implements OnInit {
-  favorites: MediaItem[] | [] = [];
-  favoritesSize = 0;
-  isLoadingFavorites = false;
-  userName: string | null = '';
 
+  /**
+   * Collection of user's favorite media items
+   */
+  favorites: MediaItem[] | [] = [];
+
+  /**
+   * Search and pagination parameters for favorites API
+   */
   searchParams: FavoritesSearchParams = {
     currentPage: 1,
     pageSize: 10,
@@ -27,10 +31,12 @@ export class FavoritesComponent implements OnInit {
     sortOrder: undefined,
     searchTerm: undefined,
   };
+
+  favoritesSize = 0;
+  isLoadingFavorites = false;
+  userName: string | null = '';
   isRevalidatingAfterDelete = false;
   loadingCard = false;
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
 
   constructor(
@@ -60,21 +66,25 @@ export class FavoritesComponent implements OnInit {
       this.searchParams.sortOrder,
       this.searchParams.searchTerm,
       this.searchParams.mediaType
-    ).subscribe({
-      next: (response) => {
-        this.favorites = response.favorites;
-        this.favoritesSize = response.totalFavorites;
-        this.isLoadingFavorites = false;
-        this.isRevalidatingAfterDelete = false;
-      },
-      error: (error) => {
-        console.error(error);
-        this.toastrService.error(error.message);
-        this.isLoadingFavorites = false;
-      },
-    });
+    )
+      .pipe(
+        finalize(() => {
+          this.isLoadingFavorites = false;
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          this.favorites = response.favorites;
+          this.favoritesSize = response.totalFavorites;
+          this.isRevalidatingAfterDelete = false;
+        },
+        error: (error) => {
+          console.error(error);
+          this.toastrService.error(error.message);
+        },
+      });
   }
-  onMediaTypeChange(mediaType:string): void {
+  onMediaTypeChange(mediaType: string): void {
     this.searchParams.mediaType = mediaType;
     this.searchParams.currentPage = 1;
     this.loadAllFavorites();
@@ -94,23 +104,24 @@ export class FavoritesComponent implements OnInit {
   }
 
   openFavorite(favoriteMediaItemToOpen: MediaItem): void {
- this.loadingCard = true;
-  this.dialogService
-    .openMediaItem(window.innerWidth, favoriteMediaItemToOpen, false)
-    .pipe(finalize(() => (this.loadingCard = false)))
-    .subscribe();
+    this.loadingCard = true;
+    this.dialogService
+      .openMediaItem(window.innerWidth, favoriteMediaItemToOpen, true)
+      .pipe(finalize(() => (this.loadingCard = false)))
+      .subscribe();
   }
 
   deleteFavorite(_id: string): void {
     this.favoritesService.deleteMediaItem(_id).subscribe({
       next: (response) => {
         this.favorites = this.favorites.filter((movie) => movie._id != _id);
-         if (this.favorites.length === 0) {
+        if (this.favorites.length === 0) {
           this.isLoadingFavorites = true;
           this.isRevalidatingAfterDelete = true;
           this.searchParams.currentPage = 1;
           this.loadAllFavorites();
         }
+        this.favoritesSize = this.favoritesSize - 1;
         this.toastrService.success(response.message);
       },
       error: () => {

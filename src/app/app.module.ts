@@ -6,12 +6,14 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 
 import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
+import { LayoutModule } from './layout/layout.module';
 
 import { AppComponent } from './app.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 
@@ -25,7 +27,8 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule,
+    LayoutModule,
+     MatDialogModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ToastrModule.forRoot()

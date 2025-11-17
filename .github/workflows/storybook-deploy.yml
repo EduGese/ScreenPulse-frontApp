@@ -1,0 +1,53 @@
+name: 📚 Deploy Storybook Documentation
+
+on:
+  push:
+    branches:
+      - storyBook
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ✅ Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📥 Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: 🔨 Build Storybook
+        run: npm run build-storybook
+
+      - name: 🔧 Fix paths for GitHub Pages subdirectory
+        run: |
+          # 1. Add base href
+          sed -i 's|<head>|<head><base href="/ScreenPulse-frontApp/">|' storybook-static/index.html
+          
+          # 2. Fix asset paths (reemplaza /assets con assets relativos)
+          find storybook-static -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" \) -exec sed -i 's|"/assets/|"assets/|g' {} +
+          find storybook-static -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" \) -exec sed -i "s|'/assets/|'assets/|g" {} +
+          
+          echo "✅ Paths fixed for subdirectory deployment"
+
+      - name: 🚀 Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./storybook-static
+
+      - name: ✨ Deployment successful
+        run: |
+          echo "✅ Storybook deployed!"
+          echo "📍 URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"

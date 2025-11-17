@@ -61,7 +61,7 @@ export const FEATURED_MEDIA: MediaItem[] = [ {
   year:  "2002–2008",
   imdbID: "tt0306414",
   type: "series",
-  poster: "https://m.media-amazon.com/images/M/MV5BZmY5ZDMxODEtNWIwOS00NjdkLTkyMjktNWRjMDhmYjJjN2RmXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
+  poster: "https://m.media-amazon.com/images/M/MV5BZWYyNmRhYjktNjBhNC00M2NhLWEzYmMtZDYwNmIyZTRiZWMzXkEyXkFqcGc@._V1_SX300.jpg"
 },
 {
   title: "MobLand",

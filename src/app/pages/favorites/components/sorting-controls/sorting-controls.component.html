@@ -1,0 +1,42 @@
+<div class="sorting-filter-container">
+    <div class="sorting-container">
+      <div class="sorting-item">
+        <mat-icon (click)="handleSort('year')">
+          <span>{{ currentSort.sortField === 'year' && currentSort.sortOrder === -1 ? 'expand_less' : 'expand_more'
+            }}</span>
+        </mat-icon>
+        <span class="sortByName">Year</span>
+        <mat-icon (click)="handleSort('year')">
+          <span>{{ currentSort.sortField === 'year' && currentSort.sortOrder === 1 ? 'expand_more' : 'expand_less'
+            }}</span>
+        </mat-icon>
+      </div>
+
+      <div class="sorting-item">
+        <mat-icon (click)="handleSort('title')">
+          <span>{{ currentSort.sortField === 'title' && currentSort.sortOrder === -1 ? 'expand_less' : 'expand_more'
+            }}</span>
+        </mat-icon>
+        <span class="sortByName">Title</span>
+        <mat-icon (click)="handleSort('title')">
+          <span>{{ currentSort.sortField === 'title' && currentSort.sortOrder === 1 ? 'expand_more' : 'expand_less'
+            }}</span>
+        </mat-icon>
+      </div>
+    </div>
+    <div class="filter-container">
+      <input type="text" placeholder="Filter by title" maxlength="20" (keyup)="handleFilter($event)">
+    </div>
+    <div class="media-type-container">
+        <mat-button-toggle-group
+        name="mediaType"
+        aria-label="MediaTypes"
+        (change)="handleMediaTypeChange($event)"
+      >
+        <mat-button-toggle value="movie">Movies</mat-button-toggle>
+        <mat-button-toggle value="series">Series</mat-button-toggle>
+        <mat-button-toggle value="game">Games</mat-button-toggle>
+        <mat-button-toggle value="all" checked>All</mat-button-toggle>
+      </mat-button-toggle-group>
+      </div>
+  </div>

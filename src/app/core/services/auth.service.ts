@@ -1,42 +1,44 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { User } from 'src/app/shared/models/user.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { AuthUser } from 'src/app/shared/models/auth.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private authTokenKey  = 'authToken';
-  private userMailKey = 'userMail';
-  private userNameKey = 'userName';
-  private userIdKey = 'userId';
+  private readonly authTokenKey = 'authToken';
+  private readonly userMailKey = 'userMail';
+  private readonly userNameKey = 'userName';
+  private readonly userIdKey = 'userId';
 
   private userMailSubject = new BehaviorSubject<string | null>(null);
+  private userLoggedInSubject = new BehaviorSubject<boolean>(false);
 
-  constructor() { 
+  constructor() {
     this.userMailSubject.next(sessionStorage.getItem(this.userMailKey));
+    this.userLoggedInSubject.next(sessionStorage.getItem(this.authTokenKey) !== null);
   }
-  setUserSession(user: User, token: string) {
-  this.setAuthToken(token);
-  this.setUserMail(user.email);
-  this.setUserName(user.name ? user.name : '');
-  this.setUserId(user._id ? user._id : '');
-}
+  setUserSession(user: AuthUser, token: string) {
+    this.setAuthToken(token);
+    this.setUserMail(user.email);
+    this.setUserName(user.name);
+  }
 
   setAuthToken(token: string) {
     sessionStorage.setItem(this.authTokenKey, token);
+    this.userLoggedInSubject.next(true);
   }
 
   getAuthToken(): string | null {
     return sessionStorage.getItem(this.authTokenKey);
   }
 
-  isLoggedIn(): boolean {
-    return !!this.getAuthToken();
+  isLoggedInObservable(): Observable<boolean> {
+    return this.userLoggedInSubject.asObservable();
   }
 
-  setUserMail(userMail: string){
+  setUserMail(userMail: string) {
     sessionStorage.setItem(this.userMailKey, userMail);
     this.userMailSubject.next(userMail);
   }
@@ -48,24 +50,21 @@ export class AuthService {
   getUserMailObservable() {
     return this.userMailSubject.asObservable();
   }
-  setUserName(userName: string){
+
+  setUserName(userName: string) {
     sessionStorage.setItem(this.userNameKey, userName);
   }
+
   getUserName(): string | null {
     return sessionStorage.getItem(this.userNameKey);
   }
-  setUserId(userId: string){//ELIMINAR
-    sessionStorage.setItem(this.userIdKey, userId);
-  }
-  getUserId(): string | null {//ELIMINAR
-    return sessionStorage.getItem(this.userIdKey);
-  }
 
-  logOut(){
+  logOut() {
     sessionStorage.removeItem(this.authTokenKey);
     sessionStorage.removeItem(this.userMailKey);
     sessionStorage.removeItem(this.userNameKey);
     sessionStorage.removeItem(this.userIdKey);
-    this.userMailSubject.next(null); 
+    this.userMailSubject.next(null);
+    this.userLoggedInSubject.next(false);
   }
 }

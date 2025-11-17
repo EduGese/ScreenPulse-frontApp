@@ -4,7 +4,6 @@ import { of } from 'rxjs';
 import { FavoritesComponent } from './favorites.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { NavbarComponent } from 'src/app/shared/components/navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,6 +18,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
 import { OmdbService } from 'src/app/shared/services/omdb/omdb.service';
 import { FavoritesService } from 'src/app/shared/services/favorites/favorites.service';
+import { NavbarComponent } from 'src/app/layout/navbar/navbar.component';
+import { SortingControlsComponent } from '../components/sorting-controls/sorting-controls.component';
 
 
 
@@ -49,7 +50,8 @@ describe('FavoritesComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         FavoritesComponent,
-        NavbarComponent
+        NavbarComponent,
+        SortingControlsComponent
       ],
       imports: [
         FormsModule,
@@ -64,7 +66,8 @@ describe('FavoritesComponent', () => {
         MatDialogModule,
         MatProgressBarModule,
         SharedModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        
       ],
       providers: [
         ToastrService,

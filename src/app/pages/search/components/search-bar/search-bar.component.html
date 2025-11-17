@@ -1,0 +1,44 @@
+<form id="search-form" [formGroup]="searchForm" (submit)="handleSubmit()">
+
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>title</mat-label>
+    <input matInput formControlName="title" #searchFormFocus>
+    <mat-hint>Mandatory</mat-hint>
+    <mat-error *ngIf="searchForm.get('title')?.errors as errors">
+      <span *ngIf="errors['required']">Required field</span>
+      <span *ngIf="errors['pattern']">No spaces or empty</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>type</mat-label>
+    <mat-select formControlName="type">
+      <mat-option *ngFor="let type of types" [value]="type">
+        {{type | titlecase}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>year (optional)</mat-label>
+    <input matInput formControlName="year" type="number" placeholder="1900-{{currentYear}}">
+    <mat-hint>Empty to search all years</mat-hint>
+    <mat-error *ngIf="searchForm.get('year')?.invalid">
+      Must be between 1900- {{currentYear}}
+    </mat-error>
+  </mat-form-field>
+
+
+  <div class="button-container">
+    <button mat-raised-button color="primary" type="submit" [disabled]="searchForm.invalid">
+      <mat-icon [ngClass]="searchForm.invalid ? 'button-icon-disabled' : 'button-icon-enabled'">send</mat-icon>
+      Find
+    </button>
+
+    <button mat-raised-button color="accent" type="button" (click)="handleClear()">
+      <mat-icon>clear</mat-icon>
+      Clear
+    </button>
+  </div>
+
+</form>

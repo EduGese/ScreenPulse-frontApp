@@ -44,3 +44,7 @@ Thumbs.db
 # My files
 estructura de la app.txt
 /environments
+
+# Storybook
+storybook.log
+/storybook-static

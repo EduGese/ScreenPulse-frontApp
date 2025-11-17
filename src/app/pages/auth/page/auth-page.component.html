@@ -1,0 +1,8 @@
+<div class="view">
+<app-auth-form
+  [formType]= "formType"
+  [disabled]="isAuthenticating"
+  (formSubmit)="handleFormSubmit($event)"
+></app-auth-form>
+        <app-loading-spinner [visible]="isAuthenticating"></app-loading-spinner>
+</div>

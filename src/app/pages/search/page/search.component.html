@@ -18,7 +18,7 @@
   <div class="search-container">
     <app-carousel (sendItemCarousel)="openMediaItem($event)" [collection]="featuredMedia"></app-carousel>
     <div class="filter-container" #myinput>
-      <app-search-bar (searchSubmitted)="onSubmit($event)"></app-search-bar>
+      <app-search-bar (searchSubmitted)="handleSubmit($event)"></app-search-bar>
         <app-loading-spinner [visible]="searchState.searchOnProcess"></app-loading-spinner>
     </div>
   </div>

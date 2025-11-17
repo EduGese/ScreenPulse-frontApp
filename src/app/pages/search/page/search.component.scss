@@ -97,12 +97,25 @@ app-search-bar {
 
   .search-container {
     display: flex;
+    justify-content: center;
 
   }
   .table-section {
     margin: 20px auto 20px auto;
     width: 80%;
     padding-bottom: 30px;
+  }
+
+
+}
+
+@media only screen and (min-width: 602px) and (max-width: 992px) {
+  .table-section {
+    width: 90%;
+  }
+  .search-container {
+    display: flex;
+    flex-direction: column;
   }
 
 

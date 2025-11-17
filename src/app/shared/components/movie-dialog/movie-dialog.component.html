@@ -2,8 +2,8 @@
 
 <mat-dialog-content class="card-content mat-typography">
   <div class="poster-container">
-    <ng-container *ngIf="data?.response?.Poster === 'N/A'; else poster">
-      <img src="assets/images/no_poster.jpg" alt="No/poster">
+    <ng-container *ngIf="data.response.Poster === 'N/A'; else poster">
+      <img src="/assets/images/no_poster.jpg" alt="No/poster">
     </ng-container>
     <ng-template #poster>
       <img [src]="data.response.Poster" [alt]="data.response.Title" appFallback>
@@ -20,13 +20,13 @@
   </div>
 
   <div class="rating-container">
-    <img src="assets/images/imdb.png" alt="imdb logo">
+    <img [src]= "imdbLogoPath" alt="imdb logo">
     <span class="rating"><mat-icon class="star">star</mat-icon>{{data.response.imdbRating}}</span>
     <span>({{data.response.imdbVotes}})</span>
   </div>
 </mat-dialog-content>
 
-<mat-dialog-actions>
+<mat-dialog-actions align="center">
 
   <button mat-raised-button mat-dialog-close color="primary" aria-label="Close dialog">
     <mat-icon>close</mat-icon>

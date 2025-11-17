@@ -7,11 +7,20 @@ import { FavoritesService } from 'src/app/shared/services/favorites/favorites.se
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { DialogService } from 'src/app/shared/services/dialog/dialog.service';
-import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
-import { HttpErrorResponse } from '@angular/common/http';
 import { FEATURED_MEDIA } from 'src/app/core/constants/featured-media.const';
-import { finalize } from 'rxjs';
+import { EMPTY, finalize, switchMap, take } from 'rxjs';
+import { SearchBarComponent } from '../components/search-bar/search-bar.component';
 
+/**
+ * Search page component allowing users to search for media items.
+ * 
+ * @description
+ * Displays search bar, results table, and featured media.
+ * Handles search submissions, pagination, and adding items to favorites.
+ * Utilizes OmdbService for fetching media data.
+ * Integrates with AuthService to restrict certain actions to logged-in users.
+ * 
+ */
 
 @Component({
   selector: 'app-search',
@@ -21,8 +30,20 @@ import { finalize } from 'rxjs';
 
 
 export class SearchComponent {
+  /*
+  * Featured media items to display on the search page
+  * 
+  */ 
   featuredMedia: MediaItem[] = FEATURED_MEDIA;
+
+  /**
+   * Columns displayed in the search results table
+   */
   displayedColumns: string[] = ['title', 'year', 'type', 'poster', 'Add'];
+
+  /**
+   * Current search state (filters, results, pagination)
+   */
   searchState: SearchState = {
     title: '',
     type: 'all',
@@ -33,6 +54,10 @@ export class SearchComponent {
     collectionSize: 0,
     searchOnProcess: false,
   };
+
+  /**
+   * Loading state for media item dialog
+   */
   loadingCard = false;
 
   @ViewChild(SearchBarComponent) SearchComponent!: SearchBarComponent | null;
@@ -47,7 +72,7 @@ export class SearchComponent {
   ) { }
 
 
-  onSubmit(filters: SearchFilters): void {
+  handleSubmit(filters: SearchFilters): void {
     this.searchState = {
       ...this.searchState,
       ...filters,
@@ -62,22 +87,23 @@ export class SearchComponent {
     this.fetchMediaItems();
   }
 
-  addToFavorites(mediaItem: MediaItem): void {
-    if (!this.authService.isLoggedIn()) {
-      this.toastrService.error('You must be logged in to add movies to your list');
-      this.router.navigate(['/login']);
-      return;
-    }
-
-    this.favoritesService.addToFavorites(mediaItem).subscribe({
-      next: () => {
-        this.toastrService.success(mediaItem.title, 'Added to favorites');
-      },
-      error: (error: HttpErrorResponse) => {
-        this.toastrService.warning(error.message);
+addToFavorites(mediaItem: MediaItem) {
+  this.authService.isLoggedInObservable().pipe(
+    take(1),
+    switchMap(loggedIn => {
+      if (!loggedIn) {
+        this.toastrService.warning('You must be logged in to add movies to your list', 'Error');
+        this.router.navigate(['/auth/login']);
+        return EMPTY; 
       }
-    });
-  }
+      return this.favoritesService.addToFavorites(mediaItem);
+    })
+  ).subscribe({
+    next: () => this.toastrService.success(mediaItem.title, 'Added to favorites'),
+    error: (error) => this.toastrService.warning(error.message)
+  });
+}
+
 
   openMediaItem(mediaItem: MediaItem): void {
     this.loadingCard = true;
@@ -93,7 +119,10 @@ export class SearchComponent {
     });
   }
 
-
+   /**
+   * @private
+   * @ignore
+   */
   private fetchMediaItems(): void {
     this.omdbService.fetchMediaItems(
       this.searchState.title,
@@ -119,6 +148,10 @@ export class SearchComponent {
       })
   }
 
+   /**
+   * @private
+   * @ignore
+   */
   private focusOnResultsTable(): void {
     setTimeout(() => {
       document.getElementById('tableFocus')?.focus();
