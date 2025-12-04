@@ -5,6 +5,7 @@
 [![Angular Material](https://img.shields.io/badge/Angular_Material-16.2.12-E91E63?logo=angular&logoColor=white)](https://material.angular.io/)
 [![ng-bootstrap](https://img.shields.io/badge/ng--bootstrap-15.1.2-7952B3?logo=bootstrap&logoColor=white)](https://ng-bootstrap.github.io/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Release](https://img.shields.io/github/release/EduGese/ScreenPulse-frontApp?style=flat-square)
 
 > A modern web application for discovering and managing movies, series, and games. Built with Angular 16, powered by OMDB API, with full authentication and favorites management.
 
